@@ -1,0 +1,1481 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      Utero Indonesia — Brand Consultant & Creative Agency Malang sejak 1998
+    </title>
+    <meta
+      name="description"
+      content="Utero Indonesia adalah brand consultant & creative agency di Malang dengan pengalaman 25+ tahun. Layanan: branding, desain, advertising, signage, digital, teknologi." />
+    <meta
+      name="keywords"
+      content="brand consultant malang, creative agency malang, desain logo malang, advertising malang, signage malang, branding UMKM, utero indonesia" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Syne:wght@700;800&display=swap"
+      rel="stylesheet" />
+
+    <style>
+      /* ===== TOKENS ===== */
+      :root {
+        --red: #d11f1f;
+        --red2: #a01515;
+        --black: #0d0d0d;
+        --ink: #1a1a1a;
+        --ash: #f2f2f2;
+        --white: #ffffff;
+        --gold: #c9a84c;
+        --muted: #888888;
+
+        --display: "Syne", sans-serif;
+        --body: "Space Grotesk", sans-serif;
+
+        --ease: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: var(--body);
+        background: var(--white);
+        color: var(--ink);
+        overflow-x: hidden;
+      }
+
+      /* ===== NAV ===== */
+      nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 100;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 18px 48px;
+        background: rgba(13, 13, 13, 0.92);
+        backdrop-filter: blur(12px);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      }
+
+      .nav-logo {
+        font-family: var(--display);
+        font-size: 22px;
+        font-weight: 800;
+        color: var(--white);
+        letter-spacing: -0.5px;
+        text-decoration: none;
+      }
+      .nav-logo span {
+        color: var(--red);
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 36px;
+        list-style: none;
+      }
+      .nav-links a {
+        font-size: 13px;
+        font-weight: 500;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.6);
+        text-decoration: none;
+        transition: color 0.2s;
+      }
+      .nav-links a:hover {
+        color: var(--red);
+      }
+
+      .nav-cta {
+        background: var(--red);
+        color: var(--white) !important;
+        padding: 9px 22px;
+        border-radius: 2px;
+        font-weight: 600 !important;
+        color: var(--white) !important;
+        transition: background 0.2s !important;
+      }
+      .nav-cta:hover {
+        background: var(--red2) !important;
+        color: var(--white) !important;
+      }
+
+      /* ===== HERO ===== */
+      .hero {
+        min-height: 100vh;
+        background: var(--black);
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .hero-bg-text {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-family: var(--display);
+        font-size: clamp(120px, 18vw, 260px);
+        font-weight: 800;
+        color: rgba(255, 255, 255, 0.03);
+        white-space: nowrap;
+        letter-spacing: -0.02em;
+        pointer-events: none;
+        user-select: none;
+      }
+
+      .hero-left {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 140px 64px 80px;
+        position: relative;
+        z-index: 2;
+      }
+
+      .hero-eyebrow {
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--red);
+        margin-bottom: 28px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .hero-eyebrow::before {
+        content: "";
+        display: block;
+        width: 32px;
+        height: 1px;
+        background: var(--red);
+      }
+
+      .hero-headline {
+        font-family: var(--display);
+        font-size: clamp(48px, 5.5vw, 80px);
+        font-weight: 800;
+        line-height: 1;
+        letter-spacing: -0.03em;
+        color: var(--white);
+        margin-bottom: 28px;
+      }
+      .hero-headline em {
+        font-style: normal;
+        color: var(--red);
+        display: block;
+      }
+
+      .hero-sub {
+        font-size: 16px;
+        line-height: 1.7;
+        color: rgba(255, 255, 255, 0.5);
+        max-width: 420px;
+        margin-bottom: 48px;
+      }
+
+      .hero-actions {
+        display: flex;
+        gap: 16px;
+        align-items: center;
+      }
+
+      .btn-primary {
+        background: var(--red);
+        color: var(--white);
+        padding: 14px 32px;
+        font-family: var(--body);
+        font-size: 14px;
+        font-weight: 600;
+        border: none;
+        cursor: pointer;
+        text-decoration: none;
+        display: inline-block;
+        letter-spacing: 0.04em;
+        transition: background 0.2s var(--ease);
+      }
+      .btn-primary:hover {
+        background: var(--red2);
+      }
+
+      .btn-ghost {
+        color: rgba(255, 255, 255, 0.5);
+        font-size: 14px;
+        font-weight: 500;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        transition: color 0.2s;
+      }
+      .btn-ghost:hover {
+        color: var(--white);
+      }
+      .btn-ghost::after {
+        content: "→";
+      }
+
+      .hero-right {
+        position: relative;
+        z-index: 2;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 120px 64px 80px;
+      }
+
+      /* The signature element: a rotating ring of division names */
+      .orbit {
+        position: relative;
+        width: 380px;
+        height: 380px;
+      }
+
+      .orbit-center {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 140px;
+        height: 140px;
+        background: var(--red);
+        border-radius: 50%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        z-index: 2;
+      }
+      .orbit-center-num {
+        font-family: var(--display);
+        font-size: 36px;
+        font-weight: 800;
+        color: var(--white);
+        line-height: 1;
+      }
+      .orbit-center-label {
+        font-size: 10px;
+        font-weight: 600;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.7);
+        margin-top: 4px;
+      }
+
+      .orbit-ring {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        border-radius: 50%;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        animation: spin 28s linear infinite;
+      }
+
+      .orbit-ring-2 {
+        top: 30px;
+        left: 30px;
+        right: 30px;
+        bottom: 30px;
+        animation: spin 20s linear infinite reverse;
+        border-color: rgba(209, 31, 31, 0.2);
+      }
+
+      @keyframes spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      .orbit-node {
+        position: absolute;
+        transform: translate(-50%, -50%);
+        background: rgba(255, 255, 255, 0.04);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        padding: 8px 14px;
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.7);
+        white-space: nowrap;
+        backdrop-filter: blur(4px);
+        transition: all 0.3s;
+        cursor: default;
+      }
+      .orbit-node:hover {
+        background: var(--red);
+        color: var(--white);
+        border-color: var(--red);
+      }
+
+      .hero-stats {
+        position: absolute;
+        bottom: 60px;
+        left: 64px;
+        display: flex;
+        gap: 48px;
+        z-index: 2;
+      }
+      .stat-item {
+      }
+      .stat-num {
+        font-family: var(--display);
+        font-size: 36px;
+        font-weight: 800;
+        color: var(--white);
+        line-height: 1;
+      }
+      .stat-num span {
+        color: var(--red);
+      }
+      .stat-label {
+        font-size: 12px;
+        font-weight: 500;
+        color: var(--muted);
+        margin-top: 4px;
+        letter-spacing: 0.06em;
+      }
+
+      /* ===== TICKER ===== */
+      .ticker {
+        background: var(--red);
+        padding: 14px 0;
+        overflow: hidden;
+      }
+      .ticker-track {
+        display: flex;
+        gap: 0;
+        animation: marquee 20s linear infinite;
+        white-space: nowrap;
+      }
+      .ticker-item {
+        font-size: 13px;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--white);
+        padding: 0 40px;
+        display: flex;
+        align-items: center;
+        gap: 40px;
+      }
+      .ticker-item::after {
+        content: "◆";
+        font-size: 8px;
+        opacity: 0.5;
+      }
+      @keyframes marquee {
+        from {
+          transform: translateX(0);
+        }
+        to {
+          transform: translateX(-50%);
+        }
+      }
+
+      /* ===== SECTIONS SHARED ===== */
+      section {
+        padding: 120px 64px;
+      }
+
+      .section-eyebrow {
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--red);
+        margin-bottom: 20px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .section-eyebrow::before {
+        content: "";
+        display: block;
+        width: 24px;
+        height: 1px;
+        background: var(--red);
+      }
+
+      .section-title {
+        font-family: var(--display);
+        font-size: clamp(36px, 4vw, 58px);
+        font-weight: 800;
+        letter-spacing: -0.03em;
+        line-height: 1.05;
+        color: var(--ink);
+      }
+
+      /* ===== ABOUT ===== */
+      .about {
+        background: var(--ash);
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 80px;
+        align-items: center;
+      }
+
+      .about-left {
+      }
+
+      .about-body {
+        font-size: 17px;
+        line-height: 1.75;
+        color: #555;
+        margin-top: 28px;
+        max-width: 520px;
+      }
+
+      .about-body strong {
+        color: var(--ink);
+      }
+
+      .about-right {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+      }
+
+      .about-card {
+        background: var(--white);
+        padding: 28px;
+        border-left: 3px solid var(--red);
+      }
+      .about-card-num {
+        font-family: var(--display);
+        font-size: 42px;
+        font-weight: 800;
+        color: var(--ink);
+        line-height: 1;
+      }
+      .about-card-num span {
+        color: var(--red);
+      }
+      .about-card-label {
+        font-size: 13px;
+        font-weight: 500;
+        color: var(--muted);
+        margin-top: 6px;
+        line-height: 1.4;
+      }
+
+      /* ===== DIVISIONS ===== */
+      .divisions {
+        background: var(--black);
+        padding: 120px 64px;
+      }
+      .divisions .section-title {
+        color: var(--white);
+      }
+      .divisions .section-eyebrow {
+      }
+
+      .divisions-intro {
+        font-size: 17px;
+        line-height: 1.7;
+        color: rgba(255, 255, 255, 0.45);
+        max-width: 600px;
+        margin-top: 20px;
+        margin-bottom: 72px;
+      }
+
+      .divisions-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2px;
+      }
+
+      .div-card {
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        padding: 40px 36px;
+        transition: all 0.3s var(--ease);
+        cursor: default;
+        position: relative;
+        overflow: hidden;
+      }
+      .div-card::before {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background: var(--red);
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.3s var(--ease);
+      }
+      .div-card:hover {
+        background: rgba(255, 255, 255, 0.06);
+      }
+      .div-card:hover::before {
+        transform: scaleX(1);
+      }
+
+      .div-card-tag {
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--red);
+        margin-bottom: 20px;
+      }
+
+      .div-card-name {
+        font-family: var(--display);
+        font-size: 28px;
+        font-weight: 800;
+        color: var(--white);
+        letter-spacing: -0.02em;
+        margin-bottom: 14px;
+        line-height: 1.1;
+      }
+
+      .div-card-desc {
+        font-size: 14px;
+        line-height: 1.65;
+        color: rgba(255, 255, 255, 0.4);
+      }
+
+      .div-card-services {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: 24px;
+      }
+      .service-tag {
+        font-size: 11px;
+        font-weight: 500;
+        color: rgba(255, 255, 255, 0.4);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        padding: 4px 10px;
+        letter-spacing: 0.05em;
+      }
+
+      /* ===== PROCESS ===== */
+      .process {
+        background: var(--white);
+      }
+
+      .process-header {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 80px;
+        align-items: end;
+        margin-bottom: 72px;
+      }
+      .process-desc {
+        font-size: 17px;
+        line-height: 1.7;
+        color: #666;
+        align-self: end;
+      }
+
+      .process-steps {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 0;
+      }
+
+      .process-step {
+        padding: 40px 32px;
+        border-top: 1px solid #e0e0e0;
+        position: relative;
+      }
+      .process-step:not(:last-child)::after {
+        content: "→";
+        position: absolute;
+        right: -12px;
+        top: 40px;
+        color: var(--red);
+        font-size: 18px;
+        z-index: 1;
+      }
+      .step-num {
+        font-family: var(--display);
+        font-size: 52px;
+        font-weight: 800;
+        color: var(--ash);
+        line-height: 1;
+        margin-bottom: 16px;
+      }
+      .step-title {
+        font-family: var(--display);
+        font-size: 20px;
+        font-weight: 700;
+        color: var(--ink);
+        margin-bottom: 10px;
+      }
+      .step-desc {
+        font-size: 14px;
+        line-height: 1.6;
+        color: var(--muted);
+      }
+
+      /* ===== CLIENTS ===== */
+      .clients {
+        background: var(--ash);
+        padding: 80px 64px;
+        text-align: center;
+      }
+      .clients-title {
+        font-size: 13px;
+        font-weight: 600;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin-bottom: 48px;
+      }
+      .clients-logos {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        gap: 8px;
+      }
+      .client-name {
+        font-size: 13px;
+        font-weight: 600;
+        color: #aaaaaa;
+        padding: 10px 20px;
+        border: 1px solid #dddddd;
+        letter-spacing: 0.06em;
+        transition: all 0.2s;
+      }
+      .client-name:hover {
+        color: var(--ink);
+        border-color: var(--ink);
+      }
+
+      /* ===== WHY ===== */
+      .why {
+        background: var(--red);
+        color: var(--white);
+      }
+      .why-grid {
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+        gap: 80px;
+        align-items: start;
+      }
+      .why .section-title {
+        color: var(--white);
+      }
+      .why .section-eyebrow {
+        color: rgba(255, 255, 255, 0.6);
+      }
+      .why .section-eyebrow::before {
+        background: rgba(255, 255, 255, 0.5);
+      }
+
+      .why-items {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+        margin-top: 0;
+      }
+      .why-item {
+      }
+      .why-item-icon {
+        font-size: 28px;
+        margin-bottom: 14px;
+      }
+      .why-item-title {
+        font-family: var(--display);
+        font-size: 20px;
+        font-weight: 800;
+        color: var(--white);
+        margin-bottom: 10px;
+      }
+      .why-item-desc {
+        font-size: 14px;
+        line-height: 1.65;
+        color: rgba(255, 255, 255, 0.65);
+      }
+
+      /* ===== CTA ===== */
+      .cta-section {
+        background: var(--ink);
+        padding: 120px 64px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 80px;
+        align-items: center;
+      }
+      .cta-left {
+      }
+      .cta-title {
+        font-family: var(--display);
+        font-size: clamp(40px, 4.5vw, 64px);
+        font-weight: 800;
+        letter-spacing: -0.03em;
+        color: var(--white);
+        line-height: 1.05;
+        margin-bottom: 24px;
+      }
+      .cta-title em {
+        font-style: normal;
+        color: var(--red);
+      }
+      .cta-sub {
+        font-size: 16px;
+        line-height: 1.7;
+        color: rgba(255, 255, 255, 0.45);
+      }
+      .cta-right {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+      .cta-contact-item {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        padding: 20px 24px;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        color: var(--white);
+        text-decoration: none;
+        transition:
+          border-color 0.2s,
+          background 0.2s;
+      }
+      .cta-contact-item:hover {
+        border-color: var(--red);
+        background: rgba(209, 31, 31, 0.08);
+      }
+      .cta-contact-icon {
+        width: 40px;
+        height: 40px;
+        background: var(--red);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 18px;
+        flex-shrink: 0;
+      }
+      .cta-contact-text {
+      }
+      .cta-contact-label {
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin-bottom: 4px;
+      }
+      .cta-contact-value {
+        font-size: 16px;
+        font-weight: 600;
+        color: var(--white);
+      }
+
+      /* ===== FOOTER ===== */
+      footer {
+        background: var(--black);
+        padding: 64px 64px 40px;
+        border-top: 1px solid rgba(255, 255, 255, 0.06);
+      }
+      .footer-top {
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr 1fr;
+        gap: 64px;
+        margin-bottom: 64px;
+      }
+      .footer-logo {
+        font-family: var(--display);
+        font-size: 28px;
+        font-weight: 800;
+        color: var(--white);
+        letter-spacing: -0.02em;
+        margin-bottom: 16px;
+      }
+      .footer-logo span {
+        color: var(--red);
+      }
+      .footer-tagline {
+        font-size: 14px;
+        line-height: 1.65;
+        color: rgba(255, 255, 255, 0.35);
+        margin-bottom: 24px;
+      }
+      .footer-socials {
+        display: flex;
+        gap: 12px;
+      }
+      .social-link {
+        width: 36px;
+        height: 36px;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: rgba(255, 255, 255, 0.4);
+        text-decoration: none;
+        font-size: 14px;
+        transition: all 0.2s;
+      }
+      .social-link:hover {
+        background: var(--red);
+        border-color: var(--red);
+        color: var(--white);
+      }
+
+      .footer-col-title {
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.4);
+        margin-bottom: 20px;
+      }
+      .footer-links {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+      .footer-links a {
+        font-size: 14px;
+        color: rgba(255, 255, 255, 0.5);
+        text-decoration: none;
+        transition: color 0.2s;
+      }
+      .footer-links a:hover {
+        color: var(--white);
+      }
+
+      .footer-bottom {
+        border-top: 1px solid rgba(255, 255, 255, 0.06);
+        padding-top: 28px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .footer-copy {
+        font-size: 13px;
+        color: rgba(255, 255, 255, 0.25);
+      }
+      .footer-seo {
+        font-size: 12px;
+        color: rgba(255, 255, 255, 0.2);
+      }
+
+      /* ===== SEO BREADCRUMBS (hidden visually, indexed by search) ===== */
+      .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+      }
+
+      /* ===== RESPONSIVE ===== */
+      @media (max-width: 900px) {
+        nav {
+          padding: 16px 24px;
+        }
+        .nav-links {
+          display: none;
+        }
+        section,
+        .divisions,
+        .cta-section {
+          padding: 72px 24px;
+        }
+        .hero {
+          grid-template-columns: 1fr;
+        }
+        .hero-left {
+          padding: 120px 24px 60px;
+        }
+        .hero-right {
+          display: none;
+        }
+        .hero-stats {
+          left: 24px;
+        }
+        .about {
+          grid-template-columns: 1fr;
+        }
+        .divisions-grid {
+          grid-template-columns: 1fr;
+        }
+        .process-steps {
+          grid-template-columns: 1fr 1fr;
+        }
+        .why-grid {
+          grid-template-columns: 1fr;
+        }
+        .why-items {
+          grid-template-columns: 1fr;
+        }
+        .cta-section {
+          grid-template-columns: 1fr;
+        }
+        .footer-top {
+          grid-template-columns: 1fr 1fr;
+        }
+        .clients {
+          padding: 60px 24px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- SEO Schema Markup -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Utero Indonesia",
+        "alternateName": [
+          "CV Wahyu Utero Sinar Jaya Kreasindo",
+          "PT Utero Kreatif Indonesia"
+        ],
+        "url": "https://uteroindonesia.com",
+        "logo": "https://uteroindonesia.com/logo.png",
+        "description": "Brand consultant & creative agency di Malang dengan pengalaman 25+ tahun. Layanan branding, desain, advertising, signage, dan teknologi digital.",
+        "foundingDate": "1998",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Jl. Bantaran 1 No. 25, Tulusrejo",
+          "addressLocality": "Malang",
+          "addressRegion": "Jawa Timur",
+          "postalCode": "65141",
+          "addressCountry": "ID"
+        },
+        "telephone": "+62817388616",
+        "sameAs": [
+          "https://instagram.com/uteromalang",
+          "https://uterogroup.com"
+        ]
+      }
+    </script>
+
+    <!-- NAV -->
+    <nav role="navigation" aria-label="Menu utama">
+      <a href="#" class="nav-logo">UTERO<span>.</span>ID</a>
+      <ul class="nav-links">
+        <li><a href="#divisi">Divisi</a></li>
+        <li><a href="#layanan">Layanan</a></li>
+        <li><a href="#klien">Klien</a></li>
+        <li><a href="#tentang">Tentang</a></li>
+        <li><a href="#kontak" class="nav-cta">Konsultasi Gratis</a></li>
+      </ul>
+    </nav>
+
+    <!-- HERO -->
+    <header class="hero" role="banner">
+      <div class="hero-bg-text" aria-hidden="true">UTERO</div>
+
+      <div class="hero-left">
+        <div class="hero-eyebrow">
+          Brand Consultant &amp; Creative Agency — Malang, 1998
+        </div>
+        <h1 class="hero-headline">
+          Ide Tanpa<br />Realisasi
+          <em>Sama Dengan Sampah.</em>
+        </h1>
+        <p class="hero-sub">
+          Kami membantu brand tumbuh dengan strategi yang tepat, desain yang
+          kuat, dan eksekusi yang nyata — dari Malang untuk Indonesia.
+        </p>
+        <div class="hero-actions">
+          <a href="#kontak" class="btn-primary">Mulai Proyek Anda</a>
+          <a href="#divisi" class="btn-ghost">Lihat Divisi Kami</a>
+        </div>
+      </div>
+
+      <div class="hero-right" aria-hidden="true">
+        <div class="orbit">
+          <div class="orbit-ring"></div>
+          <div class="orbit-ring orbit-ring-2"></div>
+
+          <!-- Nodes positioned around the circle -->
+          <div class="orbit-node" style="top: 10%; left: 50%">UTERO.ID</div>
+          <div class="orbit-node" style="top: 30%; left: 90%">ADVERTISING</div>
+          <div class="orbit-node" style="top: 70%; left: 88%">SOUNDPUB</div>
+          <div class="orbit-node" style="top: 88%; left: 50%">CARUBRA</div>
+          <div class="orbit-node" style="top: 70%; left: 12%">BUZZERHOOD</div>
+          <div class="orbit-node" style="top: 30%; left: 10%">EPOCHSTREAM</div>
+
+          <div class="orbit-center">
+            <div class="orbit-center-num">7</div>
+            <div class="orbit-center-label">Divisi Aktif</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-stats" role="list" aria-label="Statistik perusahaan">
+        <div class="stat-item" role="listitem">
+          <div class="stat-num">25<span>+</span></div>
+          <div class="stat-label">Tahun Pengalaman</div>
+        </div>
+        <div class="stat-item" role="listitem">
+          <div class="stat-num">500<span>+</span></div>
+          <div class="stat-label">Brand Ditangani</div>
+        </div>
+        <div class="stat-item" role="listitem">
+          <div class="stat-num">3</div>
+          <div class="stat-label">Kota Operasional</div>
+        </div>
+      </div>
+    </header>
+
+    <!-- TICKER -->
+    <div class="ticker" aria-hidden="true">
+      <div class="ticker-track">
+        <span class="ticker-item">Brand Consultant</span>
+        <span class="ticker-item">Creative Agency Malang</span>
+        <span class="ticker-item">Desain Logo</span>
+        <span class="ticker-item">Advertising &amp; Signage</span>
+        <span class="ticker-item">Digital Marketing</span>
+        <span class="ticker-item">Music Distribution</span>
+        <span class="ticker-item">AI Automation</span>
+        <span class="ticker-item">Brand Consultant</span>
+        <span class="ticker-item">Creative Agency Malang</span>
+        <span class="ticker-item">Desain Logo</span>
+        <span class="ticker-item">Advertising &amp; Signage</span>
+        <span class="ticker-item">Digital Marketing</span>
+        <span class="ticker-item">Music Distribution</span>
+        <span class="ticker-item">AI Automation</span>
+      </div>
+    </div>
+
+    <!-- ABOUT -->
+    <section id="tentang" class="about" aria-labelledby="about-title">
+      <div class="about-left">
+        <div class="section-eyebrow">Tentang Utero Indonesia</div>
+        <h2 id="about-title" class="section-title">
+          Lebih dari<br />Sekadar Agency.
+        </h2>
+        <p class="about-body">
+          Sejak 1998, Utero Indonesia berdiri sebagai ekosistem kreatif — bukan
+          hanya satu agensi, tapi sebuah keluarga besar divisi yang saling
+          menopang. Dari desain logo hingga distribusi musik, dari signage fisik
+          hingga otomasi AI.
+          <strong
+            >Kami adalah jawaban dari segala permasalahan promosi usaha di luar
+            sana.</strong
+          >
+        </p>
+      </div>
+      <div class="about-right" role="list" aria-label="Data perusahaan">
+        <div class="about-card" role="listitem">
+          <div class="about-card-num">1998<span>.</span></div>
+          <div class="about-card-label">
+            Tahun berdiri di Malang, Jawa Timur
+          </div>
+        </div>
+        <div class="about-card" role="listitem">
+          <div class="about-card-num">7<span>+</span></div>
+          <div class="about-card-label">Sub-brand & divisi aktif</div>
+        </div>
+        <div class="about-card" role="listitem">
+          <div class="about-card-num">MLG<span>.</span></div>
+          <div class="about-card-label">Malang · Mojokerto · Madiun</div>
+        </div>
+        <div class="about-card" role="listitem">
+          <div class="about-card-num">∞<span>.</span></div>
+          <div class="about-card-label">
+            Komitmen pada klien, tanpa kompromi
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- DIVISIONS -->
+    <section id="divisi" class="divisions" aria-labelledby="divisions-title">
+      <div class="section-eyebrow">Ekosistem Kreatif Kami</div>
+      <h2 id="divisions-title" class="section-title" style="color: white">
+        Satu Atap,<br />Banyak Solusi.
+      </h2>
+      <p class="divisions-intro">
+        Setiap divisi Utero Indonesia berdiri dengan keahlian yang spesifik —
+        namun bekerja secara sinergis. Apapun kebutuhan brand Anda, ada satu
+        rumah untuk menyelesaikannya.
+      </p>
+
+      <div class="divisions-grid" role="list">
+        <div class="div-card" role="listitem">
+          <div class="div-card-tag">01 — Design</div>
+          <div class="div-card-name">Utero.id</div>
+          <div class="div-card-desc">
+            Brand identity, konsultasi branding, desain grafis, dan strategi
+            visual untuk bisnis yang ingin tampil berbeda.
+          </div>
+          <div class="div-card-services">
+            <span class="service-tag">Logo & GSM</span>
+            <span class="service-tag">Brand Strategy</span>
+            <span class="service-tag">Foto & Video</span>
+            <span class="service-tag">Konsultan Branding</span>
+          </div>
+        </div>
+
+        <div class="div-card" role="listitem">
+          <div class="div-card-tag">02 — Advertising</div>
+          <div class="div-card-name">Utero Malang</div>
+          <div class="div-card-desc">
+            Produksi reklame, printing digital indoor & outdoor, signage,
+            neonbox, pylon, dan branding kendaraan.
+          </div>
+          <div class="div-card-services">
+            <span class="service-tag">Billboard</span>
+            <span class="service-tag">Signage 3D</span>
+            <span class="service-tag">Digital Print</span>
+            <span class="service-tag">Vehicle Wrap</span>
+          </div>
+        </div>
+
+        <div class="div-card" role="listitem">
+          <div class="div-card-tag">03 — Digital</div>
+          <div class="div-card-name">Buzzerhood</div>
+          <div class="div-card-desc">
+            Manajemen media sosial, konten digital, kampanye influencer, dan
+            strategi pemasaran online yang terukur.
+          </div>
+          <div class="div-card-services">
+            <span class="service-tag">Social Media</span>
+            <span class="service-tag">Content Creator</span>
+            <span class="service-tag">Digital Campaign</span>
+          </div>
+        </div>
+
+        <div class="div-card" role="listitem">
+          <div class="div-card-tag">04 — Music</div>
+          <div class="div-card-name">Soundpub</div>
+          <div class="div-card-desc">
+            Distribusi musik digital ke platform streaming global. Solusi untuk
+            musisi independen dan label rekaman lokal.
+          </div>
+          <div class="div-card-services">
+            <span class="service-tag">Music Distribution</span>
+            <span class="service-tag">Streaming Platforms</span>
+            <span class="service-tag">Label Services</span>
+          </div>
+        </div>
+
+        <div class="div-card" role="listitem">
+          <div class="div-card-tag">05 — Media</div>
+          <div class="div-card-name">Epochstream</div>
+          <div class="div-card-desc">
+            Platform media digital dan konten kreatif yang mendokumentasikan
+            ekosistem kreatif Indonesia.
+          </div>
+          <div class="div-card-services">
+            <span class="service-tag">Digital Media</span>
+            <span class="service-tag">Content Platform</span>
+            <span class="service-tag">Storytelling</span>
+          </div>
+        </div>
+
+        <div class="div-card" role="listitem">
+          <div class="div-card-tag">06 — AI Tech</div>
+          <div class="div-card-name">Carubra.com</div>
+          <div class="div-card-desc">
+            Otomasi bisnis berbasis kecerdasan buatan. Solusi AI untuk efisiensi
+            operasional dan pertumbuhan bisnis digital.
+          </div>
+          <div class="div-card-services">
+            <span class="service-tag">AI Automation</span>
+            <span class="service-tag">Digital Product</span>
+            <span class="service-tag">Tech Consulting</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROCESS -->
+    <section id="layanan" class="process" aria-labelledby="process-title">
+      <div class="process-header">
+        <div>
+          <div class="section-eyebrow">Cara Kerja Kami</div>
+          <h2 id="process-title" class="section-title">
+            Dari Brief<br />Hingga Launch.
+          </h2>
+        </div>
+        <p class="process-desc">
+          Kami tidak sekadar mengerjakan pesanan. Kami memahami bisnis Anda
+          secara mendalam sebelum membuat satu goresan desain — karena strategi
+          yang salah lebih mahal dari desain yang buruk.
+        </p>
+      </div>
+
+      <div class="process-steps" role="list">
+        <div class="process-step" role="listitem">
+          <div class="step-num">01</div>
+          <div class="step-title">Diagnosa</div>
+          <div class="step-desc">
+            Kami pahami bisnis, kompetitor, dan target market Anda. Tanpa ini,
+            semua langkah berikutnya sia-sia.
+          </div>
+        </div>
+        <div class="process-step" role="listitem">
+          <div class="step-num">02</div>
+          <div class="step-title">Strategi</div>
+          <div class="step-desc">
+            Menyusun positioning brand, tone of voice, dan roadmap komunikasi
+            yang relevan dan konsisten.
+          </div>
+        </div>
+        <div class="process-step" role="listitem">
+          <div class="step-num">03</div>
+          <div class="step-title">Kreasi</div>
+          <div class="step-desc">
+            Desain dan produksi materi — dari identitas visual hingga eksekusi
+            media, semua dikerjakan in-house.
+          </div>
+        </div>
+        <div class="process-step" role="listitem">
+          <div class="step-num">04</div>
+          <div class="step-title">Aktivasi</div>
+          <div class="step-desc">
+            Peluncuran, monitoring, dan evaluasi. Kami tidak berhenti di
+            serahterima file — kami kawal hasilnya.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CLIENTS -->
+    <section id="klien" class="clients" aria-labelledby="clients-title">
+      <p id="clients-title" class="clients-title">
+        Sebagian Klien & Mitra yang Pernah Kami Tangani
+      </p>
+      <div class="clients-logos" role="list" aria-label="Daftar klien">
+        <span class="client-name" role="listitem">Mie Gacoan</span>
+        <span class="client-name" role="listitem">Indosat</span>
+        <span class="client-name" role="listitem">Pertamina</span>
+        <span class="client-name" role="listitem">Honda</span>
+        <span class="client-name" role="listitem">BRI</span>
+        <span class="client-name" role="listitem">Telkomsel</span>
+        <span class="client-name" role="listitem">Sampoerna</span>
+        <span class="client-name" role="listitem">Coca Cola</span>
+        <span class="client-name" role="listitem">Universitas Brawijaya</span>
+        <span class="client-name" role="listitem">Bank Mandiri</span>
+        <span class="client-name" role="listitem">Pegadaian</span>
+        <span class="client-name" role="listitem">Acer</span>
+        <span class="client-name" role="listitem">Nokia</span>
+        <span class="client-name" role="listitem">Indomart</span>
+        <span class="client-name" role="listitem">Daihatsu</span>
+        <span class="client-name" role="listitem">OPPO</span>
+        <span class="client-name" role="listitem">Realme</span>
+        <span class="client-name" role="listitem">Dana</span>
+      </div>
+    </section>
+
+    <!-- WHY -->
+    <section class="why" aria-labelledby="why-title">
+      <div class="why-grid">
+        <div>
+          <div class="section-eyebrow">Mengapa Utero</div>
+          <h2 id="why-title" class="section-title" style="color: white">
+            Kami Bukan<br />Sekadar Vendor.
+          </h2>
+        </div>
+        <div class="why-items" role="list">
+          <div class="why-item" role="listitem">
+            <div class="why-item-icon">⚡</div>
+            <div class="why-item-title">25 Tahun Track Record</div>
+            <div class="why-item-desc">
+              Sejak 1998 kami ada, belajar, dan terus berbenah. Ratusan brand
+              sudah merasakan hasilnya.
+            </div>
+          </div>
+          <div class="why-item" role="listitem">
+            <div class="why-item-icon">🏠</div>
+            <div class="why-item-title">One-Stop Creative House</div>
+            <div class="why-item-desc">
+              Branding, produksi, digital, musik, hingga AI — semua ada di bawah
+              satu atap Utero Indonesia.
+            </div>
+          </div>
+          <div class="why-item" role="listitem">
+            <div class="why-item-icon">🎯</div>
+            <div class="why-item-title">Paham Pasar Lokal</div>
+            <div class="why-item-desc">
+              Berbasis di Malang, kami mengerti dinamika pasar Jawa Timur dan
+              Indonesia dengan sangat baik.
+            </div>
+          </div>
+          <div class="why-item" role="listitem">
+            <div class="why-item-icon">🤝</div>
+            <div class="why-item-title">Mitra, Bukan Vendor</div>
+            <div class="why-item-desc">
+              Kami berjuang bersama klien, bukan sekadar mengerjakan pesanan.
+              Keberhasilan brand Anda adalah reputasi kami.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section id="kontak" class="cta-section" aria-labelledby="cta-title">
+      <div class="cta-left">
+        <h2 id="cta-title" class="cta-title">
+          Siap Bicara<br />Tentang <em>Brand Anda?</em>
+        </h2>
+        <p class="cta-sub">
+          Konsultasi pertama gratis. Tidak perlu brief yang sempurna — cukup
+          ceritakan bisnis Anda dan kami akan bantu menemukan arah yang tepat.
+        </p>
+      </div>
+      <div class="cta-right">
+        <a
+          href="https://wa.me/6281999900900"
+          class="cta-contact-item"
+          aria-label="Hubungi via WhatsApp">
+          <div class="cta-contact-icon">💬</div>
+          <div class="cta-contact-text">
+            <div class="cta-contact-label">WhatsApp</div>
+            <div class="cta-contact-value">0819 999 00900</div>
+          </div>
+        </a>
+        <a
+          href="mailto:hello@uteroindonesia.com"
+          class="cta-contact-item"
+          aria-label="Hubungi via Email">
+          <div class="cta-contact-icon">✉️</div>
+          <div class="cta-contact-text">
+            <div class="cta-contact-label">Email</div>
+            <div class="cta-contact-value">hello@uteroindonesia.com</div>
+          </div>
+        </a>
+        <a
+          href="https://maps.google.com"
+          class="cta-contact-item"
+          aria-label="Kunjungi kantor kami">
+          <div class="cta-contact-icon">📍</div>
+          <div class="cta-contact-text">
+            <div class="cta-contact-label">Kantor Malang</div>
+            <div class="cta-contact-value">
+              Jl. Bantaran 1 No. 25, Lowokwaru
+            </div>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer role="contentinfo">
+      <div class="footer-top">
+        <div>
+          <div class="footer-logo">UTERO<span>.</span>ID</div>
+          <p class="footer-tagline">
+            Brand Consultant & Creative Agency berbasis di Malang, aktif sejak
+            1998. Membantu brand Indonesia tumbuh dengan strategi, desain, dan
+            eksekusi yang nyata.
+          </p>
+          <div class="footer-socials" aria-label="Media sosial Utero Indonesia">
+            <a
+              href="https://instagram.com/uteromalang"
+              class="social-link"
+              aria-label="Instagram Utero Malang"
+              >IG</a
+            >
+            <a
+              href="#"
+              class="social-link"
+              aria-label="Facebook Utero Indonesia"
+              >FB</a
+            >
+            <a
+              href="#"
+              class="social-link"
+              aria-label="LinkedIn Utero Indonesia"
+              >LI</a
+            >
+            <a href="#" class="social-link" aria-label="YouTube Utero Indonesia"
+              >YT</a
+            >
+          </div>
+        </div>
+
+        <div>
+          <div class="footer-col-title">Layanan</div>
+          <ul class="footer-links">
+            <li><a href="#">Brand Consultant</a></li>
+            <li><a href="#">Desain Logo & GSM</a></li>
+            <li><a href="#">Advertising & Reklame</a></li>
+            <li><a href="#">Signage & Neonbox</a></li>
+            <li><a href="#">Digital Marketing</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="footer-col-title">Divisi</div>
+          <ul class="footer-links">
+            <li><a href="#">Utero.id</a></li>
+            <li><a href="#">Utero Advertising</a></li>
+            <li><a href="#">Buzzerhood</a></li>
+            <li><a href="#">Soundpub</a></li>
+            <li><a href="#">Carubra.com</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="footer-col-title">Lokasi</div>
+          <ul class="footer-links">
+            <li><a href="#">Malang</a></li>
+            <li><a href="#">Mojokerto</a></li>
+            <li><a href="#">Madiun</a></li>
+          </ul>
+          <div class="footer-col-title" style="margin-top: 28px">
+            Temukan Kami
+          </div>
+          <ul class="footer-links">
+            <li><a href="#">uterogroup.com</a></li>
+            <li><a href="#">uteroindonesia.com</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div class="footer-copy">
+          © 2025 PT Utero Kreatif Indonesia. Hak cipta dilindungi.
+        </div>
+        <div class="footer-seo">
+          Creative Agency Malang · Brand Consultant Malang · Desain Logo Malang
+        </div>
+      </div>
+    </footer>
+
+    <!-- Hidden SEO content for indexing -->
+    <div class="sr-only" aria-hidden="true">
+      <h2>Creative Agency Malang — Utero Indonesia</h2>
+      <p>
+        Utero Indonesia adalah creative agency dan brand consultant terbaik di
+        Malang, Jawa Timur. Berpengalaman lebih dari 25 tahun sejak 1998 dalam
+        bidang branding, desain grafis, advertising, signage, digital marketing,
+        dan teknologi. Melayani klien dari UMKM hingga perusahaan nasional.
+        Kantor tersedia di Malang, Mojokerto, dan Madiun.
+      </p>
+    </div>
+  </body>
+</html>

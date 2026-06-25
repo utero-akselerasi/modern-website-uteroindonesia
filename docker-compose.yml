@@ -1,0 +1,17 @@
+version: "3.8"
+
+services:
+  web:
+    image: nginx:alpine
+    container_name: nginx-dev-uteroindonesia
+    ports:
+      - "3002:80"
+    volumes:
+      - ./index.html:/usr/share/nginx/html/index.html:ro
+      # - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    networks:
+      - carubra-network
+
+networks:
+  carubra-network:
+    external: true
