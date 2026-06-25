@@ -53,7 +53,7 @@ Memastikan website memiliki performa terbaik untuk merangkak naik ke halaman #1 
 - [ ] Konfigurasi Metadata statis & dinamis komprehensif di `src/app/layout.tsx`.
 - [ ] Pasang JSON-LD Schema Markup (`ProfessionalService` atau `LocalBusiness`) untuk SEO lokal.
 - [ ] Buat file sitemap dinamis (`src/app/sitemap.ts`) dan file `robots.txt` (`src/app/robots.txt`).
-- [ ] Pasang Web Analytics (Google Analytics 4 / Meta Pixel) secara asinkron agar tidak membebani kecepatan loading halaman.
+- [ ] Pasang & Konfigurasikan Google Analytics 4 (GA4) secara asinkron agar tidak membebani kecepatan loading halaman. Sesuai panduan integrasi di 👉 **[analytics-setup.md](./analytics-setup.md)**.
 - [ ] Hubungkan domain ke Google Search Console (GSC) untuk memantau performa indeksasi.
 
 ---
