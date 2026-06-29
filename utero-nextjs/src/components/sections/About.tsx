@@ -73,7 +73,8 @@ export default function About() {
           style={{
             fontSize: "17px",
             lineHeight: 1.75,
-            color: "#555",
+            color: "var(--ink)",
+            opacity: 0.7,
             marginTop: "28px",
             maxWidth: "520px",
           }}

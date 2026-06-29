@@ -2,20 +2,52 @@
 
 /* ===== DESIGN TOKENS (from original index.html) ===== */
 :root {
+  /* Support light/dark scheme and prevent forced browser inversion */
+  color-scheme: light dark;
+
+  /* Light theme defaults */
   --red: #d11f1f;
   --red2: #a01515;
+
   --black: #0d0d0d;
   --ink: #1a1a1a;
   --ash: #f2f2f2;
   --white: #ffffff;
   --gold: #c9a84c;
   --muted: #888888;
+  --border-color: rgba(0, 0, 0, 0.08);
 
   --font-display: var(--font-syne), "Syne", sans-serif;
   --font-body: var(--font-space-grotesk), "Space Grotesk", sans-serif;
 
   --ease: cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
+
+/* Dark mode automatic */
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* Dark neutrals */
+    --black: #0b0b0b;
+    --ink: #f2f2f2;
+    --ash: #141414;
+    --white: #0f0f0f;
+    --muted: #a0a0a0;
+    --border-color: rgba(255, 255, 255, 0.08);
+  }
+
+  body {
+    background: var(--black);
+    color: var(--ink);
+  }
+
+  /* Landing “ghost text” (UTERO background) agar tetap kontras */
+  .hero-section [aria-hidden="true"] {
+    color: rgba(255, 255, 255, 0.04) !important;
+  }
+}
+
+
+
 
 @theme inline {
   --color-red: var(--red);

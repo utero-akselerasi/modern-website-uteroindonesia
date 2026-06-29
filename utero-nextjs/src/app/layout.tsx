@@ -65,6 +65,12 @@ export default function RootLayout({
       lang="id"
       className={`${spaceGrotesk.variable} ${syne.variable} antialiased`}
     >
+      <head>
+        <meta name="theme-color" content="#d11f1f" />
+        <link rel="manifest" href="/images/manifest.json" />
+        <link rel="icon" href="/images/favicon.ico" />
+        <link rel="apple-touch-icon" href="/images/apple-touch-icon.png" />
+      </head>
       <body>
         {/* JSON-LD Schema Markup for SEO */}
         <script

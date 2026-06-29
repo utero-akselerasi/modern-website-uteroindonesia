@@ -11,7 +11,7 @@ const contacts = [
 export default function Contact() {
   return (
     <section id="kontak" aria-labelledby="cta-title"
-      style={{ background: "var(--ink)", padding: "120px 64px", display: "grid", gridTemplateColumns: "1fr 1fr", gap: "80px", alignItems: "center" }}
+      style={{ background: "#1a1a1a", padding: "120px 64px", display: "grid", gridTemplateColumns: "1fr 1fr", gap: "80px", alignItems: "center" }}
       className="contact-section">
       <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }}
         viewport={{ once: true }} transition={{ duration: 0.6 }}>
@@ -21,7 +21,7 @@ export default function Contact() {
         }}>
           Siap Bicara<br />Tentang <span style={{ color: "var(--red)" }}>Brand Anda?</span>
         </h2>
-        <p style={{ fontSize: "16px", lineHeight: 1.7, color: "rgba(255,255,255,0.45)" }}>
+<p style={{ fontSize: "16px", lineHeight: 1.7, color: "rgba(255,255,255,0.6)" }}>
           Konsultasi pertama gratis. Tidak perlu brief yang sempurna — cukup ceritakan bisnis Anda dan kami akan bantu menemukan arah yang tepat.
         </p>
       </motion.div>

@@ -52,7 +52,7 @@ export default function Navbar() {
           fontFamily: "var(--font-display)",
           fontSize: "22px",
           fontWeight: 800,
-          color: "var(--white)",
+          color: "#ffffff",
           letterSpacing: "-0.5px",
           textDecoration: "none",
         }}

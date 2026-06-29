@@ -26,11 +26,11 @@ export default function Clients() {
         style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", alignItems: "center", gap: "8px" }}>
         {clientNames.map((name) => (
           <span key={name} role="listitem" style={{
-            fontSize: "13px", fontWeight: 600, color: "#aaa", padding: "10px 20px",
-            border: "1px solid #ddd", letterSpacing: "0.06em", transition: "all 0.2s", cursor: "default",
+            fontSize: "13px", fontWeight: 600, color: "var(--muted)", padding: "10px 20px",
+            border: "1px solid var(--border-color)", letterSpacing: "0.06em", transition: "all 0.2s", cursor: "default",
           }}
             onMouseEnter={(e) => { e.currentTarget.style.color = "var(--ink)"; e.currentTarget.style.borderColor = "var(--ink)"; }}
-            onMouseLeave={(e) => { e.currentTarget.style.color = "#aaa"; e.currentTarget.style.borderColor = "#ddd"; }}>
+            onMouseLeave={(e) => { e.currentTarget.style.color = "var(--muted)"; e.currentTarget.style.borderColor = "var(--border-color)"; }}>
             {name}
           </span>
         ))}

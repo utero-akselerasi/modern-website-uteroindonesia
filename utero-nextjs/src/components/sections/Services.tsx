@@ -90,7 +90,8 @@ export default function Services() {
           style={{
             fontSize: "17px",
             lineHeight: 1.7,
-            color: "#666",
+            color: "var(--ink)",
+            opacity: 0.7,
             alignSelf: "end",
           }}
         >
@@ -119,7 +120,7 @@ export default function Services() {
             transition={{ duration: 0.5, delay: i * 0.1 }}
             style={{
               padding: "40px 32px",
-              borderTop: "1px solid #e0e0e0",
+              borderTop: "1px solid var(--border-color)",
               position: "relative",
             }}
           >

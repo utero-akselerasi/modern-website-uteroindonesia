@@ -46,7 +46,7 @@ export default function Portfolio() {
       id="portofolio"
       aria-labelledby="portfolio-title"
       style={{
-        background: "var(--ink)",
+        background: "#1a1a1a",
         padding: "120px 64px",
       }}
       className="portfolio-section"
@@ -106,7 +106,7 @@ export default function Portfolio() {
           style={{
             fontSize: "17px",
             lineHeight: 1.7,
-            color: "#999",
+color: "rgba(255,255,255,0.78)",
             alignSelf: "end",
           }}
         >
@@ -163,7 +163,7 @@ export default function Portfolio() {
         ))}
       </div>
 
-      {/* Grid */}
+      {/* Bento Grid */}
       <div
         role="list"
         style={{
@@ -186,7 +186,7 @@ export default function Portfolio() {
               style={{
                 background: "var(--ash)",
                 padding: "48px 32px",
-                border: "1px solid #ddd",
+                border: "1px solid var(--border-color)",
                 display: "flex",
                 flexDirection: "column",
                 cursor: "default",
@@ -197,7 +197,7 @@ export default function Portfolio() {
                 e.currentTarget.style.transform = "translateY(-4px)";
               }}
               onMouseLeave={(e) => {
-                e.currentTarget.style.borderColor = "#ddd";
+                e.currentTarget.style.borderColor = "var(--border-color)";
                 e.currentTarget.style.transform = "translateY(0)";
               }}
             >
@@ -229,7 +229,8 @@ export default function Portfolio() {
                 style={{
                   fontSize: "14px",
                   lineHeight: 1.6,
-                  color: "var(--muted)",
+                  color: "var(--ink)",
+                  opacity: 0.72,
                   marginTop: "auto",
                 }}
               >
