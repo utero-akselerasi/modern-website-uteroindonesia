@@ -2,11 +2,59 @@
 
 import { motion } from "framer-motion";
 
+function IconLightning() {
+  return (
+    <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M18.6667 4L8 17.3333H16L14.6667 28L26 13.3333H18L18.6667 4Z" stroke="white" strokeWidth="2" strokeLinejoin="round"/>
+    </svg>
+  );
+}
+
+function IconHouse() {
+  return (
+    <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M4 14L16 3L28 14" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+      <path d="M8 14V27H24V14" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+      <path d="M14 27V19H18V27" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+    </svg>
+  );
+}
+
+function IconTarget() {
+  return (
+    <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="16" cy="16" r="10" stroke="white" strokeWidth="2"/>
+      <circle cx="16" cy="16" r="5" stroke="white" strokeWidth="2"/>
+      <circle cx="16" cy="16" r="1.5" fill="white"/>
+      <line x1="16" y1="4" x2="16" y2="7" stroke="white" strokeWidth="2" strokeLinecap="round"/>
+      <line x1="16" y1="25" x2="16" y2="28" stroke="white" strokeWidth="2" strokeLinecap="round"/>
+      <line x1="4" y1="16" x2="7" y2="16" stroke="white" strokeWidth="2" strokeLinecap="round"/>
+      <line x1="25" y1="16" x2="28" y2="16" stroke="white" strokeWidth="2" strokeLinecap="round"/>
+    </svg>
+  );
+}
+
+function IconHandshake() {
+  return (
+    <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="12" cy="16" r="9" stroke="white" strokeWidth="2"/>
+      <circle cx="20" cy="16" r="9" stroke="white" strokeWidth="2"/>
+    </svg>
+  );
+}
+
+const icons: Record<string, React.ReactNode> = {
+  lightning: <IconLightning />,
+  house: <IconHouse />,
+  target: <IconTarget />,
+  handshake: <IconHandshake />,
+};
+
 const whyItems = [
-  { icon: "⚡", title: "25 Tahun Track Record", desc: "Sejak 1998 kami ada, belajar, dan terus berbenah. Ratusan brand sudah merasakan hasilnya." },
-  { icon: "🏠", title: "One-Stop Creative House", desc: "Branding, produksi, digital, musik, hingga AI — semua ada di bawah satu atap Utero Indonesia." },
-  { icon: "🎯", title: "Paham Pasar Lokal", desc: "Berbasis di Malang, kami mengerti dinamika pasar Jawa Timur dan Indonesia dengan sangat baik." },
-  { icon: "🤝", title: "Mitra, Bukan Vendor", desc: "Kami berjuang bersama klien, bukan sekadar mengerjakan pesanan. Keberhasilan brand Anda adalah reputasi kami." },
+  { icon: "lightning", title: "25 Tahun Track Record", desc: "Sejak 1998 kami ada, belajar, dan terus berbenah. Ratusan brand sudah merasakan hasilnya." },
+  { icon: "house", title: "One-Stop Creative House", desc: "Branding, produksi, digital, musik, hingga AI — semua ada di bawah satu atap Utero Indonesia." },
+  { icon: "target", title: "Paham Pasar Lokal", desc: "Berbasis di Malang, kami mengerti dinamika pasar Jawa Timur dan Indonesia dengan sangat baik." },
+  { icon: "handshake", title: "Mitra, Bukan Vendor", desc: "Kami berjuang bersama klien, bukan sekadar mengerjakan pesanan. Keberhasilan brand Anda adalah reputasi kami." },
 ];
 
 export default function WhyUtero() {
@@ -38,7 +86,7 @@ export default function WhyUtero() {
               initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.5, delay: i * 0.1 }}>
-              <div style={{ fontSize: "28px", marginBottom: "14px" }}>{item.icon}</div>
+              <div style={{ marginBottom: "14px" }}>{icons[item.icon]}</div>
               <div style={{ fontFamily: "var(--font-display)", fontSize: "20px", fontWeight: 800, color: "#fff", marginBottom: "10px" }}>
                 {item.title}
               </div>
