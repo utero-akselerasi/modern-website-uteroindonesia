@@ -4,7 +4,6 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 const categories = [
-  "Semua",
   "Branding",
   "Advertising",
   "Digital",
@@ -30,12 +29,12 @@ const items = [
   { title: "Smartsuco", category: "Digital", desc: "Smart space & solusi otomasi digital" },
   { title: "Immerstal", category: "Digital", desc: "Immersive technology & interactive media" },
   { title: "Symadeco", category: "Digital", desc: "Sistem manajemen dekorasi berbasis web" },
-  { title: "Inon Designer", category: "Desain Grafis", desc: "Desain grafis & visual komunikasi" },
+  { title: "Inon  er", category: "Desain Grafis", desc: "Desain grafis & visual komunikasi" },
   { title: "Kochiro Inexterior", category: "Desain Grafis", desc: "Desain interior & eksterior kreatif" },
 ];
 
 export default function Portfolio() {
-  const [active, setActive] = useState("Semua");
+  const [active, setActive] = useState("Branding");
 
   const filtered = active === "Semua"
     ? items

@@ -328,7 +328,7 @@ export default function Hero() {
         aria-label="Statistik perusahaan"
         style={{
           position: "absolute",
-          bottom: "0px",
+          bottom: "13px",
           left: "64px",
           display: "flex",
           gap: "48px",
@@ -380,7 +380,7 @@ export default function Hero() {
           }
           .hero-stats {
             left: 24px !important;
-            bottom: 0px !important;
+            bottom: 16px !important;
             gap: 32px !important;
           }
         }
