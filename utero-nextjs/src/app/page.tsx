@@ -3,6 +3,7 @@ import Footer from "@/components/layout/Footer";
 import Hero from "@/components/sections/Hero";
 import Ticker from "@/components/sections/Ticker";
 import About from "@/components/sections/About";
+import KnowUsMore from "@/components/sections/KnowUsMore";
 import Divisions from "@/components/sections/Divisions";
 import Services from "@/components/sections/Services";
 import Clients from "@/components/sections/Clients";
@@ -17,6 +18,7 @@ export default function Home() {
       <Hero />
       <Ticker />
       <About />
+      <KnowUsMore />
       <Divisions />
       <Services />
       <Clients />
