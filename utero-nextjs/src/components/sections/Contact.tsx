@@ -1,10 +1,21 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { sendGAEvent } from "@next/third-parties/google";
+
+const handleWhatsAppClick = () => {
+  sendGAEvent({ event: "generate_lead", value: "whatsapp_click" });
+};
+
+const handleEmailClick = (email: string) => {
+  sendGAEvent({ event: "email_click", value: email });
+};
 
 const contacts = [
-  { icon: "💬", label: "WhatsApp", value: "0819 999 00900", href: "https://wa.me/6281999900900", ariaLabel: "Hubungi via WhatsApp" },
-  { icon: "✉️", label: "Email", value: "hello@uteroindonesia.com", href: "mailto:hello@uteroindonesia.com", ariaLabel: "Hubungi via Email" },
+  { icon: "💬", label: "WhatsApp", value: "0819 999 00900", href: "https://wa.me/6281999900900", ariaLabel: "Hubungi via WhatsApp", onClick: handleWhatsAppClick },
+  { icon: "✉️", label: "Email", value: "marketingutero@gmail.com", href: "mailto:marketingutero@gmail.com", ariaLabel: "Hubungi via Email - Marketing", onClick: () => handleEmailClick("marketing") },
+  { icon: "✉️", label: "Email", value: "uterobranding@gmail.com", href: "mailto:uterobranding@gmail.com", ariaLabel: "Hubungi via Email - Branding", onClick: () => handleEmailClick("branding") },
+  { icon: "✉️", label: "Email", value: "info@uteroindonesia.com", href: "mailto:info@uteroindonesia.com", ariaLabel: "Hubungi via Email - Info", onClick: () => handleEmailClick("info") },
   { icon: "📍", label: "Kantor Malang", value: "Jl. Bantaran 1 No. 25, Lowokwaru", href: "https://maps.google.com", ariaLabel: "Kunjungi kantor kami" },
 ];
 
@@ -27,7 +38,8 @@ export default function Contact() {
       </motion.div>
       <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
         {contacts.map((c, i) => (
-          <motion.a key={c.label} href={c.href} aria-label={c.ariaLabel}
+          <motion.a key={c.value} href={c.href} aria-label={c.ariaLabel}
+            onClick={c.onClick}
             initial={{ opacity: 0, x: 20 }} whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }} transition={{ duration: 0.5, delay: i * 0.1 }}
             style={{

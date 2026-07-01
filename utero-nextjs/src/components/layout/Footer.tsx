@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { sendGAEvent } from "@next/third-parties/google";
 
 const footerLinks = {
   layanan: [
@@ -11,11 +12,11 @@ const footerLinks = {
     "Digital Marketing",
   ],
   divisi: [
-    "Utero.id",
-    "Utero Advertising",
-    "Buzzerhood",
-    "Soundpub",
-    "Carubra.com",
+    { name: "Utero.id", href: "https://utero.id/" },
+    { name: "Utero Advertising", href: "https://uteroindonesia.com/" },
+    { name: "Buzzerhood", href: "https://buzzerhood.com/" },
+    { name: "Soundpub", href: "http://soundpub.uteroindonesia.com/" },
+    { name: "Carubra.com", href: "https://carubra.com/" },
   ],
   lokasi: ["Malang", "Mojokerto", "Madiun"],
 };
@@ -181,9 +182,11 @@ export default function Footer() {
             }}
           >
             {footerLinks.divisi.map((item) => (
-              <li key={item}>
-                <Link
-                  href="#"
+              <li key={item.name}>
+                <a
+                  href={item.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   style={{
                     fontSize: "14px",
                     color: "rgba(255, 255, 255, 0.5)",
@@ -197,9 +200,17 @@ export default function Footer() {
                     (e.currentTarget.style.color =
                       "rgba(255, 255, 255, 0.5)")
                   }
+                  onClick={() =>
+                    sendGAEvent({
+                      event: "click_footer_division",
+                      value: `redirect_to_${item.name
+                        .toLowerCase()
+                        .replace(/\s+/g, "_")}`,
+                    })
+                  }
                 >
-                  {item}
-                </Link>
+                  {item.name}
+                </a>
               </li>
             ))}
           </ul>
@@ -279,6 +290,7 @@ export default function Footer() {
                   color: "rgba(255, 255, 255, 0.5)",
                   textDecoration: "none",
                 }}
+                onClick={() => sendGAEvent({ event: "click_hub_redirect", value: "redirect_to_uterogroup" })}
               >
                 uterogroup.com
               </a>
@@ -291,6 +303,7 @@ export default function Footer() {
                   color: "rgba(255, 255, 255, 0.5)",
                   textDecoration: "none",
                 }}
+                onClick={() => sendGAEvent({ event: "click_hub_redirect", value: "redirect_to_uteroindonesia" })}
               >
                 uteroindonesia.com
               </a>
