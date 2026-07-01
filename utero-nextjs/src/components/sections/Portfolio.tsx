@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 
 const categories = [
@@ -12,25 +13,25 @@ const categories = [
 ];
 
 const items = [
-  { title: "Cebro Agency", category: "Branding", desc: "Creative agency branding & identity system" },
-  { title: "Odigiro Consultant", category: "Branding", desc: "City branding & konsultan strategi merek" },
-  { title: "Festival Mbois", category: "Branding", desc: "Branding event tahunan Malang Creative Fusion" },
-  { title: "Osi & Ji", category: "Branding", desc: "Maskot kota Malang — branding ikon daerah" },
-  { title: "Osiker", category: "Branding", desc: "Platform intellectual property & lisensi kreatif" },
-  { title: "Sawoto Reklame", category: "Advertising", desc: "Reklame, billboard, & media luar ruang" },
-  { title: "Mrono Branding Mobil", category: "Advertising", desc: "Branding kendaraan & mobil dinas" },
-  { title: "Tokoneonbox", category: "Signage", desc: "Neon box custom & signage berkualitas" },
-  { title: "Ruvodo WebApps", category: "Digital", desc: "Pengembangan website & aplikasi modern" },
-  { title: "Epochstream", category: "Digital", desc: "Platform live streaming & konten digital" },
-  { title: "Soundpub", category: "Digital", desc: "Audio branding & publikasi suara" },
-  { title: "Buzzerhood", category: "Digital", desc: "Influencer marketing & buzz digital" },
-  { title: "Socioboo", category: "Digital", desc: "Paid promote & social media campaign" },
-  { title: "Malang Virtual", category: "Digital", desc: "Virtual tour 360° & digital experience" },
-  { title: "Smartsuco", category: "Digital", desc: "Smart space & solusi otomasi digital" },
-  { title: "Immerstal", category: "Digital", desc: "Immersive technology & interactive media" },
-  { title: "Symadeco", category: "Digital", desc: "Sistem manajemen dekorasi berbasis web" },
-  { title: "Inon  er", category: "Desain Grafis", desc: "Desain grafis & visual komunikasi" },
-  { title: "Kochiro Inexterior", category: "Desain Grafis", desc: "Desain interior & eksterior kreatif" },
+  { title: "Cebro Agency", category: "Branding", desc: "Creative agency branding & identity system", url: "https://www.instagram.com/cebro.agency/", logo: "/images/portfolio/cebro-agency.webp" },
+  { title: "Odigiro Consultant", category: "Branding", desc: "City branding & konsultan strategi merek", url: "https://odigiro.uteroindonesia.com/", logo: "/images/portfolio/odigiro-consultant.webp" },
+  { title: "Festival Mbois", category: "Branding", desc: "Branding event tahunan Malang Creative Fusion", url: "https://festivalmbois.id/", logo: "/images/portfolio/festival-mbois.webp" },
+  { title: "Osi & Ji", category: "Branding", desc: "Maskot kota Malang — branding ikon daerah", url: "http://osidanji.com/", logo: "/images/portfolio/osi-ji.webp" },
+  { title: "Osiker", category: "Branding", desc: "Platform intellectual property & lisensi kreatif", url: "http://osiker.com/", logo: "/images/portfolio/osiker.webp" },
+  { title: "Sawoto Reklame", category: "Advertising", desc: "Reklame, billboard, & media luar ruang", url: "https://www.instagram.com/sawoto.reklame/", logo: "/images/portfolio/sawoto-reklame.webp" },
+  { title: "Mrono Branding Mobil", category: "Advertising", desc: "Branding kendaraan & mobil dinas", url: "https://www.instagram.com/brandingmobilmalang/", logo: "/images/portfolio/mrono-branding.webp" },
+  { title: "Tokoneonbox", category: "Signage", desc: "Neon box custom & signage berkualitas", url: "https://www.instagram.com/tokoneonbox/", logo: "/images/portfolio/tokoneonbox.webp" },
+  { title: "Ruvodo WebApps", category: "Digital", desc: "Pengembangan website & aplikasi modern", url: "http://ruvodo.com/", logo: "/images/portfolio/ruvodo-webapps.webp" },
+  { title: "Epochstream", category: "Digital", desc: "Platform live streaming & konten digital", url: "http://epochstream.com", logo: "/images/portfolio/epochstream.webp" },
+  { title: "Soundpub", category: "Digital", desc: "Audio branding & publikasi suara", url: "https://soundpub.uteroindonesia.com", logo: "/images/portfolio/soundpub.webp" },
+  { title: "Buzzerhood", category: "Digital", desc: "Influencer marketing & buzz digital", url: "https://buzzerhood.com/", logo: "/images/portfolio/buzzerhood.webp" },
+  { title: "Socioboo", category: "Digital", desc: "Paid promote & social media campaign", url: "http://socioboo.uteroindonesia.com/", logo: "/images/portfolio/socioboo.webp" },
+  { title: "Malang Virtual", category: "Digital", desc: "Virtual tour 360° & digital experience", url: "https://malangvirtual.uteroindonesia.com", logo: "/images/portfolio/malang-virtual.webp" },
+  { title: "Smartsuco", category: "Digital", desc: "Smart space & solusi otomasi digital", url: "https://smartsuco.utero.id", logo: "/images/portfolio/smartsuco.webp" },
+  { title: "Immerstal", category: "Digital", desc: "Immersive technology & interactive media", url: "https://immerstal.uteroindonesia.com", logo: "/images/portfolio/immerstal.webp" },
+  { title: "Symadeco", category: "Digital", desc: "Sistem manajemen dekorasi berbasis web", url: "http://symadeco.com/", logo: "/images/portfolio/symadeco.webp" },
+  { title: "Inon  er", category: "Desain Grafis", desc: "Desain grafis & visual komunikasi", url: "http://inon.utero.id", logo: "/images/portfolio/inon-er.webp" },
+  { title: "Kochiro Inexterior", category: "Desain Grafis", desc: "Desain interior & eksterior kreatif", url: "https://www.kochiro.com/", logo: "/images/portfolio/kochiro-inexterior.webp" },
 ];
 
 export default function Portfolio() {
@@ -174,9 +175,11 @@ color: "rgba(255,255,255,0.78)",
       >
         <AnimatePresence mode="popLayout">
           {filtered.map((item) => (
-            <motion.div
+            <motion.a
               key={item.title}
-              role="listitem"
+              href={item.url}
+              target="_blank"
+              rel="noopener noreferrer"
               layout
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
@@ -188,8 +191,10 @@ color: "rgba(255,255,255,0.78)",
                 border: "1px solid var(--border-color)",
                 display: "flex",
                 flexDirection: "column",
-                cursor: "default",
+                cursor: "pointer",
                 transition: "border-color 0.2s, transform 0.2s",
+                textDecoration: "none",
+                color: "inherit",
               }}
               onMouseEnter={(e) => {
                 e.currentTarget.style.borderColor = "var(--red)";
@@ -200,42 +205,53 @@ color: "rgba(255,255,255,0.78)",
                 e.currentTarget.style.transform = "translateY(0)";
               }}
             >
-              <div
-                style={{
-                  fontSize: "11px",
-                  fontWeight: 600,
-                  letterSpacing: "0.12em",
-                  textTransform: "uppercase",
-                  color: "var(--red)",
-                  marginBottom: "12px",
-                }}
-              >
-                {item.category}
+              <div style={{ display: "flex", flexDirection: "row", alignItems: "center", gap: "24px", width: "100%" }}>
+                <div style={{ width: "80px", height: "80px", flexShrink: 0, display: "flex", alignItems: "center", justifyContent: "center" }}>
+                  {item.logo ? (
+                    <Image src={item.logo} alt={item.title} width={80} height={80} style={{ objectFit: "contain", width: "100%", height: "100%", filter: "brightness(1.3) drop-shadow(0 0 6px rgba(255,255,255,0.06))" }} loading="lazy" />
+                  ) : (
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.3)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+                  )}
+                </div>
+                <div style={{ display: "flex", flexDirection: "column", flex: 1, minWidth: 0 }}>
+                  <div
+                    style={{
+                      fontSize: "11px",
+                      fontWeight: 600,
+                      letterSpacing: "0.12em",
+                      textTransform: "uppercase",
+                      color: "var(--red)",
+                      marginBottom: "12px",
+                    }}
+                  >
+                    {item.category}
+                  </div>
+                  <div
+                    style={{
+                      fontFamily: "var(--font-display)",
+                      fontSize: "22px",
+                      fontWeight: 700,
+                      color: "var(--ink)",
+                      lineHeight: 1.2,
+                      marginBottom: "10px",
+                    }}
+                  >
+                    {item.title}
+                  </div>
+                  <div
+                    style={{
+                      fontSize: "14px",
+                      lineHeight: 1.6,
+                      color: "var(--ink)",
+                      opacity: 0.72,
+                      marginTop: "auto",
+                    }}
+                  >
+                    {item.desc}
+                  </div>
+                </div>
               </div>
-              <div
-                style={{
-                  fontFamily: "var(--font-display)",
-                  fontSize: "22px",
-                  fontWeight: 700,
-                  color: "var(--ink)",
-                  lineHeight: 1.2,
-                  marginBottom: "10px",
-                }}
-              >
-                {item.title}
-              </div>
-              <div
-                style={{
-                  fontSize: "14px",
-                  lineHeight: 1.6,
-                  color: "var(--ink)",
-                  opacity: 0.72,
-                  marginTop: "auto",
-                }}
-              >
-                {item.desc}
-              </div>
-            </motion.div>
+            </motion.a>
           ))}
         </AnimatePresence>
       </div>
