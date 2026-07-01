@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { sendGAEvent } from "@next/third-parties/google";
 
 const divisions = [
   {
@@ -8,36 +9,42 @@ const divisions = [
     name: "Utero.id",
     desc: "Brand identity, konsultasi branding, desain grafis, dan strategi visual untuk bisnis yang ingin tampil berbeda.",
     services: ["Logo & GSM", "Brand Strategy", "Foto & Video", "Konsultan Branding"],
+    href: "https://utero.id/",
   },
   {
     tag: "02 — Advertising",
     name: "Utero Malang",
     desc: "Produksi reklame, printing digital indoor & outdoor, signage, neonbox, pylon, dan branding kendaraan.",
     services: ["Billboard", "Signage 3D", "Digital Print", "Vehicle Wrap"],
+    href: "https://uteroindonesia.com/",
   },
   {
     tag: "03 — Digital",
     name: "Buzzerhood",
     desc: "Manajemen media sosial, konten digital, kampanye influencer, dan strategi pemasaran online yang terukur.",
     services: ["Social Media", "Content Creator", "Digital Campaign"],
+    href: "https://buzzerhood.com/",
   },
   {
     tag: "04 — Music",
     name: "Soundpub",
     desc: "Distribusi musik digital ke platform streaming global. Solusi untuk musisi independen dan label rekaman lokal.",
     services: ["Music Distribution", "Streaming Platforms", "Label Services"],
+    href: "http://soundpub.uteroindonesia.com/",
   },
   {
     tag: "05 — Media",
     name: "Epochstream",
     desc: "Platform media digital dan konten kreatif yang mendokumentasikan ekosistem kreatif Indonesia.",
     services: ["Digital Media", "Content Platform", "Storytelling"],
+    href: "https://epochstream.org/",
   },
   {
     tag: "06 — AI Tech",
     name: "Carubra.com",
     desc: "Otomasi bisnis berbasis kecerdasan buatan. Solusi AI untuk efisiensi operasional dan pertumbuhan bisnis digital.",
     services: ["AI Automation", "Digital Product", "Tech Consulting"],
+    href: "https://carubra.com/",
   },
 ];
 
@@ -117,8 +124,12 @@ export default function Divisions() {
         className="divisions-grid"
       >
         {divisions.map((div, i) => (
-          <motion.div
+          <motion.a
             key={div.name}
+            href={div.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={() => sendGAEvent({ event: "click_division", value: `redirect_to_${div.name.toLowerCase().replace(/\s+/g, "_")}` })}
             role="listitem"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -128,9 +139,11 @@ export default function Divisions() {
               background: "rgba(255, 255, 255, 0.03)",
               border: "1px solid rgba(255, 255, 255, 0.06)",
               padding: "40px 36px",
-              cursor: "default",
+              cursor: "pointer",
               position: "relative",
               overflow: "hidden",
+              display: "block",
+              textDecoration: "none",
               transition: "all 0.3s var(--ease)",
             }}
             onMouseEnter={(e) => {
@@ -225,7 +238,7 @@ export default function Divisions() {
                 </span>
               ))}
             </div>
-          </motion.div>
+          </motion.a>
         ))}
       </div>
 

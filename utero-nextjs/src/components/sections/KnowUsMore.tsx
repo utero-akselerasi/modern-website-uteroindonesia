@@ -2,6 +2,11 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
+import { sendGAEvent } from "@next/third-parties/google";
+
+const handleRedirectClick = (label: string) => {
+  sendGAEvent({ event: "click_hub_redirect", value: `redirect_to_${label.toLowerCase().replace(/\s+/g, "_")}` });
+};
 
 const knowUsItems = [
   {
@@ -10,6 +15,7 @@ const knowUsItems = [
     target: "_blank",
     icon: "shop",
     alt: "Toko merchandise dan produk kreatif Utero Indonesia",
+    onClick: () => handleRedirectClick("Shop"),
   },
   {
     label: "Design",
@@ -17,6 +23,7 @@ const knowUsItems = [
     target: "_blank",
     icon: "design",
     alt: "Jasa desain logo, kemasan, grafis, dan branding",
+    onClick: () => handleRedirectClick("Design"),
   },
   {
     label: "Advertising",
@@ -38,6 +45,7 @@ const knowUsItems = [
     target: "_blank",
     icon: "brandconsultant",
     alt: "Brand consultant dan creative agency Malang",
+    onClick: () => handleRedirectClick("Profile"),
   },
   {
     label: "Legal Serv.",
@@ -45,6 +53,7 @@ const knowUsItems = [
     target: "_blank",
     icon: "research",
     alt: "Jasa riset, legalitas, perijinan perusahaan",
+    onClick: () => handleRedirectClick("Legal Serv."),
   },
   {
     label: "Academy",
@@ -52,6 +61,7 @@ const knowUsItems = [
     target: "_blank",
     icon: "course",
     alt: "Kursus dan pelatihan kreatif",
+    onClick: () => handleRedirectClick("Academy"),
   },
   {
     label: "Media",
@@ -59,6 +69,7 @@ const knowUsItems = [
     target: "_blank",
     icon: "technology",
     alt: "Media dan teknologi kreatif digital",
+    onClick: () => handleRedirectClick("Media"),
   },
 ];
 
@@ -144,6 +155,11 @@ export default function KnowUsMore() {
             href={item.href}
             target={item.target}
             rel="noopener noreferrer"
+            onClick={() => {
+              if (item.onClick) {
+                item.onClick();
+              }
+            }}
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{
