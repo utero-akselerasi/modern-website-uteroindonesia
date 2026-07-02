@@ -64,6 +64,7 @@ export default function Hero() {
           flexDirection: "column",
           justifyContent: "center",
           padding: "140px 64px 80px",
+          maxWidth: "min(640px, 100%)",
           position: "relative",
           zIndex: 2,
         }}
@@ -72,7 +73,7 @@ export default function Hero() {
         {/* Eyebrow */}
         <div
           style={{
-            fontSize: "11px",
+            fontSize: "clamp(0.625rem, 0.9vw, 0.75rem)",
             fontWeight: 600,
             letterSpacing: "0.2em",
             textTransform: "uppercase",
@@ -98,9 +99,9 @@ export default function Hero() {
         <h1
           style={{
             fontFamily: "var(--font-display)",
-            fontSize: "clamp(48px, 5.5vw, 80px)",
+            fontSize: "clamp(2.5rem, 6vw, 5rem)",
             fontWeight: 800,
-            lineHeight: 1,
+            lineHeight: 0.95,
             letterSpacing: "-0.03em",
             color: "#fff",
             marginBottom: "28px",
@@ -123,11 +124,11 @@ export default function Hero() {
         {/* Subtitle */}
         <p
           style={{
-            fontSize: "16px",
+            fontSize: "clamp(0.875rem, 1.4vw, 1rem)",
             lineHeight: 1.7,
             color: "rgba(255, 255, 255, 0.5)",
             maxWidth: "420px",
-            marginBottom: "48px",
+            marginBottom: "clamp(32px, 4vw, 48px)",
           }}
         >
           Kami membantu brand tumbuh dengan strategi yang tepat, desain yang kuat,
@@ -141,9 +142,9 @@ export default function Hero() {
             style={{
               background: "var(--red)",
               color: "#fff",
-              padding: "14px 32px",
+              padding: "clamp(12px, 1.4vw, 14px) clamp(24px, 3vw, 32px)",
               fontFamily: "var(--font-body)",
-              fontSize: "14px",
+              fontSize: "clamp(0.75rem, 1.2vw, 0.875rem)",
               fontWeight: 600,
               border: "none",
               textDecoration: "none",
@@ -164,7 +165,7 @@ export default function Hero() {
             href="#divisi"
             style={{
               color: "rgba(255, 255, 255, 0.5)",
-              fontSize: "14px",
+              fontSize: "clamp(0.75rem, 1.2vw, 0.875rem)",
               fontWeight: 500,
               textDecoration: "none",
               display: "flex",
@@ -182,6 +183,54 @@ export default function Hero() {
             Lihat Divisi Kami →
           </Link>
         </div>
+
+        {/* Stats Bar */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.6 }}
+          role="list"
+          aria-label="Statistik perusahaan"
+          style={{
+            position: "absolute",
+            bottom: "13px",
+            left: "64px",
+            display: "flex",
+            gap: "48px",
+            zIndex: 2,
+          }}
+          className="hero-stats"
+        >
+          {stats.map((stat) => (
+            <div key={stat.label} role="listitem">
+              <div
+                style={{
+                  fontFamily: "var(--font-display)",
+                  fontSize: "clamp(1.75rem, 3vw, 2.25rem)",
+                  fontWeight: 800,
+                  color: "#fff",
+                  lineHeight: 1,
+                }}
+              >
+                {stat.num}
+                {stat.suffix && (
+                  <span style={{ color: "var(--red)" }}>{stat.suffix}</span>
+                )}
+              </div>
+              <div
+                style={{
+                  fontSize: "clamp(0.625rem, 0.9vw, 0.75rem)",
+                  fontWeight: 500,
+                  color: "var(--muted)",
+                  marginTop: "4px",
+                  letterSpacing: "0.06em",
+                }}
+              >
+                {stat.label}
+              </div>
+            </div>
+          ))}
+        </motion.div>
       </motion.div>
 
       {/* Right - Orbit */}
@@ -246,7 +295,7 @@ export default function Hero() {
                 background: "rgba(255, 255, 255, 0.04)",
                 border: "1px solid rgba(255, 255, 255, 0.1)",
                 padding: "8px 14px",
-                fontSize: "11px",
+                fontSize: "clamp(0.5rem, 0.9vw, 0.6875rem)",
                 fontWeight: 600,
                 letterSpacing: "0.1em",
                 textTransform: "uppercase",
@@ -295,7 +344,7 @@ export default function Hero() {
             <div
               style={{
                 fontFamily: "var(--font-display)",
-                fontSize: "36px",
+                fontSize: "clamp(1.75rem, 3vw, 2.25rem)",
                 fontWeight: 800,
                 color: "#fff",
                 lineHeight: 1,
@@ -305,7 +354,7 @@ export default function Hero() {
             </div>
             <div
               style={{
-                fontSize: "10px",
+                fontSize: "clamp(0.5rem, 0.8vw, 0.625rem)",
                 fontWeight: 600,
                 letterSpacing: "0.15em",
                 textTransform: "uppercase",
@@ -319,69 +368,51 @@ export default function Hero() {
         </div>
       </motion.div>
 
-      {/* Stats Bar */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, delay: 0.6 }}
-        role="list"
-        aria-label="Statistik perusahaan"
-        style={{
-          position: "absolute",
-          bottom: "13px",
-          left: "64px",
-          display: "flex",
-          gap: "48px",
-          zIndex: 2,
-        }}
-        className="hero-stats"
-      >
-        {stats.map((stat) => (
-          <div key={stat.label} role="listitem">
-            <div
-              style={{
-                fontFamily: "var(--font-display)",
-                fontSize: "36px",
-                fontWeight: 800,
-                color: "#fff",
-                lineHeight: 1,
-              }}
-            >
-              {stat.num}
-              {stat.suffix && (
-                <span style={{ color: "var(--red)" }}>{stat.suffix}</span>
-              )}
-            </div>
-            <div
-              style={{
-                fontSize: "12px",
-                fontWeight: 500,
-                color: "var(--muted)",
-                marginTop: "4px",
-                letterSpacing: "0.06em",
-              }}
-            >
-              {stat.label}
-            </div>
-          </div>
-        ))}
-      </motion.div>
 
       <style jsx global>{`
+        @media (max-width: 1024px) {
+          .hero-left {
+            padding: 130px 40px 70px !important;
+          }
+          .hero-stats {
+            left: 40px !important;
+            gap: 36px !important;
+          }
+        }
         @media (max-width: 900px) {
           .hero-section {
             grid-template-columns: 1fr !important;
           }
-          .hero-left {
-            padding: 120px 24px 60px !important;
-          }
           .hero-right {
             display: none !important;
           }
+        }
+        @media (max-width: 768px) {
+          .hero-section {
+            min-height: auto !important;
+          }
+          .hero-left {
+            justify-content: flex-start !important;
+            padding: 100px 32px 32px !important;
+          }
           .hero-stats {
-            left: 24px !important;
-            bottom: 16px !important;
+            position: relative !important;
+            bottom: auto !important;
+            left: auto !important;
+            margin-top: clamp(24px, 5vw, 40px) !important;
             gap: 32px !important;
+          }
+          .hero-left > div:first-child {
+            letter-spacing: 0.12em !important;
+          }
+        }
+        @media (max-width: 480px) {
+          .hero-left {
+            padding: 90px 20px 28px !important;
+          }
+          .hero-stats {
+            margin-top: 24px !important;
+            gap: 24px !important;
           }
         }
       `}</style>

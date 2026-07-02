@@ -112,7 +112,11 @@ export default function About() {
               background: "var(--white)",
               padding: "28px",
               borderLeft: "3px solid var(--red)",
+              display: "flex",
+              flexDirection: "column",
+              height: "100%",
             }}
+            className="about-card"
           >
             <div
               style={{
@@ -121,6 +125,7 @@ export default function About() {
                 fontWeight: 800,
                 color: "var(--ink)",
                 lineHeight: 1,
+                flexShrink: 0,
               }}
             >
               {card.num}
@@ -132,7 +137,12 @@ export default function About() {
                 fontWeight: 500,
                 color: "var(--muted)",
                 marginTop: "6px",
-                lineHeight: 1.4,
+                lineHeight: 1.5,
+                flex: 1,
+                display: "-webkit-box",
+                WebkitLineClamp: 2,
+                WebkitBoxOrient: "vertical",
+                overflow: "hidden",
               }}
             >
               {card.label}
@@ -146,6 +156,16 @@ export default function About() {
           .about-section {
             grid-template-columns: 1fr !important;
             padding: 72px 24px !important;
+          }
+        }
+        @media (max-width: 768px) {
+          .about-card {
+            padding: 24px !important;
+          }
+        }
+        @media (max-width: 480px) {
+          .about-card {
+            padding: 20px !important;
           }
         }
       `}</style>

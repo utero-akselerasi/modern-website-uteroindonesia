@@ -22,28 +22,28 @@ const divisions = [
     tag: "03 — Digital",
     name: "Buzzerhood",
     desc: "Manajemen media sosial, konten digital, kampanye influencer, dan strategi pemasaran online yang terukur.",
-    services: ["Social Media", "Content Creator", "Digital Campaign"],
+    services: ["Social Media", "Content Creator", "Digital Campaign", "Influencer"],
     href: "https://buzzerhood.com/",
   },
   {
     tag: "04 — Music",
     name: "Soundpub",
     desc: "Distribusi musik digital ke platform streaming global. Solusi untuk musisi independen dan label rekaman lokal.",
-    services: ["Music Distribution", "Streaming Platforms", "Label Services"],
+    services: ["Music Distribution", "Streaming Platforms", "Label Services", "Sync Licensing"],
     href: "http://soundpub.uteroindonesia.com/",
   },
   {
     tag: "05 — Media",
     name: "Epochstream",
     desc: "Platform media digital dan konten kreatif yang mendokumentasikan ekosistem kreatif Indonesia.",
-    services: ["Digital Media", "Content Platform", "Storytelling"],
+    services: ["Digital Media", "Content Platform", "Storytelling", "Brand Journalism"],
     href: "https://epochstream.org/",
   },
   {
     tag: "06 — AI Tech",
     name: "Carubra.com",
     desc: "Otomasi bisnis berbasis kecerdasan buatan. Solusi AI untuk efisiensi operasional dan pertumbuhan bisnis digital.",
-    services: ["AI Automation", "Digital Product", "Tech Consulting"],
+    services: ["AI Automation", "Digital Product", "Tech Consulting", "Data Analytics"],
     href: "https://carubra.com/",
   },
 ];
@@ -146,6 +146,7 @@ export default function Divisions() {
               textDecoration: "none",
               transition: "all 0.3s var(--ease)",
             }}
+            className="divisions-card"
             onMouseEnter={(e) => {
               e.currentTarget.style.background = "rgba(255, 255, 255, 0.06)";
               const bar = e.currentTarget.querySelector(
@@ -178,6 +179,7 @@ export default function Divisions() {
             />
 
             <div
+              className="divisions-card-tag"
               style={{
                 fontSize: "11px",
                 fontWeight: 700,
@@ -191,6 +193,7 @@ export default function Divisions() {
             </div>
 
             <div
+              className="divisions-card-name"
               style={{
                 fontFamily: "var(--font-display)",
                 fontSize: "28px",
@@ -210,6 +213,7 @@ export default function Divisions() {
                 lineHeight: 1.65,
                 color: "rgba(255, 255, 255, 0.4)",
               }}
+              className="divisions-card-desc"
             >
               {div.desc}
             </div>
@@ -248,7 +252,35 @@ export default function Divisions() {
             padding: 72px 24px !important;
           }
           .divisions-grid {
-            grid-template-columns: 1fr !important;
+            grid-template-columns: repeat(2, 1fr) !important;
+          }
+        }
+        @media (max-width: 768px) {
+          .divisions-card {
+            padding: 24px 20px !important;
+          }
+          .divisions-card-tag {
+            font-size: 10px !important;
+            margin-bottom: 12px !important;
+          }
+          .divisions-card-name {
+            font-size: 15px !important;
+            margin-bottom: 10px !important;
+          }
+          .divisions-card-desc {
+            display: -webkit-box !important;
+            -webkit-line-clamp: 2 !important;
+            -webkit-box-orient: vertical !important;
+            overflow: hidden !important;
+            font-size: 12px !important;
+          }
+        }
+        @media (max-width: 480px) {
+          .divisions-card {
+            padding: 20px 16px !important;
+          }
+          .divisions-card-name {
+            font-size: 14px !important;
           }
         }
       `}</style>

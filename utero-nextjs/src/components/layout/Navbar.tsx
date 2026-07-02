@@ -1,7 +1,8 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
+import { motion, AnimatePresence } from "framer-motion";
 
 const navLinks = [
   { href: "#know-us", label: "Lini Bisnis" },
@@ -11,9 +12,74 @@ const navLinks = [
   { href: "#tentang", label: "Tentang" },
 ];
 
+const menuCards = [
+  { icon: "briefcase", label: "Lini Bisnis", href: "#know-us", desc: "Portofolio & klien" },
+  { icon: "layers", label: "Divisi", href: "#divisi", desc: "Unit usaha aktif" },
+  { icon: "zap", label: "Layanan", href: "#layanan", desc: "Solusi kreatif" },
+  { icon: "users", label: "Klien", href: "#klien", desc: "Mitra kami" },
+  { icon: "info", label: "Tentang", href: "#tentang", desc: "Cerita kami" },
+];
+
+function MenuIcon({ name, size = 24 }: { name: string; size?: number }) {
+  const svgProps = {
+    width: size,
+    height: size,
+    viewBox: "0 0 24 24",
+    fill: "none",
+    stroke: "currentColor",
+    strokeWidth: 1.5,
+    strokeLinecap: "round" as const,
+    strokeLinejoin: "round" as const,
+  };
+  switch (name) {
+    case "briefcase":
+      return (
+        <svg {...svgProps}>
+          <rect x="2" y="7" width="20" height="14" rx="2" ry="2" />
+          <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
+        </svg>
+      );
+    case "layers":
+      return (
+        <svg {...svgProps}>
+          <polygon points="12 2 2 7 12 12 22 7 12 2" />
+          <polyline points="2 17 12 22 22 17" />
+          <polyline points="2 12 12 17 22 12" />
+        </svg>
+      );
+    case "zap":
+      return (
+        <svg {...svgProps}>
+          <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
+        </svg>
+      );
+    case "users":
+      return (
+        <svg {...svgProps}>
+          <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+          <circle cx="9" cy="7" r="4" />
+          <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+          <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+        </svg>
+      );
+    case "info":
+      return (
+        <svg {...svgProps}>
+          <circle cx="12" cy="12" r="10" />
+          <line x1="12" y1="16" x2="12" y2="12" />
+          <line x1="12" y1="8" x2="12.01" y2="8" />
+        </svg>
+      );
+    default:
+      return null;
+  }
+}
+
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileOpen, setIsMobileOpen] = useState(false);
+  const hamburgerRef = useRef<HTMLButtonElement>(null);
+  const closeBtnRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -23,215 +89,354 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  useEffect(() => {
+    if (isMobileOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isMobileOpen]);
+
+  useEffect(() => {
+    if (!isMobileOpen) return;
+    const handleKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") closeMenu();
+    };
+    document.addEventListener("keydown", handleKey);
+    return () => document.removeEventListener("keydown", handleKey);
+  }, [isMobileOpen]);
+
+  useEffect(() => {
+    if (isMobileOpen) {
+      requestAnimationFrame(() => closeBtnRef.current?.focus());
+    }
+  }, [isMobileOpen]);
+
+  const closeMenu = () => {
+    setIsMobileOpen(false);
+    requestAnimationFrame(() => hamburgerRef.current?.focus());
+  };
+
+  const cardVariants = {
+    hidden: { opacity: 0, y: 16 },
+    visible: (i: number) => ({
+      opacity: 1,
+      y: 0,
+      transition: { delay: 0.04 * i, duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] as const },
+    }),
+  };
+
   return (
-    <nav
-      role="navigation"
-      aria-label="Menu utama"
-      style={{
-        position: "fixed",
-        top: 0,
-        left: 0,
-        right: 0,
-        zIndex: 100,
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "space-between",
-        padding: isScrolled ? "12px 48px" : "18px 48px",
-        background: isScrolled
-          ? "rgba(13, 13, 13, 0.98)"
-          : "rgba(13, 13, 13, 0.92)",
-        backdropFilter: "blur(12px)",
-        WebkitBackdropFilter: "blur(12px)",
-        borderBottom: "1px solid rgba(255, 255, 255, 0.06)",
-        transition: "padding 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
-      }}
-    >
-      {/* Logo */}
-      <Link
-        href="#"
+    <>
+      <nav
+        role="navigation"
+        aria-label="Menu utama"
         style={{
-          fontFamily: "var(--font-display)",
-          fontSize: "22px",
-          fontWeight: 800,
-          color: "#ffffff",
-          letterSpacing: "-0.5px",
-          textDecoration: "none",
-        }}
-      >
-        UTERO<span style={{ color: "var(--red)" }}>.</span>ID
-      </Link>
-
-      {/* Desktop Nav Links */}
-      <ul
-        style={{
+          position: "fixed",
+          top: 0,
+          left: 0,
+          right: 0,
+          zIndex: 100,
           display: "flex",
-          gap: "36px",
-          listStyle: "none",
           alignItems: "center",
-        }}
-        className="nav-desktop"
-      >
-        {navLinks.map((link) => (
-          <li key={link.href}>
-            <Link
-              href={link.href}
-              style={{
-                fontSize: "13px",
-                fontWeight: 500,
-                letterSpacing: "0.08em",
-                textTransform: "uppercase",
-                color: "rgba(255, 255, 255, 0.6)",
-                textDecoration: "none",
-                transition: "color 0.2s",
-              }}
-              onMouseEnter={(e) =>
-                (e.currentTarget.style.color = "var(--red)")
-              }
-              onMouseLeave={(e) =>
-                (e.currentTarget.style.color = "rgba(255, 255, 255, 0.6)")
-              }
-            >
-              {link.label}
-            </Link>
-          </li>
-        ))}
-        <li>
-          <Link
-            href="#kontak"
-            style={{
-              background: "var(--red)",
-              color: "#fff",
-              padding: "9px 22px",
-              borderRadius: "2px",
-              fontWeight: 600,
-              fontSize: "13px",
-              letterSpacing: "0.08em",
-              textTransform: "uppercase",
-              textDecoration: "none",
-              transition: "background 0.2s",
-            }}
-            onMouseEnter={(e) =>
-              (e.currentTarget.style.background = "var(--red2)")
-            }
-            onMouseLeave={(e) =>
-              (e.currentTarget.style.background = "var(--red)")
-            }
-          >
-            Konsultasi Gratis
-          </Link>
-        </li>
-      </ul>
-
-      {/* Mobile Hamburger */}
-      <button
-        className="nav-mobile-btn"
-        onClick={() => setIsMobileOpen(!isMobileOpen)}
-        aria-label="Toggle menu"
-        style={{
-          display: "none",
-          background: "none",
-          border: "none",
-          cursor: "pointer",
-          padding: "8px",
-          flexDirection: "column",
-          gap: "5px",
+          justifyContent: "space-between",
+          padding: isScrolled ? "12px 48px" : "18px 48px",
+          background: isScrolled
+            ? "rgba(13, 13, 13, 0.98)"
+            : "rgba(13, 13, 13, 0.92)",
+          backdropFilter: "blur(12px)",
+          WebkitBackdropFilter: "blur(12px)",
+          borderBottom: "1px solid rgba(255, 255, 255, 0.06)",
+          transition: "padding 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
         }}
       >
-        <span
+        <Link
+          href="#"
           style={{
-            display: "block",
-            width: "24px",
-            height: "2px",
-            background: "#fff",
-            transition: "all 0.3s",
-            transform: isMobileOpen
-              ? "rotate(45deg) translate(5px, 5px)"
-              : "none",
-          }}
-        />
-        <span
-          style={{
-            display: "block",
-            width: "24px",
-            height: "2px",
-            background: "#fff",
-            transition: "all 0.3s",
-            opacity: isMobileOpen ? 0 : 1,
-          }}
-        />
-        <span
-          style={{
-            display: "block",
-            width: "24px",
-            height: "2px",
-            background: "#fff",
-            transition: "all 0.3s",
-            transform: isMobileOpen
-              ? "rotate(-45deg) translate(5px, -5px)"
-              : "none",
-          }}
-        />
-      </button>
-
-      {/* Mobile Menu Overlay */}
-      {isMobileOpen && (
-        <div
-          className="nav-mobile-menu"
-          style={{
-            position: "fixed",
-            top: "60px",
-            left: 0,
-            right: 0,
-            bottom: 0,
-            background: "rgba(13, 13, 13, 0.98)",
-            backdropFilter: "blur(20px)",
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            justifyContent: "center",
-            gap: "32px",
-            zIndex: 99,
+            fontFamily: "var(--font-display)",
+            fontSize: "22px",
+            fontWeight: 800,
+            color: "#ffffff",
+            letterSpacing: "-0.5px",
+            textDecoration: "none",
           }}
         >
+          UTERO<span style={{ color: "var(--red)" }}>.</span>ID
+        </Link>
+
+        <ul
+          style={{
+            display: "flex",
+            gap: "36px",
+            listStyle: "none",
+            alignItems: "center",
+          }}
+          className="nav-desktop"
+        >
           {navLinks.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              onClick={() => setIsMobileOpen(false)}
-              style={{
-                fontSize: "18px",
-                fontWeight: 600,
-                letterSpacing: "0.1em",
-                textTransform: "uppercase",
-                color: "rgba(255, 255, 255, 0.7)",
-                textDecoration: "none",
-                transition: "color 0.2s",
-              }}
-            >
-              {link.label}
-            </Link>
+            <li key={link.href}>
+              <Link
+                href={link.href}
+                style={{
+                  fontSize: "13px",
+                  fontWeight: 500,
+                  letterSpacing: "0.08em",
+                  textTransform: "uppercase",
+                  color: "rgba(255, 255, 255, 0.6)",
+                  textDecoration: "none",
+                  transition: "color 0.2s",
+                }}
+                onMouseEnter={(e) =>
+                  (e.currentTarget.style.color = "var(--red)")
+                }
+                onMouseLeave={(e) =>
+                  (e.currentTarget.style.color = "rgba(255, 255, 255, 0.6)")
+                }
+              >
+                {link.label}
+              </Link>
+            </li>
           ))}
-          <Link
-            href="#kontak"
-            onClick={() => setIsMobileOpen(false)}
+          <li>
+            <Link
+              href="#kontak"
+              style={{
+                background: "var(--red)",
+                color: "#fff",
+                padding: "9px 22px",
+                borderRadius: "2px",
+                fontWeight: 600,
+                fontSize: "13px",
+                letterSpacing: "0.08em",
+                textTransform: "uppercase",
+                textDecoration: "none",
+                transition: "background 0.2s",
+              }}
+              onMouseEnter={(e) =>
+                (e.currentTarget.style.background = "var(--red2)")
+              }
+              onMouseLeave={(e) =>
+                (e.currentTarget.style.background = "var(--red)")
+              }
+            >
+              Konsultasi Gratis
+            </Link>
+          </li>
+        </ul>
+
+        <button
+          ref={hamburgerRef}
+          className="nav-mobile-btn"
+          onClick={() => setIsMobileOpen(true)}
+          aria-label="Buka menu"
+          style={{
+            display: "none",
+            background: "none",
+            border: "none",
+            cursor: "pointer",
+            padding: "8px",
+            flexDirection: "column",
+            gap: "5px",
+          }}
+        >
+          <span
             style={{
-              background: "var(--red)",
-              color: "#fff",
-              padding: "14px 32px",
-              fontWeight: 600,
-              fontSize: "16px",
-              textDecoration: "none",
-              marginTop: "16px",
+              display: "block",
+              width: "24px",
+              height: "2px",
+              background: "#fff",
+              transition: "all 0.3s",
+            }}
+          />
+          <span
+            style={{
+              display: "block",
+              width: "24px",
+              height: "2px",
+              background: "#fff",
+              transition: "all 0.3s",
+            }}
+          />
+          <span
+            style={{
+              display: "block",
+              width: "24px",
+              height: "2px",
+              background: "#fff",
+              transition: "all 0.3s",
+            }}
+          />
+        </button>
+      </nav>
+
+      <AnimatePresence>
+        {isMobileOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.25, ease: "easeInOut" }}
+            style={{
+              position: "fixed",
+              inset: 0,
+              width: "100vw",
+              height: "100dvh",
+              background: "#111",
+              zIndex: 999,
+              display: "flex",
+              flexDirection: "column",
+              overflow: "hidden",
             }}
           >
-            Konsultasi Gratis
-          </Link>
-        </div>
-      )}
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+                padding: "24px 28px",
+                flexShrink: 0,
+                borderBottom: "1px solid rgba(255, 255, 255, 0.06)",
+              }}
+            >
+              <Link
+                href="#"
+                style={{
+                  fontFamily: "var(--font-display)",
+                  fontSize: "22px",
+                  fontWeight: 800,
+                  color: "#fff",
+                  letterSpacing: "-0.5px",
+                  textDecoration: "none",
+                }}
+                onClick={closeMenu}
+              >
+                UTERO<span style={{ color: "var(--red)" }}>.</span>ID
+              </Link>
+              <button
+                ref={closeBtnRef}
+                onClick={closeMenu}
+                aria-label="Tutup menu"
+                style={{
+                  background: "none",
+                  border: "none",
+                  cursor: "pointer",
+                  color: "#fff",
+                  padding: "8px",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+              >
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <line x1="18" y1="6" x2="6" y2="18" />
+                  <line x1="6" y1="6" x2="18" y2="18" />
+                </svg>
+              </button>
+            </div>
 
-      {/* Responsive Styles */}
+            <div
+              style={{
+                flex: 1,
+                overflowY: "auto",
+                padding: "28px 28px 40px",
+                WebkitOverflowScrolling: "touch",
+              }}
+            >
+              <div
+                style={{
+                  display: "grid",
+                  gridTemplateColumns: "repeat(2, 1fr)",
+                  gap: "12px",
+                  maxWidth: "500px",
+                  margin: "0 auto",
+                }}
+                className="nav-mobile-grid"
+              >
+                {menuCards.map((card, i) => (
+                  <motion.div
+                    key={card.href}
+                    variants={cardVariants}
+                    initial="hidden"
+                    animate="visible"
+                    custom={i}
+                  >
+                    <Link
+                      href={card.href}
+                      onClick={closeMenu}
+                      style={{
+                        display: "flex",
+                        flexDirection: "column",
+                        gap: "12px",
+                        padding: "24px 20px",
+                        background: "rgba(255, 255, 255, 0.04)",
+                        border: "1px solid rgba(255, 255, 255, 0.08)",
+                        borderRadius: "4px",
+                        textDecoration: "none",
+                        color: "#fff",
+                        height: "100%",
+                        transition: "background 0.2s, border-color 0.2s",
+                      }}
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.background = "var(--red)";
+                        e.currentTarget.style.borderColor = "var(--red)";
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.background = "rgba(255, 255, 255, 0.04)";
+                        e.currentTarget.style.borderColor = "rgba(255, 255, 255, 0.08)";
+                      }}
+                    >
+                      <span style={{ color: "var(--red)", width: "32px", height: "32px", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                        <MenuIcon name={card.icon} size={24} />
+                      </span>
+                      <div>
+                        <div style={{ fontSize: "14px", fontWeight: 600, letterSpacing: "0.04em", marginBottom: "4px" }}>
+                          {card.label}
+                        </div>
+                        <div style={{ fontSize: "12px", color: "rgba(255, 255, 255, 0.5)", lineHeight: 1.4 }}>
+                          {card.desc}
+                        </div>
+                      </div>
+                    </Link>
+                  </motion.div>
+                ))}
+              </div>
+
+              <div style={{ textAlign: "center", marginTop: "32px" }}>
+                <Link
+                  href="#kontak"
+                  onClick={closeMenu}
+                  style={{
+                    display: "inline-block",
+                    background: "var(--red)",
+                    color: "#fff",
+                    padding: "14px 48px",
+                    fontWeight: 600,
+                    fontSize: "14px",
+                    letterSpacing: "0.06em",
+                    textTransform: "uppercase",
+                    textDecoration: "none",
+                    transition: "background 0.2s",
+                  }}
+                  onMouseEnter={(e) =>
+                    (e.currentTarget.style.background = "var(--red2)")
+                  }
+                  onMouseLeave={(e) =>
+                    (e.currentTarget.style.background = "var(--red)")
+                  }
+                >
+                  Konsultasi Gratis
+                </Link>
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       <style jsx global>{`
-        @media (max-width: 900px) {
+        @media (max-width: 768px) {
           nav {
             padding: 16px 24px !important;
           }
@@ -242,7 +447,12 @@ export default function Navbar() {
             display: flex !important;
           }
         }
+        @media (max-width: 480px) {
+          .nav-mobile-grid {
+            grid-template-columns: 1fr !important;
+          }
+        }
       `}</style>
-    </nav>
+    </>
   );
 }
