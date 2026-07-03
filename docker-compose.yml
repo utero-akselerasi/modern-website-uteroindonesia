@@ -1,18 +1,32 @@
-version: "3.8"
+name: dev-uteroindoneisa
 
 services:
-  web:
+  # Service untuk aplikasi Next.js
+  utero-web-nextjs:
+    build:
+      context: ./utero-nextjs
+      dockerfile: Dockerfile
+    container_name: utero-nextjs-app
+    restart: always
+    expose:
+      - "3000"
+    networks:
+      - carubra-network
+
+  # Service Nginx sebagai Reverse Proxy di depan Next.js
+  utero-web-nginx:
     image: nginx:alpine
     container_name: nginx-dev-uteroindonesia
     ports:
-      - "3002:80"
+      - "3004:80"
     volumes:
-      - ./index.html:/usr/share/nginx/html/index.html:ro
-      # - ./nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - utero-web-nextjs
     networks:
       - carubra-network
 
 networks:
   carubra-network:
     external: true
-  
+
