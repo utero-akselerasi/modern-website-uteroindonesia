@@ -25,7 +25,7 @@ export default function Hero() {
       id="hero"
       role="banner"
       style={{
-        minHeight: "100vh",
+        minHeight: "min(100vh, 900px)",
         background: "var(--white)",
         display: "grid",
         gridTemplateColumns: "1.15fr 0.85fr",
@@ -66,7 +66,7 @@ export default function Hero() {
           display: "flex",
           flexDirection: "column",
           justifyContent: "center",
-          padding: "140px 64px 80px",
+          padding: "clamp(80px, 10vh, 140px) clamp(32px, 5vw, 64px) clamp(40px, 5vh, 80px)",
           position: "relative",
           zIndex: 2,
         }}
@@ -137,7 +137,7 @@ export default function Hero() {
         </p>
 
         {/* Actions */}
-        <div style={{ display: "flex", gap: "16px", alignItems: "center", flexWrap: "wrap", marginBottom: "48px" }}>
+        <div style={{ display: "flex", gap: "16px", alignItems: "center", flexWrap: "wrap" }}>
           <Link
             href="#kontak"
             className="btn-solid-red"
@@ -160,17 +160,15 @@ export default function Hero() {
           role="list"
           aria-label="Statistik perusahaan"
           style={{
-            position: "absolute",
-            bottom: "24px",
-            left: "64px",
             display: "flex",
-            gap: "48px",
+            gap: "clamp(24px, 4vw, 48px)",
             zIndex: 2,
+            marginTop: "clamp(24px, 3vw, 48px)",
           }}
           className="hero-stats"
         >
           {stats.map((stat) => (
-            <div key={stat.label} role="listitem">
+            <div key={stat.label} role="listitem" style={{ display: "flex", flexDirection: "column", gap: "clamp(2px, 0.3vw, 6px)" }}>
               <div
                 style={{
                   fontFamily: "var(--font-display)",
@@ -190,7 +188,6 @@ export default function Hero() {
                   fontSize: "clamp(0.625rem, 0.9vw, 0.75rem)",
                   fontWeight: 500,
                   color: "var(--muted)",
-                  marginTop: "4px",
                   letterSpacing: "0.06em",
                 }}
               >
@@ -212,7 +209,7 @@ export default function Hero() {
           alignItems: "center",
           justifyContent: "center",
           position: "relative",
-          padding: "140px 64px 80px",
+          padding: "clamp(80px, 10vh, 140px) clamp(32px, 5vw, 64px) clamp(40px, 5vh, 80px)",
           clipPath: "polygon(15% 0, 100% 0, 100% 100%, 0% 100%)",
           zIndex: 1,
         }}
@@ -415,10 +412,9 @@ export default function Hero() {
 
         @media (max-width: 1024px) {
           .hero-left {
-            padding: 130px 40px 100px !important;
+            padding: clamp(90px, 12vh, 130px) clamp(32px, 4vw, 40px) clamp(60px, 8vh, 100px) !important;
           }
           .hero-stats {
-            left: 40px !important;
             gap: 36px !important;
           }
         }
@@ -437,13 +433,9 @@ export default function Hero() {
             min-height: auto !important;
           }
           .hero-left {
-            justify-content: flex-start !important;
-            padding: 100px 32px 32px !important;
+            padding: clamp(80px, 12vh, 100px) clamp(24px, 4vw, 32px) clamp(24px, 4vh, 32px) !important;
           }
           .hero-stats {
-            position: relative !important;
-            bottom: auto !important;
-            left: auto !important;
             margin-top: clamp(24px, 5vw, 40px) !important;
             gap: 32px !important;
           }
@@ -451,10 +443,10 @@ export default function Hero() {
 
         @media (max-width: 480px) {
           .hero-left {
-            padding: 90px 20px 28px !important;
+            padding: clamp(70px, 16vh, 90px) clamp(16px, 4vw, 20px) clamp(20px, 5vh, 28px) !important;
           }
           .hero-stats {
-            margin-top: 24px !important;
+            margin-top: clamp(16px, 4vw, 24px) !important;
             gap: 24px !important;
           }
         }
