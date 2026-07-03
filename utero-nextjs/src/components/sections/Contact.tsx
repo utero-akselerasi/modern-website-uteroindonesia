@@ -13,9 +13,18 @@ const handleEmailClick = (email: string) => {
 
 const contacts = [
   { icon: "💬", label: "WhatsApp", value: "0819 999 00900", href: "https://wa.me/6281999900900", ariaLabel: "Hubungi via WhatsApp", onClick: handleWhatsAppClick },
-  { icon: "✉️", label: "Email", value: "marketingutero@gmail.com", href: "mailto:marketingutero@gmail.com", ariaLabel: "Hubungi via Email - Marketing", onClick: () => handleEmailClick("marketing") },
-  { icon: "✉️", label: "Email", value: "uterobranding@gmail.com", href: "mailto:uterobranding@gmail.com", ariaLabel: "Hubungi via Email - Branding", onClick: () => handleEmailClick("branding") },
-  { icon: "✉️", label: "Email", value: "info@uteroindonesia.com", href: "mailto:info@uteroindonesia.com", ariaLabel: "Hubungi via Email - Info", onClick: () => handleEmailClick("info") },
+  {
+    icon: "✉️",
+    label: "Email",
+    value: "marketingutero@gmail.com | uterobranding@gmail.com | info@uteroindonesia.com",
+    href: "mailto:marketingutero@gmail.com?cc=uterobranding@gmail.com&bcc=info@uteroindonesia.com",
+    ariaLabel: "Hubungi via Email (3 alamat)",
+    onClick: () => {
+      handleEmailClick("marketing");
+      handleEmailClick("branding");
+      handleEmailClick("info");
+    },
+  },
   { icon: "📍", label: "Kantor Malang", value: "Jl. Bantaran 1 No. 25, Lowokwaru", href: "https://maps.google.com", ariaLabel: "Kunjungi kantor kami" },
 ];
 

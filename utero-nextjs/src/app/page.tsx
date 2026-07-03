@@ -6,6 +6,7 @@ import About from "@/components/sections/About";
 import KnowUsMore from "@/components/sections/KnowUsMore";
 import Divisions from "@/components/sections/Divisions";
 import Clients from "@/components/sections/Clients";
+import Workflow from "@/components/sections/Workflow";
 import Portfolio from "@/components/sections/Portfolio";
 import WhyUtero from "@/components/sections/WhyUtero";
 import Contact from "@/components/sections/Contact";
@@ -19,6 +20,7 @@ export default function Home() {
       <About />
       <KnowUsMore />
       <Divisions />
+      <Workflow />
       <Clients />
       <Portfolio />
       <WhyUtero />
