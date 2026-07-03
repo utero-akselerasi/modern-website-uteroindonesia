@@ -46,7 +46,7 @@ export default function Portfolio() {
       id="portofolio"
       aria-labelledby="portfolio-title"
       style={{
-        background: "#1a1a1a",
+        background: "#ffffff",
         padding: "120px 64px",
       }}
       className="portfolio-section"
@@ -94,7 +94,7 @@ export default function Portfolio() {
               fontWeight: 800,
               letterSpacing: "-0.03em",
               lineHeight: 1.05,
-              color: "#fff",
+              color: "#111",
             }}
           >
             Karya Nyata,
@@ -106,7 +106,7 @@ export default function Portfolio() {
           style={{
             fontSize: "17px",
             lineHeight: 1.7,
-color: "rgba(255,255,255,0.78)",
+            color: "rgba(255,255,255,0.78)",
             alignSelf: "end",
           }}
         >
@@ -210,7 +210,7 @@ color: "rgba(255,255,255,0.78)",
                   {item.logo ? (
                     <Image src={item.logo} alt={item.title} width={80} height={80} style={{ objectFit: "contain", width: "100%", height: "100%", filter: "brightness(1.3) drop-shadow(0 0 6px rgba(255,255,255,0.06))" }} loading="lazy" />
                   ) : (
-                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.3)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.3)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2" /><circle cx="8.5" cy="8.5" r="1.5" /><polyline points="21 15 16 10 5 21" /></svg>
                   )}
                 </div>
                 <div style={{ display: "flex", flexDirection: "column", flex: 1, minWidth: 0 }}>

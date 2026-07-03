@@ -5,11 +5,13 @@ import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 
 const navLinks = [
+  { href: "#hero", label: "Home" },
+  { href: "#tentang", label: "Tentang" },
   { href: "#know-us", label: "Lini Bisnis" },
   { href: "#divisi", label: "Divisi" },
   { href: "#layanan", label: "Layanan" },
-  { href: "#klien", label: "Klien" },
-  { href: "#tentang", label: "Tentang" },
+  { href: "#portofolio", label: "Portofolio" },
+  { href: "#kontak", label: "Kontak" },
 ];
 
 const menuCards = [
@@ -145,11 +147,11 @@ export default function Navbar() {
           justifyContent: "space-between",
           padding: isScrolled ? "12px 48px" : "18px 48px",
           background: isScrolled
-            ? "rgba(13, 13, 13, 0.98)"
-            : "rgba(13, 13, 13, 0.92)",
+            ? "var(--nav-bg-scrolled)"
+            : "var(--nav-bg)",
           backdropFilter: "blur(12px)",
           WebkitBackdropFilter: "blur(12px)",
-          borderBottom: "1px solid rgba(255, 255, 255, 0.06)",
+          borderBottom: "1px solid var(--border-color)",
           transition: "padding 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
         }}
       >
@@ -159,7 +161,7 @@ export default function Navbar() {
             fontFamily: "var(--font-display)",
             fontSize: "22px",
             fontWeight: 800,
-            color: "#ffffff",
+            color: "var(--ink)",
             letterSpacing: "-0.5px",
             textDecoration: "none",
           }}
@@ -185,7 +187,7 @@ export default function Navbar() {
                   fontWeight: 500,
                   letterSpacing: "0.08em",
                   textTransform: "uppercase",
-                  color: "rgba(255, 255, 255, 0.6)",
+                  color: "var(--muted)",
                   textDecoration: "none",
                   transition: "color 0.2s",
                 }}
@@ -193,7 +195,7 @@ export default function Navbar() {
                   (e.currentTarget.style.color = "var(--red)")
                 }
                 onMouseLeave={(e) =>
-                  (e.currentTarget.style.color = "rgba(255, 255, 255, 0.6)")
+                  (e.currentTarget.style.color = "var(--muted)")
                 }
               >
                 {link.label}
@@ -247,7 +249,7 @@ export default function Navbar() {
               display: "block",
               width: "24px",
               height: "2px",
-              background: "#fff",
+              background: "var(--ink)",
               transition: "all 0.3s",
             }}
           />
@@ -256,7 +258,7 @@ export default function Navbar() {
               display: "block",
               width: "24px",
               height: "2px",
-              background: "#fff",
+              background: "var(--ink)",
               transition: "all 0.3s",
             }}
           />
@@ -265,7 +267,7 @@ export default function Navbar() {
               display: "block",
               width: "24px",
               height: "2px",
-              background: "#fff",
+              background: "var(--ink)",
               transition: "all 0.3s",
             }}
           />

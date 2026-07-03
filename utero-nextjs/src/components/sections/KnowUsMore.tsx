@@ -138,124 +138,157 @@ export default function KnowUsMore() {
         </h2>
       </motion.div>
 
-      {/* Grid */}
+      {/* Ticker Container */}
       <div
         style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(4, 1fr)",
-          gap: "20px",
-          maxWidth: "960px",
-          margin: "0 auto",
+          position: "relative",
+          width: "100%",
+          overflow: "hidden",
+          padding: "24px 0",
         }}
-        className="know-us-grid"
+        className="know-us-ticker-container"
       >
-        {knowUsItems.map((item, index) => (
-          <motion.a
-            key={item.label}
-            href={item.href}
-            target={item.target}
-            rel="noopener noreferrer"
-            onClick={() => {
-              if (item.onClick) {
-                item.onClick();
-              }
-            }}
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{
-              duration: 0.5,
-              delay: index * 0.08,
-              ease: [0.25, 0.46, 0.45, 0.94],
-            }}
-            viewport={{ once: true, margin: "-60px" }}
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              justifyContent: "center",
-              textAlign: "center",
-              padding: "32px 16px 28px",
-              background: "var(--ash)",
-              border: "1px solid var(--border-color)",
-              textDecoration: "none",
-              transition: "all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
-              cursor: "pointer",
-              position: "relative",
-              overflow: "hidden",
-            }}
-            className="know-us-item"
-            onMouseEnter={(e) => {
-              e.currentTarget.style.background = "var(--red)";
-              e.currentTarget.style.borderColor = "var(--red)";
-              e.currentTarget.style.transform = "translateY(-6px)";
-              e.currentTarget.style.boxShadow =
-                "0 12px 28px rgba(209, 31, 31, 0.2)";
-              const label = e.currentTarget.querySelector(".know-us-label");
-              if (label)
-                (label as HTMLElement).style.color = "var(--white)";
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.background = "var(--ash)";
-              e.currentTarget.style.borderColor = "var(--border-color)";
-              e.currentTarget.style.transform = "translateY(0)";
-              e.currentTarget.style.boxShadow = "none";
-              const label = e.currentTarget.querySelector(".know-us-label");
-              if (label)
-                (label as HTMLElement).style.color = "var(--ink)";
-            }}
-          >
-            <span
-              className="know-us-icon"
+        {/* Fade mask */}
+        <div
+          style={{
+            position: "absolute",
+            top: 0,
+            left: 0,
+            bottom: 0,
+            width: "150px",
+            background: "linear-gradient(to right, var(--white), transparent)",
+            zIndex: 2,
+            pointerEvents: "none",
+          }}
+        />
+        <div
+          style={{
+            position: "absolute",
+            top: 0,
+            right: 0,
+            bottom: 0,
+            width: "150px",
+            background: "linear-gradient(to left, var(--white), transparent)",
+            zIndex: 2,
+            pointerEvents: "none",
+          }}
+        />
+
+        {/* Ticker Track */}
+        <div
+          className="know-us-ticker-track"
+          style={{
+            display: "flex",
+            gap: "20px",
+            width: "max-content",
+          }}
+        >
+          {[...knowUsItems, ...knowUsItems].map((item, index) => (
+            <a
+              key={`${item.label}-${index}`}
+              href={item.href}
+              target={item.target}
+              rel="noopener noreferrer"
+              onClick={() => {
+                if (item.onClick) {
+                  item.onClick();
+                }
+              }}
               style={{
-                width: "80px",
-                height: "80px",
                 display: "flex",
+                flexDirection: "column",
                 alignItems: "center",
                 justifyContent: "center",
-                marginBottom: "16px",
+                textAlign: "center",
+                padding: "36px 20px 32px",
+                background: "var(--ash)",
+                border: "1px solid var(--border-color)",
+                textDecoration: "none",
+                transition: "all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
+                cursor: "pointer",
+                position: "relative",
+                overflow: "hidden",
+                width: "220px",
+                flexShrink: 0,
+                borderRadius: "2px",
               }}
-              aria-hidden="true"
+              className="know-us-item"
+              onMouseEnter={(e) => {
+                e.currentTarget.style.background = "var(--red)";
+                e.currentTarget.style.borderColor = "var(--red)";
+                e.currentTarget.style.transform = "translateY(-6px)";
+                e.currentTarget.style.boxShadow =
+                  "0 12px 28px rgba(209, 31, 31, 0.2)";
+                const label = e.currentTarget.querySelector(".know-us-label");
+                if (label)
+                  (label as HTMLElement).style.color = "var(--white)";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.background = "var(--ash)";
+                e.currentTarget.style.borderColor = "var(--border-color)";
+                e.currentTarget.style.transform = "translateY(0)";
+                e.currentTarget.style.boxShadow = "none";
+                const label = e.currentTarget.querySelector(".know-us-label");
+                if (label)
+                  (label as HTMLElement).style.color = "var(--ink)";
+              }}
             >
-              <Image
-                src={`/images/icon/${item.icon}.webp`}
-                alt={item.alt}
-                width={76}
-                height={76}
+              <span
+                className="know-us-icon"
                 style={{
-                  objectFit: "contain",
+                  width: "80px",
+                  height: "80px",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  marginBottom: "16px",
                 }}
-              />
-            </span>
-            <span
-              className="know-us-label"
-              style={{
-                fontFamily: "var(--font-display)",
-                fontSize: "14px",
-                fontWeight: 700,
-                letterSpacing: "0.08em",
-                textTransform: "uppercase",
-                color: "var(--ink)",
-                transition: "color 0.3s",
-              }}
-            >
-              {item.label}
-            </span>
-          </motion.a>
-        ))}
+                aria-hidden="true"
+              >
+                <Image
+                  src={`/images/icon/${item.icon}.webp`}
+                  alt={item.alt}
+                  width={76}
+                  height={76}
+                  style={{
+                    objectFit: "contain",
+                  }}
+                />
+              </span>
+              <span
+                className="know-us-label"
+                style={{
+                  fontFamily: "var(--font-display)",
+                  fontSize: "14px",
+                  fontWeight: 700,
+                  letterSpacing: "0.08em",
+                  textTransform: "uppercase",
+                  color: "var(--ink)",
+                  transition: "color 0.3s",
+                }}
+              >
+                {item.label}
+              </span>
+            </a>
+          ))}
+        </div>
       </div>
 
-      {/* Responsive */}
+      {/* Responsive & Animation */}
       <style jsx global>{`
-        @media (max-width: 768px) {
-          .know-us-grid {
-            grid-template-columns: repeat(2, 1fr) !important;
-            gap: 12px !important;
+        @keyframes knowUsMarquee {
+          0% {
+            transform: translate3d(0, 0, 0);
+          }
+          100% {
+            transform: translate3d(-50%, 0, 0);
           }
         }
-        @media (max-width: 480px) {
-          .know-us-grid {
-            grid-template-columns: repeat(2, 1fr) !important;
-          }
+        .know-us-ticker-track {
+          animation: knowUsMarquee 25s linear infinite;
+        }
+        .know-us-ticker-track:hover {
+          animation-play-state: paused;
         }
         .know-us-item:hover .know-us-label {
           color: var(--white) !important;

@@ -3,11 +3,78 @@
 import { motion } from "framer-motion";
 
 const aboutCards = [
-  { num: "1998", suffix: ".", label: "Tahun berdiri di Malang, Jawa Timur" },
-  { num: "7", suffix: "+", label: "Sub-brand & divisi aktif" },
-  { num: "MLG", suffix: ".", label: "Malang · Mojokerto · Madiun" },
-  { num: "∞", suffix: ".", label: "Komitmen pada klien, tanpa kompromi" },
+  {
+    num: "1998",
+    suffix: "",
+    label: "Tahun berdiri di Malang, Jawa Timur",
+    icon: "calendar",
+  },
+  {
+    num: "7",
+    suffix: "+",
+    label: "Sub-brand & divisi aktif",
+    icon: "layers",
+  },
+  {
+    num: "3",
+    suffix: "",
+    label: "Malang · Mojokerto · Madiun",
+    icon: "map-pin",
+  },
+  {
+    num: "∞",
+    suffix: "",
+    label: "Komitmen pada klien, tanpa kompromi",
+    icon: "infinity",
+  },
 ];
+
+function StatIcon({ name }: { name: string }) {
+  const props = {
+    width: 28,
+    height: 28,
+    viewBox: "0 0 24 24",
+    fill: "none",
+    stroke: "currentColor",
+    strokeWidth: 1.5,
+    strokeLinecap: "round" as const,
+    strokeLinejoin: "round" as const,
+  };
+  switch (name) {
+    case "calendar":
+      return (
+        <svg {...props}>
+          <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+          <line x1="16" y1="2" x2="16" y2="6" />
+          <line x1="8" y1="2" x2="8" y2="6" />
+          <line x1="3" y1="10" x2="21" y2="10" />
+        </svg>
+      );
+    case "layers":
+      return (
+        <svg {...props}>
+          <polygon points="12 2 2 7 12 12 22 7 12 2" />
+          <polyline points="2 17 12 22 22 17" />
+          <polyline points="2 12 12 17 22 12" />
+        </svg>
+      );
+    case "map-pin":
+      return (
+        <svg {...props}>
+          <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+          <circle cx="12" cy="10" r="3" />
+        </svg>
+      );
+    case "infinity":
+      return (
+        <svg {...props}>
+          <path d="M12 12c-2-2.67-4-4-6-4a4 4 0 0 0 0 8c2 0 4-1.33 6-4Zm0 0c2 2.67 4 4 6 4a4 4 0 0 0 0-8c-2 0-4 1.33-6 4Z" />
+        </svg>
+      );
+    default:
+      return null;
+  }
+}
 
 export default function About() {
   return (
@@ -15,7 +82,7 @@ export default function About() {
       id="tentang"
       aria-labelledby="about-title"
       style={{
-        background: "var(--ash)",
+        background: "var(--white)",
         display: "grid",
         gridTemplateColumns: "1fr 1fr",
         gap: "80px",
@@ -90,7 +157,7 @@ export default function About() {
         </p>
       </motion.div>
 
-      {/* Right - Cards */}
+      {/* Right - 2x2 Cards with Red Icons */}
       <div
         role="list"
         aria-label="Data perusahaan"
@@ -109,15 +176,28 @@ export default function About() {
             viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.5, delay: i * 0.1 }}
             style={{
-              background: "var(--white)",
-              padding: "28px",
-              borderLeft: "3px solid var(--red)",
+              background: "var(--ash)",
+              padding: "32px 28px",
               display: "flex",
               flexDirection: "column",
               height: "100%",
             }}
             className="about-card"
           >
+            <span
+              style={{
+                width: "48px",
+                height: "48px",
+                background: "var(--red)",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                marginBottom: "16px",
+                color: "#fff",
+              }}
+            >
+              <StatIcon name={card.icon} />
+            </span>
             <div
               style={{
                 fontFamily: "var(--font-display)",
@@ -139,10 +219,6 @@ export default function About() {
                 marginTop: "6px",
                 lineHeight: 1.5,
                 flex: 1,
-                display: "-webkit-box",
-                WebkitLineClamp: 2,
-                WebkitBoxOrient: "vertical",
-                overflow: "hidden",
               }}
             >
               {card.label}

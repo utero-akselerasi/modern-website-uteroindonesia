@@ -54,75 +54,145 @@ export default function Divisions() {
       id="divisi"
       aria-labelledby="divisions-title"
       style={{
-        background: "var(--black)",
+        background: "var(--red)",
         padding: "120px 64px",
+        position: "relative",
+        overflow: "hidden",
       }}
       className="divisions-section"
     >
+      {/* Watermark */}
       <div
+        aria-hidden="true"
         style={{
-          fontSize: "11px",
-          fontWeight: 600,
-          letterSpacing: "0.2em",
-          textTransform: "uppercase",
-          color: "var(--red)",
-          marginBottom: "20px",
-          display: "flex",
-          alignItems: "center",
-          gap: "10px",
+          position: "absolute",
+          top: "50%",
+          left: "50%",
+          transform: "translate(-50%, -50%)",
+          fontFamily: "var(--font-display)",
+          fontSize: "clamp(60px, 8vw, 140px)",
+          fontWeight: 900,
+          color: "rgba(255, 255, 255, 0.04)",
+          whiteSpace: "nowrap",
+          pointerEvents: "none",
+          userSelect: "none",
+          letterSpacing: "-0.02em",
+          textAlign: "center",
+          width: "100%",
         }}
       >
-        <span
-          style={{
-            display: "block",
-            width: "24px",
-            height: "1px",
-            background: "var(--red)",
-          }}
-        />
-        Ekosistem Kreatif Kami
+        ONE ROOF MANY SOLUTIONS
       </div>
 
-      <h2
-        id="divisions-title"
-        style={{
-          fontFamily: "var(--font-display)",
-          fontSize: "clamp(36px, 4vw, 58px)",
-          fontWeight: 800,
-          letterSpacing: "-0.03em",
-          lineHeight: 1.05,
-          color: "#fff",
-        }}
-      >
-        Satu Atap,
-        <br />
-        Banyak Solusi.
-      </h2>
-
-      <p
-        style={{
-          fontSize: "17px",
-          lineHeight: 1.7,
-          color: "rgba(255, 255, 255, 0.45)",
-          maxWidth: "600px",
-          marginTop: "20px",
-          marginBottom: "72px",
-        }}
-      >
-        Setiap divisi Utero Indonesia berdiri dengan keahlian yang spesifik —
-        namun bekerja secara sinergis. Apapun kebutuhan brand Anda, ada satu
-        rumah untuk menyelesaikannya.
-      </p>
-
       <div
-        role="list"
         style={{
           display: "grid",
-          gridTemplateColumns: "repeat(3, 1fr)",
-          gap: "2px",
+          gridTemplateColumns: "1fr 1.8fr",
+          gap: "64px",
+          alignItems: "start",
+          position: "relative",
+          zIndex: 1,
         }}
-        className="divisions-grid"
+        className="divisions-container"
       >
+        <div className="divisions-left-col" style={{ position: "sticky", top: "120px" }}>
+          <div
+            style={{
+              fontSize: "11px",
+              fontWeight: 600,
+              letterSpacing: "0.2em",
+              textTransform: "uppercase",
+              color: "#fff",
+              marginBottom: "20px",
+              display: "flex",
+              alignItems: "center",
+              gap: "10px",
+            }}
+          >
+            <span
+              style={{
+                display: "block",
+                width: "24px",
+                height: "1px",
+                background: "#fff",
+              }}
+            />
+            <span>Ekosistem Kreatif Kami</span>
+          </div>
+
+          <h2
+            id="divisions-title"
+            style={{
+              fontFamily: "var(--font-display)",
+              fontSize: "clamp(32px, 3.8vw, 56px)",
+              fontWeight: 800,
+              letterSpacing: "-0.03em",
+              lineHeight: 1.05,
+              color: "#fff",
+            }}
+          >
+            Satu Atap,
+            <br />
+            Banyak Solusi.
+          </h2>
+
+          <p
+            style={{
+              fontSize: "16px",
+              lineHeight: 1.7,
+              color: "rgba(255, 255, 255, 0.75)",
+              marginTop: "24px",
+              marginBottom: "40px",
+            }}
+          >
+            Setiap divisi Utero Indonesia berdiri dengan keahlian yang spesifik —
+            namun bekerja secara sinergis. Apapun kebutuhan brand Anda, ada satu
+            rumah untuk menyelesaikannya.
+          </p>
+
+          <a
+            href="https://uteroindonesia.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              gap: "8px",
+              color: "#fff",
+              border: "1px solid rgba(255, 255, 255, 0.3)",
+              padding: "12px 28px",
+              fontSize: "13px",
+              fontWeight: 600,
+              letterSpacing: "0.06em",
+              textTransform: "uppercase",
+              textDecoration: "none",
+              transition: "all 0.2s",
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.background = "#fff";
+              e.currentTarget.style.color = "var(--red)";
+              e.currentTarget.style.borderColor = "#fff";
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.background = "transparent";
+              e.currentTarget.style.color = "#fff";
+              e.currentTarget.style.borderColor = "rgba(255, 255, 255, 0.3)";
+            }}
+          >
+            Lihat Semua Unit →
+          </a>
+        </div>
+
+        {/* 3-col x 2-row Grid */}
+        <div
+          role="list"
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(3, 1fr)",
+            gap: "2px",
+          }}
+          className="divisions-grid"
+        >
         {divisions.map((div, i) => (
           <motion.a
             key={div.name}
@@ -136,9 +206,9 @@ export default function Divisions() {
             viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.5, delay: i * 0.08 }}
             style={{
-              background: "rgba(255, 255, 255, 0.03)",
-              border: "1px solid rgba(255, 255, 255, 0.06)",
-              padding: "40px 36px",
+              background: "var(--white)",
+              border: "1px solid var(--border-color)",
+              padding: "32px 28px",
               cursor: "pointer",
               position: "relative",
               overflow: "hidden",
@@ -148,14 +218,14 @@ export default function Divisions() {
             }}
             className="divisions-card"
             onMouseEnter={(e) => {
-              e.currentTarget.style.background = "rgba(255, 255, 255, 0.06)";
+              e.currentTarget.style.background = "var(--ash)";
               const bar = e.currentTarget.querySelector(
                 ".div-card-bar"
               ) as HTMLElement;
               if (bar) bar.style.transform = "scaleX(1)";
             }}
             onMouseLeave={(e) => {
-              e.currentTarget.style.background = "rgba(255, 255, 255, 0.03)";
+              e.currentTarget.style.background = "var(--white)";
               const bar = e.currentTarget.querySelector(
                 ".div-card-bar"
               ) as HTMLElement;
@@ -181,12 +251,12 @@ export default function Divisions() {
             <div
               className="divisions-card-tag"
               style={{
-                fontSize: "11px",
+                fontSize: "10px",
                 fontWeight: 700,
                 letterSpacing: "0.18em",
                 textTransform: "uppercase",
                 color: "var(--red)",
-                marginBottom: "20px",
+                marginBottom: "16px",
               }}
             >
               {div.tag}
@@ -196,11 +266,11 @@ export default function Divisions() {
               className="divisions-card-name"
               style={{
                 fontFamily: "var(--font-display)",
-                fontSize: "28px",
+                fontSize: "22px",
                 fontWeight: 800,
-                color: "#fff",
+                color: "var(--ink)",
                 letterSpacing: "-0.02em",
-                marginBottom: "14px",
+                marginBottom: "12px",
                 lineHeight: 1.1,
               }}
             >
@@ -209,9 +279,9 @@ export default function Divisions() {
 
             <div
               style={{
-                fontSize: "14px",
-                lineHeight: 1.65,
-                color: "rgba(255, 255, 255, 0.4)",
+                fontSize: "13px",
+                lineHeight: 1.6,
+                color: "var(--muted)",
               }}
               className="divisions-card-desc"
             >
@@ -222,19 +292,19 @@ export default function Divisions() {
               style={{
                 display: "flex",
                 flexWrap: "wrap",
-                gap: "8px",
-                marginTop: "24px",
+                gap: "6px",
+                marginTop: "20px",
               }}
             >
               {div.services.map((svc) => (
                 <span
                   key={svc}
                   style={{
-                    fontSize: "11px",
+                    fontSize: "10px",
                     fontWeight: 500,
-                    color: "rgba(255, 255, 255, 0.4)",
-                    border: "1px solid rgba(255, 255, 255, 0.1)",
-                    padding: "4px 10px",
+                    color: "var(--muted)",
+                    border: "1px solid var(--border-color)",
+                    padding: "3px 8px",
                     letterSpacing: "0.05em",
                   }}
                 >
@@ -245,14 +315,25 @@ export default function Divisions() {
           </motion.a>
         ))}
       </div>
+    </div>
 
       <style jsx global>{`
-        @media (max-width: 900px) {
-          .divisions-section {
-            padding: 72px 24px !important;
+        @media (max-width: 1024px) {
+          .divisions-container {
+            grid-template-columns: 1fr !important;
+            gap: 48px !important;
+          }
+          .divisions-left-col {
+            position: relative !important;
+            top: 0 !important;
           }
           .divisions-grid {
             grid-template-columns: repeat(2, 1fr) !important;
+          }
+        }
+        @media (max-width: 900px) {
+          .divisions-section {
+            padding: 72px 24px !important;
           }
         }
         @media (max-width: 768px) {
@@ -264,7 +345,7 @@ export default function Divisions() {
             margin-bottom: 12px !important;
           }
           .divisions-card-name {
-            font-size: 15px !important;
+            font-size: 18px !important;
             margin-bottom: 10px !important;
           }
           .divisions-card-desc {
@@ -275,12 +356,17 @@ export default function Divisions() {
             font-size: 12px !important;
           }
         }
+        @media (max-width: 600px) {
+          .divisions-grid {
+            grid-template-columns: 1fr !important;
+          }
+        }
         @media (max-width: 480px) {
           .divisions-card {
             padding: 20px 16px !important;
           }
           .divisions-card-name {
-            font-size: 14px !important;
+            font-size: 16px !important;
           }
         }
       `}</style>

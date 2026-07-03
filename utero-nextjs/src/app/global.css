@@ -1,53 +1,28 @@
 @import "tailwindcss";
 
-/* ===== DESIGN TOKENS (from original index.html) ===== */
+/* ===== DESIGN TOKENS ===== */
 :root {
-  /* Support light/dark scheme and prevent forced browser inversion */
-  color-scheme: light dark;
-
-  /* Light theme defaults */
   --red: #d11f1f;
   --red2: #a01515;
-
   --black: #0d0d0d;
   --ink: #1a1a1a;
+  --ink-soft: #444444;
   --ash: #f2f2f2;
   --white: #ffffff;
   --gold: #c9a84c;
   --muted: #888888;
+  --muted-light: #aaaaaa;
   --border-color: rgba(0, 0, 0, 0.08);
+  --border-light: rgba(0, 0, 0, 0.04);
 
-  --font-display: var(--font-syne), "Syne", sans-serif;
-  --font-body: var(--font-space-grotesk), "Space Grotesk", sans-serif;
+  --font-display: var(--font-inter), "Inter", sans-serif;
+  --font-body: var(--font-inter), "Inter", sans-serif;
 
   --ease: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+
+  --nav-bg: rgba(255, 255, 255, 0.92);
+  --nav-bg-scrolled: rgba(255, 255, 255, 0.98);
 }
-
-/* Dark mode automatic */
-@media (prefers-color-scheme: dark) {
-  :root {
-    /* Dark neutrals */
-    --black: #0b0b0b;
-    --ink: #f2f2f2;
-    --ash: #141414;
-    --white: #0f0f0f;
-    --muted: #a0a0a0;
-    --border-color: rgba(255, 255, 255, 0.08);
-  }
-
-  body {
-    background: var(--black);
-    color: var(--ink);
-  }
-
-  /* Landing “ghost text” (UTERO background) agar tetap kontras */
-  .hero-section [aria-hidden="true"] {
-    color: rgba(255, 255, 255, 0.04) !important;
-  }
-}
-
-
-
 
 @theme inline {
   --color-red: var(--red);
@@ -75,7 +50,7 @@ html {
 }
 
 body {
-  font-family: var(--font-body);
+  font-family: var(--font-body), "Inter", sans-serif;
   background: var(--white);
   color: var(--ink);
   overflow-x: hidden;
@@ -144,7 +119,7 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--black);
+  background: var(--ash);
 }
 
 ::-webkit-scrollbar-thumb {

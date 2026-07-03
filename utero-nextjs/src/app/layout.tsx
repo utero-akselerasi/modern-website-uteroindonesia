@@ -1,20 +1,13 @@
 import type { Metadata } from "next";
-import { Space_Grotesk, Syne } from "next/font/google";
+import { Inter } from "next/font/google";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import "./global.css";
 
-const spaceGrotesk = Space_Grotesk({
+const inter = Inter({
   subsets: ["latin"],
   display: "swap",
-  variable: "--font-space-grotesk",
-  weight: ["300", "400", "500", "600", "700"],
-});
-
-const syne = Syne({
-  subsets: ["latin"],
-  display: "swap",
-  variable: "--font-syne",
-  weight: ["700", "800"],
+  variable: "--font-inter",
+  weight: ["300", "400", "500", "600", "700", "800", "900"],
 });
 
 export const metadata: Metadata = {
@@ -64,7 +57,7 @@ export default function RootLayout({
   return (
     <html
       lang="id"
-      className={`${spaceGrotesk.variable} ${syne.variable} antialiased`}
+      className={`${inter.variable} antialiased`}
     >
       <head>
         <meta name="theme-color" content="#d11f1f" />

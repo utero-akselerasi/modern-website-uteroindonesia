@@ -23,6 +23,11 @@ const steps = [
     title: "Aktivasi",
     desc: "Peluncuran, monitoring, dan evaluasi. Kami tidak berhenti di serahterima file — kami kawal hasilnya.",
   },
+  {
+    num: "05",
+    title: "Evaluasi",
+    desc: "Analisis hasil, laporan performa, dan rekomendasi pengembangan berkelanjutan untuk brand Anda.",
+  },
 ];
 
 export default function Services() {
@@ -101,15 +106,30 @@ export default function Services() {
         </p>
       </div>
 
+      {/* Horizontal Timeline */}
       <div
         role="list"
         style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(4, 1fr)",
-          gap: 0,
+          display: "flex",
+          justifyContent: "space-between",
+          position: "relative",
         }}
-        className="process-steps"
+        className="process-timeline"
       >
+        {/* Dashed connecting line */}
+        <div
+          style={{
+            position: "absolute",
+            top: "28px",
+            left: "30px",
+            right: "30px",
+            height: "0",
+            borderTop: "2px dashed var(--border-color)",
+            zIndex: 0,
+          }}
+          className="timeline-dashed-line"
+        />
+
         {steps.map((step, i) => (
           <motion.div
             key={step.num}
@@ -119,56 +139,60 @@ export default function Services() {
             viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.5, delay: i * 0.1 }}
             style={{
-              padding: "40px 32px",
-              borderTop: "1px solid var(--border-color)",
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              textAlign: "center",
+              flex: 1,
               position: "relative",
+              zIndex: 1,
+              padding: "0 12px",
             }}
           >
-            {/* Arrow connector */}
-            {i < steps.length - 1 && (
+            {/* Circle with number */}
+            <div
+              style={{
+                width: "56px",
+                height: "56px",
+                borderRadius: "50%",
+                background: "var(--red)",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                marginBottom: "20px",
+                position: "relative",
+                zIndex: 2,
+              }}
+            >
               <span
                 style={{
-                  position: "absolute",
-                  right: "-12px",
-                  top: "40px",
-                  color: "var(--red)",
+                  fontFamily: "var(--font-display)",
                   fontSize: "18px",
-                  zIndex: 1,
+                  fontWeight: 800,
+                  color: "#fff",
                 }}
-                className="step-arrow"
               >
-                →
+                {step.num}
               </span>
-            )}
+            </div>
 
             <div
               style={{
                 fontFamily: "var(--font-display)",
-                fontSize: "52px",
-                fontWeight: 800,
-                color: "var(--ash)",
-                lineHeight: 1,
-                marginBottom: "16px",
-              }}
-            >
-              {step.num}
-            </div>
-            <div
-              style={{
-                fontFamily: "var(--font-display)",
-                fontSize: "20px",
+                fontSize: "18px",
                 fontWeight: 700,
                 color: "var(--ink)",
-                marginBottom: "10px",
+                marginBottom: "8px",
               }}
             >
               {step.title}
             </div>
             <div
               style={{
-                fontSize: "14px",
+                fontSize: "13px",
                 lineHeight: 1.6,
                 color: "var(--muted)",
+                maxWidth: "200px",
               }}
             >
               {step.desc}
@@ -186,16 +210,12 @@ export default function Services() {
             grid-template-columns: 1fr !important;
             gap: 24px !important;
           }
-          .process-steps {
-            grid-template-columns: 1fr 1fr !important;
+          .process-timeline {
+            flex-direction: column !important;
+            gap: 32px !important;
           }
-          .step-arrow {
+          .timeline-dashed-line {
             display: none !important;
-          }
-        }
-        @media (max-width: 480px) {
-          .process-steps {
-            grid-template-columns: 1fr !important;
           }
         }
       `}</style>

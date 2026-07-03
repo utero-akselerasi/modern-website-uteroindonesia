@@ -4,28 +4,30 @@ import Link from "next/link";
 import { sendGAEvent } from "@next/third-parties/google";
 
 const footerLinks = {
-  layanan: [
-    "Brand Consultant",
-    "Desain Logo & GSM",
-    "Advertising & Reklame",
-    "Signage & Neonbox",
-    "Digital Marketing",
+  navigasi: [
+    { name: "Home", href: "#hero" },
+    { name: "Tentang", href: "#tentang" },
+    { name: "Lini Bisnis", href: "#know-us" },
+    { name: "Divisi", href: "#divisi" },
+    { name: "Layanan", href: "#layanan" },
+    { name: "Portofolio", href: "#portofolio" },
+    { name: "Kontak", href: "#kontak" },
   ],
-  divisi: [
+  liniBisnis: [
     { name: "Utero.id", href: "https://utero.id/" },
     { name: "Utero Advertising", href: "https://uteroindonesia.com/" },
     { name: "Buzzerhood", href: "https://buzzerhood.com/" },
     { name: "Soundpub", href: "http://soundpub.uteroindonesia.com/" },
     { name: "Carubra.com", href: "https://carubra.com/" },
+    { name: "Epochstream", href: "https://epochstream.org/" },
   ],
-  lokasi: ["Malang", "Mojokerto", "Madiun"],
 };
 
 const socialLinks = [
-  { label: "Instagram Utero Malang", href: "https://instagram.com/uteromalang", text: "IG" },
-  { label: "Facebook Utero Indonesia", href: "#", text: "FB" },
-  { label: "LinkedIn Utero Indonesia", href: "#", text: "LI" },
-  { label: "YouTube Utero Indonesia", href: "#", text: "YT" },
+  { label: "Instagram Utero Malang", href: "https://instagram.com/uteromalang", icon: "IG" },
+  { label: "Facebook Utero Indonesia", href: "https://facebook.com/uteromalang", icon: "FB" },
+  { label: "LinkedIn Utero Indonesia", href: "https://linkedin.com/company/utero-indonesia", icon: "LI" },
+  { label: "YouTube Utero Indonesia", href: "https://youtube.com/@uteromalang", icon: "YT" },
 ];
 
 export default function Footer() {
@@ -33,16 +35,15 @@ export default function Footer() {
     <footer
       role="contentinfo"
       style={{
-        background: "var(--black)",
+        background: "var(--red)",
         padding: "64px 64px 40px",
-        borderTop: "1px solid rgba(255, 255, 255, 0.06)",
       }}
     >
       <div
         className="footer-top"
         style={{
           display: "grid",
-          gridTemplateColumns: "2fr 1fr 1fr 1fr",
+          gridTemplateColumns: "2fr 1fr 1fr 1.5fr",
           gap: "64px",
           marginBottom: "64px",
         }}
@@ -65,54 +66,59 @@ export default function Footer() {
             style={{
               fontSize: "14px",
               lineHeight: 1.65,
-              color: "rgba(255, 255, 255, 0.35)",
+              color: "rgba(255, 255, 255, 0.5)",
               marginBottom: "24px",
+              maxWidth: "320px",
             }}
           >
             Brand Consultant & Creative Agency berbasis di Malang, aktif sejak
             1998. Membantu brand Indonesia tumbuh dengan strategi, desain, dan
             eksekusi yang nyata.
           </p>
+          {/* Social Media Icons */}
           <div
             style={{ display: "flex", gap: "12px" }}
             aria-label="Media sosial Utero Indonesia"
           >
             {socialLinks.map((social) => (
               <a
-                key={social.text}
+              key={social.icon}
                 href={social.href}
                 aria-label={social.label}
+                target="_blank"
+                rel="noopener noreferrer"
                 style={{
                   width: "36px",
                   height: "36px",
-                  border: "1px solid rgba(255, 255, 255, 0.12)",
+                  border: "1px solid rgba(255, 255, 255, 0.2)",
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
-                  color: "rgba(255, 255, 255, 0.4)",
+                  color: "rgba(255, 255, 255, 0.6)",
                   textDecoration: "none",
-                  fontSize: "14px",
+                  fontSize: "12px",
+                  fontWeight: 700,
                   transition: "all 0.2s",
                 }}
                 onMouseEnter={(e) => {
-                  e.currentTarget.style.background = "var(--red)";
-                  e.currentTarget.style.borderColor = "var(--red)";
-                  e.currentTarget.style.color = "#fff";
+                  e.currentTarget.style.background = "#fff";
+                  e.currentTarget.style.borderColor = "#fff";
+                  e.currentTarget.style.color = "var(--red)";
                 }}
                 onMouseLeave={(e) => {
                   e.currentTarget.style.background = "transparent";
                   e.currentTarget.style.borderColor =
-                    "rgba(255, 255, 255, 0.12)";
-                  e.currentTarget.style.color = "rgba(255, 255, 255, 0.4)";
+                    "rgba(255, 255, 255, 0.2)";
+                  e.currentTarget.style.color = "rgba(255, 255, 255, 0.6)";
                 }}
               >
-                {social.text}
+                {social.icon}
               </a>
             ))}
           </div>
         </div>
 
-        {/* Layanan */}
+        {/* Navigation */}
         <div>
           <div
             style={{
@@ -124,7 +130,7 @@ export default function Footer() {
               marginBottom: "20px",
             }}
           >
-            Layanan
+            Navigasi
           </div>
           <ul
             style={{
@@ -134,10 +140,10 @@ export default function Footer() {
               gap: "10px",
             }}
           >
-            {footerLinks.layanan.map((item) => (
-              <li key={item}>
+            {footerLinks.navigasi.map((item) => (
+              <li key={item.name}>
                 <Link
-                  href="#"
+                  href={item.href}
                   style={{
                     fontSize: "14px",
                     color: "rgba(255, 255, 255, 0.5)",
@@ -152,14 +158,14 @@ export default function Footer() {
                       "rgba(255, 255, 255, 0.5)")
                   }
                 >
-                  {item}
+                  {item.name}
                 </Link>
               </li>
             ))}
           </ul>
         </div>
 
-        {/* Divisi */}
+        {/* Lini Bisnis */}
         <div>
           <div
             style={{
@@ -171,7 +177,7 @@ export default function Footer() {
               marginBottom: "20px",
             }}
           >
-            Divisi
+            Lini Bisnis
           </div>
           <ul
             style={{
@@ -181,7 +187,7 @@ export default function Footer() {
               gap: "10px",
             }}
           >
-            {footerLinks.divisi.map((item) => (
+            {footerLinks.liniBisnis.map((item) => (
               <li key={item.name}>
                 <a
                   href={item.href}
@@ -216,7 +222,7 @@ export default function Footer() {
           </ul>
         </div>
 
-        {/* Lokasi */}
+        {/* Contact & Newsletter */}
         <div>
           <div
             style={{
@@ -228,7 +234,7 @@ export default function Footer() {
               marginBottom: "20px",
             }}
           >
-            Lokasi
+            Kontak
           </div>
           <ul
             style={{
@@ -236,31 +242,27 @@ export default function Footer() {
               display: "flex",
               flexDirection: "column",
               gap: "10px",
+              marginBottom: "28px",
             }}
           >
-            {footerLinks.lokasi.map((item) => (
-              <li key={item}>
-                <Link
-                  href="#"
-                  style={{
-                    fontSize: "14px",
-                    color: "rgba(255, 255, 255, 0.5)",
-                    textDecoration: "none",
-                    transition: "color 0.2s",
-                  }}
-                  onMouseEnter={(e) =>
-                    (e.currentTarget.style.color = "#fff")
-                  }
-                  onMouseLeave={(e) =>
-                    (e.currentTarget.style.color =
-                      "rgba(255, 255, 255, 0.5)")
-                  }
-                >
-                  {item}
-                </Link>
-              </li>
-            ))}
+            <li>
+              <a href="https://wa.me/6281999900900" target="_blank" rel="noopener noreferrer" style={{ fontSize: "14px", color: "rgba(255, 255, 255, 0.5)", textDecoration: "none" }}>
+                +62 819 999 00900
+              </a>
+            </li>
+            <li>
+              <a href="mailto:info@uteroindonesia.com" style={{ fontSize: "14px", color: "rgba(255, 255, 255, 0.5)", textDecoration: "none" }}>
+                info@uteroindonesia.com
+              </a>
+            </li>
+            <li>
+              <span style={{ fontSize: "14px", color: "rgba(255, 255, 255, 0.5)" }}>
+                Jl. Bantaran 1 No. 25, Malang
+              </span>
+            </li>
           </ul>
+
+          {/* Newsletter */}
           <div
             style={{
               fontSize: "12px",
@@ -268,54 +270,60 @@ export default function Footer() {
               letterSpacing: "0.15em",
               textTransform: "uppercase",
               color: "rgba(255, 255, 255, 0.4)",
-              marginBottom: "20px",
-              marginTop: "28px",
+              marginBottom: "12px",
             }}
           >
-            Temukan Kami
+            Newsletter
           </div>
-          <ul
+          <form
+            onSubmit={(e) => e.preventDefault()}
             style={{
-              listStyle: "none",
               display: "flex",
-              flexDirection: "column",
-              gap: "10px",
+              gap: "8px",
             }}
           >
-            <li>
-              <a
-                href="https://uterogroup.com"
-                style={{
-                  fontSize: "14px",
-                  color: "rgba(255, 255, 255, 0.5)",
-                  textDecoration: "none",
-                }}
-                onClick={() => sendGAEvent({ event: "click_hub_redirect", value: "redirect_to_uterogroup" })}
-              >
-                uterogroup.com
-              </a>
-            </li>
-            <li>
-              <a
-                href="https://uteroindonesia.com"
-                style={{
-                  fontSize: "14px",
-                  color: "rgba(255, 255, 255, 0.5)",
-                  textDecoration: "none",
-                }}
-                onClick={() => sendGAEvent({ event: "click_hub_redirect", value: "redirect_to_uteroindonesia" })}
-              >
-                uteroindonesia.com
-              </a>
-            </li>
-          </ul>
+            <input
+              type="email"
+              placeholder="Email Anda"
+              aria-label="Email untuk newsletter"
+              style={{
+                flex: 1,
+                padding: "10px 14px",
+                border: "1px solid rgba(255, 255, 255, 0.2)",
+                background: "rgba(255, 255, 255, 0.08)",
+                color: "#fff",
+                fontSize: "13px",
+                outline: "none",
+                fontFamily: "var(--font-body)",
+              }}
+            />
+            <button
+              type="submit"
+              aria-label="Berlangganan newsletter"
+              style={{
+                padding: "10px 18px",
+                background: "#fff",
+                color: "var(--red)",
+                border: "none",
+                fontWeight: 700,
+                fontSize: "12px",
+                letterSpacing: "0.05em",
+                cursor: "pointer",
+                transition: "background 0.2s",
+              }}
+              onMouseEnter={(e) => (e.currentTarget.style.background = "rgba(255,255,255,0.8)")}
+              onMouseLeave={(e) => (e.currentTarget.style.background = "#fff")}
+            >
+              Kirim
+            </button>
+          </form>
         </div>
       </div>
 
       {/* Footer Bottom */}
       <div
         style={{
-          borderTop: "1px solid rgba(255, 255, 255, 0.06)",
+          borderTop: "1px solid rgba(255, 255, 255, 0.08)",
           paddingTop: "28px",
           display: "flex",
           justifyContent: "space-between",
@@ -327,7 +335,7 @@ export default function Footer() {
         <div
           style={{
             fontSize: "13px",
-            color: "rgba(255, 255, 255, 0.25)",
+            color: "rgba(255, 255, 255, 0.35)",
           }}
         >
           © 2025 PT Utero Kreatif Indonesia. Hak cipta dilindungi.
@@ -335,7 +343,7 @@ export default function Footer() {
         <div
           style={{
             fontSize: "12px",
-            color: "rgba(255, 255, 255, 0.2)",
+            color: "rgba(255, 255, 255, 0.25)",
           }}
         >
           Creative Agency Malang · Brand Consultant Malang · Desain Logo Malang

@@ -22,17 +22,17 @@ const contacts = [
 export default function Contact() {
   return (
     <section id="kontak" aria-labelledby="cta-title"
-      style={{ background: "#1a1a1a", padding: "120px 64px", display: "grid", gridTemplateColumns: "1fr 1fr", gap: "80px", alignItems: "center" }}
+      style={{ background: "#ffffff", padding: "120px 64px", display: "grid", gridTemplateColumns: "1fr 1fr", gap: "80px", alignItems: "center" }}
       className="contact-section">
       <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }}
         viewport={{ once: true }} transition={{ duration: 0.6 }}>
         <h2 id="cta-title" style={{
           fontFamily: "var(--font-display)", fontSize: "clamp(40px, 4.5vw, 64px)",
-          fontWeight: 800, letterSpacing: "-0.03em", color: "#fff", lineHeight: 1.05, marginBottom: "24px",
+          fontWeight: 800, letterSpacing: "-0.03em", color: "#111", lineHeight: 1.05, marginBottom: "24px",
         }}>
           Siap Bicara<br />Tentang <span style={{ color: "var(--red)" }}>Brand Anda?</span>
         </h2>
-<p style={{ fontSize: "16px", lineHeight: 1.7, color: "rgba(255,255,255,0.6)" }}>
+        <p style={{ fontSize: "16px", lineHeight: 1.7, color: "rgba(17,17,17,0.6)" }}>
           Konsultasi pertama gratis. Tidak perlu brief yang sempurna — cukup ceritakan bisnis Anda dan kami akan bantu menemukan arah yang tepat.
         </p>
       </motion.div>
@@ -44,7 +44,7 @@ export default function Contact() {
             viewport={{ once: true }} transition={{ duration: 0.5, delay: i * 0.1 }}
             style={{
               display: "flex", alignItems: "center", gap: "16px", padding: "20px 24px",
-              border: "1px solid rgba(255,255,255,0.08)", color: "#fff", textDecoration: "none",
+              border: "1px solid rgba(17,17,17,0.12)", color: "#111", textDecoration: "none",
               transition: "border-color 0.2s, background 0.2s",
             }}
             onMouseEnter={(e) => { e.currentTarget.style.borderColor = "var(--red)"; e.currentTarget.style.background = "rgba(209,31,31,0.08)"; }}
@@ -57,7 +57,7 @@ export default function Contact() {
               <div style={{ fontSize: "11px", fontWeight: 600, letterSpacing: "0.15em", textTransform: "uppercase", color: "var(--muted)", marginBottom: "4px" }}>
                 {c.label}
               </div>
-              <div style={{ fontSize: "16px", fontWeight: 600, color: "#fff" }}>{c.value}</div>
+              <div style={{ fontSize: "16px", fontWeight: 600, color: "#111" }}>{c.value}</div>
             </div>
           </motion.a>
         ))}
