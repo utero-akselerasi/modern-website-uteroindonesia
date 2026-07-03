@@ -39,7 +39,7 @@ export default function Clients() {
         <a key={c.name} href={c.url} target="_blank" rel="noopener noreferrer"
           style={{
             display: "flex", alignItems: "center", justifyContent: "center",
-            textDecoration: "none", width: "112px", height: "64px",
+            textDecoration: "none", width: c.big ? "160px" : "112px", height: "64px",
             flexShrink: 0,
           }}>
           <img src={c.logo} alt={c.name}
@@ -52,7 +52,7 @@ export default function Clients() {
 
   return (
     <section id="klien" aria-labelledby="clients-title"
-      style={{ background: "var(--ash)", padding: "80px 64px", textAlign: "center" }}
+      style={{ background: "var(--ash)", padding: "80px 48px", textAlign: "center" }}
       className="clients-section">
       <p id="clients-title" style={{
         fontSize: "13px", fontWeight: 600, letterSpacing: "0.18em",

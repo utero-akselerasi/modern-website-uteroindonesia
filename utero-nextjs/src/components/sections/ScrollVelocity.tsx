@@ -1,11 +1,8 @@
 import { useRef, useLayoutEffect, useState, useCallback, ReactNode } from 'react';
 import {
   motion,
-  useScroll,
-  useSpring,
   useTransform,
   useMotionValue,
-  useVelocity,
   useAnimationFrame
 } from 'framer-motion';
 
@@ -39,10 +36,7 @@ interface ScrollVelocityProps {
   texts?: ReactNode[];
   velocity?: number;
   className?: string;
-  damping?: number;
-  stiffness?: number;
   numCopies?: number;
-  velocityMapping?: { input: number[]; output: number[] };
   parallaxClassName?: string;
   scrollerClassName?: string;
   parallaxStyle?: React.CSSProperties;
@@ -54,10 +48,7 @@ export const ScrollVelocity = ({
   texts = [],
   velocity = 100,
   className = '',
-  damping = 50,
-  stiffness = 400,
   numCopies = 6,
-  velocityMapping = { input: [0, 1000], output: [0, 5] },
   parallaxClassName = 'parallax',
   scrollerClassName = 'scroller',
   parallaxStyle,
@@ -68,10 +59,7 @@ export const ScrollVelocity = ({
     baseVelocity = velocity,
     scrollContainerRef,
     className = '',
-    damping,
-    stiffness,
     numCopies = 6,
-    velocityMapping,
     parallaxClassName,
     scrollerClassName,
     parallaxStyle,
@@ -81,29 +69,13 @@ export const ScrollVelocity = ({
     baseVelocity?: number;
     scrollContainerRef?: React.RefObject<HTMLElement | null>;
     className?: string;
-    damping?: number;
-    stiffness?: number;
     numCopies?: number;
-    velocityMapping?: { input: number[]; output: number[] };
     parallaxClassName?: string;
     scrollerClassName?: string;
     parallaxStyle?: React.CSSProperties;
     scrollerStyle?: React.CSSProperties;
   }) {
     const baseX = useMotionValue(0);
-    const scrollOptions = scrollContainerRef ? { container: scrollContainerRef } : {};
-    const { scrollY } = useScroll(scrollOptions);
-    const scrollVelocity = useVelocity(scrollY);
-    const smoothVelocity = useSpring(scrollVelocity, {
-      damping: damping ?? 50,
-      stiffness: stiffness ?? 400
-    });
-    const velocityFactor = useTransform(
-      smoothVelocity,
-      velocityMapping?.input || [0, 1000],
-      velocityMapping?.output || [0, 5],
-      { clamp: false }
-    );
 
     const copyRef = useRef<HTMLElement | null>(null);
     const copyWidth = useElementWidth(copyRef);
@@ -123,7 +95,6 @@ export const ScrollVelocity = ({
     useAnimationFrame((t: number, delta: number) => {
       if (isPaused.current) return;
       let moveBy = baseVelocity * (delta / 1000);
-      moveBy += moveBy * velocityFactor.get();
       baseX.set(baseX.get() + moveBy);
     });
 
@@ -158,10 +129,7 @@ export const ScrollVelocity = ({
           className={className}
           baseVelocity={index % 2 !== 0 ? -velocity : velocity}
           scrollContainerRef={scrollContainerRef}
-          damping={damping}
-          stiffness={stiffness}
           numCopies={numCopies}
-          velocityMapping={velocityMapping}
           parallaxClassName={parallaxClassName}
           scrollerClassName={scrollerClassName}
           parallaxStyle={parallaxStyle}
