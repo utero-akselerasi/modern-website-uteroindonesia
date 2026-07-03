@@ -1,29 +1,52 @@
 "use client";
 
 import { motion } from "framer-motion";
+import ScrollVelocity from "./ScrollVelocity";
+import "./ScrollVelocity.css";
 
-const clients = [
-  { name: "Mie Gacoan", url: "https://miegacoan.com/" },
-  { name: "Indosat", url: "https://ioh.co.id/" },
-  { name: "Pertamina", url: "https://www.pertamina.com/" },
-  { name: "Honda", url: "https://www.astra-honda.com/" },
-  { name: "BRI", url: "https://bri.co.id/" },
-  { name: "Telkomsel", url: "https://www.telkomsel.com/" },
-  { name: "Sampoerna", url: "https://www.sampoerna.com/" },
-  { name: "Coca Cola", url: "https://www.coca-cola.co.id/" },
-  { name: "Universitas Brawijaya", url: "https://ub.ac.id/" },
-  { name: "Bank Mandiri", url: "https://bankmandiri.co.id/" },
-  { name: "Pegadaian", url: "https://www.pegadaian.co.id/" },
-  { name: "Acer", url: "https://www.acer.com/id-id/" },
-  { name: "Nokia", url: "https://www.nokia.com/id_id/" },
-  { name: "Indomart", url: "https://indomaret.co.id/" },
-  { name: "Daihatsu", url: "https://astra-daihatsu.id/" },
-  { name: "OPPO", url: "https://www.oppo.com/id/" },
-  { name: "Realme", url: "https://www.realme.com/id/" },
-  { name: "Dana", url: "https://www.dana.id/" },
+interface Client {
+  name: string;
+  url: string;
+  logo: string;
+  big?: boolean;
+}
+
+const clients: Client[] = [
+  { name: "Mie Gacoan", url: "https://miegacoan.com/", logo: "/images/client/mie-gacoan.webp", big: true },
+  { name: "Indosat", url: "https://ioh.co.id/", logo: "/images/client/indosat.svg" },
+  { name: "Pertamina", url: "https://www.pertamina.com/", logo: "/images/client/pertamina.svg" },
+  { name: "Honda", url: "https://www.astra-honda.com/", logo: "/images/client/honda.webp" },
+  { name: "BRI", url: "https://bri.co.id/", logo: "/images/client/bri.webp" },
+  { name: "Telkomsel", url: "https://www.telkomsel.com/", logo: "/images/client/telkomsel.webp" },
+  { name: "Sampoerna", url: "https://www.sampoerna.com/", logo: "/images/client/sampoerna.svg", big: true },
+  { name: "Coca Cola", url: "https://www.coca-cola.co.id/", logo: "/images/client/coca-cola.svg", big: true },
+  { name: "Universitas Brawijaya", url: "https://ub.ac.id/", logo: "/images/client/universitas-brawijaya.webp", big: true },
+  { name: "Bank Mandiri", url: "https://bankmandiri.co.id/", logo: "/images/client/bank-mandiri.svg" },
+  { name: "Pegadaian", url: "https://www.pegadaian.co.id/", logo: "/images/client/pegadaian.webp" },
+  { name: "Acer", url: "https://www.acer.com/id-id/", logo: "/images/client/acer.svg" },
+  { name: "Nokia", url: "https://www.nokia.com/id_id/", logo: "/images/client/nokia.svg" },
+  { name: "Indomaret", url: "https://indomaret.co.id/", logo: "/images/client/indomaret.webp" },
+  { name: "Daihatsu", url: "https://astra-daihatsu.id/", logo: "/images/client/daihatsu.webp", big: true },
+  { name: "OPPO", url: "https://www.oppo.com/id/", logo: "/images/client/oppo.webp" },
+  { name: "Realme", url: "https://www.realme.com/id/", logo: "/images/client/realme.svg", big: true },
+  { name: "Dana", url: "https://www.dana.id/", logo: "/images/client/dana.svg" },
 ];
 
 export default function Clients() {
+  const logoRow = (
+    <div style={{ display: "flex", alignItems: "center", gap: "32px" }}>
+      {clients.map(c => (
+        <a key={c.name} href={c.url} target="_blank" rel="noopener noreferrer"
+          style={{ display: "inline-flex", alignItems: "center", textDecoration: "none" }}>
+          <img src={c.logo} alt={c.name}
+            className={c.big ? "client-scroll-logo-big" : "client-scroll-logo"}
+          />
+        </a>
+      ))}
+      <div style={{ width: "120px" }} />
+    </div>
+  );
+
   return (
     <section id="klien" aria-labelledby="clients-title"
       style={{ background: "var(--ash)", padding: "80px 64px", textAlign: "center" }}
@@ -35,23 +58,60 @@ export default function Clients() {
         Sebagian Klien & Mitra yang Pernah Kami Tangani
       </p>
       <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }}
-        viewport={{ once: true }} transition={{ duration: 0.6 }}
-        role="list" aria-label="Daftar klien"
-        style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", alignItems: "center", gap: "8px" }}>
-        {clients.map((client) => (
-          <a key={client.name} href={client.url} target="_blank" rel="noopener noreferrer" role="listitem" style={{
-            fontSize: "13px", fontWeight: 600, color: "var(--muted)", padding: "10px 20px",
-            border: "1px solid var(--border-color)", letterSpacing: "0.06em", transition: "all 0.2s", cursor: "pointer",
-            textDecoration: "none"
-          }}
-            onMouseEnter={(e) => { e.currentTarget.style.color = "var(--ink)"; e.currentTarget.style.borderColor = "var(--ink)"; }}
-            onMouseLeave={(e) => { e.currentTarget.style.color = "var(--muted)"; e.currentTarget.style.borderColor = "var(--border-color)"; }}>
-            {client.name}
-          </a>
-        ))}
+        viewport={{ once: true }} transition={{ duration: 0.6 }}>
+        <ScrollVelocity
+          texts={[logoRow]}
+          velocity={-50}
+          numCopies={4}
+          scrollerStyle={{ fontSize: 0, lineHeight: "normal", fontWeight: "normal", letterSpacing: "normal", filter: "none" }}
+        />
       </motion.div>
       <style jsx global>{`
-        @media (max-width: 900px) { .clients-section { padding: 60px 24px !important; } }
+        .client-scroll-logo {
+          height: 42px;
+          width: auto;
+          object-fit: contain;
+          transition: filter 0.3s, opacity 0.3s;
+          filter: grayscale(1);
+          opacity: 0.55;
+        }
+        .client-scroll-logo:hover {
+          filter: grayscale(0);
+          opacity: 1;
+        }
+        .client-scroll-logo-big {
+          height: 52px;
+          width: auto;
+          object-fit: contain;
+          transition: filter 0.3s, opacity 0.3s;
+          filter: grayscale(1);
+          opacity: 0.55;
+        }
+        .client-scroll-logo-big:hover {
+          filter: grayscale(0);
+          opacity: 1;
+        }
+        @media (max-width: 900px) {
+          .clients-section {
+            padding: 60px 24px !important;
+          }
+        }
+        @media (max-width: 768px) {
+          .client-scroll-logo {
+            height: 36px !important;
+          }
+          .client-scroll-logo-big {
+            height: 44px !important;
+          }
+        }
+        @media (max-width: 480px) {
+          .client-scroll-logo {
+            height: 30px !important;
+          }
+          .client-scroll-logo-big {
+            height: 38px !important;
+          }
+        }
       `}</style>
     </section>
   );

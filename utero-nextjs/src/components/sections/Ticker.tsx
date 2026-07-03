@@ -24,7 +24,7 @@ export default function Ticker() {
         style={{
           display: "flex",
           gap: 0,
-          animation: "marquee 25s linear infinite",
+          animation: "marquee 15s linear infinite",
           whiteSpace: "nowrap",
         }}
       >

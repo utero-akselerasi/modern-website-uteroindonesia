@@ -166,7 +166,7 @@ export default function Navbar() {
             textDecoration: "none",
           }}
         >
-          UTERO<span style={{ color: "var(--red)" }}>.</span>ID
+          UTERO<span style={{ color: "var(--red)" }}>.</span>COM
         </Link>
 
         <ul
@@ -286,7 +286,7 @@ export default function Navbar() {
               inset: 0,
               width: "100vw",
               height: "100dvh",
-              background: "#111",
+              background: "#ffffff",
               zIndex: 999,
               display: "flex",
               flexDirection: "column",
@@ -300,7 +300,7 @@ export default function Navbar() {
                 alignItems: "center",
                 padding: "24px 28px",
                 flexShrink: 0,
-                borderBottom: "1px solid rgba(255, 255, 255, 0.06)",
+                borderBottom: "1px solid var(--border-color)",
               }}
             >
               <Link
@@ -309,7 +309,7 @@ export default function Navbar() {
                   fontFamily: "var(--font-display)",
                   fontSize: "22px",
                   fontWeight: 800,
-                  color: "#fff",
+                  color: "var(--ink)",
                   letterSpacing: "-0.5px",
                   textDecoration: "none",
                 }}
@@ -325,7 +325,7 @@ export default function Navbar() {
                   background: "none",
                   border: "none",
                   cursor: "pointer",
-                  color: "#fff",
+                  color: "var(--ink)",
                   padding: "8px",
                   display: "flex",
                   alignItems: "center",
@@ -373,21 +373,23 @@ export default function Navbar() {
                         flexDirection: "column",
                         gap: "12px",
                         padding: "24px 20px",
-                        background: "rgba(255, 255, 255, 0.04)",
-                        border: "1px solid rgba(255, 255, 255, 0.08)",
+                        background: "var(--ash)",
+                        border: "1px solid var(--border-color)",
                         borderRadius: "4px",
                         textDecoration: "none",
-                        color: "#fff",
+                        color: "var(--ink)",
                         height: "100%",
                         transition: "background 0.2s, border-color 0.2s",
                       }}
                       onMouseEnter={(e) => {
                         e.currentTarget.style.background = "var(--red)";
                         e.currentTarget.style.borderColor = "var(--red)";
+                        e.currentTarget.style.color = "#fff";
                       }}
                       onMouseLeave={(e) => {
-                        e.currentTarget.style.background = "rgba(255, 255, 255, 0.04)";
-                        e.currentTarget.style.borderColor = "rgba(255, 255, 255, 0.08)";
+                        e.currentTarget.style.background = "var(--ash)";
+                        e.currentTarget.style.borderColor = "var(--border-color)";
+                        e.currentTarget.style.color = "var(--ink)";
                       }}
                     >
                       <span style={{ color: "var(--red)", width: "32px", height: "32px", display: "flex", alignItems: "center", justifyContent: "center" }}>
@@ -397,7 +399,7 @@ export default function Navbar() {
                         <div style={{ fontSize: "14px", fontWeight: 600, letterSpacing: "0.04em", marginBottom: "4px" }}>
                           {card.label}
                         </div>
-                        <div style={{ fontSize: "12px", color: "rgba(255, 255, 255, 0.5)", lineHeight: 1.4 }}>
+                        <div style={{ fontSize: "12px", color: "var(--muted)", lineHeight: 1.4 }}>
                           {card.desc}
                         </div>
                       </div>

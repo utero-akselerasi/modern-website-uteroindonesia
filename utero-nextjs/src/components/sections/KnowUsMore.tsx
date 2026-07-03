@@ -79,7 +79,7 @@ export default function KnowUsMore() {
       id="know-us"
       aria-labelledby="know-us-title"
       style={{
-        padding: "100px 64px 80px",
+        padding: "20px 64px 80px",
         background: "var(--white)",
       }}
     >
@@ -292,6 +292,49 @@ export default function KnowUsMore() {
         }
         .know-us-item:hover .know-us-label {
           color: var(--white) !important;
+        }
+
+        @media (max-width: 768px) {
+          .know-us-item {
+            width: 160px !important;
+            padding: 24px 14px 20px !important;
+          }
+          .know-us-item .know-us-icon {
+            width: 56px !important;
+            height: 56px !important;
+            margin-bottom: 12px !important;
+          }
+          .know-us-item .know-us-icon img {
+            width: 52px !important;
+            height: 52px !important;
+          }
+          .know-us-item .know-us-label {
+            font-size: 12px !important;
+          }
+          .know-us-ticker-track {
+            gap: 12px !important;
+          }
+        }
+
+        @media (max-width: 480px) {
+          .know-us-item {
+            width: 140px !important;
+            padding: 20px 10px 16px !important;
+          }
+          .know-us-item .know-us-icon {
+            width: 48px !important;
+            height: 48px !important;
+          }
+          .know-us-item .know-us-icon img {
+            width: 44px !important;
+            height: 44px !important;
+          }
+          .know-us-item .know-us-label {
+            font-size: 11px !important;
+          }
+          .know-us-ticker-track {
+            gap: 10px !important;
+          }
         }
       `}</style>
     </section>

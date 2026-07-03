@@ -147,8 +147,8 @@ export default function Portfolio() {
             }}
             onMouseEnter={(e) => {
               if (active !== cat) {
-                e.currentTarget.style.borderColor = "#fff";
-                e.currentTarget.style.color = "#fff";
+                e.currentTarget.style.borderColor = "var(--red)";
+                e.currentTarget.style.color = "var(--red)";
               }
             }}
             onMouseLeave={(e) => {
