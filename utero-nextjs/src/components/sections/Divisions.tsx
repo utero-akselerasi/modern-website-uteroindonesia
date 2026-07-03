@@ -61,29 +61,7 @@ export default function Divisions() {
       }}
       className="divisions-section"
     >
-      {/* Watermark */}
-      <div
-        aria-hidden="true"
-        style={{
-          position: "absolute",
-          top: "50%",
-          left: "50%",
-          transform: "translate(-50%, -50%)",
-          fontFamily: "var(--font-display)",
-          fontSize: "clamp(60px, 8vw, 140px)",
-          fontWeight: 900,
-          color: "rgba(255, 255, 255, 0.04)",
-          whiteSpace: "nowrap",
-          pointerEvents: "none",
-          userSelect: "none",
-          letterSpacing: "-0.02em",
-          textAlign: "center",
-          width: "100%",
-        }}
-      >
-        ONE ROOF MANY SOLUTIONS
-      </div>
-
+     
       <div
         style={{
           display: "grid",
