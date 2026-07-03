@@ -1,11 +1,13 @@
+"use client";
+
 const tickerItems = [
-  "Brand Consultant",
-  "Creative Agency Malang",
-  "Desain Logo",
-  "Advertising & Signage",
-  "Digital Marketing",
-  "Music Distribution",
-  "AI Automation",
+  "BRAND GOALS, START WITH US",
+  "GRAHAYANA RESORT MALANG",
+  "CREATIVE AGENCY MALANG",
+  "BRAND CONSULTANT INDONESIA",
+  "DIGITAL MARKETING STRATEGY",
+  "SIGNAGE & ADVERTISING",
+  "AI AUTOMATION SOLUTIONS",
 ];
 
 export default function Ticker() {
@@ -14,7 +16,7 @@ export default function Ticker() {
       aria-hidden="true"
       style={{
         background: "var(--red)",
-        padding: "14px 0",
+        padding: "16px 0",
         overflow: "hidden",
       }}
     >
@@ -22,7 +24,7 @@ export default function Ticker() {
         style={{
           display: "flex",
           gap: 0,
-          animation: "marquee 20s linear infinite",
+          animation: "marquee 25s linear infinite",
           whiteSpace: "nowrap",
         }}
       >
@@ -31,15 +33,15 @@ export default function Ticker() {
           <span
             key={i}
             style={{
-              fontSize: "13px",
+              fontSize: "14px",
               fontWeight: 700,
-              letterSpacing: "0.12em",
+              letterSpacing: "0.15em",
               textTransform: "uppercase",
               color: "#fff",
-              padding: "0 40px",
+              padding: "0 48px",
               display: "flex",
               alignItems: "center",
-              gap: "40px",
+              gap: "48px",
             }}
           >
             {item}
