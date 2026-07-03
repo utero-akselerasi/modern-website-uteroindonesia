@@ -107,6 +107,7 @@ export const ScrollVelocity = ({
 
     const copyRef = useRef<HTMLElement | null>(null);
     const copyWidth = useElementWidth(copyRef);
+    const isPaused = useRef(false);
 
     const wrap = useCallback((min: number, max: number, v: number) => {
       const range = max - min;
@@ -120,6 +121,7 @@ export const ScrollVelocity = ({
     });
 
     useAnimationFrame((t: number, delta: number) => {
+      if (isPaused.current) return;
       let moveBy = baseVelocity * (delta / 1000);
       moveBy += moveBy * velocityFactor.get();
       baseX.set(baseX.get() + moveBy);
@@ -136,7 +138,12 @@ export const ScrollVelocity = ({
 
     return (
       <div className={parallaxClassName} style={parallaxStyle}>
-        <motion.div className={scrollerClassName} style={{ x, ...scrollerStyle }}>
+        <motion.div
+          className={scrollerClassName}
+          style={{ x, ...scrollerStyle }}
+          onMouseEnter={() => { isPaused.current = true; }}
+          onMouseLeave={() => { isPaused.current = false; }}
+        >
           {spans}
         </motion.div>
       </div>

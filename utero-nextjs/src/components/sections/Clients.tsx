@@ -34,16 +34,19 @@ const clients: Client[] = [
 
 export default function Clients() {
   const logoRow = (
-    <div style={{ display: "flex", alignItems: "center", gap: "32px" }}>
+    <div style={{ display: "flex", alignItems: "center", gap: "48px" }}>
       {clients.map(c => (
         <a key={c.name} href={c.url} target="_blank" rel="noopener noreferrer"
-          style={{ display: "inline-flex", alignItems: "center", textDecoration: "none" }}>
+          style={{
+            display: "flex", alignItems: "center", justifyContent: "center",
+            textDecoration: "none", width: "112px", height: "64px",
+            flexShrink: 0,
+          }}>
           <img src={c.logo} alt={c.name}
-            className={c.big ? "client-scroll-logo-big" : "client-scroll-logo"}
+            className="client-scroll-logo"
           />
         </a>
       ))}
-      <div style={{ width: "120px" }} />
     </div>
   );
 
@@ -68,8 +71,10 @@ export default function Clients() {
       </motion.div>
       <style jsx global>{`
         .client-scroll-logo {
-          height: 42px;
+          max-width: 100%;
+          max-height: 100%;
           width: auto;
+          height: auto;
           object-fit: contain;
           transition: filter 0.3s, opacity 0.3s;
           filter: grayscale(1);
@@ -79,37 +84,9 @@ export default function Clients() {
           filter: grayscale(0);
           opacity: 1;
         }
-        .client-scroll-logo-big {
-          height: 52px;
-          width: auto;
-          object-fit: contain;
-          transition: filter 0.3s, opacity 0.3s;
-          filter: grayscale(1);
-          opacity: 0.55;
-        }
-        .client-scroll-logo-big:hover {
-          filter: grayscale(0);
-          opacity: 1;
-        }
         @media (max-width: 900px) {
           .clients-section {
             padding: 60px 24px !important;
-          }
-        }
-        @media (max-width: 768px) {
-          .client-scroll-logo {
-            height: 36px !important;
-          }
-          .client-scroll-logo-big {
-            height: 44px !important;
-          }
-        }
-        @media (max-width: 480px) {
-          .client-scroll-logo {
-            height: 30px !important;
-          }
-          .client-scroll-logo-big {
-            height: 38px !important;
           }
         }
       `}</style>
