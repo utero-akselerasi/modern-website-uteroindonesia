@@ -4,108 +4,73 @@ import { motion } from "framer-motion";
 
 const steps = [
   {
-    num: "01",
-    title: "Diagnosa",
-    desc: "Kami pahami bisnis, kompetitor, dan target market Anda secara mendalam. Tanpa ini, semua langkah berikutnya sia-sia.",
+    title: "DIAGNOSA",
+    desc: "Memahami masalah brand & tujuan bisnis.",
+    icon: (
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M9 18h6M10 22h4M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0018 8 6 6 0 006 8c0 1 .23 2.23 1.5 3.5A4.61 4.61 0 018.91 14" stroke="var(--white)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" fill="none" />
+        <circle cx="12" cy="7" r="3.5" stroke="var(--white)" strokeWidth="1.5" fill="none" />
+        <text x="12" y="9.5" textAnchor="middle" fill="var(--white)" fontSize="6" fontWeight="bold" fontFamily="Arial">?</text>
+      </svg>
+    ),
   },
   {
-    num: "02",
-    title: "Strategi",
-    desc: "Menyusun positioning brand, tone of voice, dan roadmap komunikasi yang relevan dan konsisten.",
+    title: "STRATEGI",
+    desc: "Menyusun strategi kreatif & komunikasi.",
+    icon: (
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="12" cy="12" r="10" stroke="var(--white)" strokeWidth="2" fill="none" />
+        <circle cx="12" cy="12" r="7" stroke="var(--white)" strokeWidth="1.8" fill="none" />
+        <circle cx="12" cy="12" r="4" stroke="var(--white)" strokeWidth="1.8" fill="none" />
+        <circle cx="12" cy="12" r="1.5" fill="var(--white)" />
+        <line x1="2" y1="2" x2="12" y2="12" stroke="var(--white)" strokeWidth="2" strokeLinecap="round" />
+        <polygon points="12,12 8.5,9.5 9.5,13" fill="var(--white)" />
+      </svg>
+    ),
   },
   {
-    num: "03",
-    title: "Konsep",
-    desc: "Mengembangkan ide kreatif, moodboard visual, dan core concept unik untuk membedakan brand Anda dari kompetitor.",
+    title: "KONSEP",
+    desc: "Mengembangkan ide dan visual yang tepat.",
+    icon: (
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 2C8.13 2 5 5.13 5 9C5 14.25 12 22 12 22C12 22 19 14.25 19 9C19 5.13 15.87 2 12 2Z" stroke="var(--white)" strokeWidth="2" fill="none" />
+        <circle cx="12" cy="8.5" r="4" stroke="var(--white)" strokeWidth="1.5" fill="none" />
+        <circle cx="12" cy="8.5" r="2" stroke="var(--white)" strokeWidth="1.5" fill="none" />
+        <circle cx="12" cy="8.5" r="0.8" fill="var(--white)" />
+      </svg>
+    ),
   },
   {
-    num: "04",
-    title: "Aktivasi",
-    desc: "Mengeksekusi ide kreatif ke berbagai media promosi pilihan secara presisi dan terintegrasi secara in-house.",
+    title: "AKTIVASI",
+    desc: "Eksekusi dan produksi dengan presisi tinggi.",
+    icon: (
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="9.5" cy="9.5" r="5" stroke="var(--white)" strokeWidth="2" fill="none" />
+        <circle cx="9.5" cy="9.5" r="2" fill="var(--white)" />
+        <line x1="9.5" y1="4" x2="9.5" y2="5.5" stroke="var(--white)" strokeWidth="2" strokeLinecap="round" />
+        <line x1="9.5" y1="13.5" x2="9.5" y2="15" stroke="var(--white)" strokeWidth="2" strokeLinecap="round" />
+        <line x1="4" y1="9.5" x2="5.5" y2="9.5" stroke="var(--white)" strokeWidth="2" strokeLinecap="round" />
+        <line x1="13.5" y1="9.5" x2="15" y2="9.5" stroke="var(--white)" strokeWidth="2" strokeLinecap="round" />
+        <circle cx="16" cy="15" r="3.5" stroke="var(--white)" strokeWidth="1.8" fill="none" />
+        <circle cx="16" cy="15" r="1.5" fill="var(--white)" />
+      </svg>
+    ),
   },
   {
-    num: "05",
-    title: "Launch & Impact",
-    desc: "Serah terima hasil akhir, monitoring performa di pasar, serta evaluasi dampak nyata bagi pertumbuhan bisnis Anda.",
+    title: "LAUNCH & IMPACT",
+    desc: "Meluncurkan dan mengukur hasil nyata.",
+    icon: (
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 2L3 7v6c0 5.25 3.83 9.5 9 11 5.17-1.5 9-5.75 9-11V7l-9-5z" stroke="var(--white)" strokeWidth="2" fill="none" strokeLinejoin="round" />
+        <path d="M12 6C12 6 9.5 10 9.5 12.5C9.5 14 10.5 15 12 15C13.5 15 14.5 14 14.5 12.5C14.5 10 12 6 12 6Z" stroke="var(--white)" strokeWidth="1.5" fill="none" />
+        <circle cx="12" cy="11" r="1.5" stroke="var(--white)" strokeWidth="1.2" fill="none" />
+        <path d="M17 18L19 20L23 16" stroke="var(--white)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" fill="none" />
+      </svg>
+    ),
   },
 ];
 
-function LocationPin() {
-  return (
-    <motion.div
-      style={{
-        position: "relative",
-        width: "48px",
-        height: "48px",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        zIndex: 2,
-        cursor: "pointer",
-      }}
-      whileHover="hover"
-    >
-      {/* Ripple ring effect */}
-      <motion.div
-        style={{
-          position: "absolute",
-          width: "100%",
-          height: "100%",
-          borderRadius: "50%",
-          border: "2px solid var(--red)",
-          opacity: 0,
-        }}
-        variants={{
-          hover: {
-            scale: [1, 1.4],
-            opacity: [0.6, 0],
-            transition: {
-              repeat: Infinity,
-              duration: 1.2,
-              ease: "easeOut",
-            },
-          },
-        }}
-      />
-      
-      {/* SVG Map Pin */}
-      <motion.svg
-        width="34"
-        height="34"
-        viewBox="0 0 24 24"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-        variants={{
-          hover: {
-            y: -6,
-            transition: {
-              type: "spring",
-              stiffness: 300,
-              damping: 10,
-            },
-          },
-        }}
-      >
-        <defs>
-          <filter id="pin-shadow" x="-20%" y="-20%" width="140%" height="140%">
-            <feDropShadow dx="0" dy="3" stdDeviation="2" floodColor="rgba(209,31,31,0.4)" />
-          </filter>
-        </defs>
-        <path
-          d="M12 2C8.13 2 5 5.13 5 9C5 14.25 12 22 12 22C12 22 19 14.25 19 9C19 5.13 15.87 2 12 2Z"
-          fill="var(--red)"
-          stroke="var(--white)"
-          strokeWidth="2"
-          filter="url(#pin-shadow)"
-        />
-        <circle cx="12" cy="9" r="3" fill="var(--white)" />
-      </motion.svg>
-    </motion.div>
-  );
-}
-
 export default function Workflow() {
-  // Container animation for sequential step appearance
   const containerVariants = {
     hidden: {},
     visible: {
@@ -124,34 +89,37 @@ export default function Workflow() {
     },
   };
 
-  const lineVariants = {
-    hidden: { width: 0 },
-    visible: {
-      width: "100%",
-      transition: { duration: 1.5, ease: "easeInOut" as const },
-    },
-  };
-
   return (
     <section
       id="cara-kerja"
       aria-labelledby="workflow-title"
       style={{
-        background: "var(--white)",
+        background: "#fff",
         padding: "120px 64px",
         position: "relative",
-        overflow: "hidden",
       }}
       className="workflow-section"
     >
-      {/* Header */}
+      {/* Thick solid red horizontal bar across the top */}
+      <div
+        style={{
+          position: "absolute",
+          top: 0,
+          left: 0,
+          width: "100%",
+          height: "8px",
+          background: "var(--red)",
+        }}
+      />
+
+      {/* Header Section */}
       <div
         style={{
           display: "grid",
           gridTemplateColumns: "1fr 1fr",
           gap: "80px",
-          alignItems: "end",
-          marginBottom: "80px",
+          alignItems: "start",
+          marginBottom: "72px",
         }}
         className="workflow-header"
       >
@@ -182,7 +150,7 @@ export default function Workflow() {
                 background: "var(--red)",
               }}
             />
-            Cara Kerja Kami
+            PROSES KAMI
           </div>
           <h2
             id="workflow-title"
@@ -192,15 +160,16 @@ export default function Workflow() {
               fontWeight: 800,
               letterSpacing: "-0.03em",
               lineHeight: 1.05,
-              color: "var(--ink)",
+              color: "#111",
+              margin: 0,
             }}
           >
             Dari Brief
             <br />
-            Hingga Launch.
+            Hingga <span style={{ color: "var(--red)" }}>Launch.</span>
           </h2>
         </motion.div>
-        
+
         <motion.p
           initial={{ opacity: 0, x: 30 }}
           whileInView={{ opacity: 1, x: 0 }}
@@ -209,136 +178,137 @@ export default function Workflow() {
           style={{
             fontSize: "17px",
             lineHeight: 1.7,
-            color: "var(--ink)",
+            color: "#111",
             opacity: 0.7,
-            alignSelf: "end",
+            margin: 0,
+            alignSelf: "start",
+            paddingTop: "32px",
           }}
         >
-          Kami tidak sekadar mengerjakan pesanan. Kami memahami bisnis Anda secara
-          mendalam sebelum membuat satu goresan desain — karena strategi yang
-          salah lebih mahal dari desain yang buruk.
+          Kami tidak sekadar mengerjakan pesanan, kami membangun proses yang terstruktur untuk menghasilkan karya strategis yang siap memberikan dampak nyata.
         </motion.p>
       </div>
 
-      {/* Steps Horizontal Flow */}
-      <div style={{ position: "relative", marginTop: "40px" }} className="timeline-container">
-        
-        {/* Continuous Horizontal Line behind steps */}
-        <div
-          style={{
-            position: "absolute",
-            top: "24px", // matches center of the 48px pin
-            left: "5%",
-            right: "5%",
-            height: "2px",
-            background: "rgba(var(--ink), 0.08)",
-            borderTop: "1px dashed var(--border-color)",
-            zIndex: 1,
-          }}
-          className="timeline-line-bg"
-        />
-
-        {/* Animated line drawing over the dashed line */}
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
-          variants={lineVariants}
-          style={{
-            position: "absolute",
-            top: "24px",
-            left: "5%",
-            width: "90%",
-            height: "2px",
-            background: "var(--red)",
-            zIndex: 1,
-            originX: 0,
-          }}
-          className="timeline-line-active"
-        />
-
-        <motion.div
-          role="list"
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(5, 1fr)",
-            gap: "24px",
-            position: "relative",
-            zIndex: 2,
-          }}
-          className="workflow-grid"
-        >
-          {steps.map((step, i) => (
-            <motion.div
-              key={step.num}
-              variants={itemVariants}
-              role="listitem"
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-                textAlign: "center",
-              }}
-              className="workflow-step"
-            >
-              {/* Pin Node on the line */}
+      {/* Steps Section */}
+      <motion.div
+        role="list"
+        variants={containerVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-100px" }}
+        style={{
+          display: "grid",
+          gridTemplateColumns: "repeat(5, 1fr)",
+          gap: "24px",
+          position: "relative",
+        }}
+        className="workflow-steps-grid"
+      >
+        {steps.map((step, i) => (
+          <motion.div
+            key={step.title}
+            variants={itemVariants}
+            role="listitem"
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              textAlign: "center",
+              position: "relative",
+            }}
+          >
+            {/* Connecting arrow (except last) */}
+            {i < steps.length - 1 && (
               <div
                 style={{
-                  height: "48px",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  marginBottom: "24px",
+                  position: "absolute",
+                  top: "26px",
+                  left: "calc(50% + 28px)",
+                  width: "calc(100% - 56px)",
+                  height: "2px",
+                  background: "var(--red)",
+                  zIndex: 1,
                 }}
+                className="step-arrow-line"
               >
-                <LocationPin />
-              </div>
-
-              {/* Step Details */}
-              <div style={{ padding: "0 10px" }} className="step-content">
                 <div
                   style={{
-                    fontFamily: "var(--font-display)",
-                    fontSize: "40px",
-                    fontWeight: 800,
-                    color: "var(--ash)",
-                    lineHeight: 1,
-                    marginBottom: "12px",
-                    opacity: 0.6,
+                    position: "absolute",
+                    right: "-2px",
+                    top: "-5px",
+                    width: 0,
+                    height: 0,
+                    borderLeft: "8px solid var(--red)",
+                    borderTop: "6px solid transparent",
+                    borderBottom: "6px solid transparent",
                   }}
-                  className="step-number"
-                >
-                  {step.num}
-                </div>
-                <h3
-                  style={{
-                    fontFamily: "var(--font-display)",
-                    fontSize: "19px",
-                    fontWeight: 700,
-                    color: "var(--ink)",
-                    marginBottom: "10px",
-                  }}
-                >
-                  {step.title}
-                </h3>
-                <p
-                  style={{
-                    fontSize: "13.5px",
-                    lineHeight: 1.6,
-                    color: "var(--muted)",
-                  }}
-                >
-                  {step.desc}
-                </p>
+                />
               </div>
+            )}
+
+            {/* Icon in red circle */}
+            <motion.div
+              style={{
+                width: "56px",
+                height: "56px",
+                borderRadius: "50%",
+                background: "var(--red)",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                boxShadow: "0 4px 12px rgba(209,31,31,0.3)",
+                marginBottom: "16px",
+                position: "relative",
+                zIndex: 2,
+              }}
+              whileHover={{
+                scale: 1.08,
+                transition: { type: "spring", stiffness: 300, damping: 10 },
+              }}
+            >
+              {/* Soft 3D inner gradient effect */}
+              <div
+                style={{
+                  position: "absolute",
+                  inset: 0,
+                  borderRadius: "50%",
+                  background: "linear-gradient(135deg, rgba(255,255,255,0.15) 0%, transparent 50%)",
+                  pointerEvents: "none",
+                }}
+              />
+              {step.icon}
             </motion.div>
-          ))}
-        </motion.div>
-      </div>
+
+            {/* Step Title */}
+            <h3
+              style={{
+                fontFamily: "var(--font-display)",
+                fontSize: "14px",
+                fontWeight: 700,
+                color: "#111",
+                marginBottom: "8px",
+                letterSpacing: "0.05em",
+                lineHeight: 1.3,
+              }}
+            >
+              {step.title}
+            </h3>
+
+            {/* Description */}
+            <p
+              style={{
+                fontSize: "13px",
+                lineHeight: 1.5,
+                color: "rgba(17,17,17,0.85)",
+                margin: 0,
+                maxWidth: "180px",
+              }}
+            >
+              {step.desc}
+            </p>
+          </motion.div>
+        ))}
+      </motion.div>
 
       <style jsx global>{`
         @media (max-width: 1024px) {
@@ -348,61 +318,48 @@ export default function Workflow() {
           .workflow-header {
             grid-template-columns: 1fr !important;
             gap: 24px !important;
-            margin-bottom: 60px !important;
+            margin-bottom: 48px !important;
           }
-          .timeline-line-bg,
-          .timeline-line-active {
-            display: none !important;
-          }
-          .workflow-grid {
-            grid-template-columns: 1fr !important;
+          .workflow-steps-grid {
+            grid-template-columns: 1fr 1fr !important;
             gap: 40px !important;
           }
-          .workflow-step {
-            flex-direction: row !important;
-            align-items: flex-start !important;
-            text-align: left !important;
-            position: relative;
-            padding-left: 28px;
-          }
-          .workflow-step::before {
-            content: "";
-            position: absolute;
-            left: 23px;
-            top: 48px;
-            bottom: -56px;
-            width: 2px;
-            border-left: 2px dashed var(--border-color);
-            z-index: 1;
-          }
-          .workflow-step:last-child::before {
-            display: none !important;
-          }
-          .workflow-step > div:first-child {
-            margin-bottom: 0 !important;
-            margin-right: 20px;
-            flex-shrink: 0;
-          }
-          .step-content {
-            padding: 0 !important;
-          }
-          .step-number {
-            font-size: 32px !important;
-            margin-bottom: 6px !important;
+          .step-arrow-line {
+            display: block !important;
           }
         }
-        @media (max-width: 480px) {
+        @media (max-width: 640px) {
           .workflow-section {
-            padding: 72px 20px !important;
+            padding: 64px 20px !important;
           }
-          .workflow-step {
-            padding-left: 12px;
+          .workflow-steps-grid {
+            grid-template-columns: 1fr !important;
+            gap: 32px !important;
           }
-          .workflow-step::before {
-            left: 7px;
+          .step-arrow-line {
+            display: none !important;
           }
-          .workflow-step > div:first-child {
-            margin-right: 12px;
+          .workflow-step-item {
+            position: relative !important;
+            padding-left: 80px !important;
+          }
+          .workflow-step-item::before {
+            content: "";
+            position: absolute;
+            left: 27px;
+            top: 56px;
+            bottom: -32px;
+            width: 2px;
+            background: var(--red);
+            z-index: 1;
+          }
+          .workflow-step-item:last-child::before {
+            display: none !important;
+          }
+          .workflow-step-item > div:first-child {
+            position: absolute !important;
+            left: 0 !important;
+            top: 0 !important;
           }
         }
       `}</style>

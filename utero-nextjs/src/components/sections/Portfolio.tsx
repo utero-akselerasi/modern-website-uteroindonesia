@@ -13,17 +13,17 @@ const categories = [
 ];
 
 const items = [
-  { title: "Cebro Agency", category: "Branding", desc: "Creative agency branding & identity system", url: "https://www.instagram.com/cebro.agency/", logo: "/images/portfolio/cebro-agency.webp" },
+  { title: "Cebro Agency", category: "Branding", desc: "Creative agency branding & identity system", url: "https://www.instagram.com/cebro_design_agency/", logo: "/images/portfolio/cebro-agency.webp" },
   { title: "Odigiro Consultant", category: "Branding", desc: "City branding & konsultan strategi merek", url: "https://odigiro.uteroindonesia.com/", logo: "/images/portfolio/odigiro-consultant.webp" },
-  { title: "Festival Mbois", category: "Branding", desc: "Branding event tahunan Malang Creative Fusion", url: "https://festivalmbois.id/", logo: "/images/portfolio/festival-mbois.webp" },
-  { title: "Osi & Ji", category: "Branding", desc: "Maskot kota Malang — branding ikon daerah", url: "http://osidanji.com/", logo: "/images/portfolio/osi-ji.webp" },
+  { title: "Festival Mbois", category: "Branding", desc: "Branding event tahunan Malang Creative Fusion", url: "https://festivalmbois.mcf.or.id", logo: "/images/portfolio/festival-mbois.webp" },
+  { title: "Osi & Ji", category: "Branding", desc: "Maskot kota Malang — branding ikon daerah", url: "https://osidanji.malangkota.go.id/", logo: "/images/portfolio/osi-ji.webp" },
   { title: "Osiker", category: "Branding", desc: "Platform intellectual property & lisensi kreatif", url: "http://osiker.com/", logo: "/images/portfolio/osiker.webp" },
   { title: "Sawoto Reklame", category: "Advertising", desc: "Reklame, billboard, & media luar ruang", url: "https://www.instagram.com/sawoto.reklame/", logo: "/images/portfolio/sawoto-reklame.webp" },
   { title: "Mrono Branding Mobil", category: "Advertising", desc: "Branding kendaraan & mobil dinas", url: "https://www.instagram.com/brandingmobilmalang/", logo: "/images/portfolio/mrono-branding.webp" },
   { title: "Tokoneonbox", category: "Signage", desc: "Neon box custom & signage berkualitas", url: "https://www.instagram.com/tokoneonbox/", logo: "/images/portfolio/tokoneonbox.webp" },
   { title: "Ruvodo WebApps", category: "Digital", desc: "Pengembangan website & aplikasi modern", url: "http://ruvodo.com/", logo: "/images/portfolio/ruvodo-webapps.webp" },
   { title: "Epochstream", category: "Digital", desc: "Platform live streaming & konten digital", url: "http://epochstream.com", logo: "/images/portfolio/epochstream.webp" },
-  { title: "Soundpub", category: "Digital", desc: "Audio branding & publikasi suara", url: "https://soundpub.uteroindonesia.com", logo: "/images/portfolio/soundpub.webp" },
+  { title: "Soundpub", category: "Digital", desc: "Audio branding & publikasi suara", url: "https://soundpub.xyz/", logo: "/images/portfolio/soundpub.webp" },
   { title: "Buzzerhood", category: "Digital", desc: "Influencer marketing & buzz digital", url: "https://buzzerhood.com/", logo: "/images/portfolio/buzzerhood.webp" },
   { title: "Socioboo", category: "Digital", desc: "Paid promote & social media campaign", url: "http://socioboo.uteroindonesia.com/", logo: "/images/portfolio/socioboo.webp" },
   { title: "Malang Virtual", category: "Digital", desc: "Virtual tour 360° & digital experience", url: "https://malangvirtual.uteroindonesia.com", logo: "/images/portfolio/malang-virtual.webp" },

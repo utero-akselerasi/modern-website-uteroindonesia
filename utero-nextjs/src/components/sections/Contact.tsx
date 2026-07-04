@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { sendGAEvent } from "@next/third-parties/google";
+import { useMemo, useState } from "react";
 
 const handleWhatsAppClick = () => {
   sendGAEvent({ event: "generate_lead", value: "whatsapp_click" });
@@ -11,24 +12,82 @@ const handleEmailClick = (email: string) => {
   sendGAEvent({ event: "email_click", value: email });
 };
 
+const emailOptions = [
+  { key: "marketing", email: "marketingutero@gmail.com" },
+  { key: "branding", email: "uterobranding@gmail.com" },
+  { key: "info", email: "info@uteroindonesia.com" },
+];
+
 const contacts = [
-  { icon: "💬", label: "WhatsApp", value: "0819 999 00900", href: "https://wa.me/6281999900900", ariaLabel: "Hubungi via WhatsApp", onClick: handleWhatsAppClick },
+  {
+    icon: "💬",
+    label: "WhatsApp",
+    value: "Pilih nomor WhatsApp",
+    href: "#",
+    ariaLabel: "Pilih nomor WhatsApp",
+    onClick: undefined,
+    type: "wa_dropdown",
+  },
+  {
+    icon: "💬",
+    label: "WhatsApp",
+    value: "Carubra AI",
+    href: "https://wa.me/6285940834227",
+    ariaLabel: "Hubungi via WhatsApp Carubra AI",
+    onClick: handleWhatsAppClick,
+  },
   {
     icon: "✉️",
     label: "Email",
-    value: "marketingutero@gmail.com | uterobranding@gmail.com | info@uteroindonesia.com",
-    href: "mailto:marketingutero@gmail.com?cc=uterobranding@gmail.com&bcc=info@uteroindonesia.com",
-    ariaLabel: "Hubungi via Email (3 alamat)",
-    onClick: () => {
-      handleEmailClick("marketing");
-      handleEmailClick("branding");
-      handleEmailClick("info");
-    },
+    value: "Pilih alamat email",
+    href: "#",
+    ariaLabel: "Hubungi via Email",
+    onClick: undefined,
   },
-  { icon: "📍", label: "Kantor Malang", value: "Jl. Bantaran 1 No. 25, Lowokwaru", href: "https://maps.google.com", ariaLabel: "Kunjungi kantor kami" },
+  {
+    icon: "📍",
+    label: "Kantor Malang",
+    value: "Jl. Bantaran 1 No. 25, Lowokwaru",
+    href: "https://maps.google.com",
+    ariaLabel: "Kunjungi kantor kami",
+  },
 ];
 
 export default function Contact() {
+  const [isEmailOpen, setIsEmailOpen] = useState(false);
+  const [isWaOpen, setIsWaOpen] = useState(false);
+
+  const emailDropdownItems = useMemo(() => {
+    return emailOptions.map((opt) => {
+      const mailto = `mailto:${opt.email}`;
+      return { ...opt, mailto };
+    });
+  }, []);
+
+  const waDropdownItems = useMemo(() => {
+    return [
+      {
+        key: "tari",
+        phone: "+62 896-2143-9416",
+        label: "CS Tari",
+        href: "https://wa.me/6289621439416",
+      },
+      {
+        key: "siti",
+        phone: "+62 817-388-616",
+        label: "CS Siti",
+        href: "https://wa.me/62817388616",
+      },
+      {
+        key: "utama",
+        phone: "+62 819-9990-0900",
+        label: "Utero Indonesia",
+        href: "https://wa.me/6281999900900",
+      },
+    ];
+  }, []);
+
+
   return (
     <section id="kontak" aria-labelledby="cta-title"
       style={{ background: "#ffffff", padding: "120px 64px", display: "grid", gridTemplateColumns: "1fr 1fr", gap: "80px", alignItems: "center" }}
@@ -46,30 +105,310 @@ export default function Contact() {
         </p>
       </motion.div>
       <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
-        {contacts.map((c, i) => (
-          <motion.a key={c.value} href={c.href} aria-label={c.ariaLabel}
-            onClick={c.onClick}
-            initial={{ opacity: 0, x: 20 }} whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }} transition={{ duration: 0.5, delay: i * 0.1 }}
-            style={{
-              display: "flex", alignItems: "center", gap: "16px", padding: "20px 24px",
-              border: "1px solid rgba(17,17,17,0.12)", color: "#111", textDecoration: "none",
-              transition: "border-color 0.2s, background 0.2s",
-            }}
-            onMouseEnter={(e) => { e.currentTarget.style.borderColor = "var(--red)"; e.currentTarget.style.background = "rgba(209,31,31,0.08)"; }}
-            onMouseLeave={(e) => { e.currentTarget.style.borderColor = "rgba(255,255,255,0.08)"; e.currentTarget.style.background = "transparent"; }}>
-            <div style={{
-              width: "40px", height: "40px", background: "var(--red)", display: "flex",
-              alignItems: "center", justifyContent: "center", fontSize: "18px", flexShrink: 0,
-            }}>{c.icon}</div>
-            <div>
-              <div style={{ fontSize: "11px", fontWeight: 600, letterSpacing: "0.15em", textTransform: "uppercase", color: "var(--muted)", marginBottom: "4px" }}>
-                {c.label}
+        {contacts.map((c, i) => {
+          if (c.label === "Email") {
+            return (
+              <div key={c.value} style={{ position: "relative" }}>
+                <motion.a
+                  href="#"
+                  aria-label={c.ariaLabel}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setIsEmailOpen((prev) => !prev);
+                    setIsWaOpen(false);
+                  }}
+                  initial={{ opacity: 0, x: 20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: i * 0.1 }}
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "16px",
+                    padding: "20px 24px",
+                    border: "1px solid rgba(17,17,17,0.12)",
+                    color: "#111",
+                    textDecoration: "none",
+                    transition: "border-color 0.2s, background 0.2s",
+                    cursor: "pointer",
+                    userSelect: "none",
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.borderColor = "var(--red)";
+                    e.currentTarget.style.background = "rgba(209,31,31,0.08)";
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.borderColor = "rgba(255,255,255,0.08)";
+                    e.currentTarget.style.background = "transparent";
+                  }}
+                >
+                  <div
+                    style={{
+                      width: "40px",
+                      height: "40px",
+                      background: "var(--red)",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      fontSize: "18px",
+                      flexShrink: 0,
+                    }}
+                  >
+                    {c.icon}
+                  </div>
+                  <div style={{ width: "100%" }}>
+                    <div
+                      style={{
+                      fontSize: "11px",
+                      fontWeight: 600,
+                      letterSpacing: "0.15em",
+                      textTransform: "uppercase",
+                      color: "var(--muted)",
+                      marginBottom: "4px",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "space-between",
+                      gap: 12,
+                    }}
+                    >
+                      <span>{c.label}</span>
+                      <span style={{ color: "var(--red)", fontSize: 12, fontWeight: 800 }}>
+                        {isEmailOpen ? "▲" : "▼"}
+                      </span>
+                    </div>
+                    <div style={{ fontSize: "16px", fontWeight: 600, color: "#111" }}>{c.value}</div>
+                  </div>
+                </motion.a>
+
+                {isEmailOpen && (
+                  <div
+                    style={{
+                      marginTop: "10px",
+                      padding: "12px 14px",
+                      border: "1px solid rgba(17,17,17,0.12)",
+                      borderRadius: 8,
+                      background: "#fff",
+                      display: "flex",
+                      flexDirection: "column",
+                      gap: 8,
+                    }}
+                  >
+                    {emailDropdownItems.map((opt) => (
+                      <a
+                        key={opt.key}
+                        href={opt.mailto}
+                        aria-label={`Kirim email ke ${opt.email}`}
+                        onClick={() => handleEmailClick(opt.email)}
+                        style={{
+                          textDecoration: "none",
+                          color: "#111",
+                          fontWeight: 700,
+                          fontSize: 14,
+                          padding: "8px 10px",
+                          borderRadius: 6,
+                          transition: "background 0.2s, color 0.2s",
+                        }}
+                        onMouseEnter={(e) => {
+                          e.currentTarget.style.background = "rgba(209,31,31,0.08)";
+                          e.currentTarget.style.color = "var(--red)";
+                        }}
+                        onMouseLeave={(e) => {
+                          e.currentTarget.style.background = "transparent";
+                          e.currentTarget.style.color = "#111";
+                        }}
+                      >
+                        {opt.email}
+                      </a>
+                    ))}
+                  </div>
+                )}
               </div>
-              <div style={{ fontSize: "16px", fontWeight: 600, color: "#111" }}>{c.value}</div>
-            </div>
-          </motion.a>
-        ))}
+            );
+          }
+
+          if (c.type === "wa_dropdown" || c.type === "wa_dropdown_cs") {
+            return (
+              <div key={c.value} style={{ position: "relative" }}>
+                <motion.a
+                  href="#"
+                  aria-label={c.ariaLabel}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setIsWaOpen((prev) => !prev);
+                    setIsEmailOpen(false);
+                  }}
+                  initial={{ opacity: 0, x: 20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: i * 0.1 }}
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "16px",
+                    padding: "20px 24px",
+                    border: "1px solid rgba(17,17,17,0.12)",
+                    color: "#111",
+                    textDecoration: "none",
+                    transition: "border-color 0.2s, background 0.2s",
+                    cursor: "pointer",
+                    userSelect: "none",
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.borderColor = "var(--red)";
+                    e.currentTarget.style.background = "rgba(209,31,31,0.08)";
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.borderColor = "rgba(255,255,255,0.08)";
+                    e.currentTarget.style.background = "transparent";
+                  }}
+                >
+                  <div
+                    style={{
+                      width: "40px",
+                      height: "40px",
+                      background: "var(--red)",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      fontSize: "18px",
+                      flexShrink: 0,
+                    }}
+                  >
+                    {c.icon}
+                  </div>
+                  <div style={{ width: "100%" }}>
+                    <div
+                      style={{
+                        fontSize: "11px",
+                        fontWeight: 600,
+                        letterSpacing: "0.15em",
+                        textTransform: "uppercase",
+                        color: "var(--muted)",
+                        marginBottom: "4px",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "space-between",
+                        gap: 12,
+                      }}
+                    >
+                      <span>{c.label}</span>
+                      <span style={{ color: "var(--red)", fontSize: 12, fontWeight: 800 }}>
+                        {isWaOpen ? "▲" : "▼"}
+                      </span>
+                    </div>
+                    <div style={{ fontSize: "16px", fontWeight: 600, color: "#111" }}>{c.value}</div>
+                  </div>
+                </motion.a>
+
+                {isWaOpen && (
+                  <div
+                    style={{
+                      marginTop: "10px",
+                      padding: "12px 14px",
+                      border: "1px solid rgba(17,17,17,0.12)",
+                      borderRadius: 8,
+                      background: "#fff",
+                      display: "flex",
+                      flexDirection: "column",
+                      gap: 8,
+                    }}
+                  >
+                    {waDropdownItems.map((opt) => (
+                      <a
+                        key={opt.key}
+                        href={opt.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label={`Hubungi via WhatsApp ${opt.label}`}
+                        onClick={handleWhatsAppClick}
+                        style={{
+                          textDecoration: "none",
+                          color: "#111",
+                          fontWeight: 700,
+                          fontSize: 14,
+                          padding: "8px 10px",
+                          borderRadius: 6,
+                          transition: "background 0.2s, color 0.2s",
+                        }}
+                        onMouseEnter={(e) => {
+                          e.currentTarget.style.background = "rgba(209,31,31,0.08)";
+                          e.currentTarget.style.color = "var(--red)";
+                        }}
+                        onMouseLeave={(e) => {
+                          e.currentTarget.style.background = "transparent";
+                          e.currentTarget.style.color = "#111";
+                        }}
+                      >
+                        {opt.phone} - {opt.label}
+                      </a>
+                    ))}
+                  </div>
+                )}
+              </div>
+            );
+          }
+
+          return (
+            <motion.a
+              key={c.value}
+              href={c.href}
+              aria-label={c.ariaLabel}
+              onClick={c.onClick}
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: i * 0.1 }}
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: "16px",
+                padding: "20px 24px",
+                border: "1px solid rgba(17,17,17,0.12)",
+                color: "#111",
+                textDecoration: "none",
+                transition: "border-color 0.2s, background 0.2s",
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.borderColor = "var(--red)";
+                e.currentTarget.style.background = "rgba(209,31,31,0.08)";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.borderColor = "rgba(255,255,255,0.08)";
+                e.currentTarget.style.background = "transparent";
+              }}
+            >
+              <div
+                style={{
+                  width: "40px",
+                  height: "40px",
+                  background: "var(--red)",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  fontSize: "18px",
+                  flexShrink: 0,
+                }}
+              >
+                {c.icon}
+              </div>
+              <div>
+                <div
+                  style={{
+                    fontSize: "11px",
+                    fontWeight: 600,
+                    letterSpacing: "0.15em",
+                    textTransform: "uppercase",
+                    color: "var(--muted)",
+                    marginBottom: "4px",
+                  }}
+                >
+                  {c.label}
+                </div>
+                <div style={{ fontSize: "16px", fontWeight: 600, color: "#111" }}>{c.value}</div>
+              </div>
+            </motion.a>
+          );
+        })}
       </div>
       <style jsx global>{`
         @media (max-width: 900px) {

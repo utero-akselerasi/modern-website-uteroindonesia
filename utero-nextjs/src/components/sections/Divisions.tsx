@@ -30,7 +30,7 @@ const divisions = [
     name: "Soundpub",
     desc: "Distribusi musik digital ke platform streaming global. Solusi untuk musisi independen dan label rekaman lokal.",
     services: ["Music Distribution", "Streaming Platforms", "Label Services", "Sync Licensing"],
-    href: "http://soundpub.uteroindonesia.com/",
+    href: "https://soundpub.xyz/",
   },
   {
     tag: "05 — Media",
@@ -70,10 +70,11 @@ export default function Divisions() {
           alignItems: "start",
           position: "relative",
           zIndex: 1,
+          marginTop: "-20px",
         }}
         className="divisions-container"
       >
-        <div className="divisions-left-col" style={{ position: "sticky", top: "120px" }}>
+        <div className="divisions-left-col">
           <div
             style={{
               fontSize: "11px",
@@ -107,6 +108,7 @@ export default function Divisions() {
               letterSpacing: "-0.03em",
               lineHeight: 1.05,
               color: "#fff",
+              marginTop: "8px",
             }}
           >
             Satu Atap,
@@ -336,7 +338,7 @@ export default function Divisions() {
         }
         @media (max-width: 600px) {
           .divisions-grid {
-            grid-template-columns: 1fr !important;
+            grid-template-columns: repeat(2, 1fr) !important;
           }
         }
         @media (max-width: 480px) {

@@ -17,17 +17,54 @@ const footerLinks = {
     { name: "Utero.id", href: "https://utero.id/" },
     { name: "Utero Advertising", href: "https://uteroindonesia.com/" },
     { name: "Buzzerhood", href: "https://buzzerhood.com/" },
-    { name: "Soundpub", href: "http://soundpub.uteroindonesia.com/" },
+    { name: "Soundpub", href: "https://soundpub.xyz/" },
     { name: "Carubra.com", href: "https://carubra.com/" },
     { name: "Epochstream", href: "https://epochstream.org/" },
   ],
 };
 
 const socialLinks = [
-  { label: "Instagram Utero Malang", href: "https://instagram.com/uteromalang", icon: "IG" },
-  { label: "Facebook Utero Indonesia", href: "https://facebook.com/uteromalang", icon: "FB" },
-  { label: "LinkedIn Utero Indonesia", href: "https://linkedin.com/company/utero-indonesia", icon: "LI" },
-  { label: "YouTube Utero Indonesia", href: "https://youtube.com/@uteromalang", icon: "YT" },
+  {
+    label: "Instagram Utero Indonesia",
+    href: "https://www.instagram.com/uteroindonesia/",
+    icon: (
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+        <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+      </svg>
+    ),
+  },
+  {
+    label: "Facebook Utero Indonesia",
+    href: "https://www.facebook.com/share/18rS2T8mgU/?mibextid=wwXIfr",
+    icon: (
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
+      </svg>
+    ),
+  },
+  {
+    label: "LinkedIn Utero Indonesia",
+    href: "https://www.linkedin.com/company/utero-indonesia/",
+    icon: (
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+        <rect x="2" y="9" width="4" height="12" />
+        <circle cx="4" cy="4" r="2" />
+      </svg>
+    ),
+  },
+  {
+    label: "YouTube Utero Indonesia",
+    href: "https://www.youtube.com/@uteroindonesia",
+    icon: (
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58 2.78 2.78 0 0 0 1.94 2C5.12 20 12 20 12 20s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z" />
+        <polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" />
+      </svg>
+    ),
+  },
 ];
 
 export default function Footer() {
@@ -60,13 +97,13 @@ export default function Footer() {
               marginBottom: "16px",
             }}
           >
-            UTERO<span style={{ color: "var(--red)" }}>.</span>ID
+            UTERO<span style={{ color: "#fff" }}>.</span>COM
           </div>
           <p
             style={{
               fontSize: "14px",
               lineHeight: 1.65,
-              color: "rgba(255, 255, 255, 0.5)",
+              color: "rgba(255, 255, 255, 0.8)",
               marginBottom: "24px",
               maxWidth: "320px",
             }}
@@ -80,9 +117,9 @@ export default function Footer() {
             style={{ display: "flex", gap: "12px" }}
             aria-label="Media sosial Utero Indonesia"
           >
-            {socialLinks.map((social) => (
+            {socialLinks.map((social, idx) => (
               <a
-              key={social.icon}
+                key={idx}
                 href={social.href}
                 aria-label={social.label}
                 target="_blank"
@@ -94,10 +131,8 @@ export default function Footer() {
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
-                  color: "rgba(255, 255, 255, 0.6)",
+                  color: "rgba(255, 255, 255, 0.8)",
                   textDecoration: "none",
-                  fontSize: "12px",
-                  fontWeight: 700,
                   transition: "all 0.2s",
                 }}
                 onMouseEnter={(e) => {
@@ -109,7 +144,7 @@ export default function Footer() {
                   e.currentTarget.style.background = "transparent";
                   e.currentTarget.style.borderColor =
                     "rgba(255, 255, 255, 0.2)";
-                  e.currentTarget.style.color = "rgba(255, 255, 255, 0.6)";
+                  e.currentTarget.style.color = "rgba(255, 255, 255, 0.8)";
                 }}
               >
                 {social.icon}
@@ -126,8 +161,10 @@ export default function Footer() {
               fontWeight: 700,
               letterSpacing: "0.15em",
               textTransform: "uppercase",
-              color: "rgba(255, 255, 255, 0.4)",
-              marginBottom: "20px",
+              color: "rgba(255, 255, 255, 0.7)",
+              marginBottom: "12px",
+              paddingBottom: "8px",
+              borderBottom: "1px solid rgba(255, 255, 255, 0.15)",
             }}
           >
             Navigasi
@@ -146,7 +183,7 @@ export default function Footer() {
                   href={item.href}
                   style={{
                     fontSize: "14px",
-                    color: "rgba(255, 255, 255, 0.5)",
+                    color: "rgba(255, 255, 255, 0.8)",
                     textDecoration: "none",
                     transition: "color 0.2s",
                   }}
@@ -155,7 +192,7 @@ export default function Footer() {
                   }
                   onMouseLeave={(e) =>
                     (e.currentTarget.style.color =
-                      "rgba(255, 255, 255, 0.5)")
+                      "rgba(255, 255, 255, 0.8)")
                   }
                 >
                   {item.name}
@@ -173,8 +210,10 @@ export default function Footer() {
               fontWeight: 700,
               letterSpacing: "0.15em",
               textTransform: "uppercase",
-              color: "rgba(255, 255, 255, 0.4)",
-              marginBottom: "20px",
+              color: "rgba(255, 255, 255, 0.7)",
+              marginBottom: "12px",
+              paddingBottom: "8px",
+              borderBottom: "1px solid rgba(255, 255, 255, 0.15)",
             }}
           >
             Lini Bisnis
@@ -195,7 +234,7 @@ export default function Footer() {
                   rel="noopener noreferrer"
                   style={{
                     fontSize: "14px",
-                    color: "rgba(255, 255, 255, 0.5)",
+                    color: "rgba(255, 255, 255, 0.8)",
                     textDecoration: "none",
                     transition: "color 0.2s",
                   }}
@@ -204,7 +243,7 @@ export default function Footer() {
                   }
                   onMouseLeave={(e) =>
                     (e.currentTarget.style.color =
-                      "rgba(255, 255, 255, 0.5)")
+                      "rgba(255, 255, 255, 0.8)")
                   }
                   onClick={() =>
                     sendGAEvent({
@@ -222,7 +261,7 @@ export default function Footer() {
           </ul>
         </div>
 
-        {/* Contact & Newsletter */}
+        {/* Contact */}
         <div>
           <div
             style={{
@@ -230,8 +269,10 @@ export default function Footer() {
               fontWeight: 700,
               letterSpacing: "0.15em",
               textTransform: "uppercase",
-              color: "rgba(255, 255, 255, 0.4)",
-              marginBottom: "20px",
+              color: "rgba(255, 255, 255, 0.7)",
+              marginBottom: "12px",
+              paddingBottom: "8px",
+              borderBottom: "1px solid rgba(255, 255, 255, 0.15)",
             }}
           >
             Kontak
@@ -246,77 +287,21 @@ export default function Footer() {
             }}
           >
             <li>
-              <a href="https://wa.me/6281999900900" target="_blank" rel="noopener noreferrer" style={{ fontSize: "14px", color: "rgba(255, 255, 255, 0.5)", textDecoration: "none" }}>
+              <a href="https://wa.me/6281999900900" target="_blank" rel="noopener noreferrer" style={{ fontSize: "14px", color: "rgba(255, 255, 255, 0.8)", textDecoration: "none" }}>
                 +62 819 999 00900
               </a>
             </li>
             <li>
-              <a href="mailto:info@uteroindonesia.com" style={{ fontSize: "14px", color: "rgba(255, 255, 255, 0.5)", textDecoration: "none" }}>
+              <a href="mailto:info@uteroindonesia.com" style={{ fontSize: "14px", color: "rgba(255, 255, 255, 0.8)", textDecoration: "none" }}>
                 info@uteroindonesia.com
               </a>
             </li>
             <li>
-              <span style={{ fontSize: "14px", color: "rgba(255, 255, 255, 0.5)" }}>
+              <span style={{ fontSize: "14px", color: "rgba(255, 255, 255, 0.8)" }}>
                 Jl. Bantaran 1 No. 25, Malang
               </span>
             </li>
           </ul>
-
-          {/* Newsletter */}
-          <div
-            style={{
-              fontSize: "12px",
-              fontWeight: 700,
-              letterSpacing: "0.15em",
-              textTransform: "uppercase",
-              color: "rgba(255, 255, 255, 0.4)",
-              marginBottom: "12px",
-            }}
-          >
-            Newsletter
-          </div>
-          <form
-            onSubmit={(e) => e.preventDefault()}
-            style={{
-              display: "flex",
-              gap: "8px",
-            }}
-          >
-            <input
-              type="email"
-              placeholder="Email Anda"
-              aria-label="Email untuk newsletter"
-              style={{
-                flex: 1,
-                padding: "10px 14px",
-                border: "1px solid rgba(255, 255, 255, 0.2)",
-                background: "rgba(255, 255, 255, 0.08)",
-                color: "#fff",
-                fontSize: "13px",
-                outline: "none",
-                fontFamily: "var(--font-body)",
-              }}
-            />
-            <button
-              type="submit"
-              aria-label="Berlangganan newsletter"
-              style={{
-                padding: "10px 18px",
-                background: "#fff",
-                color: "var(--red)",
-                border: "none",
-                fontWeight: 700,
-                fontSize: "12px",
-                letterSpacing: "0.05em",
-                cursor: "pointer",
-                transition: "background 0.2s",
-              }}
-              onMouseEnter={(e) => (e.currentTarget.style.background = "rgba(255,255,255,0.8)")}
-              onMouseLeave={(e) => (e.currentTarget.style.background = "#fff")}
-            >
-              Kirim
-            </button>
-          </form>
         </div>
       </div>
 
@@ -335,7 +320,7 @@ export default function Footer() {
         <div
           style={{
             fontSize: "13px",
-            color: "rgba(255, 255, 255, 0.35)",
+            color: "rgba(255, 255, 255, 0.7)",
           }}
         >
           © 2025 PT Utero Kreatif Indonesia. Hak cipta dilindungi.
@@ -343,7 +328,7 @@ export default function Footer() {
         <div
           style={{
             fontSize: "12px",
-            color: "rgba(255, 255, 255, 0.25)",
+            color: "rgba(255, 255, 255, 0.6)",
           }}
         >
           Creative Agency Malang · Brand Consultant Malang · Desain Logo Malang

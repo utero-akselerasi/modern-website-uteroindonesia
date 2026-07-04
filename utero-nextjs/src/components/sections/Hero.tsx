@@ -2,22 +2,98 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
+import {
+  CalendarDays,
+  Users,
+  Paintbrush,
+  Target,
+  Monitor,
+  Megaphone,
+  Cpu,
+} from "lucide-react";
 
-const orbitNodes = [
-  { label: "UTERO.ID", href: "https://utero.id/" },
-  { label: "ADVERTISING", href: "https://uteroindonesia.com/" },
-  { label: "BILLBOARD", href: "https://www.instagram.com/utero_billboard/" },
-  { label: "SOUNDPUB", href: "http://soundpub.uteroindonesia.com/" },
-  { label: "CARUBRA", href: "https://carubra.com/" },
-  { label: "BUZZERHOOD", href: "https://buzzerhood.com/" },
-  { label: "EPOCHSTREAM", href: "https://epochstream.org/" },
+/* ---------- Division data (evenly spaced, 360/7 = 51.43° apart) ---------- */
+
+interface Division {
+  title: string;
+  subtitle: string;
+  angle: number;
+  icon: React.ElementType;
+  href: string;
+}
+
+const divisions: Division[] = [
+  { title: "EVENT",      subtitle: "& AKTIVASI",     angle: 244, icon: CalendarDays, href: "http://soundpub.uteroindonesia.com/" },
+  { title: "STRATEGI",   subtitle: "& KONSULTASI",   angle: 296, icon: Users,        href: "https://utero.id/" },
+  { title: "DESAIN",     subtitle: "& KREATIF",      angle: 347, icon: Paintbrush,   href: "https://utero.id/" },
+  { title: "ADVERTISING",subtitle: "& SIGNAGE",      angle:  38, icon: Target,       href: "https://uteroindonesia.com/" },
+  { title: "DIGITAL",    subtitle: "MARKETING",      angle:  90, icon: Monitor,      href: "https://buzzerhood.com/" },
+  { title: "MEDIA",      subtitle: "& PUBLIKASI",    angle: 141, icon: Megaphone,    href: "https://epochstream.org/" },
+  { title: "TEKNOLOGI",  subtitle: "& SISTEM",       angle: 193, icon: Cpu,          href: "https://carubra.com/" },
 ];
 
-const stats = [
-  { num: "25", suffix: "+", label: "Tahun Pengalaman" },
-  { num: "500", suffix: "+", label: "Brand Ditangani" },
-  { num: "3", suffix: "", label: "Kota Operasional" },
-];
+const ICON_RADIUS = 44; // % from center — sits on the outer dashed ring
+
+/* ---------- Helpers ---------- */
+
+type Placement = "right" | "left" | "bottom" | "bottom-right" | "bottom-left";
+
+function getPlacement(angle: number): Placement {
+  const a = ((angle % 360) + 360) % 360;
+  if (a > 315 || a <= 25) return "right";
+  if (a > 25 && a <= 65)  return "bottom-right";
+  if (a > 65 && a <= 115) return "bottom";
+  if (a > 115 && a <= 155)return "bottom-left";
+  if (a > 155 && a <= 260) return "left";    // left + top-left → text on left (outside)
+  return "right"; // 260°–315° — top-right → text on right (outside)
+}
+
+function getLabelStyle(placement: Placement) {
+  switch (placement) {
+    case "right":
+      return {
+        left: "calc(100% + 14px)",
+        right: "auto" as const,
+        top: "50%",
+        transform: "translateY(-50%)",
+        textAlign: "left" as const,
+      };
+    case "left":
+      return {
+        left: "auto" as const,
+        right: "calc(100% + 14px)",
+        top: "50%",
+        transform: "translateY(-50%)",
+        textAlign: "right" as const,
+      };
+    case "bottom":
+      return {
+        left: "50%",
+        right: "auto" as const,
+        top: "calc(100% + 10px)",
+        transform: "translateX(-50%)",
+        textAlign: "center" as const,
+      };
+    case "bottom-right":
+      return {
+        left: "0",
+        right: "auto" as const,
+        top: "calc(100% + 10px)",
+        transform: "none",
+        textAlign: "left" as const,
+      };
+    case "bottom-left":
+      return {
+        left: "auto" as const,
+        right: "0",
+        top: "calc(100% + 10px)",
+        transform: "none",
+        textAlign: "right" as const,
+      };
+  }
+}
+
+/* ---------- Component ---------- */
 
 export default function Hero() {
   return (
@@ -25,39 +101,49 @@ export default function Hero() {
       id="hero"
       role="banner"
       style={{
-        minHeight: "min(100vh, 900px)",
-        background: "var(--white)",
+        minHeight: "100vh",
+        background: "var(--red)",
         display: "grid",
-        gridTemplateColumns: "1.15fr 0.85fr",
+        gridTemplateColumns: "1.1fr 0.9fr",
         position: "relative",
         overflow: "hidden",
       }}
       className="hero-section"
     >
-      {/* Large Watermark UTERO Background — centered across both columns */}
+      {/* Scroll Indicator */}
       <div
-        aria-hidden="true"
         style={{
           position: "absolute",
-          top: "50%",
-          left: "50%",
-          transform: "translate(-50%, -50%)",
-          fontFamily: "var(--font-display)",
-          fontSize: "clamp(100px, 100vw, 280px)",
-          fontWeight: 900,
-          color: "rgba(0,0,0,0.06)",
-          whiteSpace: "nowrap",
-          letterSpacing: "-0.04em",
-          pointerEvents: "none",
-          userSelect: "none",
-          zIndex: 1,
-          mixBlendMode: "multiply",
+          left: "20px",
+          bottom: "10%",
+          transform: "rotate(-90deg)",
+          transformOrigin: "left bottom",
+          display: "flex",
+          alignItems: "center",
+          gap: "12px",
+          color: "rgba(255, 255, 255, 0.6)",
+          fontSize: "9px",
+          fontWeight: 700,
+          letterSpacing: "0.2em",
+          textTransform: "uppercase",
+          zIndex: 3,
         }}
+        className="scroll-indicator"
       >
-        UTERO
+        <span
+          style={{
+            width: "6px",
+            height: "6px",
+            borderRadius: "50%",
+            border: "1px solid rgba(255, 255, 255, 0.6)",
+            display: "inline-block",
+          }}
+        />
+        <span>Scroll untuk menjelajahi</span>
       </div>
 
-      {/* Left Content */}
+
+      {/* ─── LEFT COLUMN ─── */}
       <motion.div
         initial={{ opacity: 0, x: -40 }}
         animate={{ opacity: 1, x: 0 }}
@@ -66,139 +152,69 @@ export default function Hero() {
           display: "flex",
           flexDirection: "column",
           justifyContent: "center",
-          padding: "clamp(80px, 10vh, 140px) clamp(32px, 5vw, 64px) clamp(40px, 5vh, 80px)",
+          padding: "clamp(80px, 10vh, 140px) clamp(40px, 6vw, 80px) clamp(40px, 5vh, 80px)",
           position: "relative",
           zIndex: 2,
         }}
         className="hero-left"
       >
-        {/* Eyebrow */}
         <div
           style={{
-            fontSize: "clamp(0.625rem, 0.9vw, 0.75rem)",
-            fontWeight: 600,
-            letterSpacing: "0.2em",
+            fontSize: "clamp(0.7rem, 0.95vw, 0.8rem)",
+            fontWeight: 700,
+            letterSpacing: "0.15em",
             textTransform: "uppercase",
-            color: "var(--red)",
-            marginBottom: "28px",
-            display: "flex",
-            alignItems: "center",
-            gap: "10px",
+            color: "rgba(255, 255, 255, 0.8)",
+            marginBottom: "24px",
           }}
         >
-          <span
-            style={{
-              display: "block",
-              width: "32px",
-              height: "1px",
-              background: "var(--red)",
-            }}
-          />
-          Brand Consultant & Creative Agency — Malang, 1998
+          Utero Indonesia
         </div>
 
-        {/* Headline */}
         <h1
           style={{
             fontFamily: "var(--font-display)",
-            fontSize: "clamp(2.25rem, 4.8vw, 4.25rem)",
+            fontSize: "clamp(2.75rem, 5.2vw, 4.85rem)",
             fontWeight: 900,
             lineHeight: 1.05,
-            letterSpacing: "-0.03em",
-            color: "var(--ink)",
-            marginBottom: "28px",
+            letterSpacing: "-0.02em",
+            color: "#ffffff",
+            marginBottom: "24px",
             textTransform: "uppercase",
           }}
         >
-          Ide Tanpa Realisasi
-          <span
-            style={{
-              fontStyle: "normal",
-              color: "var(--red)",
-              display: "block",
-            }}
-          >
-            Sama Dengan Sampah.
+          <span style={{ display: "block" }}>Ide Tanpa</span>
+          <span style={{ display: "block" }}>Realisasi</span>
+          <span style={{ display: "block" }}>
+            Sama Dengan
           </span>
+          <span style={{ display: "block" }}>Sampah.</span>
         </h1>
 
-        {/* Subtitle */}
         <p
           style={{
-            fontSize: "clamp(0.95rem, 1.3vw, 1.125rem)",
+            fontSize: "clamp(0.95rem, 1.3vw, 1.1rem)",
             lineHeight: 1.7,
-            color: "var(--muted)",
+            color: "rgba(255, 255, 255, 0.85)",
             maxWidth: "520px",
-            marginBottom: "clamp(32px, 4vw, 48px)",
+            marginBottom: "clamp(36px, 4.5vw, 48px)",
           }}
         >
-          Kami membantu brand tumbuh dengan strategi yang tepat, desain yang kuat,
-          dan eksekusi yang nyata — dari Malang untuk Indonesia.
+          Kami membantu brand tumbuh dengan strategi yang tajam, desain yang kuat,
+          dan eksekusi yang nyata — dari konsep untuk kesuksesan.
         </p>
 
-        {/* Actions */}
         <div style={{ display: "flex", gap: "16px", alignItems: "center", flexWrap: "wrap" }}>
-          <Link
-            href="#kontak"
-            className="btn-solid-red"
-          >
-            Mulai Proyek Anda
+          <Link href="#kontak" className="btn-solid-black">
+            Mulai Proyek Anda <span style={{ marginLeft: "8px" }}>→</span>
           </Link>
-          <Link
-            href="#divisi"
-            className="btn-outline-red"
-          >
-            Lihat Divisi Kami
+          <Link href="#portofolio" className="btn-outline-white">
+            Lihat Portfolio <span style={{ marginLeft: "8px" }}>→</span>
           </Link>
         </div>
-
-        {/* Stats Bar */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.6 }}
-          role="list"
-          aria-label="Statistik perusahaan"
-          style={{
-            display: "flex",
-            gap: "clamp(24px, 4vw, 48px)",
-            zIndex: 2,
-            marginTop: "clamp(24px, 3vw, 48px)",
-          }}
-          className="hero-stats"
-        >
-          {stats.map((stat) => (
-            <div key={stat.label} role="listitem" style={{ display: "flex", flexDirection: "column", gap: "clamp(2px, 0.3vw, 6px)" }}>
-              <div
-                style={{
-                  fontFamily: "var(--font-display)",
-                  fontSize: "clamp(1.75rem, 3vw, 2.25rem)",
-                  fontWeight: 800,
-                  color: "var(--ink)",
-                  lineHeight: 1,
-                }}
-              >
-                {stat.num}
-                {stat.suffix && (
-                  <span style={{ color: "var(--red)" }}>{stat.suffix}</span>
-                )}
-              </div>
-              <div
-                style={{
-                  fontSize: "clamp(0.625rem, 0.9vw, 0.75rem)",
-                  fontWeight: 500,
-                  color: "var(--muted)",
-                  letterSpacing: "0.06em",
-                }}
-              >
-                {stat.label}
-              </div>
-            </div>
-          ))}
-        </motion.div>
       </motion.div>
 
-      {/* Right Column with Diagonal Background and Circular Diagram */}
+      {/* ─── RIGHT COLUMN — ORBIT DIAGRAM ─── */}
       <motion.div
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
@@ -210,8 +226,8 @@ export default function Hero() {
           justifyContent: "center",
           position: "relative",
           padding: "clamp(80px, 10vh, 140px) clamp(32px, 5vw, 64px) clamp(40px, 5vh, 80px)",
-          clipPath: "polygon(15% 0, 100% 0, 100% 100%, 0% 100%)",
-          zIndex: 1,
+          clipPath: "polygon(12% 0, 100% 0, 100% 100%, 0% 100%)",
+          zIndex: 2,
         }}
         className="hero-right"
       >
@@ -219,12 +235,12 @@ export default function Hero() {
         <div
           style={{
             position: "relative",
-            width: "min(400px, 85vw)",
-            height: "min(400px, 85vw)",
+            width: "min(440px, 85vw)",
+            height: "min(440px, 85vw)",
             aspectRatio: "1/1",
           }}
         >
-          {/* Outer Ring */}
+          {/* Dashed guideline ring */}
           <div
             style={{
               position: "absolute",
@@ -234,150 +250,238 @@ export default function Hero() {
               bottom: "5%",
               borderRadius: "50%",
               border: "1px dashed rgba(255, 255, 255, 0.25)",
-              animation: "spin 40s linear infinite",
+              animation: "spin 50s linear infinite",
             }}
           />
 
-          {/* Inner Ring */}
+          {/* Solid middle ring */}
           <div
             style={{
               position: "absolute",
-              top: "22.5%",
-              left: "22.5%",
-              right: "22.5%",
-              bottom: "22.5%",
+              top: "20%",
+              left: "20%",
+              right: "20%",
+              bottom: "20%",
               borderRadius: "50%",
-              border: "1px solid rgba(255, 255, 255, 0.15)",
-              animation: "spin 30s linear infinite reverse",
+              border: "1.5px solid rgba(255, 255, 255, 0.12)",
             }}
           />
 
-          {/* Nodes */}
-          {orbitNodes.map((node, i) => {
-            const angle = -Math.PI / 2 + (i * 2 * Math.PI) / orbitNodes.length;
-            const radius = 42.5; // percent from center
-            const left = 50 + radius * Math.cos(angle);
-            const top = 50 + radius * Math.sin(angle);
-            return (
-              <a
-                key={node.label}
-                href={node.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="orbit-node"
-                style={{
-                  top: `${top}%`,
-                  left: `${left}%`,
-                }}
-              >
-                {node.label}
-              </a>
-            );
-          })}
+          {/* Connector lines + dots — dari badge ke middle ring */}
+          <svg
+            style={{
+              position: "absolute",
+              inset: 0,
+              width: "100%",
+              height: "100%",
+              zIndex: 2,
+              pointerEvents: "none",
+            }}
+            viewBox="0 0 100 100"
+            preserveAspectRatio="xMidYMid meet"
+          >
+            {divisions.map((div) => {
+              const a = (((div.angle % 360) + 360) % 360) * (Math.PI / 180);
+              const x1 = 50 + 44 * Math.cos(a);
+              const y1 = 50 + 44 * Math.sin(a);
+              const x2 = 50 + 30 * Math.cos(a);
+              const y2 = 50 + 30 * Math.sin(a);
+              return (
+                <g key={div.title}>
+                  <line
+                    x1={x1} y1={y1} x2={x2} y2={y2}
+                    stroke="rgba(255, 255, 255, 0.15)"
+                    strokeWidth={0.6}
+                  />
+                  <circle
+                    cx={x2} cy={y2} r={0.9}
+                    fill="rgba(255, 255, 255, 0.3)"
+                  />
+                </g>
+              );
+            })}
+          </svg>
 
-          {/* Center: 7 DIVISI INTI */}
+          {/* Center card */}
           <div className="orbit-center">
-            <span style={{
-              fontFamily: "var(--font-display)",
-              fontSize: "clamp(2rem, 3.5vw, 2.75rem)",
-              fontWeight: 900,
-              color: "var(--red)",
-              lineHeight: 1,
-            }}>
+            <span
+              style={{
+                fontFamily: "var(--font-display)",
+                fontSize: "clamp(2rem, 3.8vw, 2.85rem)",
+                fontWeight: 900,
+                color: "var(--red)",
+                lineHeight: 1,
+              }}
+            >
               7
             </span>
-            <span style={{
-              fontSize: "9px",
-              fontWeight: 800,
-              letterSpacing: "0.12em",
-              textTransform: "uppercase",
-              color: "var(--red)",
-              marginTop: "2px",
-              maxWidth: "80px",
-              lineHeight: 1.2,
-            }}>
+            <span
+              style={{
+                fontSize: "9px",
+                fontWeight: 800,
+                letterSpacing: "0.12em",
+                textTransform: "uppercase",
+                color: "#1a1a1a",
+                marginTop: "2px",
+                maxWidth: "80px",
+                lineHeight: 1.2,
+              }}
+            >
               Divisi Inti
             </span>
           </div>
+
+          {/* 7 Division Nodes */}
+          {divisions.map((div) => {
+            const D = ((div.angle % 360) + 360) % 360;
+            const rad = (D * Math.PI) / 180;
+            const badgeLeft = 50 + ICON_RADIUS * Math.cos(rad);
+            const badgeTop  = 50 + ICON_RADIUS * Math.sin(rad);
+            const placement = getPlacement(D);
+            const labelStyle = getLabelStyle(placement);
+
+            return (
+              <a
+                key={div.title}
+                href={div.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="orbit-node-group"
+                style={{
+                  position: "absolute",
+                  left: `${badgeLeft}%`,
+                  top: `${badgeTop}%`,
+                  transform: "translate(-50%, -50%)",
+                  zIndex: 10,
+                }}
+              >
+                {/* Badge — used as positioning anchor for the label */}
+                <div
+                  className="orbit-node-badge"
+                >
+                  <div
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      color: "var(--red)",
+                    }}
+                  >
+                    <div.icon size={16} strokeWidth={2} />
+                  </div>
+
+                  {/* Label — absolutely positioned relative to badge */}
+                  <div
+                    className="orbit-node-label"
+                    style={{
+                      position: "absolute",
+                      ...labelStyle,
+                      whiteSpace: "nowrap",
+                      fontSize: "clamp(8px, 0.95vw, 10px)",
+                      fontWeight: 700,
+                      letterSpacing: "0.08em",
+                      lineHeight: 1.3,
+                      color: "rgba(255, 255, 255, 0.9)",
+                      fontFamily: "var(--font-display)",
+                    }}
+                  >
+                    <span style={{ display: "block" }}>{div.title}</span>
+                    <span style={{ display: "block" }}>{div.subtitle}</span>
+                  </div>
+                </div>
+              </a>
+            );
+          })}
         </div>
       </motion.div>
 
       <style jsx global>{`
-        .btn-solid-red {
-          background: var(--red);
+        .text-outline {
+          color: transparent !important;
+          -webkit-text-stroke: 1.5px #ffffff;
+        }
+
+        .btn-solid-black {
+          background: #000000;
           color: #ffffff !important;
           padding: clamp(12px, 1.4vw, 14px) clamp(24px, 3vw, 32px);
           font-family: var(--font-body);
           font-size: clamp(0.75rem, 1.2vw, 0.875rem);
           font-weight: 700;
-          border: 1px solid var(--red);
+          border: 1px solid #000000;
           text-decoration: none;
-          display: inline-block;
+          display: inline-flex;
+          align-items: center;
           letter-spacing: 0.05em;
           text-transform: uppercase;
           transition: all 0.3s var(--ease);
           border-radius: 4px;
         }
-
-        .btn-solid-red:hover {
-          background: var(--red2);
-          border-color: var(--red2);
+        .btn-solid-black:hover {
+          background: #1a1a1a;
+          border-color: #1a1a1a;
           transform: translateY(-2px);
-          box-shadow: 0 6px 20px rgba(209, 31, 31, 0.25);
+          box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
         }
 
-        .btn-outline-red {
-          background: #ffffff;
-          color: var(--red) !important;
+        .btn-outline-white {
+          background: transparent;
+          color: #ffffff !important;
           padding: clamp(12px, 1.4vw, 14px) clamp(24px, 3vw, 32px);
           font-family: var(--font-body);
           font-size: clamp(0.75rem, 1.2vw, 0.875rem);
           font-weight: 700;
-          border: 2px solid var(--red);
+          border: 1px solid #ffffff;
           text-decoration: none;
-          display: inline-block;
+          display: inline-flex;
+          align-items: center;
           letter-spacing: 0.05em;
           text-transform: uppercase;
           transition: all 0.3s var(--ease);
           border-radius: 4px;
         }
-
-        .btn-outline-red:hover {
-          background: var(--red);
-          color: #ffffff !important;
-          transform: translateY(-2px);
-          box-shadow: 0 6px 20px rgba(209, 31, 31, 0.15);
-        }
-
-        .orbit-node {
-          position: absolute;
-          transform: translate(-50%, -50%);
-          background: rgba(255, 255, 255, 0.12);
-          border: 1px solid rgba(255, 255, 255, 0.25);
-          padding: 8px 14px;
-          font-size: clamp(0.55rem, 0.9vw, 0.6875rem);
-          font-weight: 600;
-          letter-spacing: 0.08em;
-          text-transform: uppercase;
-          color: #ffffff;
-          white-space: nowrap;
-          backdrop-filter: blur(8px);
-          -webkit-backdrop-filter: blur(8px);
-          transition: all 0.3s var(--ease);
-          cursor: pointer;
-          text-decoration: none;
-          border-radius: 4px;
-          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-        }
-
-        .orbit-node:hover {
+        .btn-outline-white:hover {
           background: #ffffff;
           color: var(--red) !important;
-          border-color: #ffffff;
-          transform: translate(-50%, -57%) scale(1.05);
-          box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+          transform: translateY(-2px);
+          box-shadow: 0 6px 20px rgba(255, 255, 255, 0.2);
         }
 
+        /* Orbit node group — wrapper for badge + label */
+        .orbit-node-group {
+          transition: all 0.3s var(--ease);
+        }
+
+        /* Badge (white circle) — also serves as positioning anchor */
+        .orbit-node-badge {
+          position: relative;
+          width: clamp(34px, 4.2vw, 42px);
+          height: clamp(34px, 4.2vw, 42px);
+          border-radius: 50%;
+          background: #ffffff;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.18);
+          transition: all 0.3s var(--ease);
+        }
+        .orbit-node-group:hover .orbit-node-badge {
+          transform: scale(1.15);
+          box-shadow: 0 8px 22px rgba(0, 0, 0, 0.3);
+        }
+        .orbit-node-group:hover .orbit-node-label {
+          color: #ffffff !important;
+          opacity: 1 !important;
+          text-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
+        }
+
+        /* Label text */
+        .orbit-node-label {
+          transition: all 0.3s var(--ease);
+          pointer-events: none;
+        }
+
+        /* Center circle */
         .orbit-center {
           position: absolute;
           top: 50%;
@@ -400,54 +504,56 @@ export default function Hero() {
 
         @keyframes pulse {
           0% {
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15), 0 0 0 0 rgba(255, 255, 255, 0.25);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15), 0 0 0 0 rgba(255, 255, 255, 0.2);
           }
           70% {
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15), 0 0 0 15px rgba(255, 255, 255, 0);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15), 0 0 0 12px rgba(255, 255, 255, 0);
           }
           100% {
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15), 0 0 0 0 rgba(255, 255, 255, 0);
           }
         }
 
+        /* Responsive */
         @media (max-width: 1024px) {
           .hero-left {
-            padding: clamp(90px, 12vh, 130px) clamp(32px, 4vw, 40px) clamp(60px, 8vh, 100px) !important;
-          }
-          .hero-stats {
-            gap: 36px !important;
+            padding: clamp(90px, 12vh, 130px) clamp(40px, 5vw, 60px) clamp(60px, 8vh, 100px) !important;
           }
         }
 
         @media (max-width: 900px) {
           .hero-section {
             grid-template-columns: 1fr !important;
+            min-height: auto !important;
           }
           .hero-right {
+            padding: 80px 24px !important;
+            clip-path: none !important;
+          }
+          .scroll-indicator {
             display: none !important;
           }
         }
 
         @media (max-width: 768px) {
-          .hero-section {
-            min-height: auto !important;
-          }
           .hero-left {
-            padding: clamp(80px, 12vh, 100px) clamp(24px, 4vw, 32px) clamp(24px, 4vh, 32px) !important;
+            padding: clamp(100px, 12vh, 120px) clamp(24px, 4vw, 36px) clamp(40px, 4vh, 60px) !important;
           }
-          .hero-stats {
-            margin-top: clamp(24px, 5vw, 40px) !important;
-            gap: 32px !important;
+          .hero-right {
+            padding: 60px 20px !important;
           }
         }
 
         @media (max-width: 480px) {
           .hero-left {
-            padding: clamp(70px, 16vh, 90px) clamp(16px, 4vw, 20px) clamp(20px, 5vh, 28px) !important;
+            padding: 90px 16px 30px !important;
           }
-          .hero-stats {
-            margin-top: clamp(16px, 4vw, 24px) !important;
-            gap: 24px !important;
+          .hero-right {
+            padding: 40px 16px 60px !important;
+          }
+          .hero-right > div {
+            width: 290px !important;
+            height: 290px !important;
           }
         }
       `}</style>
