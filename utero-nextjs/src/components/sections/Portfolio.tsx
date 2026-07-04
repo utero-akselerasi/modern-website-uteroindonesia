@@ -185,6 +185,7 @@ export default function Portfolio() {
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.9 }}
               transition={{ duration: 0.3 }}
+              className="portfolio-card"
               style={{
                 background: "var(--ash)",
                 padding: "48px 32px",
@@ -205,10 +206,10 @@ export default function Portfolio() {
                 e.currentTarget.style.transform = "translateY(0)";
               }}
             >
-              <div style={{ display: "flex", flexDirection: "row", alignItems: "center", gap: "24px", width: "100%" }}>
-                <div style={{ width: "80px", height: "80px", flexShrink: 0, display: "flex", alignItems: "center", justifyContent: "center" }}>
+              <div className="portfolio-item-inner" style={{ display: "flex", flexDirection: "row", alignItems: "center", gap: "24px", width: "100%" }}>
+                <div className="portfolio-logo" style={{ width: "120px", height: "120px", flexShrink: 0, display: "flex", alignItems: "center", justifyContent: "center" }}>
                   {item.logo ? (
-                    <Image src={item.logo} alt={item.title} width={80} height={80} style={{ objectFit: "contain", width: "100%", height: "100%", filter: "brightness(1.3) drop-shadow(0 0 6px rgba(255,255,255,0.06))" }} loading="lazy" />
+                    <Image src={item.logo} alt={item.title} width={120} height={120} style={{ objectFit: "contain", width: "100%", height: "100%", filter: "brightness(1.3) drop-shadow(0 0 6px rgba(255,255,255,0.06))" }} loading="lazy" />
                   ) : (
                     <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.3)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2" /><circle cx="8.5" cy="8.5" r="1.5" /><polyline points="21 15 16 10 5 21" /></svg>
                   )}
@@ -227,6 +228,7 @@ export default function Portfolio() {
                     {item.category}
                   </div>
                   <div
+                    className="portfolio-item-title"
                     style={{
                       fontFamily: "var(--font-display)",
                       fontSize: "22px",
@@ -239,6 +241,7 @@ export default function Portfolio() {
                     {item.title}
                   </div>
                   <div
+                    className="portfolio-item-desc"
                     style={{
                       fontSize: "14px",
                       lineHeight: 1.6,
@@ -273,7 +276,32 @@ export default function Portfolio() {
         }
         @media (max-width: 600px) {
           .portfolio-grid {
-            grid-template-columns: 1fr !important;
+            grid-template-columns: repeat(2, 1fr) !important;
+            gap: 12px !important;
+          }
+          .portfolio-card {
+            padding: 20px 14px !important;
+          }
+          .portfolio-item-inner {
+            flex-direction: column !important;
+            align-items: center !important;
+            text-align: center !important;
+            gap: 8px !important;
+          }
+          .portfolio-item-inner .portfolio-logo {
+            width: 80px !important;
+            height: 80px !important;
+          }
+          .portfolio-item-inner .portfolio-logo img {
+            width: 80px !important;
+            height: 80px !important;
+          }
+          .portfolio-item-title {
+            font-size: 17px !important;
+            margin-bottom: 4px !important;
+          }
+          .portfolio-item-desc {
+            font-size: 12px !important;
           }
         }
       `}</style>

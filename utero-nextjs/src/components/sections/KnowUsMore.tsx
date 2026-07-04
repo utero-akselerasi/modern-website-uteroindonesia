@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { sendGAEvent } from "@next/third-parties/google";
+import { useRef, useEffect } from "react";
 
 const handleRedirectClick = (label: string) => {
   sendGAEvent({ event: "click_hub_redirect", value: `redirect_to_${label.toLowerCase().replace(/\s+/g, "_")}` });
@@ -73,13 +74,149 @@ const knowUsItems = [
   },
 ];
 
+const ITEM_COUNT = knowUsItems.length;
+
 export default function KnowUsMore() {
+  const trackRef = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const translateXRef = useRef(0);
+  const pausedRef = useRef(false);
+  const animationRef = useRef(0);
+  const lastTimeRef = useRef(0);
+  const isDraggingRef = useRef(false);
+  const dragStartXRef = useRef(0);
+  const dragStartTranslateRef = useRef(0);
+  const lastMoveXRef = useRef(0);
+  const lastMoveTimeRef = useRef(0);
+  const velocityRef = useRef(0);
+  const oneSetWidthRef = useRef(0);
+  const followRef = useRef(false);
+  const lastFollowXRef = useRef(0);
+
+  const measureOneSetWidth = () => {
+    if (!trackRef.current) return;
+    const first = trackRef.current.children[0] as HTMLElement | null;
+    const setStart = trackRef.current.children[ITEM_COUNT] as HTMLElement | null;
+    if (first && setStart) {
+      oneSetWidthRef.current = setStart.offsetLeft - first.offsetLeft;
+    }
+  };
+
+  useEffect(() => {
+    const track = trackRef.current;
+    if (!track) return;
+
+    measureOneSetWidth();
+
+    lastTimeRef.current = performance.now();
+
+    const animate = (currentTime: number) => {
+      const delta = Math.min(currentTime - lastTimeRef.current, 100);
+      lastTimeRef.current = currentTime;
+      if (!pausedRef.current && trackRef.current) {
+        const ow = oneSetWidthRef.current;
+        if (ow > 0) {
+          translateXRef.current -= 1.3 * (delta / 16.67);
+          if (translateXRef.current <= -ow) {
+            translateXRef.current += ow;
+          }
+        }
+        trackRef.current.style.transform = `translate3d(${translateXRef.current}px, 0, 0)`;
+      }
+      animationRef.current = requestAnimationFrame(animate);
+    };
+
+    animationRef.current = requestAnimationFrame(animate);
+
+    const ro = new ResizeObserver(() => {
+      measureOneSetWidth();
+      const ow = oneSetWidthRef.current;
+      if (ow > 0 && translateXRef.current <= -ow) {
+        translateXRef.current += ow;
+      }
+    });
+    ro.observe(track);
+
+    return () => {
+      cancelAnimationFrame(animationRef.current);
+      ro.disconnect();
+    };
+  }, []);
+
+  useEffect(() => {
+    const handlePointerMove = (e: PointerEvent) => {
+      if (!isDraggingRef.current) return;
+      const delta = e.clientX - dragStartXRef.current;
+      let newTranslate = dragStartTranslateRef.current + delta;
+      const ow = oneSetWidthRef.current;
+      if (ow > 0) {
+        if (newTranslate <= -ow) newTranslate += ow;
+        if (newTranslate > 0) newTranslate -= ow;
+      }
+      translateXRef.current = newTranslate;
+      if (trackRef.current) {
+        trackRef.current.style.transform = `translate3d(${newTranslate}px, 0, 0)`;
+      }
+      const now = performance.now();
+      const dt = now - lastMoveTimeRef.current;
+      if (dt > 0) {
+        velocityRef.current = (e.clientX - lastMoveXRef.current) / dt;
+      }
+      lastMoveXRef.current = e.clientX;
+      lastMoveTimeRef.current = now;
+    };
+
+    const handlePointerUp = () => {
+      if (!isDraggingRef.current) return;
+      isDraggingRef.current = false;
+      containerRef.current?.removeAttribute('data-dragging');
+      const speed = Math.abs(velocityRef.current);
+      if (speed > 0.3) {
+        let vel = velocityRef.current * 16.67 * 0.5;
+        const inertia = () => {
+          if (Math.abs(vel) < 0.3) return;
+          translateXRef.current += vel;
+          const ow = oneSetWidthRef.current;
+          if (ow > 0) {
+            if (translateXRef.current <= -ow) translateXRef.current += ow;
+            if (translateXRef.current > 0) translateXRef.current -= ow;
+          }
+          if (trackRef.current) {
+            trackRef.current.style.transform = `translate3d(${translateXRef.current}px, 0, 0)`;
+          }
+          vel *= 0.92;
+          requestAnimationFrame(inertia);
+        };
+        requestAnimationFrame(inertia);
+      }
+      pausedRef.current = followRef.current;
+    };
+
+    window.addEventListener('pointermove', handlePointerMove);
+    window.addEventListener('pointerup', handlePointerUp);
+    return () => {
+      window.removeEventListener('pointermove', handlePointerMove);
+      window.removeEventListener('pointerup', handlePointerUp);
+    };
+  }, []);
+
+  const handlePointerDown = (e: React.PointerEvent) => {
+    isDraggingRef.current = true;
+    pausedRef.current = true;
+    dragStartXRef.current = e.clientX;
+    dragStartTranslateRef.current = translateXRef.current;
+    lastMoveXRef.current = e.clientX;
+    lastMoveTimeRef.current = performance.now();
+    velocityRef.current = 0;
+    containerRef.current?.setAttribute('data-dragging', '');
+  };
+
   return (
     <section
       id="know-us"
       aria-labelledby="know-us-title"
       style={{
-        padding: "20px 64px 80px",
+        padding: "20px clamp(16px, 5vw, 64px) 80px",
         background: "var(--white)",
       }}
     >
@@ -140,46 +277,47 @@ export default function KnowUsMore() {
 
       {/* Ticker Container */}
       <div
+        ref={containerRef}
         style={{
           position: "relative",
           width: "100%",
           overflow: "hidden",
           padding: "24px 0",
+          touchAction: "none",
         }}
         className="know-us-ticker-container"
+        onMouseEnter={(e) => {
+          pausedRef.current = true;
+          followRef.current = true;
+          lastFollowXRef.current = e.clientX;
+        }}
+        onMouseMove={(e) => {
+          if (!followRef.current || isDraggingRef.current) return;
+          const delta = e.clientX - lastFollowXRef.current;
+          if (Math.abs(delta) < 2) return;
+          translateXRef.current += delta;
+          const ow = oneSetWidthRef.current;
+          if (ow > 0) {
+            if (translateXRef.current <= -ow) translateXRef.current += ow;
+            if (translateXRef.current > 0) translateXRef.current -= ow;
+          }
+          if (trackRef.current) {
+            trackRef.current.style.transform = `translate3d(${translateXRef.current}px, 0, 0)`;
+          }
+          lastFollowXRef.current = e.clientX;
+        }}
+        onMouseLeave={() => {
+          followRef.current = false;
+          if (!isDraggingRef.current) pausedRef.current = false;
+        }}
+        onPointerDown={handlePointerDown}
       >
-        {/* Fade mask */}
-        <div
-          style={{
-            position: "absolute",
-            top: 0,
-            left: 0,
-            bottom: 0,
-            width: "150px",
-            background: "linear-gradient(to right, var(--white), transparent)",
-            zIndex: 2,
-            pointerEvents: "none",
-          }}
-        />
-        <div
-          style={{
-            position: "absolute",
-            top: 0,
-            right: 0,
-            bottom: 0,
-            width: "150px",
-            background: "linear-gradient(to left, var(--white), transparent)",
-            zIndex: 2,
-            pointerEvents: "none",
-          }}
-        />
-
         {/* Ticker Track */}
         <div
+          ref={trackRef}
           className="know-us-ticker-track"
           style={{
             display: "flex",
-            gap: "20px",
             width: "max-content",
           }}
         >
@@ -214,6 +352,7 @@ export default function KnowUsMore() {
               }}
               className="know-us-item"
               onMouseEnter={(e) => {
+                if (isDraggingRef.current) return;
                 e.currentTarget.style.background = "var(--red)";
                 e.currentTarget.style.borderColor = "var(--red)";
                 e.currentTarget.style.transform = "translateY(-6px)";
@@ -224,6 +363,7 @@ export default function KnowUsMore() {
                   (label as HTMLElement).style.color = "var(--white)";
               }}
               onMouseLeave={(e) => {
+                if (isDraggingRef.current) return;
                 e.currentTarget.style.background = "var(--ash)";
                 e.currentTarget.style.borderColor = "var(--border-color)";
                 e.currentTarget.style.transform = "translateY(0)";
@@ -276,22 +416,24 @@ export default function KnowUsMore() {
 
       {/* Responsive & Animation */}
       <style jsx global>{`
-        @keyframes knowUsMarquee {
-          0% {
-            transform: translate3d(0, 0, 0);
-          }
-          100% {
-            transform: translate3d(-50%, 0, 0);
-          }
-        }
         .know-us-ticker-track {
-          animation: knowUsMarquee 25s linear infinite;
-        }
-        .know-us-ticker-track:hover {
-          animation-play-state: paused;
+          will-change: transform;
+          gap: 20px;
         }
         .know-us-item:hover .know-us-label {
           color: var(--white) !important;
+        }
+        .know-us-ticker-container[data-dragging] .know-us-item {
+          transition: none !important;
+        }
+        .know-us-ticker-container[data-dragging] .know-us-item:hover {
+          background: var(--ash) !important;
+          border-color: var(--border-color) !important;
+          transform: none !important;
+          box-shadow: none !important;
+        }
+        .know-us-ticker-container[data-dragging] .know-us-item:hover .know-us-label {
+          color: var(--ink) !important;
         }
 
         @media (max-width: 768px) {
