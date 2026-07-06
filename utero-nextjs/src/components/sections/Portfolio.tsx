@@ -106,7 +106,7 @@ export default function Portfolio() {
           style={{
             fontSize: "17px",
             lineHeight: 1.7,
-            color: "rgba(255,255,255,0.78)",
+            color: "rgba(0,0,0,0.65)",
             alignSelf: "end",
           }}
         >

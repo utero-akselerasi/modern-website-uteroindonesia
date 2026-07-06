@@ -178,8 +178,7 @@ export default function Workflow() {
           style={{
             fontSize: "17px",
             lineHeight: 1.7,
-            color: "#111",
-            opacity: 0.7,
+            color: "rgba(0,0,0,0.65)",
             margin: 0,
             alignSelf: "start",
             paddingTop: "32px",

@@ -240,8 +240,20 @@ export default function Navbar() {
             border: "none",
             cursor: "pointer",
             padding: "8px",
+            borderRadius: "4px",
             flexDirection: "column",
             gap: "5px",
+            transition: "background 0.2s",
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.background = "var(--ash)";
+            const bars = e.currentTarget.querySelectorAll("span");
+            bars.forEach((bar) => (bar.style.background = "var(--red)"));
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.background = "none";
+            const bars = e.currentTarget.querySelectorAll("span");
+            bars.forEach((bar) => (bar.style.background = "var(--ink)"));
           }}
         >
           <span
@@ -250,7 +262,7 @@ export default function Navbar() {
               width: "24px",
               height: "2px",
               background: "var(--ink)",
-              transition: "all 0.3s",
+              transition: "all 0.2s",
             }}
           />
           <span
@@ -259,7 +271,7 @@ export default function Navbar() {
               width: "24px",
               height: "2px",
               background: "var(--ink)",
-              transition: "all 0.3s",
+              transition: "all 0.2s",
             }}
           />
           <span
@@ -268,7 +280,7 @@ export default function Navbar() {
               width: "24px",
               height: "2px",
               background: "var(--ink)",
-              transition: "all 0.3s",
+              transition: "all 0.2s",
             }}
           />
         </button>
@@ -286,7 +298,7 @@ export default function Navbar() {
               inset: 0,
               width: "100vw",
               height: "100dvh",
-              background: "#ffffff",
+              background: "var(--ash)",
               zIndex: 999,
               display: "flex",
               flexDirection: "column",
@@ -327,9 +339,19 @@ export default function Navbar() {
                   cursor: "pointer",
                   color: "var(--ink)",
                   padding: "8px",
+                  borderRadius: "4px",
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
+                  transition: "background 0.2s, color 0.2s",
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.background = "var(--ash)";
+                  e.currentTarget.style.color = "var(--red)";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.background = "none";
+                  e.currentTarget.style.color = "var(--ink)";
                 }}
               >
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -373,7 +395,7 @@ export default function Navbar() {
                         flexDirection: "column",
                         gap: "12px",
                         padding: "24px 20px",
-                        background: "var(--ash)",
+              background: "#ffffff",
                         border: "1px solid var(--border-color)",
                         borderRadius: "4px",
                         textDecoration: "none",
@@ -385,11 +407,15 @@ export default function Navbar() {
                         e.currentTarget.style.background = "var(--red)";
                         e.currentTarget.style.borderColor = "var(--red)";
                         e.currentTarget.style.color = "#fff";
+                        const icon = e.currentTarget.querySelector("span");
+                        if (icon) icon.style.color = "#fff";
                       }}
                       onMouseLeave={(e) => {
                         e.currentTarget.style.background = "var(--ash)";
                         e.currentTarget.style.borderColor = "var(--border-color)";
                         e.currentTarget.style.color = "var(--ink)";
+                        const icon = e.currentTarget.querySelector("span");
+                        if (icon) icon.style.color = "var(--red)";
                       }}
                     >
                       <span style={{ color: "var(--red)", width: "32px", height: "32px", display: "flex", alignItems: "center", justifyContent: "center" }}>
