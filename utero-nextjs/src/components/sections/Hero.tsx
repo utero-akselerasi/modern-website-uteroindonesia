@@ -19,24 +19,23 @@ interface Division {
   subtitle: string;
   angle: number;
   icon: React.ElementType;
-  href: string;
 }
 
 const divisions: Division[] = [
-  { title: "EVENT",      subtitle: "& AKTIVASI",     angle: 244, icon: CalendarDays, href: "http://soundpub.uteroindonesia.com/" },
-  { title: "STRATEGI",   subtitle: "& KONSULTASI",   angle: 296, icon: Users,        href: "https://utero.id/" },
-  { title: "DESAIN",     subtitle: "& KREATIF",      angle: 347, icon: Paintbrush,   href: "https://utero.id/" },
-  { title: "ADVERTISING",subtitle: "& SIGNAGE",      angle:  38, icon: Target,       href: "https://uteroindonesia.com/" },
-  { title: "DIGITAL",    subtitle: "MARKETING",      angle:  90, icon: Monitor,      href: "https://buzzerhood.com/" },
-  { title: "MEDIA",      subtitle: "& PUBLIKASI",    angle: 141, icon: Megaphone,    href: "https://epochstream.org/" },
-  { title: "TEKNOLOGI",  subtitle: "& SISTEM",       angle: 193, icon: Cpu,          href: "https://carubra.com/" },
+  { title: "EVENT",      subtitle: "& AKTIVASI",     angle: 244, icon: CalendarDays },
+  { title: "STRATEGI",   subtitle: "& KONSULTASI",   angle: 296, icon: Users },
+  { title: "DESAIN",     subtitle: "& KREATIF",      angle: 347, icon: Paintbrush },
+  { title: "ADVERTISING",subtitle: "& SIGNAGE",      angle:  38, icon: Target },
+  { title: "DIGITAL",    subtitle: "MARKETING",      angle:  90, icon: Monitor },
+  { title: "MEDIA",      subtitle: "& PUBLIKASI",    angle: 141, icon: Megaphone },
+  { title: "TEKNOLOGI",  subtitle: "& SISTEM",       angle: 193, icon: Cpu },
 ];
 
 const ICON_RADIUS = 44; // % from center — sits on the outer dashed ring
 
 /* ---------- Helpers ---------- */
 
-type Placement = "right" | "left" | "bottom" | "bottom-right" | "bottom-left";
+type Placement = "right" | "left" | "bottom" | "bottom-right" | "bottom-left" | "top";
 
 function getPlacement(angle: number): Placement {
   const a = ((angle % 360) + 360) % 360;
@@ -90,6 +89,15 @@ function getLabelStyle(placement: Placement) {
         transform: "none",
         textAlign: "right" as const,
       };
+    case "top":
+      return {
+        left: "50%",
+        right: "auto" as const,
+        top: "auto" as const,
+        bottom: "calc(100% + 8px)",
+        transform: "translateX(-50%)",
+        textAlign: "center" as const,
+      };
   }
 }
 
@@ -122,7 +130,7 @@ export default function Hero() {
           alignItems: "center",
           gap: "12px",
           color: "rgba(255, 255, 255, 0.6)",
-          fontSize: "9px",
+          fontSize: "12px",
           fontWeight: 700,
           letterSpacing: "0.2em",
           textTransform: "uppercase",
@@ -338,14 +346,34 @@ export default function Hero() {
             const badgeLeft = 50 + ICON_RADIUS * Math.cos(rad);
             const badgeTop  = 50 + ICON_RADIUS * Math.sin(rad);
             const placement = getPlacement(D);
-            const labelStyle = getLabelStyle(placement);
+            const rataKiri = div.title === "MEDIA";
+
+            let labelStyle: React.CSSProperties;
+            if (div.title === "EVENT") {
+              labelStyle = {
+                left: "auto",
+                right: "calc(100% + 4px)",
+                top: "auto",
+                bottom: "calc(100% + 8px)",
+                transform: "none",
+                textAlign: "right",
+              };
+            } else if (div.title === "STRATEGI") {
+              labelStyle = {
+                left: "calc(100% + 4px)",
+                right: "auto",
+                top: "auto",
+                bottom: "calc(100% + 8px)",
+                transform: "none",
+                textAlign: "left",
+              };
+            } else {
+              labelStyle = getLabelStyle(placement);
+            }
 
             return (
-              <a
+              <div
                 key={div.title}
-                href={div.href}
-                target="_blank"
-                rel="noopener noreferrer"
                 className="orbit-node-group"
                 style={{
                   position: "absolute",
@@ -383,18 +411,50 @@ export default function Hero() {
                       lineHeight: 1.3,
                       color: "rgba(255, 255, 255, 0.9)",
                       fontFamily: "var(--font-display)",
+                      textAlign: rataKiri ? "left" : labelStyle.textAlign,
                     }}
                   >
                     <span style={{ display: "block" }}>{div.title}</span>
                     <span style={{ display: "block" }}>{div.subtitle}</span>
                   </div>
                 </div>
-              </a>
+              </div>
             );
           })}
         </div>
       </motion.div>
-
+                {/* Watermark "UTERO" — setengah terpotong di tepi kanan */}
+      <div
+        style={{
+          position: "absolute",
+          top: 0,
+          right: 0,
+          bottom: 0,
+          width: "35%",
+          overflow: "hidden",
+          zIndex: 10,
+          pointerEvents: "none",
+        }}
+      >
+        <span
+          style={{
+            position: "absolute",
+            right: "-60%",
+            top: "53%",
+            transform: "translateY(-50%) rotate(-90deg)",
+            fontFamily: "var(--font-display)",
+            fontSize: "clamp(14rem, 15vw, 12rem)",
+            fontWeight: 900,
+            color: "rgba(255, 255, 255, 0.12)",
+            whiteSpace: "nowrap",
+            letterSpacing: "0.08em",
+            textTransform: "uppercase",
+          }}
+        >
+          UTERO
+        </span>
+      </div>
+    
       <style jsx global>{`
         .text-outline {
           color: transparent !important;

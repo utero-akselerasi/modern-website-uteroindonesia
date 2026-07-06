@@ -5,11 +5,11 @@ import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 
 const navLinks = [
-  { href: "#hero", label: "Home" },
+  { href: "#hero", label: "Beranda" },
   { href: "#tentang", label: "Tentang" },
   { href: "#know-us", label: "Lini Bisnis" },
   { href: "#divisi", label: "Divisi" },
-  { href: "#cara-kerja", label: "Workflow" },
+  { href: "#cara-kerja", label: "Alur Kerja" },
   { href: "#portofolio", label: "Portofolio" },
   { href: "#kontak", label: "Kontak" },
 ];
