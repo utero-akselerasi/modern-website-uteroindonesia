@@ -51,7 +51,7 @@ const icons: Record<string, React.ReactNode> = {
 };
 
 const whyItems = [
-  { icon: "lightning", title: "25 Tahun Track Record", desc: "Sejak 1998 kami ada, belajar, dan terus berbenah. Ratusan brand sudah merasakan hasilnya." },
+  { icon: "lightning", title: "25+ Track Record", desc: "Sejak 1998 kami ada, belajar, dan terus berbenah. Ratusan brand sudah merasakan hasilnya." },
   { icon: "house", title: "One-Stop Creative House", desc: "Branding, produksi, digital, musik, hingga AI — semua ada di bawah satu atap Utero Indonesia." },
   { icon: "target", title: "Paham Pasar Lokal", desc: "Berbasis di Malang, kami mengerti dinamika pasar Jawa Timur dan Indonesia dengan sangat baik." },
   { icon: "handshake", title: "Mitra, Bukan Vendor", desc: "Kami berjuang bersama klien, bukan sekadar mengerjakan pesanan. Keberhasilan brand Anda adalah reputasi kami." },

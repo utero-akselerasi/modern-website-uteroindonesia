@@ -97,9 +97,9 @@ export default function Portfolio() {
               color: "#111",
             }}
           >
-            Karya Nyata,
+            Kerja Nyata,
             <br />
-            Hasil Nyata.
+            Karya Kolaborasi.
           </h2>
         </div>
         <p

@@ -8,6 +8,7 @@ import Divisions from "@/components/sections/Divisions";
 import Clients from "@/components/sections/Clients";
 import Workflow from "@/components/sections/Workflow";
 import Portfolio from "@/components/sections/Portfolio";
+import IntellectualProperty from "@/components/sections/IntellectualProperty";
 import WhyUtero from "@/components/sections/WhyUtero";
 import Contact from "@/components/sections/Contact";
 
@@ -23,6 +24,7 @@ export default function Home() {
       <Workflow />
       <Clients />
       <Portfolio />
+      <IntellectualProperty />
       <WhyUtero />
       <Contact />
       <Footer />

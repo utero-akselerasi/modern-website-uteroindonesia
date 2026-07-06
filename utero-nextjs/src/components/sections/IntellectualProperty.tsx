@@ -2,81 +2,27 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { sendGAEvent } from "@next/third-parties/google";
 import { useRef, useEffect } from "react";
 
-const handleRedirectClick = (label: string) => {
-  sendGAEvent({ event: "click_hub_redirect", value: `redirect_to_${label.toLowerCase().replace(/\s+/g, "_")}` });
-};
-
-const knowUsItems = [
-  {
-    label: "Shop",
-    href: "http://shop.uteroindonesia.com/",
-    target: "_blank",
-    icon: "shop",
-    alt: "Toko merchandise dan produk kreatif Utero Indonesia",
-    onClick: () => handleRedirectClick("Shop"),
-  },
-  {
-    label: "Design",
-    href: "https://design.uteroindonesia.com/",
-    target: "_blank",
-    icon: "design",
-    alt: "Jasa desain logo, kemasan, grafis, dan branding",
-    onClick: () => handleRedirectClick("Design"),
-  },
-  {
-    label: "Advertising",
-    href: "https://www.instagram.com/uteromalang",
-    target: "_blank",
-    icon: "reklame",
-    alt: "Jasa reklame, neonbox, signage, dan advertising",
-  },
-  {
-    label: "Billboard",
-    href: "https://www.instagram.com/utero_billboard/",
-    target: "_blank",
-    icon: "billboard",
-    alt: "Sewa billboard, baliho, megatron, videotron",
-  },
-  {
-    label: "Profile",
-    href: "http://utero.id/",
-    target: "_blank",
-    icon: "brandconsultant",
-    alt: "Brand consultant dan creative agency Malang",
-    onClick: () => handleRedirectClick("Profile"),
-  },
-  {
-    label: "Legal Serv.",
-    href: "http://legal.uteroindonesia.com/",
-    target: "_blank",
-    icon: "research",
-    alt: "Jasa riset, legalitas, perijinan perusahaan",
-    onClick: () => handleRedirectClick("Legal Serv."),
-  },
-  {
-    label: "Academy",
-    href: "http://academy.uteroindonesia.com/",
-    target: "_blank",
-    icon: "course",
-    alt: "Kursus dan pelatihan kreatif",
-    onClick: () => handleRedirectClick("Academy"),
-  },
-  {
-    label: "Media",
-    href: "http://media.uteroindonesia.com/",
-    target: "_blank",
-    icon: "technology",
-    alt: "Media dan teknologi kreatif digital",
-    onClick: () => handleRedirectClick("Media"),
-  },
+const ipItems = [
+  { name: "OSIKER", href: "http://osiker.com/", img: "/images/ip/osiker.webp", alt: "Platform Intellectual Property & lisensi kreatif" },
+  { name: "Osiaeker", href: "http://osiaeker.uteroindonesia.com", img: "/images/ip/osiaeker.png", alt: "Kanal konten kreatif dan entertainment" },
+  { name: "Chang", href: "http://bit.ly/YTDADIKWAHYUCHANG", img: "/images/ip/chang.png", alt: "Vlog dan konten kreatif Dadik Wahyu Chang" },
+  { name: "Mbois", href: "https://festivalmbois.id/", img: "/images/ip/mbois.webp", alt: "Festival Mbois — brand event Malang Creative Fusion" },
+  { name: "Osi & Ji", href: "http://osidanji.com/", img: "/images/ip/osi-ji.webp", alt: "Maskot kota Malang — Osi & Ji" },
+  { name: "Utero", href: "https://www.youtube.com/channel/UCkdJC5Tw0bk0xK9sUR80xnA", img: "/images/ip/utero.png", alt: "Channel YouTube resmi Utero Indonesia" },
+  { name: "Waraalvaro", href: "https://www.youtube.com/channel/UCfQ6A2Q5rZ09uWQDRD97G2g", img: "/images/ip/waraalvaro.png", alt: "Kanal gaming dan entertainment anak" },
+  { name: "Waravalerie", href: "https://www.youtube.com/channel/UCZh3QudxIClo8VHYEPPvS6w", img: "/images/ip/waravalerie.png", alt: "Kanal beauty dan kreativitas anak" },
+  { name: "Socioboo", href: "https://www.youtube.com/channel/UCCHRTqXGcNJnKuI42cE5d7A", img: "/images/ip/socioboo.webp", alt: "Platform paid promote dan influencer marketing" },
+  { name: "Dinar Weddover", href: "https://www.youtube.com/channel/UCBylfhhGHOLKQ52vTLxT0xg", img: "/images/ip/dinar-weddover.png", alt: "Wedding organizer dan makeup artist" },
+  { name: "Multiverse", href: "https://www.instagram.com/multiverse.co.id/", img: "/images/ip/multiverse.png", alt: "Komunitas gaming dan esport" },
+  { name: "Grotesk", href: "https://grotesk.uteroindonesia.com", img: "/images/ip/grotesk.png", alt: "Brand cycling dan apparel kreatif" },
+  { name: "Red Valley", href: "https://www.youtube.com/@RedValley_band/videos", img: "/images/ip/red-valley.png", alt: "Band metal/rock asal Malang" },
 ];
 
-const ITEM_COUNT = knowUsItems.length;
+const ITEM_COUNT = ipItems.length;
 
-export default function KnowUsMore() {
+export default function IntellectualProperty() {
   const trackRef = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const translateXRef = useRef(0);
@@ -213,14 +159,13 @@ export default function KnowUsMore() {
 
   return (
     <section
-      id="know-us"
-      aria-labelledby="know-us-title"
+      id="intelektual"
+      aria-labelledby="ip-title"
       style={{
         padding: "20px clamp(16px, 5vw, 64px) 80px",
         background: "var(--white)",
       }}
     >
-      {/* Heading */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -250,7 +195,7 @@ export default function KnowUsMore() {
               background: "var(--red)",
             }}
           />
-          Know Us More
+          Intellectual Property
           <span
             style={{
               display: "block",
@@ -261,7 +206,7 @@ export default function KnowUsMore() {
           />
         </div>
         <h2
-          id="know-us-title"
+          id="ip-title"
           style={{
             fontFamily: "var(--font-display)",
             fontSize: "clamp(28px, 3.5vw, 48px)",
@@ -271,11 +216,22 @@ export default function KnowUsMore() {
             color: "var(--ink)",
           }}
         >
-          Part Of <span style={{ color: "var(--red)" }}>Utero Indonesia</span>
+          Karya & <span style={{ color: "var(--red)" }}>Kreasi</span> Utero
         </h2>
+        <p
+          style={{
+            fontSize: "16px",
+            lineHeight: 1.7,
+            color: "var(--muted)",
+            maxWidth: "600px",
+            margin: "20px auto 0",
+          }}
+        >
+          Dari konten digital hingga brand fashion — setiap IP adalah bukti bahwa
+          kreativitas tidak pernah berhenti melahirkan sesuatu yang baru.
+        </p>
       </motion.div>
 
-      {/* Ticker Container */}
       <div
         ref={containerRef}
         style={{
@@ -285,7 +241,7 @@ export default function KnowUsMore() {
           padding: "24px 0",
           touchAction: "none",
         }}
-        className="know-us-ticker-container"
+        className="ip-ticker-container"
         onMouseEnter={(e) => {
           pausedRef.current = true;
           followRef.current = true;
@@ -312,33 +268,27 @@ export default function KnowUsMore() {
         }}
         onPointerDown={handlePointerDown}
       >
-        {/* Ticker Track */}
         <div
           ref={trackRef}
-          className="know-us-ticker-track"
+          className="ip-ticker-track"
           style={{
             display: "flex",
             width: "max-content",
           }}
         >
-          {[...knowUsItems, ...knowUsItems].map((item, index) => (
+          {[...ipItems, ...ipItems].map((item, index) => (
             <a
-              key={`${item.label}-${index}`}
+              key={`${item.name}-${index}`}
               href={item.href}
-              target={item.target}
+              target="_blank"
               rel="noopener noreferrer"
-              onClick={() => {
-                if (item.onClick) {
-                  item.onClick();
-                }
-              }}
               style={{
                 display: "flex",
                 flexDirection: "column",
                 alignItems: "center",
                 justifyContent: "center",
                 textAlign: "center",
-                padding: "36px 20px 32px",
+                padding: "40px 24px 36px",
                 background: "var(--ash)",
                 border: "1px solid var(--border-color)",
                 textDecoration: "none",
@@ -346,21 +296,24 @@ export default function KnowUsMore() {
                 cursor: "pointer",
                 position: "relative",
                 overflow: "hidden",
-                width: "220px",
+                width: "260px",
                 flexShrink: 0,
                 borderRadius: "2px",
               }}
-              className="know-us-item"
+              className="ip-ticker-item"
+              data-skip-filter={item.name === "Waraalvaro" || item.name === "Waravalerie" ? "true" : undefined}
               onMouseEnter={(e) => {
                 if (isDraggingRef.current) return;
                 e.currentTarget.style.background = "var(--red)";
                 e.currentTarget.style.borderColor = "var(--red)";
                 e.currentTarget.style.transform = "translateY(-6px)";
-                e.currentTarget.style.boxShadow =
-                  "0 12px 28px rgba(209, 31, 31, 0.2)";
-                const label = e.currentTarget.querySelector(".know-us-label");
-                if (label)
-                  (label as HTMLElement).style.color = "var(--white)";
+                e.currentTarget.style.boxShadow = "0 12px 28px rgba(209, 31, 31, 0.2)";
+                const label = e.currentTarget.querySelector(".ip-ticker-label");
+                if (label) (label as HTMLElement).style.color = "#fff";
+                if (e.currentTarget.getAttribute("data-skip-filter") !== "true") {
+                  const img = e.currentTarget.querySelector("img");
+                  if (img) img.style.filter = "brightness(0) invert(1)";
+                }
               }}
               onMouseLeave={(e) => {
                 if (isDraggingRef.current) return;
@@ -368,16 +321,19 @@ export default function KnowUsMore() {
                 e.currentTarget.style.borderColor = "var(--border-color)";
                 e.currentTarget.style.transform = "translateY(0)";
                 e.currentTarget.style.boxShadow = "none";
-                const label = e.currentTarget.querySelector(".know-us-label");
-                if (label)
-                  (label as HTMLElement).style.color = "var(--ink)";
+                const label = e.currentTarget.querySelector(".ip-ticker-label");
+                if (label) (label as HTMLElement).style.color = "var(--ink)";
+                if (e.currentTarget.getAttribute("data-skip-filter") !== "true") {
+                  const img = e.currentTarget.querySelector("img");
+                  if (img) img.style.filter = "none";
+                }
               }}
             >
               <span
-                className="know-us-icon"
+                className="ip-ticker-icon"
                 style={{
-                  width: "80px",
-                  height: "80px",
+                  width: "100px",
+                  height: "100px",
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
@@ -386,20 +342,21 @@ export default function KnowUsMore() {
                 aria-hidden="true"
               >
                 <Image
-                  src={`/images/icon/${item.icon}.webp`}
+                  src={item.img}
                   alt={item.alt}
-                  width={76}
-                  height={76}
+                  width={96}
+                  height={96}
                   style={{
                     objectFit: "contain",
+                    transition: "filter 0.3s",
                   }}
                 />
               </span>
               <span
-                className="know-us-label"
+                className="ip-ticker-label"
                 style={{
                   fontFamily: "var(--font-display)",
-                  fontSize: "14px",
+                  fontSize: "15px",
                   fontWeight: 700,
                   letterSpacing: "0.08em",
                   textTransform: "uppercase",
@@ -407,74 +364,79 @@ export default function KnowUsMore() {
                   transition: "color 0.3s",
                 }}
               >
-                {item.label}
+                {item.name}
               </span>
             </a>
           ))}
         </div>
       </div>
 
-      {/* Responsive & Animation */}
       <style jsx global>{`
-        .know-us-ticker-track {
+        .ip-ticker-track {
           will-change: transform;
           gap: 20px;
         }
-        .know-us-item:hover .know-us-label {
-          color: var(--white) !important;
+        .ip-ticker-item:hover .ip-ticker-label {
+          color: #fff !important;
         }
-        .know-us-ticker-container[data-dragging] .know-us-item {
+        .ip-ticker-container[data-dragging] .ip-ticker-item {
           transition: none !important;
         }
-        .know-us-ticker-container[data-dragging] .know-us-item:hover {
+        .ip-ticker-container[data-dragging] .ip-ticker-item:hover {
           background: var(--ash) !important;
           border-color: var(--border-color) !important;
           transform: none !important;
           box-shadow: none !important;
         }
-        .know-us-ticker-container[data-dragging] .know-us-item:hover .know-us-label {
+        .ip-ticker-container[data-dragging] .ip-ticker-item:hover .ip-ticker-label {
           color: var(--ink) !important;
+        }
+        .ip-ticker-container[data-dragging] .ip-ticker-item:hover img {
+          filter: none !important;
+        }
+        .ip-ticker-item[data-skip-filter="true"]:hover img {
+          filter: none !important;
         }
 
         @media (max-width: 768px) {
-          .know-us-item {
-            width: 160px !important;
-            padding: 24px 14px 20px !important;
+          .ip-ticker-item {
+            width: 180px !important;
+            padding: 28px 16px 24px !important;
           }
-          .know-us-item .know-us-icon {
-            width: 56px !important;
-            height: 56px !important;
+          .ip-ticker-item .ip-ticker-icon {
+            width: 72px !important;
+            height: 72px !important;
             margin-bottom: 12px !important;
           }
-          .know-us-item .know-us-icon img {
-            width: 52px !important;
-            height: 52px !important;
+          .ip-ticker-item .ip-ticker-icon img {
+            width: 68px !important;
+            height: 68px !important;
           }
-          .know-us-item .know-us-label {
+          .ip-ticker-item .ip-ticker-label {
             font-size: 12px !important;
           }
-          .know-us-ticker-track {
+          .ip-ticker-track {
             gap: 12px !important;
           }
         }
 
         @media (max-width: 480px) {
-          .know-us-item {
-            width: 140px !important;
-            padding: 20px 10px 16px !important;
+          .ip-ticker-item {
+            width: 160px !important;
+            padding: 24px 12px 20px !important;
           }
-          .know-us-item .know-us-icon {
-            width: 48px !important;
-            height: 48px !important;
+          .ip-ticker-item .ip-ticker-icon {
+            width: 60px !important;
+            height: 60px !important;
           }
-          .know-us-item .know-us-icon img {
-            width: 44px !important;
-            height: 44px !important;
+          .ip-ticker-item .ip-ticker-icon img {
+            width: 56px !important;
+            height: 56px !important;
           }
-          .know-us-item .know-us-label {
+          .ip-ticker-item .ip-ticker-label {
             font-size: 11px !important;
           }
-          .know-us-ticker-track {
+          .ip-ticker-track {
             gap: 10px !important;
           }
         }
