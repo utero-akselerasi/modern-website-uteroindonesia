@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef, useEffect, useLayoutEffect } from "react";
+import { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { sendGAEvent } from "@next/third-parties/google";
@@ -44,11 +44,14 @@ const cbpCities = [
 ];
 
 export default function CBP() {
-  const [current, setCurrent] = useState(4);
+  const [current, setCurrent] = useState(0);
   const [cardsPerView, setCardsPerView] = useState(4);
   const containerRef = useRef<HTMLDivElement>(null);
   const [containerWidth, setContainerWidth] = useState(0);
-  const [isWrapping, setIsWrapping] = useState(false);
+
+  const total = cbpCities.length;
+  const copiesNeeded = Math.max(Math.ceil((current + cardsPerView + total) / total), 3);
+  const displayCities = Array.from({ length: copiesNeeded }, () => cbpCities).flat();
 
   useEffect(() => {
     const update = () => {
@@ -67,7 +70,7 @@ export default function CBP() {
   }, []);
 
   useEffect(() => {
-    setCurrent(cardsPerView);
+    setCurrent(0);
   }, [cardsPerView]);
 
   const gap = 24;
@@ -77,57 +80,11 @@ export default function CBP() {
       : (1100 - gap * 3) / 4;
   const step = cardWidth + gap;
 
-  const realStart = cardsPerView;
-  const realEnd = cardsPerView + cbpCities.length - 1;
-  const minIndex = realStart - 1;
-  const maxIndex = realEnd + 1;
-
-  const displayCities = [
-    ...cbpCities.slice(-cardsPerView),
-    ...cbpCities,
-    ...cbpCities.slice(0, cardsPerView),
-  ];
-
-  useLayoutEffect(() => {
-    if (isWrapping) setIsWrapping(false);
-  }, [isWrapping]);
-
-  const wrappingTimeoutRef = useRef<number | null>(null);
-
-  useEffect(() => {
-    // Prevent wrap loop: ignore if we just performed a wrap.
-    if (isWrapping) return;
-
-    if (current === minIndex || current === maxIndex) {
-      const target = current === maxIndex ? realStart : realEnd;
-
-      // Avoid visible gap, but schedule after the state flush to prevent
-      // immediate re-trigger of this effect.
-      setIsWrapping(true);
-      if (wrappingTimeoutRef.current) {
-        window.clearTimeout(wrappingTimeoutRef.current);
-      }
-      wrappingTimeoutRef.current = window.setTimeout(() => {
-        setCurrent(target);
-        requestAnimationFrame(() => {
-          setIsWrapping(false);
-        });
-      }, 0);
-    }
-
-    return () => {
-      if (wrappingTimeoutRef.current) {
-        window.clearTimeout(wrappingTimeoutRef.current);
-        wrappingTimeoutRef.current = null;
-      }
-    };
-  }, [current, minIndex, maxIndex, realStart, realEnd, isWrapping]);
-
   const goPrev = () => {
-    setCurrent((p) => Math.max(p - 1, minIndex));
+    setCurrent((p) => Math.max(p - 1, 0));
   };
   const goNext = () => {
-    setCurrent((p) => Math.min(p + 1, maxIndex));
+    setCurrent((p) => p + 1);
   };
 
   return (
@@ -222,14 +179,12 @@ export default function CBP() {
               display: "flex",
               gap: "24px",
               transform: `translateX(${-current * step}px)`,
-              transition: isWrapping
-                ? "none"
-                : "transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
+              transition: "transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
             }}
           >
             {displayCities.map((city, i) => (
               <a
-                key={`cbp-${i}`}
+                key={`cbp-${city.phone}-${i}`}
                 href={`https://wa.me/${city.phone}?text=${encodeURIComponent(city.waText)}`}
                 target="_blank"
                 rel="noopener noreferrer"

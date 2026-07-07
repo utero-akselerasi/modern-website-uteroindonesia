@@ -43,7 +43,7 @@ export default function Portfolio() {
 
   return (
     <section
-      id="portofolio"
+      id="Partnership"
       aria-labelledby="portfolio-title"
       style={{
         background: "#ffffff",
@@ -84,10 +84,10 @@ export default function Portfolio() {
                 background: "var(--red)",
               }}
             />
-            Portofolio
+            Partnership
           </div>
           <h2
-            id="portfolio-title"
+            id="partnership-title"
             style={{
               fontFamily: "var(--font-display)",
               fontSize: "clamp(36px, 4vw, 58px)",
@@ -118,7 +118,7 @@ export default function Portfolio() {
       {/* Filter */}
       <div
         role="tablist"
-        aria-label="Filter kategori portofolio"
+        aria-label="Filter kategori Partnership"
         style={{
           display: "flex",
           flexWrap: "wrap",

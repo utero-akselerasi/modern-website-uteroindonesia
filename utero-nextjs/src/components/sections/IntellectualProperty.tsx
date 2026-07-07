@@ -7,7 +7,7 @@ import { useRef, useEffect } from "react";
 const ipItems = [
   { name: "OSIKER", href: "http://osiker.com/", img: "/images/ip/osiker.webp", alt: "Platform Intellectual Property & lisensi kreatif" },
   { name: "Osiaeker", href: "http://osiaeker.uteroindonesia.com", img: "/images/ip/osiaeker.webp", alt: "Kanal konten kreatif dan entertainment" },
-  { name: "Dadik Chang", href: "http://bit.ly/YTDADIKWAHYUCHANG", img: "/images/ip/chang.webp", alt: "Vlog dan konten kreatif Dadik Wahyu Chang" },
+  { name: "Chang", href: "http://bit.ly/YTDADIKWAHYUCHANG", img: "/images/ip/chang.webp", alt: "Vlog dan konten kreatif Dadik Wahyu Chang" },
   { name: "Mbois", href: "https://festivalmbois.id/", img: "/images/ip/mbois.webp", alt: "Festival Mbois — brand event Malang Creative Fusion" },
   { name: "Osi & Ji", href: "http://osidanji.com/", img: "/images/ip/osi-ji.webp", alt: "Maskot kota Malang — Osi & Ji" },
   { name: "Utero", href: "https://www.youtube.com/channel/UCkdJC5Tw0bk0xK9sUR80xnA", img: "/images/ip/utero.webp", alt: "Channel YouTube resmi Utero Indonesia" },
@@ -301,7 +301,7 @@ export default function IntellectualProperty() {
                 borderRadius: "2px",
               }}
               className="ip-ticker-item"
-              data-skip-filter={item.name === "Waraalvaro" || item.name === "Waravalerie" ? "true" : undefined}
+              data-skip-filter={item.name === "Waraalvaro" || item.name === "Waravalerie" || item.name === "Multiverse" ? "true" : undefined}
               onMouseEnter={(e) => {
                 if (isDraggingRef.current) return;
                 e.currentTarget.style.background = "var(--red)";

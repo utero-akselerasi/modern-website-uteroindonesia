@@ -11,7 +11,7 @@ const navLinks = [
   { href: "#know-us", label: "Lini Bisnis" },
   { href: "#divisi", label: "Divisi" },
   { href: "#cara-kerja", label: "Alur Kerja" },
-  { href: "#portofolio", label: "Portofolio" },
+  { href: "#Partnership", label: "Partnership" },
   { href: "#kontak", label: "Kontak" },
 ];
 

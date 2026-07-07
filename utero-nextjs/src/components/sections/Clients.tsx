@@ -6,7 +6,7 @@ import "./ScrollVelocity.css";
 
 interface Client {
   name: string;
-  url: string;
+  url?: string;
   logo: string;
   big?: boolean;
 }
@@ -35,18 +35,32 @@ const clients: Client[] = [
 export default function Clients() {
   const logoRow = (
     <div style={{ display: "flex", alignItems: "center", gap: "40px" }}>
-      {clients.map(c => (
-        <a key={c.name} href={c.url} target="_blank" rel="noopener noreferrer"
-          style={{
-            display: "flex", alignItems: "center", justifyContent: "center",
-            textDecoration: "none", width: c.big ? "160px" : "120px", height: "64px",
-            flexShrink: 0,
-          }}>
+      {clients.map(c => {
+        const content = (
           <img src={c.logo} alt={c.name}
             className={["Coca Cola", "Pertamina", "Telkomsel", "Sampoerna", "Daihatsu", "Honda"].includes(c.name) ? "client-scroll-logo logo-red" : "client-scroll-logo"}
           />
-        </a>
-      ))}
+        );
+        return c.url ? (
+          <a key={c.name} href={c.url} target="_blank" rel="noopener noreferrer"
+            style={{
+              display: "flex", alignItems: "center", justifyContent: "center",
+              textDecoration: "none", width: c.big ? "160px" : "120px", height: "64px",
+              flexShrink: 0,
+            }}>
+            {content}
+          </a>
+        ) : (
+          <div key={c.name}
+            style={{
+              display: "flex", alignItems: "center", justifyContent: "center",
+              width: c.big ? "160px" : "120px", height: "64px",
+              flexShrink: 0, cursor: "default",
+            }}>
+            {content}
+          </div>
+        );
+      })}
     </div>
   );
 
