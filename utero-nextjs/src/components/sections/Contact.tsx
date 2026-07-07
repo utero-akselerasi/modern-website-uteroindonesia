@@ -352,6 +352,8 @@ export default function Contact() {
             <motion.a
               key={c.value}
               href={c.href}
+              target="_blank"
+              rel="noopener noreferrer"
               aria-label={c.ariaLabel}
               onClick={c.onClick}
               initial={{ opacity: 0, x: 20 }}

@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 
 const navLinks = [
@@ -158,15 +159,18 @@ export default function Navbar() {
         <Link
           href="#"
           style={{
-            fontFamily: "var(--font-display)",
-            fontSize: "22px",
-            fontWeight: 800,
-            color: "var(--ink)",
-            letterSpacing: "-0.5px",
+            display: "flex",
+            alignItems: "center",
             textDecoration: "none",
           }}
         >
-          UTERO<span style={{ color: "var(--red)" }}>.</span>COM
+          <Image
+            src="/images/uteroindonesia.webp"
+            alt="Utero Indonesia"
+            width={140}
+            height={36}
+            style={{ objectFit: "contain", height: "36px", width: "auto", transform: "scale(4.0)", transformOrigin: "left center" }}
+          />
         </Link>
 
         <ul
@@ -187,7 +191,7 @@ export default function Navbar() {
                   fontWeight: 500,
                   letterSpacing: "0.08em",
                   textTransform: "uppercase",
-                  color: "var(--muted)",
+                  color: "#000000",
                   textDecoration: "none",
                   transition: "color 0.2s",
                 }}
@@ -195,7 +199,7 @@ export default function Navbar() {
                   (e.currentTarget.style.color = "var(--red)")
                 }
                 onMouseLeave={(e) =>
-                  (e.currentTarget.style.color = "var(--muted)")
+                  (e.currentTarget.style.color = "#000000")
                 }
               >
                 {link.label}
@@ -318,16 +322,19 @@ export default function Navbar() {
               <Link
                 href="#"
                 style={{
-                  fontFamily: "var(--font-display)",
-                  fontSize: "22px",
-                  fontWeight: 800,
-                  color: "var(--ink)",
-                  letterSpacing: "-0.5px",
+                  display: "flex",
+                  alignItems: "center",
                   textDecoration: "none",
                 }}
                 onClick={closeMenu}
               >
-                UTERO<span style={{ color: "var(--red)" }}>.</span>ID
+                <Image
+                  src="/images/uteroindonesia.webp"
+                  alt="Utero Indonesia"
+                  width={120}
+                  height={32}
+                  style={{ objectFit: "contain", height: "32px", width: "auto", transform: "scale(1.5)", transformOrigin: "left center" }}
+                />
               </Link>
               <button
                 ref={closeBtnRef}

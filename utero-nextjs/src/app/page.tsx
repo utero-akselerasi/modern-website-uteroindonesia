@@ -1,7 +1,7 @@
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import Hero from "@/components/sections/Hero";
-import Ticker from "@/components/sections/Ticker";
+
 import About from "@/components/sections/About";
 import KnowUsMore from "@/components/sections/KnowUsMore";
 import Divisions from "@/components/sections/Divisions";
@@ -9,6 +9,11 @@ import Clients from "@/components/sections/Clients";
 import Workflow from "@/components/sections/Workflow";
 import Portfolio from "@/components/sections/Portfolio";
 import IntellectualProperty from "@/components/sections/IntellectualProperty";
+import Extrapreneur from "@/components/sections/Extrapreneur";
+import Partners from "@/components/sections/Partners";
+import Community from "@/components/sections/Community";
+import CBP from "@/components/sections/CBP";
+import Download from "@/components/sections/Download";
 import WhyUtero from "@/components/sections/WhyUtero";
 import Contact from "@/components/sections/Contact";
 
@@ -17,14 +22,18 @@ export default function Home() {
     <>
       <Navbar />
       <Hero />
-      <Ticker />
-      <About />
+
       <KnowUsMore />
       <Divisions />
       <Workflow />
       <Clients />
       <Portfolio />
       <IntellectualProperty />
+      <Community />
+      <CBP />
+      <Extrapreneur />
+      <Partners />
+      <Download />
       <WhyUtero />
       <Contact />
       <Footer />

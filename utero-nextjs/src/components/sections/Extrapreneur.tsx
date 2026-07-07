@@ -4,25 +4,35 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { useRef, useEffect } from "react";
 
-const ipItems = [
-  { name: "OSIKER", href: "http://osiker.com/", img: "/images/ip/osiker.webp", alt: "Platform Intellectual Property & lisensi kreatif" },
-  { name: "Osiaeker", href: "http://osiaeker.uteroindonesia.com", img: "/images/ip/osiaeker.webp", alt: "Kanal konten kreatif dan entertainment" },
-  { name: "Dadik Chang", href: "http://bit.ly/YTDADIKWAHYUCHANG", img: "/images/ip/chang.webp", alt: "Vlog dan konten kreatif Dadik Wahyu Chang" },
-  { name: "Mbois", href: "https://festivalmbois.id/", img: "/images/ip/mbois.webp", alt: "Festival Mbois — brand event Malang Creative Fusion" },
-  { name: "Osi & Ji", href: "http://osidanji.com/", img: "/images/ip/osi-ji.webp", alt: "Maskot kota Malang — Osi & Ji" },
-  { name: "Utero", href: "https://www.youtube.com/channel/UCkdJC5Tw0bk0xK9sUR80xnA", img: "/images/ip/utero.webp", alt: "Channel YouTube resmi Utero Indonesia" },
-  { name: "Waraalvaro", href: "https://www.youtube.com/channel/UCfQ6A2Q5rZ09uWQDRD97G2g", img: "/images/ip/waraalvaro.webp", alt: "Kanal gaming dan entertainment anak" },
-  { name: "Waravalerie", href: "https://www.youtube.com/channel/UCZh3QudxIClo8VHYEPPvS6w", img: "/images/ip/waravalerie.webp", alt: "Kanal beauty dan kreativitas anak" },
-  { name: "Socioboo", href: "https://www.youtube.com/channel/UCCHRTqXGcNJnKuI42cE5d7A", img: "/images/ip/socioboo.webp", alt: "Platform paid promote dan influencer marketing" },
-  { name: "Dinar Weddover", href: "https://www.youtube.com/channel/UCBylfhhGHOLKQ52vTLxT0xg", img: "/images/ip/dinar-weddover.webp", alt: "Wedding organizer dan makeup artist" },
-  { name: "Multiverse", href: "https://www.instagram.com/multiverse.co.id/", img: "/images/ip/multiverse.webp", alt: "Komunitas gaming dan esport" },
-  { name: "Grotesk", href: "https://grotesk.uteroindonesia.com", img: "/images/ip/grotesk.webp", alt: "Brand cycling dan apparel kreatif" },
-  { name: "Red Valley", href: "https://www.youtube.com/@RedValley_band/videos", img: "/images/ip/red-valley.webp", alt: "Band metal/rock asal Malang" },
+const extrapreneurItems = [
+  { name: "RUVODO WebApps", href: "http://ruvodo.com/", img: "/images/divisi/o-web.webp", alt: "Layanan pembuatan website dan aplikasi web" },
+  { name: "Dadik Chang", href: "https://dadikwahyuchang.id/", img: "/images/divisi/o-dad.webp", alt: "Personal brand Dadik Wahyu Chang — founder Utero Indonesia" },
+  { name: "Dinar Weddover", href: "http://www.dinarweddover.com", img: "/images/divisi/o-makeup.webp", alt: "Wedding organizer dan makeup artist profesional" },
+  { name: "Epochstream", href: "http://epochstream.com", img: "/images/divisi/epoch-stream.webp", alt: "Platform media digital dan konten kreatif" },
+  { name: "Soundpub", href: "https://soundpub.xyz/", img: "/images/divisi/soundpub.webp", alt: "Distribusi musik digital dan label services" },
+  { name: "Buzzerhood", href: "https://buzzerhood.com/", img: "/images/divisi/buzzerhood.webp", alt: "Platform paid promote dan influencer marketing" },
+  { name: "Immerstal", href: "https://immerstal.uteroindonesia.com", img: "/images/divisi/immerstal.webp", alt: "Studio kreatif dan produksi konten digital" },
+  { name: "Odigiro Consultant", href: "https://odigiro.uteroindonesia.com/", img: "/images/divisi/o-kons.webp", alt: "Konsultan city branding dan pengembangan daerah" },
+  { name: "Malang Virtual", href: "https://malangvirtual.uteroindonesia.com", img: "/images/divisi/malangvirtual.webp", alt: "Virtual tour dan digitalisasi destinasi Malang" },
+  { name: "Smartsuco", href: "https://smartsuco.utero.id", img: "/images/divisi/smartsuco.webp", alt: "Platform teknologi dan solusi digital" },
+  { name: "Inon Designer", href: "http://inon.utero.id", img: "/images/divisi/o-designer.webp", alt: "Jasa desain grafis dan branding kreatif" },
+  { name: "Cebro Agency", href: "https://www.instagram.com/cebro_design_agency/", img: "/images/divisi/o-logo.webp", alt: "Creative agency spesialis desain logo dan identitas brand" },
+  { name: "Kochiro Inexterior", href: "https://www.kochiro.com/", img: "/images/divisi/o-inex.webp", alt: "Desain interior dan eksterior profesional", skipFilter: true },
+  { name: "Dinar Kebaya", href: "https://www.instagram.com/dinarkebayaku/", img: "/images/divisi/o-kebaya.webp", alt: "Kebaya modern dan fashion tradisional kontemporer" },
+  { name: "Desro", href: "https://www.instagram.com/desainrombong/", img: "/images/divisi/o-rombong.webp", alt: "Desain dan produksi rombong lipat custom" },
+  { name: "Symadeco", href: "http://symadeco.com/", img: "/images/divisi/o-dekor.webp", alt: "Sistem manajemen dekorasi pernikahan digital" },
+  { name: "Socioboo", href: "http://socioboo.uteroindonesia.com/", img: "/images/divisi/socioboo.webp", alt: "Platform paid promote dan endorsed social media" },
+  { name: "Dinkey", href: "https://www.instagram.com/dinkeyweddingplanner/", img: "/images/divisi/o-wedd.webp", alt: "Wedding planner dan organizer profesional" },
+  { name: "Sawoto", href: "https://www.instagram.com/sawoto.reklame/", img: "/images/divisi/sawoto.webp", alt: "Jasa pembuatan huruf timbul dan reklame", skipFilter: true },
+  { name: "Rompeda", href: "http://rompeda.utero.id/", img: "/images/divisi/rompeda.webp", alt: "Produk kreatif dan merchandise custom" },
+  { name: "Mrono", href: "https://www.instagram.com/brandingmobilmalang/", img: "/images/divisi/mrono.webp", alt: "Branding mobil dan sticker kendaraan custom", skipFilter: true },
+  { name: "Ono", href: "https://www.instagram.com/onomakerspace/", img: "/images/divisi/onomakerspace.webp", alt: "Maker space dan workshop kreatif" },
+  { name: "Tokoneonbox", href: "https://www.instagram.com/tokoneonbox/", img: "/images/divisi/tokoneonbox.webp", alt: "Toko neon box custom dan signage LED" },
 ];
 
-const ITEM_COUNT = ipItems.length;
+const ITEM_COUNT = extrapreneurItems.length;
 
-export default function IntellectualProperty() {
+export default function Extrapreneur() {
   const trackRef = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const translateXRef = useRef(0);
@@ -159,8 +169,8 @@ export default function IntellectualProperty() {
 
   return (
     <section
-      id="intelektual"
-      aria-labelledby="ip-title"
+      id="extrapreneur"
+      aria-labelledby="extrapreneur-title"
       style={{
         padding: "20px clamp(16px, 5vw, 64px) 80px",
         background: "var(--white)",
@@ -195,7 +205,7 @@ export default function IntellectualProperty() {
               background: "var(--red)",
             }}
           />
-          Intellectual Property
+          Extrapreneur
           <span
             style={{
               display: "block",
@@ -206,7 +216,7 @@ export default function IntellectualProperty() {
           />
         </div>
         <h2
-          id="ip-title"
+          id="extrapreneur-title"
           style={{
             fontFamily: "var(--font-display)",
             fontSize: "clamp(28px, 3.5vw, 48px)",
@@ -216,7 +226,7 @@ export default function IntellectualProperty() {
             color: "var(--ink)",
           }}
         >
-          Karya & <span style={{ color: "var(--red)" }}>Kreasi</span> Utero
+          Unit Usaha <span style={{ color: "var(--red)" }}>Eksternal</span>
         </h2>
         <p
           style={{
@@ -227,8 +237,8 @@ export default function IntellectualProperty() {
             margin: "20px auto 0",
           }}
         >
-          Dari konten digital hingga brand fashion — setiap IP adalah bukti bahwa
-          kreativitas tidak pernah berhenti melahirkan sesuatu yang baru.
+          Dari teknologi hingga fashion — setiap unit adalah wujud nyata
+          semangat ekopreneurship yang kami kembangkan.
         </p>
       </motion.div>
 
@@ -241,7 +251,7 @@ export default function IntellectualProperty() {
           padding: "24px 0",
           touchAction: "none",
         }}
-        className="ip-ticker-container"
+        className="extrapreneur-ticker-container"
         onMouseEnter={(e) => {
           pausedRef.current = true;
           followRef.current = true;
@@ -270,13 +280,13 @@ export default function IntellectualProperty() {
       >
         <div
           ref={trackRef}
-          className="ip-ticker-track"
+          className="extrapreneur-ticker-track"
           style={{
             display: "flex",
             width: "max-content",
           }}
         >
-          {[...ipItems, ...ipItems].map((item, index) => (
+          {[...extrapreneurItems, ...extrapreneurItems].map((item, index) => (
             <a
               key={`${item.name}-${index}`}
               href={item.href}
@@ -300,15 +310,15 @@ export default function IntellectualProperty() {
                 flexShrink: 0,
                 borderRadius: "2px",
               }}
-              className="ip-ticker-item"
-              data-skip-filter={item.name === "Waraalvaro" || item.name === "Waravalerie" ? "true" : undefined}
+              className="extrapreneur-ticker-item"
+              data-skip-filter={item.skipFilter ? "true" : undefined}
               onMouseEnter={(e) => {
                 if (isDraggingRef.current) return;
                 e.currentTarget.style.background = "var(--red)";
                 e.currentTarget.style.borderColor = "var(--red)";
                 e.currentTarget.style.transform = "translateY(-6px)";
                 e.currentTarget.style.boxShadow = "0 12px 28px rgba(209, 31, 31, 0.2)";
-                const label = e.currentTarget.querySelector(".ip-ticker-label");
+                const label = e.currentTarget.querySelector(".extrapreneur-ticker-label");
                 if (label) (label as HTMLElement).style.color = "#fff";
                 if (e.currentTarget.getAttribute("data-skip-filter") !== "true") {
                   const img = e.currentTarget.querySelector("img");
@@ -321,7 +331,7 @@ export default function IntellectualProperty() {
                 e.currentTarget.style.borderColor = "var(--border-color)";
                 e.currentTarget.style.transform = "translateY(0)";
                 e.currentTarget.style.boxShadow = "none";
-                const label = e.currentTarget.querySelector(".ip-ticker-label");
+                const label = e.currentTarget.querySelector(".extrapreneur-ticker-label");
                 if (label) (label as HTMLElement).style.color = "var(--ink)";
                 if (e.currentTarget.getAttribute("data-skip-filter") !== "true") {
                   const img = e.currentTarget.querySelector("img");
@@ -330,7 +340,7 @@ export default function IntellectualProperty() {
               }}
             >
               <span
-                className="ip-ticker-icon"
+                className="extrapreneur-ticker-icon"
                 style={{
                   width: "100px",
                   height: "100px",
@@ -353,7 +363,7 @@ export default function IntellectualProperty() {
                 />
               </span>
               <span
-                className="ip-ticker-label"
+                className="extrapreneur-ticker-label"
                 style={{
                   fontFamily: "var(--font-display)",
                   fontSize: "15px",
@@ -372,71 +382,71 @@ export default function IntellectualProperty() {
       </div>
 
       <style jsx global>{`
-        .ip-ticker-track {
+        .extrapreneur-ticker-track {
           will-change: transform;
           gap: 20px;
         }
-        .ip-ticker-item:hover .ip-ticker-label {
+        .extrapreneur-ticker-item:hover .extrapreneur-ticker-label {
           color: #fff !important;
         }
-        .ip-ticker-container[data-dragging] .ip-ticker-item {
+        .extrapreneur-ticker-container[data-dragging] .extrapreneur-ticker-item {
           transition: none !important;
         }
-        .ip-ticker-container[data-dragging] .ip-ticker-item:hover {
+        .extrapreneur-ticker-container[data-dragging] .extrapreneur-ticker-item:hover {
           background: var(--ash) !important;
           border-color: var(--border-color) !important;
           transform: none !important;
           box-shadow: none !important;
         }
-        .ip-ticker-container[data-dragging] .ip-ticker-item:hover .ip-ticker-label {
+        .extrapreneur-ticker-container[data-dragging] .extrapreneur-ticker-item:hover .extrapreneur-ticker-label {
           color: var(--ink) !important;
         }
-        .ip-ticker-container[data-dragging] .ip-ticker-item:hover img {
+        .extrapreneur-ticker-container[data-dragging] .extrapreneur-ticker-item:hover img {
           filter: none !important;
         }
-        .ip-ticker-item[data-skip-filter="true"]:hover img {
+        .extrapreneur-ticker-item[data-skip-filter="true"]:hover img {
           filter: none !important;
         }
 
         @media (max-width: 768px) {
-          .ip-ticker-item {
+          .extrapreneur-ticker-item {
             width: 180px !important;
             padding: 28px 16px 24px !important;
           }
-          .ip-ticker-item .ip-ticker-icon {
+          .extrapreneur-ticker-item .extrapreneur-ticker-icon {
             width: 72px !important;
             height: 72px !important;
             margin-bottom: 12px !important;
           }
-          .ip-ticker-item .ip-ticker-icon img {
+          .extrapreneur-ticker-item .extrapreneur-ticker-icon img {
             width: 68px !important;
             height: 68px !important;
           }
-          .ip-ticker-item .ip-ticker-label {
+          .extrapreneur-ticker-item .extrapreneur-ticker-label {
             font-size: 12px !important;
           }
-          .ip-ticker-track {
+          .extrapreneur-ticker-track {
             gap: 12px !important;
           }
         }
 
         @media (max-width: 480px) {
-          .ip-ticker-item {
+          .extrapreneur-ticker-item {
             width: 160px !important;
             padding: 24px 12px 20px !important;
           }
-          .ip-ticker-item .ip-ticker-icon {
+          .extrapreneur-ticker-item .extrapreneur-ticker-icon {
             width: 60px !important;
             height: 60px !important;
           }
-          .ip-ticker-item .ip-ticker-icon img {
+          .extrapreneur-ticker-item .extrapreneur-ticker-icon img {
             width: 56px !important;
             height: 56px !important;
           }
-          .ip-ticker-item .ip-ticker-label {
+          .extrapreneur-ticker-item .extrapreneur-ticker-label {
             font-size: 11px !important;
           }
-          .ip-ticker-track {
+          .extrapreneur-ticker-track {
             gap: 10px !important;
           }
         }

@@ -8,9 +8,10 @@ const steps = [
     desc: "Memahami masalah brand & tujuan bisnis.",
     icon: (
       <svg width="26" height="26" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M9 18h6M10 22h4M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0018 8 6 6 0 006 8c0 1 .23 2.23 1.5 3.5A4.61 4.61 0 018.91 14" stroke="var(--white)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" fill="none" />
-        <circle cx="12" cy="7" r="3.5" stroke="var(--white)" strokeWidth="1.5" fill="none" />
-        <text x="12" y="9.5" textAnchor="middle" fill="var(--white)" fontSize="6" fontWeight="bold" fontFamily="Arial">?</text>
+        <circle cx="11" cy="11" r="7" stroke="var(--white)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+        <path d="M16.5 16.5L21 21" stroke="var(--white)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+        <path d="M11 8v6" stroke="var(--white)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+        <path d="M8 11h6" stroke="var(--white)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
       </svg>
     ),
   },
@@ -19,12 +20,9 @@ const steps = [
     desc: "Menyusun strategi kreatif & komunikasi.",
     icon: (
       <svg width="26" height="26" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="12" cy="12" r="10" stroke="var(--white)" strokeWidth="2" fill="none" />
-        <circle cx="12" cy="12" r="7" stroke="var(--white)" strokeWidth="1.8" fill="none" />
-        <circle cx="12" cy="12" r="4" stroke="var(--white)" strokeWidth="1.8" fill="none" />
-        <circle cx="12" cy="12" r="1.5" fill="var(--white)" />
-        <line x1="2" y1="2" x2="12" y2="12" stroke="var(--white)" strokeWidth="2" strokeLinecap="round" />
-        <polygon points="12,12 8.5,9.5 9.5,13" fill="var(--white)" />
+        <path d="M12 2L2 7l10 5 10-5-10-5z" stroke="var(--white)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+        <path d="M2 17l10 5 10-5" stroke="var(--white)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+        <path d="M2 12l10 5 10-5" stroke="var(--white)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
       </svg>
     ),
   },
@@ -33,10 +31,7 @@ const steps = [
     desc: "Mengembangkan ide dan visual yang tepat.",
     icon: (
       <svg width="26" height="26" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M12 2C8.13 2 5 5.13 5 9C5 14.25 12 22 12 22C12 22 19 14.25 19 9C19 5.13 15.87 2 12 2Z" stroke="var(--white)" strokeWidth="2" fill="none" />
-        <circle cx="12" cy="8.5" r="4" stroke="var(--white)" strokeWidth="1.5" fill="none" />
-        <circle cx="12" cy="8.5" r="2" stroke="var(--white)" strokeWidth="1.5" fill="none" />
-        <circle cx="12" cy="8.5" r="0.8" fill="var(--white)" />
+        <path d="M9.663 17h4.673M12 3v1m0 16v1m-8-9H3m18 0h-1M5.636 5.636l.707.707m12.02 12.02l.708.708M9 12a3 3 0 106 0 3 3 0 00-6 0z" stroke="var(--white)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
       </svg>
     ),
   },
@@ -45,14 +40,9 @@ const steps = [
     desc: "Eksekusi dan produksi dengan presisi tinggi.",
     icon: (
       <svg width="26" height="26" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="9.5" cy="9.5" r="5" stroke="var(--white)" strokeWidth="2" fill="none" />
-        <circle cx="9.5" cy="9.5" r="2" fill="var(--white)" />
-        <line x1="9.5" y1="4" x2="9.5" y2="5.5" stroke="var(--white)" strokeWidth="2" strokeLinecap="round" />
-        <line x1="9.5" y1="13.5" x2="9.5" y2="15" stroke="var(--white)" strokeWidth="2" strokeLinecap="round" />
-        <line x1="4" y1="9.5" x2="5.5" y2="9.5" stroke="var(--white)" strokeWidth="2" strokeLinecap="round" />
-        <line x1="13.5" y1="9.5" x2="15" y2="9.5" stroke="var(--white)" strokeWidth="2" strokeLinecap="round" />
-        <circle cx="16" cy="15" r="3.5" stroke="var(--white)" strokeWidth="1.8" fill="none" />
-        <circle cx="16" cy="15" r="1.5" fill="var(--white)" />
+        <path d="M12 15v-7m0 0l-3 3m3-3l3 3" stroke="var(--white)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+        <path d="M12 3C7.03 3 3 7.03 3 12s4.03 9 9 9 9-4.03 9-9-4.03-9-9-9z" stroke="var(--white)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" fill="none" />
+        <path d="M8 19l4-4 4 4" stroke="var(--white)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" fill="none" />
       </svg>
     ),
   },
@@ -61,10 +51,7 @@ const steps = [
     desc: "Meluncurkan dan mengukur hasil nyata.",
     icon: (
       <svg width="26" height="26" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M12 2L3 7v6c0 5.25 3.83 9.5 9 11 5.17-1.5 9-5.75 9-11V7l-9-5z" stroke="var(--white)" strokeWidth="2" fill="none" strokeLinejoin="round" />
-        <path d="M12 6C12 6 9.5 10 9.5 12.5C9.5 14 10.5 15 12 15C13.5 15 14.5 14 14.5 12.5C14.5 10 12 6 12 6Z" stroke="var(--white)" strokeWidth="1.5" fill="none" />
-        <circle cx="12" cy="11" r="1.5" stroke="var(--white)" strokeWidth="1.2" fill="none" />
-        <path d="M17 18L19 20L23 16" stroke="var(--white)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" fill="none" />
+        <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" stroke="var(--white)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
       </svg>
     ),
   },

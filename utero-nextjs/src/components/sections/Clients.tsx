@@ -34,16 +34,16 @@ const clients: Client[] = [
 
 export default function Clients() {
   const logoRow = (
-    <div style={{ display: "flex", alignItems: "center", gap: "48px" }}>
+    <div style={{ display: "flex", alignItems: "center", gap: "40px" }}>
       {clients.map(c => (
         <a key={c.name} href={c.url} target="_blank" rel="noopener noreferrer"
           style={{
             display: "flex", alignItems: "center", justifyContent: "center",
-            textDecoration: "none", width: c.big ? "160px" : "112px", height: "64px",
+            textDecoration: "none", width: c.big ? "160px" : "120px", height: "64px",
             flexShrink: 0,
           }}>
           <img src={c.logo} alt={c.name}
-            className="client-scroll-logo"
+            className={["Coca Cola", "Pertamina", "Telkomsel", "Sampoerna", "Daihatsu", "Honda"].includes(c.name) ? "client-scroll-logo logo-red" : "client-scroll-logo"}
           />
         </a>
       ))}
@@ -52,11 +52,11 @@ export default function Clients() {
 
   return (
     <section id="klien" aria-labelledby="clients-title"
-      style={{ background: "var(--ash)", padding: "80px 48px", textAlign: "center" }}
+      style={{ background: "var(--red)", padding: "80px 48px", textAlign: "center" }}
       className="clients-section">
       <p id="clients-title" style={{
         fontSize: "13px", fontWeight: 600, letterSpacing: "0.18em",
-        textTransform: "uppercase", color: "var(--muted)", marginBottom: "48px",
+        textTransform: "uppercase", color: "rgba(255, 255, 255, 0.85)", marginBottom: "48px",
       }}>
         Sebagian Klien & Mitra yang Pernah Kami Tangani
       </p>
@@ -76,13 +76,22 @@ export default function Clients() {
           width: auto;
           height: auto;
           object-fit: contain;
-          transition: filter 0.3s, opacity 0.3s;
-          filter: grayscale(1);
-          opacity: 0.55;
+          transition: all 0.3s ease;
+          filter: grayscale(100%);
+          opacity: 0.7;
         }
         .client-scroll-logo:hover {
-          filter: grayscale(0);
+          filter: grayscale(0%);
           opacity: 1;
+          transform: scale(1.05);
+        }
+        .logo-red {
+          padding: 8px;
+          background: rgba(255, 255, 255, 0.95);
+          border-radius: 8px;
+        }
+        .logo-red:hover {
+          background: rgba(255, 255, 255, 1);
         }
         @media (max-width: 900px) {
           .clients-section {
