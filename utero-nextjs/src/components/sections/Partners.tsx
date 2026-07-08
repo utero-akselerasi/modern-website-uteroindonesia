@@ -55,7 +55,7 @@ export default function Partners() {
       id="partner"
       aria-labelledby="partners-title"
       style={{
-        background: "var(--ash)",
+        background: "var(--red)",
         padding: "100px clamp(16px, 5vw, 64px)",
         position: "relative",
         overflow: "hidden",
@@ -78,47 +78,47 @@ export default function Partners() {
               fontWeight: 600,
               letterSpacing: "0.2em",
               textTransform: "uppercase",
-              color: "var(--red)",
-              marginBottom: "20px",
-              display: "flex",
-              alignItems: "center",
-              gap: "10px",
+            color: "#fff",
+            marginBottom: "20px",
+            display: "flex",
+            alignItems: "center",
+            gap: "10px",
+          }}
+        >
+          <span
+            style={{
+              display: "block",
+              width: "24px",
+              height: "1px",
+              background: "rgba(255,255,255,0.5)",
             }}
-          >
-            <span
-              style={{
-                display: "block",
-                width: "24px",
-                height: "1px",
-                background: "var(--red)",
-              }}
-            />
-            Partners & References
+          />
+          Partners & References
           </div>
 
           <h2
             id="partners-title"
             style={{
-              fontFamily: "var(--font-display)",
-              fontSize: "clamp(32px, 3.8vw, 56px)",
-              fontWeight: 800,
-              letterSpacing: "-0.03em",
-              lineHeight: 1.05,
-              color: "var(--ink)",
+            fontFamily: "var(--font-display)",
+            fontSize: "clamp(32px, 3.8vw, 56px)",
+            fontWeight: 800,
+            letterSpacing: "-0.03em",
+            lineHeight: 1.05,
+            color: "#fff",
             }}
           >
             Platform &
             <br />
-            <span style={{ color: "var(--red)" }}>Kolaborator</span>
+            <span style={{ color: "var(--black)" }}>Kolaborator</span>
           </h2>
 
           <p
             style={{
               fontSize: "16px",
               lineHeight: 1.7,
-              color: "var(--muted)",
-              marginTop: "24px",
-              marginBottom: "40px",
+            color: "rgba(255,255,255,0.7)",
+            marginTop: "24px",
+            marginBottom: "40px",
             }}
           >
             Terhubung dengan kami di berbagai platform — dari marketplace
@@ -134,8 +134,8 @@ export default function Partners() {
               display: "inline-flex",
               alignItems: "center",
               gap: "8px",
-              color: "var(--red)",
-              border: "1px solid var(--red)",
+              color: "#fff",
+              border: "1px solid #fff",
               padding: "12px 28px",
               fontSize: "13px",
               fontWeight: 600,
@@ -145,13 +145,13 @@ export default function Partners() {
               transition: "all 0.2s",
             }}
             onMouseEnter={(e) => {
-              e.currentTarget.style.background = "var(--red)";
-              e.currentTarget.style.color = "#fff";
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.background = "transparent";
+              e.currentTarget.style.background = "#fff";
               e.currentTarget.style.color = "var(--red)";
             }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.background = "transparent";
+            e.currentTarget.style.color = "#fff";
+          }}
           >
             Daftar Partner →
           </a>
@@ -196,7 +196,7 @@ export default function Partners() {
               data-skip-filter={partner.skipFilter ? "true" : undefined}
               onMouseEnter={(e) => {
                 e.currentTarget.style.background = "var(--white)";
-                e.currentTarget.style.borderColor = "var(--red)";
+                e.currentTarget.style.borderColor = "#fff";
                 e.currentTarget.style.transform = "translateY(-4px)";
                 e.currentTarget.style.boxShadow = "0 8px 24px rgba(209, 31, 31, 0.12)";
                 if (e.currentTarget.getAttribute("data-skip-filter") !== "true") {

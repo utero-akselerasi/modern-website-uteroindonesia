@@ -92,7 +92,7 @@ export default function CBP() {
       id="cbp"
       aria-labelledby="cbp-title"
       style={{
-        background: "var(--ash)",
+        background: "var(--red)",
         padding: "100px clamp(16px, 5vw, 64px)",
         position: "relative",
       }}
@@ -110,7 +110,7 @@ export default function CBP() {
             fontWeight: 600,
             letterSpacing: "0.2em",
             textTransform: "uppercase",
-            color: "var(--red)",
+            color: "#fff",
             marginBottom: "16px",
             display: "flex",
             alignItems: "center",
@@ -123,7 +123,7 @@ export default function CBP() {
               display: "block",
               width: "24px",
               height: "1px",
-              background: "var(--red)",
+              background: "#fff",
             }}
           />
           Community Business Partner
@@ -132,7 +132,7 @@ export default function CBP() {
               display: "block",
               width: "24px",
               height: "1px",
-              background: "var(--red)",
+              background: "#fff",
             }}
           />
         </div>
@@ -147,13 +147,13 @@ export default function CBP() {
             color: "var(--ink)",
           }}
         >
-          Tersedia di <span style={{ color: "var(--red)" }}>5 Kota</span>
+          Tersedia di <span style={{ color: "var(--black)" }}>5 Kota</span>
         </h2>
         <p
           style={{
             fontSize: "16px",
             lineHeight: 1.7,
-            color: "var(--muted)",
+            color: "rgba(255,255,255,0.7)",
             maxWidth: "600px",
             margin: "20px auto 0",
           }}
@@ -237,7 +237,7 @@ export default function CBP() {
                     marginBottom: "20px",
                     borderRadius: "50%",
                     overflow: "hidden",
-                    border: "2px solid var(--border-color)",
+                    border: "2px solid #000",
                     transition: "border-color 0.3s var(--ease)",
                     flexShrink: 0,
                   }}
@@ -321,12 +321,12 @@ export default function CBP() {
           className="cbp-arrow cbp-arrow-prev"
         >
           <svg
-            width="20"
-            height="20"
+            width="28"
+            height="28"
             viewBox="0 0 1792 1792"
             xmlns="http://www.w3.org/2000/svg"
             style={{
-              fill: "#a81420",
+              fill: "var(--red)",
               transition: "fill 0.25s var(--ease)",
             }}
             className="cbp-arrow-icon"
@@ -360,12 +360,12 @@ export default function CBP() {
           className="cbp-arrow cbp-arrow-next"
         >
           <svg
-            width="20"
-            height="20"
+            width="28"
+            height="28"
             viewBox="0 0 1792 1792"
             xmlns="http://www.w3.org/2000/svg"
             style={{
-              fill: "#a81420",
+              fill: "var(--red)",
               transition: "fill 0.25s var(--ease)",
             }}
             className="cbp-arrow-icon"
@@ -396,26 +396,23 @@ export default function CBP() {
             display: "inline-flex",
             alignItems: "center",
             gap: "8px",
-            background: "var(--red)",
             color: "#fff",
-            padding: "14px 36px",
+            border: "1px solid #fff",
+            padding: "12px 28px",
             fontSize: "13px",
             fontWeight: 600,
-            letterSpacing: "0.08em",
+            letterSpacing: "0.06em",
             textTransform: "uppercase",
             textDecoration: "none",
             transition: "all 0.2s",
-            borderRadius: "4px",
           }}
           onMouseEnter={(e) => {
-            e.currentTarget.style.background = "var(--red2)";
-            e.currentTarget.style.transform = "translateY(-2px)";
-            e.currentTarget.style.boxShadow = "0 6px 20px rgba(209,31,31,0.3)";
+            e.currentTarget.style.background = "#fff";
+            e.currentTarget.style.color = "var(--red)";
           }}
           onMouseLeave={(e) => {
-            e.currentTarget.style.background = "var(--red)";
-            e.currentTarget.style.transform = "translateY(0)";
-            e.currentTarget.style.boxShadow = "none";
+            e.currentTarget.style.background = "transparent";
+            e.currentTarget.style.color = "#fff";
           }}
         >
           Daftar CBP →

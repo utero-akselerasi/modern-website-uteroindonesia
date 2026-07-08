@@ -163,7 +163,7 @@ export default function IntellectualProperty() {
       aria-labelledby="ip-title"
       style={{
         padding: "20px clamp(16px, 5vw, 64px) 80px",
-        background: "var(--white)",
+        background: "var(--red)",
       }}
     >
       <motion.div
@@ -179,7 +179,7 @@ export default function IntellectualProperty() {
             fontWeight: 600,
             letterSpacing: "0.2em",
             textTransform: "uppercase",
-            color: "var(--red)",
+            color: "#fff",
             marginBottom: "16px",
             display: "flex",
             alignItems: "center",
@@ -192,7 +192,7 @@ export default function IntellectualProperty() {
               display: "block",
               width: "24px",
               height: "1px",
-              background: "var(--red)",
+              background: "rgba(255,255,255,0.5)",
             }}
           />
           Intellectual Property
@@ -201,7 +201,7 @@ export default function IntellectualProperty() {
               display: "block",
               width: "24px",
               height: "1px",
-              background: "var(--red)",
+              background: "rgba(255,255,255,0.5)",
             }}
           />
         </div>
@@ -213,21 +213,21 @@ export default function IntellectualProperty() {
             fontWeight: 800,
             letterSpacing: "-0.03em",
             lineHeight: 1.1,
-            color: "var(--ink)",
+            color: "#fff",
           }}
         >
-          Karya & <span style={{ color: "var(--red)" }}>Kreasi</span> Utero
+          Karya & <span style={{ color: "var(--black)" }}>Kreasi</span> Utero
         </h2>
         <p
           style={{
             fontSize: "16px",
             lineHeight: 1.7,
-            color: "var(--muted)",
+            color: "rgba(255,255,255,0.7)",
             maxWidth: "600px",
             margin: "20px auto 0",
           }}
         >
-          Dari konten digital hingga brand fashion — setiap IP adalah bukti bahwa
+          Dari konten digital hingga brand fashion — setiap Intellectual Property adalah bukti bahwa
           kreativitas tidak pernah berhenti melahirkan sesuatu yang baru.
         </p>
       </motion.div>
@@ -304,29 +304,13 @@ export default function IntellectualProperty() {
               data-skip-filter={item.name === "Waraalvaro" || item.name === "Waravalerie" || item.name === "Multiverse" ? "true" : undefined}
               onMouseEnter={(e) => {
                 if (isDraggingRef.current) return;
-                e.currentTarget.style.background = "var(--red)";
-                e.currentTarget.style.borderColor = "var(--red)";
                 e.currentTarget.style.transform = "translateY(-6px)";
-                e.currentTarget.style.boxShadow = "0 12px 28px rgba(209, 31, 31, 0.2)";
-                const label = e.currentTarget.querySelector(".ip-ticker-label");
-                if (label) (label as HTMLElement).style.color = "#fff";
-                if (e.currentTarget.getAttribute("data-skip-filter") !== "true") {
-                  const img = e.currentTarget.querySelector("img");
-                  if (img) img.style.filter = "brightness(0) invert(1)";
-                }
+                e.currentTarget.style.boxShadow = "0 12px 28px rgba(0, 0, 0, 0.15)";
               }}
               onMouseLeave={(e) => {
                 if (isDraggingRef.current) return;
-                e.currentTarget.style.background = "var(--ash)";
-                e.currentTarget.style.borderColor = "var(--border-color)";
                 e.currentTarget.style.transform = "translateY(0)";
                 e.currentTarget.style.boxShadow = "none";
-                const label = e.currentTarget.querySelector(".ip-ticker-label");
-                if (label) (label as HTMLElement).style.color = "var(--ink)";
-                if (e.currentTarget.getAttribute("data-skip-filter") !== "true") {
-                  const img = e.currentTarget.querySelector("img");
-                  if (img) img.style.filter = "none";
-                }
               }}
             >
               <span
@@ -375,9 +359,6 @@ export default function IntellectualProperty() {
         .ip-ticker-track {
           will-change: transform;
           gap: 20px;
-        }
-        .ip-ticker-item:hover .ip-ticker-label {
-          color: #fff !important;
         }
         .ip-ticker-container[data-dragging] .ip-ticker-item {
           transition: none !important;

@@ -396,36 +396,23 @@ export default function Hero() {
             })}
           </div>
         </motion.div>
-      </div>
 
-      {/* Watermark "UTERO" — setengah terpotong di tepi kanan */}
-      <div
-        className="hero-watermark"
-        style={{
-          position: "absolute",
-          top: "90px",
-          right: "-10%",
-          bottom: "140px",
-          width: "50%",
-          overflow: "visible",
-          zIndex: 3,
-          pointerEvents: "none",
-        }}
-      >
+        {/* Watermark "UTERO" — setengah terpotong di tepi kanan */}
         <span
           style={{
             position: "absolute",
-            right: "0",
+            right: "-18vw",
             top: "50%",
             transform: "translateY(-50%) rotate(-90deg)",
-            transformOrigin: "center center",
             fontFamily: "var(--font-display)",
-            fontSize: "clamp(1.8rem, 2.5vw, 3.5rem)",
+            fontSize: "clamp(6rem, 10vw, 12rem)",
             fontWeight: 900,
-            color: "rgba(255, 255, 255, 0.10)",
+            color: "rgba(255, 255, 255, 0.20)",
             whiteSpace: "nowrap",
             letterSpacing: "0.08em",
             textTransform: "uppercase",
+            zIndex: 3,
+            pointerEvents: "none",
           }}
         >
           UTERO
@@ -699,40 +686,6 @@ export default function Hero() {
             </div>
           </div>
         </div>
-      </div>
-
-      {/* Watermark "UTERO" — setengah terpotong di tepi kanan */}
-      <div
-        className="hero-watermark"
-        style={{
-          position: "absolute",
-          top: "70px",
-          right: "-15%",
-          bottom: "40px",
-          width: "50%",
-          overflow: "visible",
-          zIndex: 3,
-          pointerEvents: "none",
-        }}
-      >
-        <span
-          style={{
-            position: "absolute",
-            right: "0",
-            top: "50%",
-            transform: "translateY(-50%) rotate(-90deg)",
-            transformOrigin: "center center",
-            fontFamily: "var(--font-display)",
-            fontSize: "clamp(2rem, 3vw, 4rem)",
-            fontWeight: 900,
-            color: "rgba(255, 255, 255, 0.10)",
-            whiteSpace: "nowrap",
-            letterSpacing: "0.08em",
-            textTransform: "uppercase",
-          }}
-        >
-          UTERO
-        </span>
       </div>
 
       <style jsx global>{`
