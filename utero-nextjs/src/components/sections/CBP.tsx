@@ -44,14 +44,18 @@ const cbpCities = [
 ];
 
 export default function CBP() {
+  const total = cbpCities.length;
+  const copiesNeeded = 20;
+  const offset = total * 10;
   const [current, setCurrent] = useState(0);
   const [cardsPerView, setCardsPerView] = useState(4);
   const containerRef = useRef<HTMLDivElement>(null);
   const [containerWidth, setContainerWidth] = useState(0);
 
-  const total = cbpCities.length;
-  const copiesNeeded = Math.max(Math.ceil((current + cardsPerView + total) / total), 3);
-  const displayCities = Array.from({ length: copiesNeeded }, () => cbpCities).flat();
+  const displayCities = Array.from(
+    { length: copiesNeeded },
+    () => cbpCities
+  ).flat();
 
   useEffect(() => {
     const update = () => {
@@ -81,10 +85,12 @@ export default function CBP() {
   const step = cardWidth + gap;
 
   const goPrev = () => {
-    setCurrent((p) => Math.max(p - 1, 0));
+    setCurrent((p) => Math.max(p - 1, -offset));
   };
   const goNext = () => {
-    setCurrent((p) => p + 1);
+    setCurrent((p) =>
+      Math.min(p + 1, total * copiesNeeded - offset - cardsPerView)
+    );
   };
 
   return (
@@ -147,7 +153,7 @@ export default function CBP() {
             color: "var(--ink)",
           }}
         >
-          Tersedia di <span style={{ color: "var(--black)" }}>5 Kota</span>
+          <span style={{ color: "#fff" }}>Tersedia di</span> <span style={{ color: "var(--black)" }}>5 Kota</span>
         </h2>
         <p
           style={{
@@ -178,7 +184,7 @@ export default function CBP() {
             style={{
               display: "flex",
               gap: "24px",
-              transform: `translateX(${-current * step}px)`,
+              transform: `translateX(${-(offset + current) * step}px)`,
               transition: "transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
             }}
           >
