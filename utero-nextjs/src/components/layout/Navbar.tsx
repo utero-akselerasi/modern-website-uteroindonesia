@@ -16,11 +16,13 @@ const navLinks = [
 ];
 
 const menuCards = [
+  { icon: "home", label: "Beranda", href: "#hero", desc: "Halaman utama" },
+  { icon: "info", label: "Tentang", href: "#tentang", desc: "Cerita kami" },
   { icon: "briefcase", label: "Lini Bisnis", href: "#know-us", desc: "Portofolio & klien" },
   { icon: "layers", label: "Divisi", href: "#divisi", desc: "Unit usaha aktif" },
-  { icon: "zap", label: "Layanan", href: "#layanan", desc: "Solusi kreatif" },
-  { icon: "users", label: "Klien", href: "#klien", desc: "Mitra kami" },
-  { icon: "info", label: "Tentang", href: "#tentang", desc: "Cerita kami" },
+  { icon: "arrow-right", label: "Alur Kerja", href: "#cara-kerja", desc: "Tahapan kolaborasi" },
+  { icon: "handshake", label: "Partnership", href: "#Partnership", desc: "Mitra strategis" },
+  { icon: "mail", label: "Kontak", href: "#kontak", desc: "Hubungi kami" },
 ];
 
 function MenuIcon({ name, size = 24 }: { name: string; size?: number }) {
@@ -50,6 +52,13 @@ function MenuIcon({ name, size = 24 }: { name: string; size?: number }) {
           <polyline points="2 12 12 17 22 12" />
         </svg>
       );
+    case "home":
+      return (
+        <svg {...svgProps}>
+          <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+          <polyline points="9 22 9 12 15 12 15 22" />
+        </svg>
+      );
     case "zap":
       return (
         <svg {...svgProps}>
@@ -71,6 +80,26 @@ function MenuIcon({ name, size = 24 }: { name: string; size?: number }) {
           <circle cx="12" cy="12" r="10" />
           <line x1="12" y1="16" x2="12" y2="12" />
           <line x1="12" y1="8" x2="12.01" y2="8" />
+        </svg>
+      );
+    case "arrow-right":
+      return (
+        <svg {...svgProps}>
+          <line x1="5" y1="12" x2="19" y2="12" />
+          <polyline points="12 5 19 12 12 19" />
+        </svg>
+      );
+    case "handshake":
+      return (
+        <svg {...svgProps}>
+          <path d="M20.42 4.58a5.4 5.4 0 0 0-7.65 0l-.77.78-.77-.78a5.4 5.4 0 0 0-7.65 0C1.46 6.7 1.33 10.28 4 13l8 8 8-8c2.67-2.72 2.54-6.3.42-8.42z" />
+        </svg>
+      );
+    case "mail":
+      return (
+        <svg {...svgProps}>
+          <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+          <polyline points="22,6 12,13 2,6" />
         </svg>
       );
     default:
