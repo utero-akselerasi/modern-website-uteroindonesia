@@ -161,6 +161,7 @@ export default function About() {
       <div
         role="list"
         aria-label="Data perusahaan"
+        className="about-cards-list"
         style={{
           display: "grid",
           gridTemplateColumns: "1fr 1fr",
@@ -228,6 +229,9 @@ export default function About() {
       </div>
 
       <style jsx global>{`
+        .about-section {
+          padding: 100px clamp(16px, 5vw, 64px) !important;
+        }
         @media (max-width: 900px) {
           .about-section {
             grid-template-columns: 1fr !important;
@@ -240,6 +244,9 @@ export default function About() {
           }
         }
         @media (max-width: 480px) {
+          .about-cards-list {
+            grid-template-columns: 1fr !important;
+          }
           .about-card {
             padding: 20px !important;
           }

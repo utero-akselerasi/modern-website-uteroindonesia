@@ -195,6 +195,7 @@ export default function Workflow() {
             key={step.title}
             variants={itemVariants}
             role="listitem"
+            className="workflow-step-item"
             style={{
               display: "flex",
               flexDirection: "column",
@@ -234,6 +235,7 @@ export default function Workflow() {
 
             {/* Icon in red circle */}
             <motion.div
+              className="step-icon-wrap"
               style={{
                 width: "56px",
                 height: "56px",
@@ -267,6 +269,7 @@ export default function Workflow() {
 
             {/* Step Title */}
             <h3
+              className="step-title"
               style={{
                 fontFamily: "var(--font-display)",
                 fontSize: "14px",
@@ -282,6 +285,7 @@ export default function Workflow() {
 
             {/* Description */}
             <p
+              className="step-desc"
               style={{
                 fontSize: "13px",
                 lineHeight: 1.5,
@@ -311,7 +315,7 @@ export default function Workflow() {
             gap: 40px !important;
           }
           .step-arrow-line {
-            display: block !important;
+            display: none !important;
           }
         }
         @media (max-width: 640px) {
@@ -327,7 +331,9 @@ export default function Workflow() {
           }
           .workflow-step-item {
             position: relative !important;
-            padding-left: 80px !important;
+            padding-left: 72px !important;
+            align-items: flex-start !important;
+            text-align: left !important;
           }
           .workflow-step-item::before {
             content: "";
@@ -342,10 +348,16 @@ export default function Workflow() {
           .workflow-step-item:last-child::before {
             display: none !important;
           }
-          .workflow-step-item > div:first-child {
+          .workflow-step-item .step-icon-wrap {
             position: absolute !important;
             left: 0 !important;
             top: 0 !important;
+            margin-bottom: 0 !important;
+          }
+          .workflow-step-item .step-title,
+          .workflow-step-item .step-desc {
+            text-align: left !important;
+            max-width: none !important;
           }
         }
       `}</style>

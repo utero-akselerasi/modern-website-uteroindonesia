@@ -51,7 +51,7 @@ function getLabelStyle(placement: Placement) {
   switch (placement) {
     case "right":
       return {
-        left: "calc(100% + 14px)",
+        left: "calc(100% + var(--label-gap, 14px))",
         right: "auto" as const,
         top: "50%",
         transform: "translateY(-50%)",
@@ -60,7 +60,7 @@ function getLabelStyle(placement: Placement) {
     case "left":
       return {
         left: "auto" as const,
-        right: "calc(100% + 14px)",
+        right: "calc(100% + var(--label-gap, 14px))",
         top: "50%",
         transform: "translateY(-50%)",
         textAlign: "right" as const,
@@ -69,7 +69,7 @@ function getLabelStyle(placement: Placement) {
       return {
         left: "50%",
         right: "auto" as const,
-        top: "calc(100% + 10px)",
+        top: "calc(100% + var(--label-gap-y, 10px))",
         transform: "translateX(-50%)",
         textAlign: "center" as const,
       };
@@ -77,7 +77,7 @@ function getLabelStyle(placement: Placement) {
       return {
         left: "0",
         right: "auto" as const,
-        top: "calc(100% + 10px)",
+        top: "calc(100% + var(--label-gap-y, 10px))",
         transform: "none",
         textAlign: "left" as const,
       };
@@ -85,7 +85,7 @@ function getLabelStyle(placement: Placement) {
       return {
         left: "auto" as const,
         right: "0",
-        top: "calc(100% + 10px)",
+        top: "calc(100% + var(--label-gap-y, 10px))",
         transform: "none",
         textAlign: "right" as const,
       };
@@ -94,7 +94,7 @@ function getLabelStyle(placement: Placement) {
         left: "50%",
         right: "auto" as const,
         top: "auto" as const,
-        bottom: "calc(100% + 8px)",
+        bottom: "calc(100% + var(--label-gap-top, 8px))",
         transform: "translateX(-50%)",
         textAlign: "center" as const,
       };
@@ -325,18 +325,18 @@ export default function Hero() {
               if (div.title === "EVENT") {
                 labelStyle = {
                   left: "auto",
-                  right: "calc(100% + 4px)",
+                  right: "calc(100% + var(--label-gap-x-event, 4px))",
                   top: "auto",
-                  bottom: "calc(100% + 8px)",
+                  bottom: "calc(100% + var(--label-gap-top, 8px))",
                   transform: "none",
                   textAlign: "right",
                 };
               } else if (div.title === "STRATEGI") {
                 labelStyle = {
-                  left: "calc(100% + 4px)",
+                  left: "calc(100% + var(--label-gap-x-strategi, 4px))",
                   right: "auto",
                   top: "auto",
-                  bottom: "calc(100% + 8px)",
+                  bottom: "calc(100% + var(--label-gap-top, 8px))",
                   transform: "none",
                   textAlign: "left",
                 };
@@ -399,6 +399,7 @@ export default function Hero() {
 
         {/* Watermark "UTERO" — setengah terpotong di tepi kanan */}
         <span
+          className="hero-watermark"
           style={{
             position: "absolute",
             right: "-18vw",
@@ -689,6 +690,14 @@ export default function Hero() {
       </div>
 
       <style jsx global>{`
+        :root {
+          --label-gap: 14px;
+          --label-gap-y: 10px;
+          --label-gap-top: 8px;
+          --label-gap-x-event: 4px;
+          --label-gap-x-strategi: 4px;
+        }
+
         @keyframes tickerScroll {
           0% { transform: translateX(0); }
           100% { transform: translateX(-50%); }
@@ -771,7 +780,7 @@ export default function Hero() {
           box-shadow: 0 4px 12px rgba(0, 0, 0, 0.18);
           transition: all 0.3s var(--ease);
         }
-.orbit-node-group:hover .orbit-node-badge {
+        .orbit-node-group:hover .orbit-node-badge {
           transform: scale(1.18);
           box-shadow: 0 8px 22px rgba(0, 0, 0, 0.3), 0 0 12px rgba(255, 255, 255, 0.15);
         }
@@ -821,9 +830,25 @@ export default function Hero() {
         }
 
         /* Responsive */
+        @media (max-width: 1200px) {
+          :root {
+            --label-gap: 8px;
+            --label-gap-y: 6px;
+            --label-gap-top: 4px;
+            --label-gap-x-event: 2px;
+            --label-gap-x-strategi: 2px;
+          }
+        }
+
         @media (max-width: 1024px) {
           .hero-left {
             padding: clamp(90px, 12vh, 130px) clamp(40px, 5vw, 60px) clamp(60px, 8vh, 100px) !important;
+          }
+          .hero-watermark {
+            display: none !important;
+          }
+          .hero-stats-grid {
+            grid-template-columns: repeat(2, 1fr) !important;
           }
         }
 
@@ -851,15 +876,6 @@ export default function Hero() {
           .hero-right {
             padding: 60px 20px !important;
           }
-        }
-
-        @media (max-width: 1024px) {
-          .hero-stats-grid {
-            grid-template-columns: repeat(2, 1fr) !important;
-          }
-        }
-
-        @media (max-width: 768px) {
           .hero-stats-grid {
             grid-template-columns: repeat(2, 1fr) !important;
             gap: 24px !important;
@@ -867,6 +883,13 @@ export default function Hero() {
         }
 
         @media (max-width: 480px) {
+          :root {
+            --label-gap: 4px;
+            --label-gap-y: 3px;
+            --label-gap-top: 2px;
+            --label-gap-x-event: 1px;
+            --label-gap-x-strategi: 1px;
+          }
           .hero-left {
             padding: 90px 16px 30px !important;
           }
@@ -874,12 +897,21 @@ export default function Hero() {
             padding: 40px 16px 60px !important;
           }
           .hero-right > div {
-            width: 290px !important;
-            height: 290px !important;
+            width: min(290px, 82vw) !important;
+            height: min(290px, 82vw) !important;
+          }
+          .orbit-node-label {
+            font-size: 7.5px !important;
           }
           .hero-stats-grid {
             grid-template-columns: 1fr !important;
             gap: 16px !important;
+          }
+        }
+
+        @media (max-width: 360px) {
+          .orbit-node-label {
+            font-size: 6.5px !important;
           }
         }
       `}</style>

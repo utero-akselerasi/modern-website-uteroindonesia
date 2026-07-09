@@ -342,6 +342,9 @@ export default function Divisions() {
           }
         }
         @media (max-width: 480px) {
+          .divisions-grid {
+            grid-template-columns: repeat(2, 1fr) !important;
+          }
           .divisions-card {
             padding: 20px 16px !important;
           }

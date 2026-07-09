@@ -205,7 +205,7 @@ export default function Partners() {
                 }
               }}
               onMouseLeave={(e) => {
-                e.currentTarget.style.background = "var(--white)";
+                e.currentTarget.style.background = "var(--white )";
                 e.currentTarget.style.borderColor = "var(--border-color)";
                 e.currentTarget.style.transform = "translateY(0)";
                 e.currentTarget.style.boxShadow = "none";
@@ -292,7 +292,12 @@ export default function Partners() {
             grid-template-columns: repeat(2, 1fr) !important;
           }
         }
-        @media (max-width: 400px) {
+        @media (max-width: 480px) {
+          .partners-grid {
+            grid-template-columns: repeat(2, 1fr) !important;
+          }
+        }
+        @media (max-width: 360px) {
           .partners-grid {
             grid-template-columns: 1fr !important;
           }

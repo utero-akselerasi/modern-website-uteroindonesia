@@ -130,3 +130,18 @@ body {
 ::-webkit-scrollbar-thumb:hover {
   background: var(--red2);
 }
+
+/* ===== SAFE AREA INSETS (Notch Support) ===== */
+.safe-left {
+  padding-left: env(safe-area-inset-left, 0px);
+}
+.safe-right {
+  padding-right: env(safe-area-inset-right, 0px);
+}
+.safe-x {
+  padding-left: env(safe-area-inset-left, 0px);
+  padding-right: env(safe-area-inset-right, 0px);
+}
+.safe-bottom {
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}

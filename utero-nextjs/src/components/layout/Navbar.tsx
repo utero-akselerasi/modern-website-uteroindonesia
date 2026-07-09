@@ -169,14 +169,15 @@ export default function Navbar() {
             alt="Utero Indonesia"
             width={140}
             height={36}
-            style={{ objectFit: "contain", height: "36px", width: "auto", transform: "scale(4.0)", transformOrigin: "left center" }}
+            className="nav-logo-img"
+            style={{ objectFit: "contain", height: "36px", width: "auto", transformOrigin: "left center" }}
           />
         </Link>
 
         <ul
           style={{
             display: "flex",
-            gap: "36px",
+            gap: "clamp(16px, 2.5vw, 36px)",
             listStyle: "none",
             alignItems: "center",
           }}
@@ -186,6 +187,7 @@ export default function Navbar() {
             <li key={link.href}>
               <Link
                 href={link.href}
+                className="nav-desktop-link"
                 style={{
                   fontSize: "13px",
                   fontWeight: 500,
@@ -194,6 +196,7 @@ export default function Navbar() {
                   color: "#000000",
                   textDecoration: "none",
                   transition: "color 0.2s",
+                  whiteSpace: "nowrap",
                 }}
                 onMouseEnter={(e) =>
                   (e.currentTarget.style.color = "var(--red)")
@@ -209,6 +212,7 @@ export default function Navbar() {
           <li>
             <Link
               href="#kontak"
+              className="nav-cta-btn"
               style={{
                 background: "var(--red)",
                 color: "#fff",
@@ -220,6 +224,7 @@ export default function Navbar() {
                 textTransform: "uppercase",
                 textDecoration: "none",
                 transition: "background 0.2s",
+                whiteSpace: "nowrap",
               }}
               onMouseEnter={(e) =>
                 (e.currentTarget.style.background = "var(--red2)")
@@ -473,9 +478,39 @@ export default function Navbar() {
       </AnimatePresence>
 
       <style jsx global>{`
-        @media (max-width: 768px) {
+        /* Logo responsive scale */
+        .nav-logo-img {
+          transform: scale(4.0);
+        }
+
+        /* ===== Desktop nav: 1024px+ ===== */
+        /* Already visible by default */
+
+        /* ===== Compact desktop nav: 1024-1280px (landscape tablets, small laptops) ===== */
+        @media (min-width: 1025px) and (max-width: 1280px) {
           nav {
-            padding: 16px 24px !important;
+            padding: 12px 32px !important;
+          }
+          .nav-desktop {
+            gap: 16px !important;
+          }
+          .nav-desktop-link {
+            font-size: 11px !important;
+            letter-spacing: 0.05em !important;
+          }
+          .nav-cta-btn {
+            font-size: 11px !important;
+            padding: 8px 16px !important;
+          }
+          .nav-logo-img {
+            transform: scale(3.2) !important;
+          }
+        }
+
+        /* ===== Hamburger mode: <=1024px (tablets portrait, landscape phones, phones) ===== */
+        @media (max-width: 1024px) {
+          nav {
+            padding: 14px 24px !important;
           }
           .nav-desktop {
             display: none !important;
@@ -483,10 +518,52 @@ export default function Navbar() {
           .nav-mobile-btn {
             display: flex !important;
           }
+          .nav-logo-img {
+            transform: scale(2.8) !important;
+          }
         }
+
+        /* ===== Phone landscape (wider but short) ===== */
+        @media (max-width: 900px) and (orientation: landscape) {
+          nav {
+            padding: 10px 24px !important;
+          }
+          .nav-logo-img {
+            transform: scale(2.4) !important;
+          }
+        }
+
+        /* ===== Phone portrait ===== */
         @media (max-width: 480px) {
+          nav {
+            padding: 12px 16px !important;
+          }
+          .nav-logo-img {
+            transform: scale(2.2) !important;
+          }
           .nav-mobile-grid {
             grid-template-columns: 1fr !important;
+          }
+        }
+
+        /* ===== Very small phones ===== */
+        @media (max-width: 360px) {
+          nav {
+            padding: 10px 12px !important;
+          }
+          .nav-logo-img {
+            transform: scale(2.0) !important;
+          }
+        }
+
+        /* ===== Mobile menu landscape adjustments ===== */
+        @media (max-height: 500px) and (orientation: landscape) {
+          .nav-mobile-grid {
+            grid-template-columns: repeat(3, 1fr) !important;
+            gap: 8px !important;
+          }
+          .nav-mobile-grid a {
+            padding: 16px 12px !important;
           }
         }
       `}</style>

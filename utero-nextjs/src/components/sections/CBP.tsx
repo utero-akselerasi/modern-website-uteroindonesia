@@ -471,17 +471,19 @@ export default function CBP() {
             font-size: 10px !important;
           }
           .cbp-arrow {
-            width: 50px !important;
-            height: 50px !important;
-            left: -25px !important;
+            width: 46px !important;
+            height: 46px !important;
+            left: 8px !important;
+            background: rgba(255, 255, 255, 0.95) !important;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
           }
           .cbp-arrow-next {
             left: auto !important;
-            right: -25px !important;
+            right: 8px !important;
           }
           .cbp-arrow svg {
-            width: 16px !important;
-            height: 16px !important;
+            width: 18px !important;
+            height: 18px !important;
           }
         }
       `}</style>

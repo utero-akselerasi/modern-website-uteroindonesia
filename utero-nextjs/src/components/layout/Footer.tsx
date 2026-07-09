@@ -449,25 +449,30 @@ export default function Footer() {
       </div>
 
       <style jsx global>{`
-        @media (max-width: 900px) {
+        @media (max-width: 1024px) {
           .footer-top {
             grid-template-columns: 1fr 1fr !important;
+            gap: 40px !important;
           }
           .footer-maps-container {
             grid-column: 1 / -1 !important;
             margin-top: 24px !important;
           }
           footer {
-            padding: 48px 24px 32px !important;
+            padding: 48px 32px 32px !important;
           }
         }
         @media (max-width: 480px) {
           .footer-top {
             grid-template-columns: 1fr !important;
+            gap: 32px !important;
           }
           .footer-maps-container {
             grid-column: 1 / -1 !important;
-            margin-top: 24px !important;
+            margin-top: 16px !important;
+          }
+          footer {
+            padding: 40px 16px 24px !important;
           }
         }
       `}</style>
