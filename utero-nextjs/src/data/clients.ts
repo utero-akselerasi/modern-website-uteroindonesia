@@ -17,6 +17,7 @@ export const clients: Client[] = [
   },
   {
     "name": "3 Second",
+    "url": "https://3second.co.id",
     "logo": "/images/client/3-second.png",
     "big": true
   },
@@ -32,6 +33,7 @@ export const clients: Client[] = [
   },
   {
     "name": "Advos",
+    "url": "https://www.advosindonesia.com",
     "logo": "/images/client/advos.png"
   },
   {
@@ -67,14 +69,17 @@ export const clients: Client[] = [
   },
   {
     "name": "Bank Sidoarjo",
+    "url": "https://bprdeltaartha.utero.id",
     "logo": "/images/client/bank-sidoarjo.png"
   },
   {
     "name": "Begawan Premium Student Apartment",
+    "url": "https://www.begawan-apartment.com",
     "logo": "/images/client/begawan-premium-student-apartment.png"
   },
   {
     "name": "Berrys",
+    "url": "https://www.instagram.com/berrys.id",
     "logo": "/images/client/berrys.png"
   },
   {
@@ -84,6 +89,7 @@ export const clients: Client[] = [
   },
   {
     "name": "Bluder Kapas",
+    "url": "https://kapas.id",
     "logo": "/images/client/bluder-kapas.png"
   },
   {
@@ -99,6 +105,7 @@ export const clients: Client[] = [
   },
   {
     "name": "Bpr Artha Kanjuruhan",
+    "url": "https://arthakanjuruhan.com",
     "logo": "/images/client/bpr-artha-kanjuruhan.png",
     "big": true
   },
@@ -115,14 +122,17 @@ export const clients: Client[] = [
   },
   {
     "name": "Calon Istri",
+    "url": "https://www.instagram.com/calonistri.id",
     "logo": "/images/client/calon-istri.png"
   },
   {
     "name": "Catoel",
+    "url": "https://www.instagram.com/catoelindonesia",
     "logo": "/images/client/catoel.png"
   },
   {
     "name": "Chatten",
+    "url": "https://chatten.id",
     "logo": "/images/client/chatten.png"
   },
   {
@@ -133,10 +143,12 @@ export const clients: Client[] = [
   },
   {
     "name": "Consult",
+    "url": "https://www.consult-indonesia.com",
     "logo": "/images/client/consult.png"
   },
   {
     "name": "Cross",
+    "url": "https://www.instagram.com/crossbrand.id",
     "logo": "/images/client/cross.png"
   },
   {
@@ -147,6 +159,7 @@ export const clients: Client[] = [
   },
   {
     "name": "Dailbana",
+    "url": "https://www.instagram.com/dailbana.id",
     "logo": "/images/client/dailbana.png",
     "scale": 1.5
   },
@@ -157,14 +170,17 @@ export const clients: Client[] = [
   },
   {
     "name": "Dhika Universe",
+    "url": "https://dhikauniverseyogyakarta.com",
     "logo": "/images/client/dhika-universe.png"
   },
   {
     "name": "Dinar Weddover",
+    "url": "https://dinarweddover.com",
     "logo": "/images/client/dinar-weddover.png"
   },
   {
     "name": "Diplomat",
+    "url": "https://www.instagram.com/diplomat.indonesia",
     "logo": "/images/client/diplomat.png"
   },
   {
@@ -175,26 +191,32 @@ export const clients: Client[] = [
   },
   {
     "name": "Djoglo",
+    "url": "https://www.instagram.com/djoglo.id",
     "logo": "/images/client/djoglo.png"
   },
   {
     "name": "Dr Dhelay",
+    "url": "https://www.instagram.com/drdhelay",
     "logo": "/images/client/dr-dhelay.png"
   },
   {
     "name": "Electronic City",
+    "url": "https://www.electronic-city.com",
     "logo": "/images/client/electronic-city.png"
   },
   {
     "name": "Ertekn",
+    "url": "https://erateknik.com",
     "logo": "/images/client/ertekn.png"
   },
   {
     "name": "Etawa Plus",
+    "url": "https://www.instagram.com/etaplus_official",
     "logo": "/images/client/etawa-plus.png"
   },
   {
     "name": "Fertisoil",
+    "url": "https://www.instagram.com/fertisoil",
     "logo": "/images/client/fertisoil.png",
     "big": true
   },
@@ -205,34 +227,42 @@ export const clients: Client[] = [
   },
   {
     "name": "First",
+    "url": "https://first-indonesia.com",
     "logo": "/images/client/first.png"
   },
   {
     "name": "Fpg Insurance",
+    "url": "https://www.fpgins.com",
     "logo": "/images/client/fpg-insurance.png"
   },
   {
     "name": "Gellate",
+    "url": "https://www.instagram.com/gellategelato",
     "logo": "/images/client/gellate.png"
   },
   {
     "name": "Gita",
+    "url": "https://www.gita-food.com",
     "logo": "/images/client/gita.png"
   },
   {
     "name": "Hamur Kurasi",
+    "url": "https://www.instagram.com/hamurkurasi",
     "logo": "/images/client/hamur-kurasi.png"
   },
   {
     "name": "Hanoman",
+    "url": "https://www.hanoman.co.id",
     "logo": "/images/client/hanoman.png"
   },
   {
     "name": "Helwa",
+    "url": "https://www.instagram.com/helwabeautycare",
     "logo": "/images/client/helwa.png"
   },
   {
     "name": "Hodai",
+    "url": "https://www.instagram.com/hodai_ayce",
     "logo": "/images/client/hodai.png"
   },
   {
@@ -254,10 +284,12 @@ export const clients: Client[] = [
   },
   {
     "name": "In Lite",
+    "url": "https://inlite.id",
     "logo": "/images/client/in-lite.png"
   },
   {
     "name": "Indana",
+    "url": "https://indana.co.id",
     "logo": "/images/client/indana.png",
     "big": true
   },
@@ -280,6 +312,7 @@ export const clients: Client[] = [
   },
   {
     "name": "Inspiring City",
+    "url": "https://www.instagram.com/inspiringcity.id",
     "logo": "/images/client/inspiring-city.png"
   },
   {
@@ -294,7 +327,7 @@ export const clients: Client[] = [
   },
   {
     "name": "Jatim Park",
-    "url": "https://www.jatimpark.com",
+    "url": "https://jtp.id",
     "logo": "/images/client/jatim-park.png"
   },
   {
@@ -309,14 +342,17 @@ export const clients: Client[] = [
   },
   {
     "name": "Kabupaten Malang",
+    "url": "https://malangkab.go.id",
     "logo": "/images/client/kabupaten-malang.png"
   },
   {
     "name": "Kampung Kramat",
+    "url": "https://www.instagram.com/kampungkramatmalang",
     "logo": "/images/client/kampung-kramat.png"
   },
   {
     "name": "Kek",
+    "url": "https://keke.id",
     "logo": "/images/client/kek.png"
   },
   {
@@ -326,11 +362,13 @@ export const clients: Client[] = [
   },
   {
     "name": "Kitabeli",
+    "url": "https://kitabeli.id",
     "logo": "/images/client/kitabeli.png",
     "big": true
   },
   {
     "name": "Konas",
+    "url": "https://www.instagram.com/konas.id",
     "logo": "/images/client/konas.png"
   },
   {
@@ -341,10 +379,12 @@ export const clients: Client[] = [
   },
   {
     "name": "Kota Karismatik Madiun",
+    "url": "https://madiunkota.go.id",
     "logo": "/images/client/kota-karismatik-madiun.png"
   },
   {
     "name": "Kota Madiun",
+    "url": "https://madiunkota.go.id",
     "logo": "/images/client/kota-madiun.png"
   },
   {
@@ -354,23 +394,28 @@ export const clients: Client[] = [
   },
   {
     "name": "La Tobas Cigar Premium",
+    "url": "https://www.instagram.com/latobascigar",
     "logo": "/images/client/la-tobas-cigar-premium.png"
   },
   {
     "name": "Lakoni",
+    "url": "https://www.instagram.com/lakoni.indonesia",
     "logo": "/images/client/lakoni.png",
     "big": true
   },
   {
     "name": "Malang Kucecwara",
+    "url": "https://www.instagram.com/malangkucecwara",
     "logo": "/images/client/malang-kucecwara.png"
   },
   {
     "name": "Mcc",
+    "url": "https://www.instagram.com/mcc.indonesia.official",
     "logo": "/images/client/mcc.png"
   },
   {
     "name": "Mccpg",
+    "url": "https://mcc.malangkota.go.id",
     "logo": "/images/client/mccpg.png"
   },
   {
@@ -381,32 +426,39 @@ export const clients: Client[] = [
   },
   {
     "name": "Mie Jogja",
+    "url": "https://mietbjogja.in",
     "logo": "/images/client/mie-jogja.png"
   },
   {
     "name": "Mom Sarasa",
+    "url": "https://www.instagram.com/momsarasa",
     "logo": "/images/client/mom-sarasa.png"
   },
   {
     "name": "Ms Glow",
+    "url": "https://msglowid.com",
     "logo": "/images/client/ms-glow.png",
     "big": true
   },
   {
     "name": "Naavagreen",
+    "url": "https://naavagreen.com",
     "logo": "/images/client/naavagreen.png"
   },
   {
     "name": "Nastle",
+    "url": "https://www.instagram.com/nastle.id",
     "logo": "/images/client/nastle.png",
     "big": true
   },
   {
     "name": "Nelongso",
+    "url": "https://www.instagram.com/ayamnelongso",
     "logo": "/images/client/nelongso.png"
   },
   {
     "name": "Nobu",
+    "url": "https://nobubank.com",
     "logo": "/images/client/nobu.png"
   },
   {
@@ -416,10 +468,12 @@ export const clients: Client[] = [
   },
   {
     "name": "Odigiro",
+    "url": "https://odigiro.com",
     "logo": "/images/client/odigiro.png"
   },
   {
     "name": "Ollino Garden",
+    "url": "http://ollinogarden.com",
     "logo": "/images/client/ollino-garden.png"
   },
   {
@@ -429,6 +483,7 @@ export const clients: Client[] = [
   },
   {
     "name": "Ot",
+    "url": "https://ot.id",
     "logo": "/images/client/ot.png"
   },
   {
@@ -438,6 +493,7 @@ export const clients: Client[] = [
   },
   {
     "name": "Perbamida",
+    "url": "https://perbamida.or.id",
     "logo": "/images/client/perbamida.png"
   },
   {
@@ -448,6 +504,7 @@ export const clients: Client[] = [
   },
   {
     "name": "Pia Cap Mangkok",
+    "url": "https://piamangkok.com",
     "logo": "/images/client/pia-cap-mangkok.png"
   },
   {
@@ -458,27 +515,33 @@ export const clients: Client[] = [
   },
   {
     "name": "Pt Bpr Bank Tulungagung",
+    "url": "https://banktulungagung.co.id",
     "logo": "/images/client/pt-bpr-bank-tulungagung.png"
   },
   {
     "name": "Pt Central Mega Kencana",
+    "url": "https://centralmegakencana.com",
     "logo": "/images/client/pt-central-mega-kencana.png"
   },
   {
     "name": "Pt Econusa Kualiva Abadi",
+    "url": "https://econusakualivaabadi.co.id",
     "logo": "/images/client/pt-econusa-kualiva-abadi.png"
   },
   {
     "name": "Pt Indo Lakto",
+    "url": "https://www.indomilk.com",
     "logo": "/images/client/pt-indo-lakto.png",
     "big": true
   },
   {
     "name": "Pt Inti Dragon",
+    "url": "https://intidragon.com",
     "logo": "/images/client/pt-inti-dragon.png"
   },
   {
     "name": "Raja Gula",
+    "url": "https://www.instagram.com/rajagula_id",
     "logo": "/images/client/raja-gula.png"
   },
   {
@@ -489,28 +552,34 @@ export const clients: Client[] = [
   },
   {
     "name": "Robot",
+    "url": "https://www.robotindonesiaofficial.com",
     "logo": "/images/client/robot.png"
   },
   {
     "name": "Rohani",
+    "url": "https://www.keripiktemperohani.com",
     "logo": "/images/client/rohani.png"
   },
   {
     "name": "Rsi Unisma Malang",
+    "url": "https://www.rsiunisma.my.id",
     "logo": "/images/client/rsi-unisma-malang.png",
     "big": true
   },
   {
     "name": "Rssa",
+    "url": "https://rsusaifulanwar.jatimprov.go.id",
     "logo": "/images/client/rssa.png"
   },
   {
     "name": "Rubylicious",
+    "url": "https://www.myrubylicious.com",
     "logo": "/images/client/rubylicious.png",
     "big": true
   },
   {
     "name": "Ruvodo",
+    "url": "https://ruvodo.com",
     "logo": "/images/client/ruvodo.png",
     "big": true
   },
@@ -522,10 +591,12 @@ export const clients: Client[] = [
   },
   {
     "name": "Satu Titik",
+    "url": "https://www.instagram.com/satutitik_store",
     "logo": "/images/client/satu-titik.png"
   },
   {
     "name": "Sidu",
+    "url": "https://sidu.id",
     "logo": "/images/client/sidu.png"
   },
   {
@@ -536,18 +607,22 @@ export const clients: Client[] = [
   },
   {
     "name": "Smoore",
+    "url": "https://www.smooreholdings.com",
     "logo": "/images/client/smoore.png"
   },
   {
     "name": "Stamford Indonesia Fc",
+    "url": "https://stamfordindonesiafc.utero.id",
     "logo": "/images/client/stamford-indonesia-fc.png"
   },
   {
     "name": "Teh Gelas",
+    "url": "https://www.instagram.com/tehgelasid",
     "logo": "/images/client/teh-gelas.png"
   },
   {
     "name": "Tekopi",
+    "url": "https://www.instagram.com/tekopi.id",
     "logo": "/images/client/tekopi.png"
   },
   {
@@ -558,15 +633,18 @@ export const clients: Client[] = [
   },
   {
     "name": "The Alana",
+    "url": "https://www.alanahotels.com",
     "logo": "/images/client/the-alana.png",
     "big": true
   },
   {
     "name": "Tiga Roda",
+    "url": "https://sementigaroda.com",
     "logo": "/images/client/tiga-roda.png"
   },
   {
     "name": "Tripa",
+    "url": "https://www.tripatra.com",
     "logo": "/images/client/tripa.png"
   },
   {
@@ -577,10 +655,12 @@ export const clients: Client[] = [
   },
   {
     "name": "Uwg",
+    "url": "https://widyagama.ac.id",
     "logo": "/images/client/uwg.png"
   },
   {
     "name": "Vivan",
+    "url": "https://www.vivan.co.id",
     "logo": "/images/client/vivan.png"
   },
   {
@@ -590,6 +670,7 @@ export const clients: Client[] = [
   },
   {
     "name": "Wismari",
+    "url": "https://www.instagram.com/wisma_ri",
     "logo": "/images/client/wismari.png",
     "big": true
   },
@@ -607,6 +688,7 @@ export const clients: Client[] = [
   },
   {
     "name": "You Wang You",
+    "url": "https://www.instagram.com/youwangyou_id",
     "logo": "/images/client/you-wang-you.png"
   }
 ];

@@ -5,7 +5,8 @@ import { sendGAEvent } from "@next/third-parties/google";
 
 const footerLinks = {
   navigasi: [
-    { name: "Beranda", href: "#hero" },
+    { name: "Home", href: "#hero" },
+    { name: "Tentang", href: "#tentang" },
     { name: "Lini Bisnis", href: "#know-us" },
     { name: "Divisi", href: "#divisi" },
     { name: "Alur Kerja", href: "#cara-kerja" },

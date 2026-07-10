@@ -15,11 +15,13 @@ const navLinks = [
 ];
 
 const menuCards = [
+  { icon: "home", label: "Beranda", href: "#hero", desc: "Halaman utama" },
+  { icon: "info", label: "Tentang", href: "#tentang", desc: "Cerita kami" },
   { icon: "briefcase", label: "Lini Bisnis", href: "#know-us", desc: "Portofolio & klien" },
   { icon: "layers", label: "Divisi", href: "#divisi", desc: "Unit usaha aktif" },
-  { icon: "activity", label: "Alur Kerja", href: "#cara-kerja", desc: "Proses kerja kami" },
+  { icon: "zap", label: "Layanan", href: "#layanan", desc: "Solusi kreatif" },
   { icon: "users", label: "Klien", href: "#klien", desc: "Mitra kami" },
-  { icon: "handshake", label: "Partnership", href: "#Partnership", desc: "Kerja sama bersama" },
+  { icon: "info", label: "Tentang", href: "#tentang", desc: "Cerita kami" },
 ];
 
 function MenuIcon({ name, size = 24 }: { name: string; size?: number }) {
@@ -50,6 +52,13 @@ function MenuIcon({ name, size = 24 }: { name: string; size?: number }) {
           <polyline points="2 12 12 17 22 12" />
         </svg>
       );
+    case "home":
+      return (
+        <svg {...svgProps}>
+          <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+          <polyline points="9 22 9 12 15 12 15 22" />
+        </svg>
+      );
     case "zap":
       return (
         <svg {...svgProps}>
@@ -71,20 +80,6 @@ function MenuIcon({ name, size = 24 }: { name: string; size?: number }) {
           <circle cx="12" cy="12" r="10" />
           <line x1="12" y1="16" x2="12" y2="12" />
           <line x1="12" y1="8" x2="12.01" y2="8" />
-        </svg>
-      );
-    case "activity":
-      return (
-        <svg {...svgProps}>
-          <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
-        </svg>
-      );
-    case "handshake":
-      return (
-        <svg {...svgProps}>
-          <path d="M9 17H7A5 5 0 0 1 7 7h2" />
-          <path d="M15 7h2a5 5 0 1 1 0 10h-2" />
-          <line x1="8" x2="16" y1="12" y2="12" />
         </svg>
       );
     default:
