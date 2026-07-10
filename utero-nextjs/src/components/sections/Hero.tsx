@@ -121,7 +121,7 @@ export default function Hero() {
 
 
       {/* ─── TOP SECTION: HEADLINE + ORBIT ─── */}
-      <div style={{ flex: 1, display: "grid", gridTemplateColumns: "1.1fr 0.9fr", position: "relative", zIndex: 2, minHeight: 0 }}>
+      <div className="hero-grid-container" style={{ flex: 1, display: "grid", gridTemplateColumns: "1.1fr 0.9fr", position: "relative", zIndex: 2, minHeight: 0 }}>
         {/* LEFT COLUMN */}
         <motion.div
           initial={{ opacity: 0, x: -40 }}
@@ -840,7 +840,39 @@ export default function Hero() {
           }
         }
 
+        @media (max-width: 1650px) {
+          .hero-grid-container {
+            grid-template-columns: 1fr 1fr !important;
+          }
+          .hero-right {
+            padding-left: 80px !important;
+            padding-right: 32px !important;
+          }
+          .hero-right > div {
+            width: min(400px, 80vw) !important;
+            height: min(400px, 80vw) !important;
+          }
+        }
+
+        @media (max-width: 1200px) {
+          .hero-right > div {
+            width: min(360px, 80vw) !important;
+            height: min(360px, 80vw) !important;
+          }
+        }
+
         @media (max-width: 1024px) {
+          .hero-grid-container {
+            grid-template-columns: 1fr 1fr !important;
+          }
+          .hero-right {
+            padding-left: 72px !important;
+            padding-right: 24px !important;
+          }
+          .hero-right > div {
+            width: min(340px, 75vw) !important;
+            height: min(340px, 75vw) !important;
+          }
           .hero-left {
             padding: clamp(90px, 12vh, 130px) clamp(40px, 5vw, 60px) clamp(60px, 8vh, 100px) !important;
           }
@@ -855,12 +887,16 @@ export default function Hero() {
         }
 
         @media (max-width: 900px) {
-          .hero-section > div:first-child {
+          .hero-grid-container {
             grid-template-columns: 1fr !important;
           }
           .hero-right {
             padding: 60px 24px !important;
             clip-path: none !important;
+          }
+          .hero-right > div {
+            width: min(440px, 85vw) !important;
+            height: min(440px, 85vw) !important;
           }
           .scroll-indicator {
             display: none !important;
