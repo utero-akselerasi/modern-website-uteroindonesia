@@ -406,7 +406,7 @@ export default function Hero() {
             top: "50%",
             transform: "translateY(-50%) rotate(-90deg)",
             fontFamily: "var(--font-display)",
-            fontSize: "clamp(6rem, 10vw, 12rem)",
+            fontSize: "var(--wm-fs, clamp(6rem, 10vw, 12rem))",
             fontWeight: 900,
             color: "rgba(255, 255, 255, 0.20)",
             whiteSpace: "nowrap",
@@ -845,9 +845,9 @@ export default function Hero() {
             padding: clamp(90px, 12vh, 130px) clamp(40px, 5vw, 60px) clamp(60px, 8vh, 100px) !important;
           }
           .hero-watermark {
-            font-size: clamp(7.5rem, 15vh, 12rem) !important;
-            right: -12vw !important;
-            color: rgba(255, 255, 255, 0.16) !important;
+            font-size: 10rem !important;
+            right: -8vw !important;
+            color: rgba(255, 255, 255, 0.12) !important;
           }
           .hero-stats-grid {
             grid-template-columns: repeat(2, 1fr) !important;
@@ -903,6 +903,14 @@ export default function Hero() {
           .hero-right {
             padding: 40px 16px 60px !important;
           }
+          .hero-watermark {
+            left: 85vw !important;
+            right: auto !important;
+            top: 52% !important;
+            z-index: 1 !important;
+            --wm-fs: 10rem;
+            color: rgba(255, 255, 255, 0.12) !important;
+          }
           .hero-right > div {
             width: min(290px, 82vw) !important;
             height: min(290px, 82vw) !important;
@@ -915,7 +923,6 @@ export default function Hero() {
             gap: 16px !important;
           }
           .hero-watermark {
-            font-size: clamp(5.5rem, 13vh, 8rem) !important;
             right: -8vw !important;
             color: rgba(255, 255, 255, 0.12) !important;
           }
