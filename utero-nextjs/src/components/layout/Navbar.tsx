@@ -7,7 +7,6 @@ import { motion, AnimatePresence } from "framer-motion";
 
 const navLinks = [
   { href: "#hero", label: "Beranda" },
-  { href: "#tentang", label: "Tentang" },
   { href: "#know-us", label: "Lini Bisnis" },
   { href: "#divisi", label: "Divisi" },
   { href: "#cara-kerja", label: "Alur Kerja" },
@@ -18,9 +17,9 @@ const navLinks = [
 const menuCards = [
   { icon: "briefcase", label: "Lini Bisnis", href: "#know-us", desc: "Portofolio & klien" },
   { icon: "layers", label: "Divisi", href: "#divisi", desc: "Unit usaha aktif" },
-  { icon: "zap", label: "Layanan", href: "#layanan", desc: "Solusi kreatif" },
+  { icon: "activity", label: "Alur Kerja", href: "#cara-kerja", desc: "Proses kerja kami" },
   { icon: "users", label: "Klien", href: "#klien", desc: "Mitra kami" },
-  { icon: "info", label: "Tentang", href: "#tentang", desc: "Cerita kami" },
+  { icon: "handshake", label: "Partnership", href: "#Partnership", desc: "Kerja sama bersama" },
 ];
 
 function MenuIcon({ name, size = 24 }: { name: string; size?: number }) {
@@ -34,6 +33,7 @@ function MenuIcon({ name, size = 24 }: { name: string; size?: number }) {
     strokeLinecap: "round" as const,
     strokeLinejoin: "round" as const,
   };
+
   switch (name) {
     case "briefcase":
       return (
@@ -71,6 +71,20 @@ function MenuIcon({ name, size = 24 }: { name: string; size?: number }) {
           <circle cx="12" cy="12" r="10" />
           <line x1="12" y1="16" x2="12" y2="12" />
           <line x1="12" y1="8" x2="12.01" y2="8" />
+        </svg>
+      );
+    case "activity":
+      return (
+        <svg {...svgProps}>
+          <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
+        </svg>
+      );
+    case "handshake":
+      return (
+        <svg {...svgProps}>
+          <path d="M9 17H7A5 5 0 0 1 7 7h2" />
+          <path d="M15 7h2a5 5 0 1 1 0 10h-2" />
+          <line x1="8" x2="16" y1="12" y2="12" />
         </svg>
       );
     default:
@@ -147,9 +161,7 @@ export default function Navbar() {
           alignItems: "center",
           justifyContent: "space-between",
           padding: isScrolled ? "12px 48px" : "18px 48px",
-          background: isScrolled
-            ? "var(--nav-bg-scrolled)"
-            : "var(--nav-bg)",
+          background: isScrolled ? "var(--nav-bg-scrolled)" : "var(--nav-bg)",
           backdropFilter: "blur(12px)",
           WebkitBackdropFilter: "blur(12px)",
           borderBottom: "1px solid var(--border-color)",
@@ -198,12 +210,8 @@ export default function Navbar() {
                   transition: "color 0.2s",
                   whiteSpace: "nowrap",
                 }}
-                onMouseEnter={(e) =>
-                  (e.currentTarget.style.color = "var(--red)")
-                }
-                onMouseLeave={(e) =>
-                  (e.currentTarget.style.color = "#000000")
-                }
+                onMouseEnter={(e) => (e.currentTarget.style.color = "var(--red)")}
+                onMouseLeave={(e) => (e.currentTarget.style.color = "#000000")}
               >
                 {link.label}
               </Link>
@@ -226,12 +234,8 @@ export default function Navbar() {
                 transition: "background 0.2s",
                 whiteSpace: "nowrap",
               }}
-              onMouseEnter={(e) =>
-                (e.currentTarget.style.background = "var(--red2)")
-              }
-              onMouseLeave={(e) =>
-                (e.currentTarget.style.background = "var(--red)")
-              }
+              onMouseEnter={(e) => (e.currentTarget.style.background = "var(--red2)")}
+              onMouseLeave={(e) => (e.currentTarget.style.background = "var(--red)")}
             >
               Konsultasi Gratis
             </Link>
@@ -366,7 +370,16 @@ export default function Navbar() {
                   e.currentTarget.style.color = "var(--ink)";
                 }}
               >
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <svg
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
                   <line x1="18" y1="6" x2="6" y2="18" />
                   <line x1="6" y1="6" x2="18" y2="18" />
                 </svg>
@@ -392,13 +405,7 @@ export default function Navbar() {
                 className="nav-mobile-grid"
               >
                 {menuCards.map((card, i) => (
-                  <motion.div
-                    key={card.href}
-                    variants={cardVariants}
-                    initial="hidden"
-                    animate="visible"
-                    custom={i}
-                  >
+                  <motion.div key={card.href} variants={cardVariants} initial="hidden" animate="visible" custom={i}>
                     <Link
                       href={card.href}
                       onClick={closeMenu}
@@ -407,7 +414,7 @@ export default function Navbar() {
                         flexDirection: "column",
                         gap: "12px",
                         padding: "24px 20px",
-              background: "#ffffff",
+                        background: "#ffffff",
                         border: "1px solid var(--border-color)",
                         borderRadius: "4px",
                         textDecoration: "none",
@@ -420,26 +427,31 @@ export default function Navbar() {
                         e.currentTarget.style.borderColor = "var(--red)";
                         e.currentTarget.style.color = "#fff";
                         const icon = e.currentTarget.querySelector("span");
-                        if (icon) icon.style.color = "#fff";
+                        if (icon) (icon as HTMLSpanElement).style.color = "#fff";
                       }}
                       onMouseLeave={(e) => {
                         e.currentTarget.style.background = "var(--ash)";
                         e.currentTarget.style.borderColor = "var(--border-color)";
                         e.currentTarget.style.color = "var(--ink)";
                         const icon = e.currentTarget.querySelector("span");
-                        if (icon) icon.style.color = "var(--red)";
+                        if (icon) (icon as HTMLSpanElement).style.color = "var(--red)";
                       }}
                     >
-                      <span style={{ color: "var(--red)", width: "32px", height: "32px", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                      <span
+                        style={{
+                          color: "var(--red)",
+                          width: "32px",
+                          height: "32px",
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                        }}
+                      >
                         <MenuIcon name={card.icon} size={24} />
                       </span>
                       <div>
-                        <div style={{ fontSize: "14px", fontWeight: 600, letterSpacing: "0.04em", marginBottom: "4px" }}>
-                          {card.label}
-                        </div>
-                        <div style={{ fontSize: "12px", color: "var(--muted)", lineHeight: 1.4 }}>
-                          {card.desc}
-                        </div>
+                        <div style={{ fontSize: "14px", fontWeight: 600, letterSpacing: "0.04em", marginBottom: "4px" }}>{card.label}</div>
+                        <div style={{ fontSize: "12px", color: "var(--muted)", lineHeight: 1.4 }}>{card.desc}</div>
                       </div>
                     </Link>
                   </motion.div>
@@ -462,12 +474,8 @@ export default function Navbar() {
                     textDecoration: "none",
                     transition: "background 0.2s",
                   }}
-                  onMouseEnter={(e) =>
-                    (e.currentTarget.style.background = "var(--red2)")
-                  }
-                  onMouseLeave={(e) =>
-                    (e.currentTarget.style.background = "var(--red)")
-                  }
+                  onMouseEnter={(e) => (e.currentTarget.style.background = "var(--red2)")}
+                  onMouseLeave={(e) => (e.currentTarget.style.background = "var(--red)")}
                 >
                   Konsultasi Gratis
                 </Link>
@@ -570,3 +578,4 @@ export default function Navbar() {
     </>
   );
 }
+

@@ -845,7 +845,9 @@ export default function Hero() {
             padding: clamp(90px, 12vh, 130px) clamp(40px, 5vw, 60px) clamp(60px, 8vh, 100px) !important;
           }
           .hero-watermark {
-            display: none !important;
+            font-size: clamp(7.5rem, 15vh, 12rem) !important;
+            right: -12vw !important;
+            color: rgba(255, 255, 255, 0.16) !important;
           }
           .hero-stats-grid {
             grid-template-columns: repeat(2, 1fr) !important;
@@ -866,6 +868,11 @@ export default function Hero() {
           .hero-stats-container {
             margin-top: 0 !important;
             padding: 0 16px 32px !important;
+          }
+          .hero-watermark {
+            font-size: clamp(6.5rem, 14vh, 10rem) !important;
+            right: -10vw !important;
+            color: rgba(255, 255, 255, 0.14) !important;
           }
         }
 
@@ -906,6 +913,11 @@ export default function Hero() {
           .hero-stats-grid {
             grid-template-columns: 1fr !important;
             gap: 16px !important;
+          }
+          .hero-watermark {
+            font-size: clamp(5.5rem, 13vh, 8rem) !important;
+            right: -8vw !important;
+            color: rgba(255, 255, 255, 0.12) !important;
           }
         }
 

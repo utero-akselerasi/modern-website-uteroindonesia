@@ -311,20 +311,10 @@ export default function Workflow() {
             margin-bottom: 48px !important;
           }
           .workflow-steps-grid {
-            grid-template-columns: 1fr 1fr !important;
-            gap: 40px !important;
-          }
-          .step-arrow-line {
-            display: none !important;
-          }
-        }
-        @media (max-width: 640px) {
-          .workflow-section {
-            padding: 64px 20px !important;
-          }
-          .workflow-steps-grid {
             grid-template-columns: 1fr !important;
-            gap: 32px !important;
+            gap: 40px !important;
+            max-width: 600px;
+            margin: 0 auto !important;
           }
           .step-arrow-line {
             display: none !important;
@@ -340,7 +330,7 @@ export default function Workflow() {
             position: absolute;
             left: 27px;
             top: 56px;
-            bottom: -32px;
+            bottom: -40px;
             width: 2px;
             background: var(--red);
             z-index: 1;
@@ -358,6 +348,51 @@ export default function Workflow() {
           .workflow-step-item .step-desc {
             text-align: left !important;
             max-width: none !important;
+          }
+        }
+        @media (max-width: 640px) {
+          .workflow-section {
+            padding: 64px 20px !important;
+          }
+          .workflow-steps-grid {
+            gap: 32px !important;
+          }
+          .workflow-step-item::before {
+            bottom: -32px !important;
+          }
+        }
+        @media (max-width: 950px) and (orientation: landscape) {
+          .workflow-steps-grid {
+            grid-template-columns: repeat(5, 1fr) !important;
+            gap: 16px !important;
+            max-width: none !important;
+            margin: 0 !important;
+          }
+          .step-arrow-line {
+            display: block !important;
+            left: calc(50% + 28px) !important;
+            width: calc(100% - 56px) !important;
+            height: 2px !important;
+            background: var(--red) !important;
+            top: 26px !important;
+          }
+          .workflow-step-item {
+            padding-left: 0 !important;
+            align-items: center !important;
+            text-align: center !important;
+          }
+          .workflow-step-item::before {
+            display: none !important;
+          }
+          .workflow-step-item .step-icon-wrap {
+            position: relative !important;
+            left: auto !important;
+            top: auto !important;
+            margin-bottom: 16px !important;
+          }
+          .workflow-step-item .step-title,
+          .workflow-step-item .step-desc {
+            text-align: center !important;
           }
         }
       `}</style>
