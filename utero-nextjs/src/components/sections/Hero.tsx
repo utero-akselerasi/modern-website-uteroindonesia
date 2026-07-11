@@ -187,7 +187,7 @@ export default function Hero() {
             <Link href="#kontak" className="btn-solid-black">
               Mulai Proyek Anda <span style={{ marginLeft: "8px" }}>→</span>
             </Link>
-            <Link href="#portofolio" className="btn-outline-white">
+            <Link href="#Partnership" className="btn-outline-white">
               Lihat Portfolio <span style={{ marginLeft: "8px" }}>→</span>
             </Link>
           </div>

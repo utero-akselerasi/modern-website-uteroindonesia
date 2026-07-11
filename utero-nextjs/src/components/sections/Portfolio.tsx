@@ -57,7 +57,7 @@ export default function Portfolio() {
           display: "grid",
           gridTemplateColumns: "1fr 1fr",
           gap: "80px",
-          alignItems: "end",
+          alignItems: "start",
           marginBottom: "56px",
         }}
         className="portfolio-header"
@@ -97,9 +97,13 @@ export default function Portfolio() {
               color: "#111",
             }}
           >
-            Kerja Nyata,
+            KAMI TAK BISA
             <br />
-            Karya Kolaborasi.
+            SENDIRI.
+            <br />
+            <span style={{ color: "var(--red)" }}>INI KARYA</span>
+            <br />
+            <span style={{ color: "var(--red)" }}>KOLABORASI.</span>
           </h2>
         </div>
         <p
@@ -107,11 +111,12 @@ export default function Portfolio() {
             fontSize: "17px",
             lineHeight: 1.7,
             color: "rgba(0,0,0,0.65)",
-            alignSelf: "end",
+            marginTop: "31px",
           }}
         >
-          Setiap proyek adalah cerita. Dari identitas merek hingga ekosistem
-          digital — kami wujudkan ide menjadi karya yang berdampak.
+          Dalam perjalanannya kami menemukan dan dipertemukan dengan kawan dan
+          sahabat, bukan hanya sekedar berjumpa tapi kami ingin saling memberi
+          manfaat dan terus berdampak dalam ekonomi kreatif.
         </p>
       </div>
 

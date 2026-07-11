@@ -164,8 +164,7 @@ export default function CBP() {
             margin: "20px auto 0",
           }}
         >
-          Utero Indonesia hadir di berbagai kota untuk melayani kebutuhan
-          kreatif dan advertising Anda.
+          Kami hadir dalam bentuk kantor, agent dan kawan yang bertanggung jawab di luar kota malang, dan kami selalu membuka peluang kerjasama di seluruh wilayah di indonesia, silahkan hubungi wilayah terdekat
         </p>
       </motion.div>
 

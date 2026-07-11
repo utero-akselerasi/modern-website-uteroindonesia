@@ -226,7 +226,9 @@ export default function Extrapreneur() {
             color: "var(--ink)",
           }}
         >
-          Unit Usaha <span style={{ color: "var(--red)" }}>Eksternal</span>
+          KAMI TAK BISA SENDIRI.
+          <br />
+          <span style={{ color: "var(--red)" }}>INI KARYA KOLABORASI.</span>
         </h2>
         <p
           style={{
@@ -237,8 +239,9 @@ export default function Extrapreneur() {
             margin: "20px auto 0",
           }}
         >
-          Dari teknologi hingga fashion — setiap unit adalah wujud nyata
-          semangat ekopreneurship yang kami kembangkan.
+          Dalam perjalanannya kami menemukan dan dipertemukan dengan kawan dan
+          sahabat, bukan hanya sekedar berjumpa tapi kami ingin saling memberi
+          manfaat dan terus berdampak dalam ekonomi kreatif.
         </p>
       </motion.div>
 

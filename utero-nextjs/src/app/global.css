@@ -145,3 +145,17 @@ body {
 .safe-bottom {
   padding-bottom: env(safe-area-inset-bottom, 0px);
 }
+
+/* ===== VIRTUAL UTERO CTA ===== */
+@media (max-width: 1024px) {
+  .virtual-uto-cta {
+    padding: 80px 32px !important;
+    background-position: center center !important;
+  }
+}
+@media (max-width: 480px) {
+  .virtual-uto-cta {
+    padding: 60px 16px !important;
+    background-position: center center !important;
+  }
+}

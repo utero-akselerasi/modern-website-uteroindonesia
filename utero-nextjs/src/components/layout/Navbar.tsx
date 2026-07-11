@@ -11,6 +11,7 @@ const navLinks = [
   { href: "#divisi", label: "Divisi" },
   { href: "#cara-kerja", label: "Alur Kerja" },
   { href: "#Partnership", label: "Partnership" },
+  { href: "/artikel", label: "Artikel" },
   { href: "#kontak", label: "Kontak" },
 ];
 
@@ -22,6 +23,7 @@ const menuCards = [
   { icon: "zap", label: "Layanan", href: "#layanan", desc: "Solusi kreatif" },
   { icon: "users", label: "Klien", href: "#klien", desc: "Mitra kami" },
   { icon: "info", label: "Tentang", href: "#tentang", desc: "Cerita kami" },
+  { icon: "layers", label: "Artikel", href: "/artikel", desc: "Blog & berita" },
 ];
 
 function MenuIcon({ name, size = 24 }: { name: string; size?: number }) {

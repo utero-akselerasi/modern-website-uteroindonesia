@@ -13,9 +13,9 @@ const handleEmailClick = (email: string) => {
 };
 
 const emailOptions = [
-  { key: "marketing", email: "marketingutero@gmail.com" },
-  { key: "branding", email: "uterobranding@gmail.com" },
-  { key: "info", email: "info@uteroindonesia.com" },
+  { key: "marketing", email: "marketingutero@gmail.com", label: "Koorporate" },
+  { key: "branding", email: "uterobranding@gmail.com", label: "Konsultasi" },
+  { key: "info", email: "info@uteroindonesia.com", label: "Khusus" },
 ];
 
 const contacts = [
@@ -47,7 +47,7 @@ const contacts = [
   {
     icon: "📍",
     label: "Kantor Malang",
-    value: "Jl. Bantaran 1 No. 25, Lowokwaru",
+    value: "Rumah Merah Oxyz, Jln. Bantaran 1, No. 25, Kota Malang",
     href: "https://maps.google.com",
     ariaLabel: "Kunjungi kantor kami",
   },
@@ -69,19 +69,25 @@ export default function Contact() {
       {
         key: "tari",
         phone: "+62 896-2143-9416",
-        label: "CS Tari",
+        label: "CS Jasa",
         href: "https://wa.me/6289621439416",
       },
       {
         key: "siti",
         phone: "+62 817-388-616",
-        label: "CS Siti",
+        label: "CS Produk",
         href: "https://wa.me/62817388616",
+      },
+      {
+        key: "alvi",
+        phone: "+62 895-1789-8767",
+        label: "Public Relation",
+        href: "https://wa.me/6289517898767",
       },
       {
         key: "utama",
         phone: "+62 819-9990-0900",
-        label: "Utero Indonesia",
+        label: "All Information",
         href: "https://wa.me/6281999900900",
       },
     ];
@@ -217,7 +223,7 @@ export default function Contact() {
                           e.currentTarget.style.color = "#111";
                         }}
                       >
-                        {opt.email}
+                        {opt.email} - {opt.label}
                       </a>
                     ))}
                   </div>

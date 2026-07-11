@@ -15,7 +15,9 @@ import Community from "@/components/sections/Community";
 import CBP from "@/components/sections/CBP";
 import Download from "@/components/sections/Download";
 import WhyUtero from "@/components/sections/WhyUtero";
+import RecentArticles from "@/components/sections/RecentArticles";
 import Contact from "@/components/sections/Contact";
+import Virtual from "@/components/sections/Virtual";
 
 export default function Home() {
   return (
@@ -35,7 +37,9 @@ export default function Home() {
       <Partners />
       <Download />
       <WhyUtero />
+      <RecentArticles />
       <Contact />
+      <Virtual />
       <Footer />
 
       {/* Hidden SEO content for indexing */}

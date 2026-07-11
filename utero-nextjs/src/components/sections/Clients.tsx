@@ -6,8 +6,6 @@ import { clients } from "@/data/clients";
 
 const ITEM_COUNT = clients.length;
 
-const logoRedNames = new Set(["Coca Cola", "Pertamina", "Telkomsel", "Sampoerna", "Daihatsu", "Honda"]);
-
 export default function Clients() {
   const trackRef = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -148,12 +146,11 @@ export default function Clients() {
   };
 
   const renderItem = (c: (typeof clients)[0], index: number) => {
-    const isRed = logoRedNames.has(c.name);
     const content = (
       <img
         src={c.logo}
         alt={c.name}
-        className={`client-scroll-logo${isRed ? " logo-red" : ""}`}
+        className="client-scroll-logo"
         draggable={false}
         style={c.scale ? { transform: `scale(${c.scale})` } : undefined}
       />
@@ -162,7 +159,7 @@ export default function Clients() {
       display: "flex" as const,
       alignItems: "center" as const,
       justifyContent: "center" as const,
-      width: c.big ? "160px" : "120px",
+      width: "120px",
       height: "64px",
       flexShrink: 0,
     };
@@ -250,7 +247,7 @@ export default function Clients() {
             style={{
               display: "flex",
               alignItems: "center",
-              gap: "40px",
+              gap: "24px",
               width: "max-content",
             }}
             className="clients-ticker-track"
@@ -269,18 +266,14 @@ export default function Clients() {
           transition: all 0.3s ease;
           filter: grayscale(100%);
           opacity: 0.7;
+          background: rgba(255, 255, 255, 0.95);
+          padding: 8px;
+          border-radius: 8px;
         }
         .client-scroll-logo:hover {
           filter: grayscale(0%);
           opacity: 1;
           transform: scale(1.05);
-        }
-        .logo-red {
-          padding: 8px;
-          background: rgba(255, 255, 255, 0.95);
-          border-radius: 8px;
-        }
-        .logo-red:hover {
           background: rgba(255, 255, 255, 1);
         }
         .clients-ticker-track {
@@ -293,9 +286,6 @@ export default function Clients() {
           filter: grayscale(100%) !important;
           opacity: 0.7 !important;
           transform: none !important;
-        }
-        .clients-ticker-container[data-dragging] .logo-red:hover {
-          background: rgba(255, 255, 255, 0.95) !important;
         }
         @media (max-width: 900px) {
           .clients-section {
