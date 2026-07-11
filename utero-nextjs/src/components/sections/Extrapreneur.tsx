@@ -46,8 +46,7 @@ export default function Extrapreneur() {
   const lastMoveTimeRef = useRef(0);
   const velocityRef = useRef(0);
   const oneSetWidthRef = useRef(0);
-  const followRef = useRef(false);
-  const lastFollowXRef = useRef(0);
+  const wasDraggedRef = useRef(false);
 
   const measureOneSetWidth = () => {
     if (!trackRef.current) return;
@@ -122,41 +121,36 @@ export default function Extrapreneur() {
       lastMoveTimeRef.current = now;
     };
 
-    const handlePointerUp = () => {
+    const handlePointerUp = (e: PointerEvent) => {
       if (!isDraggingRef.current) return;
       isDraggingRef.current = false;
-      containerRef.current?.removeAttribute('data-dragging');
-      const speed = Math.abs(velocityRef.current);
-      if (speed > 0.3) {
-        let vel = velocityRef.current * 16.67 * 0.5;
-        const inertia = () => {
-          if (Math.abs(vel) < 0.3) return;
-          translateXRef.current += vel;
-          const ow = oneSetWidthRef.current;
-          if (ow > 0) {
-            if (translateXRef.current <= -ow) translateXRef.current += ow;
-            if (translateXRef.current > 0) translateXRef.current -= ow;
-          }
-          if (trackRef.current) {
-            trackRef.current.style.transform = `translate3d(${translateXRef.current}px, 0, 0)`;
-          }
-          vel *= 0.92;
-          requestAnimationFrame(inertia);
-        };
-        requestAnimationFrame(inertia);
+      if (Math.abs(e.clientX - dragStartXRef.current) > 5) {
+        wasDraggedRef.current = true;
       }
-      pausedRef.current = followRef.current;
+      containerRef.current?.removeAttribute('data-dragging');
+      pausedRef.current = true;
+    };
+
+    const handleCaptureClick = (e: MouseEvent) => {
+      if (wasDraggedRef.current && containerRef.current?.contains(e.target as Node)) {
+        e.preventDefault();
+        e.stopPropagation();
+        wasDraggedRef.current = false;
+      }
     };
 
     window.addEventListener('pointermove', handlePointerMove);
     window.addEventListener('pointerup', handlePointerUp);
+    document.addEventListener('click', handleCaptureClick, true);
     return () => {
       window.removeEventListener('pointermove', handlePointerMove);
       window.removeEventListener('pointerup', handlePointerUp);
+      document.removeEventListener('click', handleCaptureClick, true);
     };
   }, []);
 
   const handlePointerDown = (e: React.PointerEvent) => {
+    wasDraggedRef.current = false;
     isDraggingRef.current = true;
     pausedRef.current = true;
     dragStartXRef.current = e.clientX;
@@ -253,31 +247,22 @@ export default function Extrapreneur() {
           overflow: "hidden",
           padding: "24px 0",
           touchAction: "none",
+          userSelect: "none",
+          WebkitUserSelect: "none",
         }}
         className="extrapreneur-ticker-container"
-        onMouseEnter={(e) => {
+        onMouseEnter={() => {
           pausedRef.current = true;
-          followRef.current = true;
-          lastFollowXRef.current = e.clientX;
-        }}
-        onMouseMove={(e) => {
-          if (!followRef.current || isDraggingRef.current) return;
-          const delta = e.clientX - lastFollowXRef.current;
-          if (Math.abs(delta) < 2) return;
-          translateXRef.current += delta;
-          const ow = oneSetWidthRef.current;
-          if (ow > 0) {
-            if (translateXRef.current <= -ow) translateXRef.current += ow;
-            if (translateXRef.current > 0) translateXRef.current -= ow;
-          }
-          if (trackRef.current) {
-            trackRef.current.style.transform = `translate3d(${translateXRef.current}px, 0, 0)`;
-          }
-          lastFollowXRef.current = e.clientX;
         }}
         onMouseLeave={() => {
-          followRef.current = false;
           if (!isDraggingRef.current) pausedRef.current = false;
+        }}
+        onPointerLeave={() => {
+          if (isDraggingRef.current) {
+            isDraggingRef.current = false;
+            containerRef.current?.removeAttribute('data-dragging');
+            pausedRef.current = false;
+          }
         }}
         onPointerDown={handlePointerDown}
       >
@@ -295,6 +280,7 @@ export default function Extrapreneur() {
               href={item.href}
               target="_blank"
               rel="noopener noreferrer"
+              draggable={false}
               style={{
                 display: "flex",
                 flexDirection: "column",
