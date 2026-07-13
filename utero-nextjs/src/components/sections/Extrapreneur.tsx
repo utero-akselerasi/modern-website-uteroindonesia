@@ -259,9 +259,7 @@ export default function Extrapreneur() {
         }}
         onPointerLeave={() => {
           if (isDraggingRef.current) {
-            isDraggingRef.current = false;
             containerRef.current?.removeAttribute('data-dragging');
-            pausedRef.current = false;
           }
         }}
         onPointerDown={handlePointerDown}
@@ -327,6 +325,13 @@ export default function Extrapreneur() {
                   if (img) img.style.filter = "none";
                 }
               }}
+              onClick={(e) => {
+                if (wasDraggedRef.current) {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  wasDraggedRef.current = false;
+                }
+              }}
             >
               <span
                 className="extrapreneur-ticker-icon"
@@ -345,6 +350,7 @@ export default function Extrapreneur() {
                   alt={item.alt}
                   width={96}
                   height={96}
+                  draggable={false}
                   style={{
                     objectFit: "contain",
                     transition: "filter 0.3s",
@@ -374,6 +380,12 @@ export default function Extrapreneur() {
         .extrapreneur-ticker-track {
           will-change: transform;
           gap: 20px;
+        }
+        .extrapreneur-ticker-container img,
+        .extrapreneur-ticker-container svg {
+          -webkit-user-drag: none;
+          user-select: none;
+          -webkit-user-select: none;
         }
         .extrapreneur-ticker-item:hover .extrapreneur-ticker-label {
           color: #fff !important;

@@ -246,9 +246,7 @@ export default function IntellectualProperty() {
         }}
         onPointerLeave={() => {
           if (isDraggingRef.current) {
-            isDraggingRef.current = false;
             containerRef.current?.removeAttribute('data-dragging');
-            pausedRef.current = false;
           }
         }}
         onPointerDown={handlePointerDown}
@@ -298,6 +296,13 @@ export default function IntellectualProperty() {
                 e.currentTarget.style.transform = "translateY(0)";
                 e.currentTarget.style.boxShadow = "none";
               }}
+              onClick={(e) => {
+                if (wasDraggedRef.current) {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  wasDraggedRef.current = false;
+                }
+              }}
             >
               <span
                 className="ip-ticker-icon"
@@ -316,6 +321,7 @@ export default function IntellectualProperty() {
                   alt={item.alt}
                   width={96}
                   height={96}
+                  draggable={false}
                   style={{
                     objectFit: "contain",
                     transition: "filter 0.3s",
@@ -345,6 +351,12 @@ export default function IntellectualProperty() {
         .ip-ticker-track {
           will-change: transform;
           gap: 20px;
+        }
+        .ip-ticker-container img,
+        .ip-ticker-container svg {
+          -webkit-user-drag: none;
+          user-select: none;
+          -webkit-user-select: none;
         }
         .ip-ticker-container[data-dragging] .ip-ticker-item {
           transition: none !important;

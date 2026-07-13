@@ -290,9 +290,7 @@ export default function KnowUsMore() {
         }}
         onPointerLeave={() => {
           if (isDraggingRef.current) {
-            isDraggingRef.current = false;
             containerRef.current?.removeAttribute('data-dragging');
-            pausedRef.current = false;
           }
         }}
         onPointerDown={handlePointerDown}
@@ -313,7 +311,13 @@ export default function KnowUsMore() {
               target={item.target}
               rel="noopener noreferrer"
               draggable={false}
-              onClick={() => {
+              onClick={(e) => {
+                if (wasDraggedRef.current) {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  wasDraggedRef.current = false;
+                  return;
+                }
                 if (item.onClick) {
                   item.onClick();
                 }
@@ -376,6 +380,7 @@ export default function KnowUsMore() {
                   alt={item.alt}
                   width={76}
                   height={76}
+                  draggable={false}
                   style={{
                     objectFit: "contain",
                   }}
@@ -405,6 +410,12 @@ export default function KnowUsMore() {
         .know-us-ticker-track {
           will-change: transform;
           gap: 20px;
+        }
+        .know-us-ticker-container img,
+        .know-us-ticker-container svg {
+          -webkit-user-drag: none;
+          user-select: none;
+          -webkit-user-select: none;
         }
         .know-us-item:hover .know-us-label {
           color: var(--white) !important;
