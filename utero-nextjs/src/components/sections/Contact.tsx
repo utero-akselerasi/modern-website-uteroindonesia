@@ -29,12 +29,13 @@ const contacts = [
     type: "wa_dropdown",
   },
   {
-    icon: "💬",
-    label: "WhatsApp",
-    value: "Carubra AI",
-    href: "https://wa.me/6285940834227",
-    ariaLabel: "Hubungi via WhatsApp Carubra AI",
-    onClick: handleWhatsAppClick,
+    icon: "🤖",
+    label: "AI Agent",
+    value: "Carubra Agent AI",
+    href: "#",
+    ariaLabel: "Pilih AI Agent Carubra",
+    onClick: undefined,
+    type: "ai_dropdown",
   },
   {
     icon: "✉️",
@@ -56,6 +57,7 @@ const contacts = [
 export default function Contact() {
   const [isEmailOpen, setIsEmailOpen] = useState(false);
   const [isWaOpen, setIsWaOpen] = useState(false);
+  const [isAiOpen, setIsAiOpen] = useState(false);
 
   const emailDropdownItems = useMemo(() => {
     return emailOptions.map((opt) => {
@@ -93,6 +95,21 @@ export default function Contact() {
     ];
   }, []);
 
+  const aiDropdownItems = useMemo(() => {
+    return [
+      {
+        key: "sales",
+        label: "Sales & Service",
+        href: "https://elynk.xyz/sales",
+      },
+      {
+        key: "branding",
+        label: "Brand Consultant",
+        href: "https://elynk.xyz/branding",
+      },
+    ];
+  }, []);
+
 
   return (
     <section id="kontak" aria-labelledby="cta-title"
@@ -122,6 +139,7 @@ export default function Contact() {
                     e.preventDefault();
                     setIsEmailOpen((prev) => !prev);
                     setIsWaOpen(false);
+                    setIsAiOpen(false);
                   }}
                   initial={{ opacity: 0, x: 20 }}
                   whileInView={{ opacity: 1, x: 0 }}
@@ -242,6 +260,7 @@ export default function Contact() {
                     e.preventDefault();
                     setIsWaOpen((prev) => !prev);
                     setIsEmailOpen(false);
+                    setIsAiOpen(false);
                   }}
                   initial={{ opacity: 0, x: 20 }}
                   whileInView={{ opacity: 1, x: 0 }}
@@ -346,6 +365,131 @@ export default function Contact() {
                         }}
                       >
                         {opt.phone} - {opt.label}
+                      </a>
+                    ))}
+                  </div>
+                )}
+              </div>
+            );
+          }
+
+          if (c.type === "ai_dropdown") {
+            return (
+              <div key={c.value} style={{ position: "relative" }}>
+                <motion.a
+                  href="#"
+                  aria-label={c.ariaLabel}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setIsAiOpen((prev) => !prev);
+                    setIsWaOpen(false);
+                    setIsEmailOpen(false);
+                  }}
+                  initial={{ opacity: 0, x: 20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: i * 0.1 }}
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "16px",
+                    padding: "20px 24px",
+                    border: "1px solid rgba(17,17,17,0.12)",
+                    color: "#111",
+                    textDecoration: "none",
+                    transition: "border-color 0.2s, background 0.2s",
+                    cursor: "pointer",
+                    userSelect: "none",
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.borderColor = "var(--red)";
+                    e.currentTarget.style.background = "rgba(209,31,31,0.08)";
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.borderColor = "rgba(255,255,255,0.08)";
+                    e.currentTarget.style.background = "transparent";
+                  }}
+                >
+                  <div
+                    style={{
+                      width: "40px",
+                      height: "40px",
+                      background: "var(--red)",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      fontSize: "18px",
+                      flexShrink: 0,
+                    }}
+                  >
+                    {c.icon}
+                  </div>
+                  <div style={{ width: "100%" }}>
+                    <div
+                      style={{
+                        fontSize: "11px",
+                        fontWeight: 600,
+                        letterSpacing: "0.15em",
+                        textTransform: "uppercase",
+                        color: "var(--muted)",
+                        marginBottom: "4px",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "space-between",
+                        gap: 12,
+                      }}
+                    >
+                      <span>{c.label}</span>
+                      <span style={{ color: "var(--red)", fontSize: 12, fontWeight: 800 }}>
+                        {isAiOpen ? "▲" : "▼"}
+                      </span>
+                    </div>
+                    <div style={{ fontSize: "16px", fontWeight: 600, color: "#111" }}>{c.value}</div>
+                  </div>
+                </motion.a>
+
+                {isAiOpen && (
+                  <div
+                    style={{
+                      marginTop: "10px",
+                      padding: "12px 14px",
+                      border: "1px solid rgba(17,17,17,0.12)",
+                      borderRadius: 8,
+                      background: "#fff",
+                      display: "flex",
+                      flexDirection: "column",
+                      gap: 8,
+                    }}
+                  >
+                    {aiDropdownItems.map((opt) => (
+                      <a
+                        key={opt.key}
+                        href={opt.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label={`Buka ${opt.label}`}
+                        onClick={() =>
+                          sendGAEvent({ event: "click_ai_agent", value: opt.key })
+                        }
+                        style={{
+                          textDecoration: "none",
+                          color: "#111",
+                          fontWeight: 700,
+                          fontSize: 14,
+                          padding: "8px 10px",
+                          borderRadius: 6,
+                          transition: "background 0.2s, color 0.2s",
+                        }}
+                        onMouseEnter={(e) => {
+                          e.currentTarget.style.background = "rgba(209,31,31,0.08)";
+                          e.currentTarget.style.color = "var(--red)";
+                        }}
+                        onMouseLeave={(e) => {
+                          e.currentTarget.style.background = "transparent";
+                          e.currentTarget.style.color = "#111";
+                        }}
+                      >
+                        {opt.label}
                       </a>
                     ))}
                   </div>

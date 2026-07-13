@@ -276,11 +276,6 @@ export default function Download() {
             grid-template-columns: repeat(2, 1fr) !important;
           }
         }
-        @media (max-width: 400px) {
-          .download-grid {
-            grid-template-columns: 1fr !important;
-          }
-        }
       `}</style>
     </section>
   );

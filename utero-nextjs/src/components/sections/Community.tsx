@@ -268,11 +268,6 @@ export default function Community() {
             grid-template-columns: repeat(2, 1fr) !important;
           }
         }
-        @media (max-width: 400px) {
-          .community-grid {
-            grid-template-columns: 1fr !important;
-          }
-        }
       `}</style>
     </section>
   );
