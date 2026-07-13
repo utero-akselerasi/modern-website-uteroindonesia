@@ -168,7 +168,7 @@ export default function Footer() {
           </p>
           {/* Social Media Icons */}
           <div
-            style={{ display: "flex", gap: "12px", flexWrap: "wrap" }}
+            style={{ display: "flex", gap: "12px", flexWrap: "nowrap" }}
             aria-label="Media sosial Utero Indonesia"
           >
             {socialLinks.map((social, idx) => (
@@ -179,8 +179,9 @@ export default function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 style={{
-                  width: "36px",
+                  minWidth: "36px",
                   height: "36px",
+                  padding: "0 8px",
                   border: "1px solid rgba(255, 255, 255, 0.2)",
                   display: "flex",
                   alignItems: "center",
@@ -188,6 +189,7 @@ export default function Footer() {
                   color: "rgba(255, 255, 255, 0.8)",
                   textDecoration: "none",
                   transition: "all 0.2s",
+                  flexShrink: 0,
                 }}
                 onMouseEnter={(e) => {
                   e.currentTarget.style.background = "#fff";
@@ -633,6 +635,18 @@ export default function Footer() {
           }
           footer {
             padding: 40px 16px 24px !important;
+          }
+          .footer-top > div:first-child div[aria-label="Media sosial Utero Indonesia"] {
+            gap: 8px !important;
+          }
+          .footer-top > div:first-child div[aria-label="Media sosial Utero Indonesia"] a {
+            min-width: 32px !important;
+            height: 32px !important;
+            padding: 0 6px !important;
+          }
+          .footer-top > div:first-child div[aria-label="Media sosial Utero Indonesia"] svg {
+            width: 14px !important;
+            height: 14px !important;
           }
         }
       `}</style>
