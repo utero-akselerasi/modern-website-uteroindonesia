@@ -17,9 +17,9 @@ const footerLinks = {
     { name: "Utero.id", href: "https://utero.id/" },
     { name: "Utero Advertising", href: "https://uteroindonesia.com/" },
     { name: "Buzzerhood", href: "https://buzzerhood.com/" },
-    { name: "Soundpub", href: "https://soundpub.xyz/" },
+    { name: "Soundpub Music", href: "https://soundpub.xyz/" },
     { name: "Carubra.com", href: "https://carubra.com/" },
-    { name: "Epochstream", href: "https://epochstream.org/" },
+    { name: "Epochstream Media", href: "https://epochstream.org/" },
   ],
 };
 
@@ -247,8 +247,8 @@ export default function Footer() {
                     (e.currentTarget.style.color = "#fff")
                   }
                   onMouseLeave={(e) =>
-                    (e.currentTarget.style.color =
-                      "rgba(255, 255, 255, 0.8)")
+                  (e.currentTarget.style.color =
+                    "rgba(255, 255, 255, 0.8)")
                   }
                 >
                   {item.name}
@@ -300,8 +300,8 @@ export default function Footer() {
                     (e.currentTarget.style.color = "#fff")
                   }
                   onMouseLeave={(e) =>
-                    (e.currentTarget.style.color =
-                      "rgba(255, 255, 255, 0.8)")
+                  (e.currentTarget.style.color =
+                    "rgba(255, 255, 255, 0.8)")
                   }
                   onClick={() =>
                     sendGAEvent({
@@ -554,6 +554,7 @@ export default function Footer() {
 
       {/* Footer Bottom */}
       <div
+        className="footer-bottom"
         style={{
           borderTop: "1px solid rgba(255, 255, 255, 0.08)",
           paddingTop: "28px",
@@ -580,23 +581,12 @@ export default function Footer() {
               href="https://uterogroup.com/"
               target="_blank"
               rel="noopener noreferrer"
-              style={{ color: "rgba(255,255,255,0.9)", textDecoration: "none" }}
+              style={{ color: "rgba(255,255,255,0.9)", textDecoration: "none", whiteSpace: "nowrap" }}
               onMouseEnter={(e) => (e.currentTarget.style.color = "#fff")}
               onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(255,255,255,0.9)")}
             >
               PT. UTERO KREATIF INDONESIA
             </a>{" "}
-            x{" "}
-            <a
-              href="https://ruvodo.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{ color: "rgba(255,255,255,0.9)", textDecoration: "none" }}
-              onMouseEnter={(e) => (e.currentTarget.style.color = "#fff")}
-              onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(255,255,255,0.9)")}
-            >
-              RUVODO WebApps.
-            </a>
           </span>
         </div>
         <div
@@ -647,6 +637,10 @@ export default function Footer() {
           .footer-top > div:first-child div[aria-label="Media sosial Utero Indonesia"] svg {
             width: 14px !important;
             height: 14px !important;
+          }
+          .footer-bottom {
+            justify-content: center !important;
+            text-align: center !important;
           }
         }
       `}</style>

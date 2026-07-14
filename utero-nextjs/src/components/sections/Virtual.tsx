@@ -15,18 +15,38 @@ export default function Virtual() {
         overflow: "hidden",
       }}
     >
+      <style jsx>{`
+        .virtual-cta-button {
+          transition: all 0.3s ease;
+        }
+        @media (max-width: 768px) {
+          .virtual-cta-button {
+            padding: 10px 12px !important;
+            font-size: 10px !important;
+            letter-spacing: 0.03em !important;
+          }
+        }
+        @media (max-width: 480px) {
+          .virtual-cta-button {
+            padding: 8px 10px !important;
+            font-size: 9px !important;
+            letter-spacing: 0.02em !important;
+          }
+        }
+      `}</style>
     
       <a
         href="https://virtual.uteroindonesia.com/"
         target="_blank"
         rel="noopener noreferrer"
+        className="virtual-cta-button"
         style={{
           position: "relative",
           display: "inline-block",
-          padding: "20px 28px",
+          padding: "12px 15px",
           background: "#fff",
           color: "var(--red, #CE161E)",
-          fontSize: "14px",
+          fontSize: "12px",
           fontWeight: 700,
           letterSpacing: "0.05em",
           textTransform: "uppercase",

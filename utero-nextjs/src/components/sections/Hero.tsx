@@ -439,7 +439,7 @@ export default function Hero() {
             }}
             className="hero-ticker-track"
           >
-            {[...Array(2)].map((_, i) => (
+            {[...Array(4)].map((_, i) => (
               <div
                 key={i}
                 style={{
@@ -451,15 +451,11 @@ export default function Hero() {
                 }}
               >
                 <span style={{ fontSize: "13px", fontWeight: 700, letterSpacing: "0.12em", color: "#fff", textTransform: "uppercase" }}>
-                  BRAND GOALS. START
+                  BRAND GOALS 
                 </span>
                 <span style={{ color: "rgba(255,255,255,0.5)", fontSize: "10px" }}>●</span>
                 <span style={{ fontSize: "13px", fontWeight: 700, letterSpacing: "0.12em", color: "#fff", textTransform: "uppercase" }}>
-                  GRAHA RESORT MALANG
-                </span>
-                <span style={{ color: "rgba(255,255,255,0.5)", fontSize: "10px" }}>●</span>
-                <span style={{ fontSize: "13px", fontWeight: 700, letterSpacing: "0.12em", color: "#fff", textTransform: "uppercase" }}>
-                  MEGA 1688
+                  EVENT & AKTIVASI
                 </span>
                 <span style={{ color: "rgba(255,255,255,0.5)", fontSize: "10px" }}>●</span>
                 <span style={{ fontSize: "13px", fontWeight: 700, letterSpacing: "0.12em", color: "#fff", textTransform: "uppercase" }}>
@@ -471,11 +467,23 @@ export default function Hero() {
                 </span>
                 <span style={{ color: "rgba(255,255,255,0.5)", fontSize: "10px" }}>●</span>
                 <span style={{ fontSize: "13px", fontWeight: 700, letterSpacing: "0.12em", color: "#fff", textTransform: "uppercase" }}>
+                  STRATEGI & KONSULTASI
+                </span>
+                <span style={{ color: "rgba(255,255,255,0.5)", fontSize: "10px" }}>●</span>
+                <span style={{ fontSize: "13px", fontWeight: 700, letterSpacing: "0.12em", color: "#fff", textTransform: "uppercase" }}>
                   MEDIA DISTRIBUTION
                 </span>
                 <span style={{ color: "rgba(255,255,255,0.5)", fontSize: "10px" }}>●</span>
                 <span style={{ fontSize: "13px", fontWeight: 700, letterSpacing: "0.12em", color: "#fff", textTransform: "uppercase" }}>
                   AI AUTOMATION
+                </span>
+                <span style={{ color: "rgba(255,255,255,0.5)", fontSize: "10px" }}>●</span>
+                <span style={{ fontSize: "13px", fontWeight: 700, letterSpacing: "0.12em", color: "#fff", textTransform: "uppercase" }}>
+                  DESAIN & KREATIF
+                </span>
+                <span style={{ color: "rgba(255,255,255,0.5)", fontSize: "10px" }}>●</span>
+                <span style={{ fontSize: "13px", fontWeight: 700, letterSpacing: "0.12em", color: "#fff", textTransform: "uppercase" }}>
+                  TEKNOLOGI & SISTEM
                 </span>
                 <span style={{ color: "rgba(255,255,255,0.5)", fontSize: "10px" }}>●</span>
               </div>
@@ -700,7 +708,7 @@ export default function Hero() {
 
         @keyframes tickerScroll {
           0% { transform: translateX(0); }
-          100% { transform: translateX(-50%); }
+          100% { transform: translateX(-25%); }
         }
         .hero-ticker-track {
           display: flex;
