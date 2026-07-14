@@ -20,7 +20,7 @@ export default function Clients() {
   const lastMoveTimeRef = useRef(0);
   const velocityRef = useRef(0);
   const oneSetWidthRef = useRef(0);
-  const wasDraggedRef = useRef(false);
+   const wasDraggedRef = useRef(false);
 
   const BASE_VELOCITY = -100;
 

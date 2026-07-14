@@ -174,12 +174,12 @@ export default function Navbar() {
           }}
         >
           <Image
-            src="/images/uteroindonesia.webp"
+            src="/images/logo-utero-transparent.webp"
             alt="Utero Indonesia"
-            width={140}
-            height={36}
+            width={130}
+            height={52}
             className="nav-logo-img"
-            style={{ objectFit: "contain", height: "36px", width: "auto", transformOrigin: "left center" }}
+            style={{ objectFit: "contain", height: "52px", width: "auto", transformOrigin: "left center" }}
           />
         </Link>
 
@@ -335,11 +335,11 @@ export default function Navbar() {
                 onClick={closeMenu}
               >
                 <Image
-                  src="/images/uteroindonesia.webp"
+                  src="/images/logo-utero-transparent.webp"
                   alt="Utero Indonesia"
-                  width={120}
-                  height={32}
-                  style={{ objectFit: "contain", height: "32px", width: "auto", transform: "scale(1.5)", transformOrigin: "left center" }}
+                  width={70}
+                  height={28}
+                  style={{ objectFit: "contain", height: "28px", width: "auto", transformOrigin: "left center" }}
                 />
               </Link>
               <button
@@ -483,11 +483,6 @@ export default function Navbar() {
       </AnimatePresence>
 
       <style jsx global>{`
-        /* Logo responsive scale */
-        .nav-logo-img {
-          transform: scale(4.0);
-        }
-
         /* ===== Desktop nav: 1024px+ ===== */
         /* Already visible by default */
 
@@ -507,9 +502,6 @@ export default function Navbar() {
             font-size: 11px !important;
             padding: 8px 16px !important;
           }
-          .nav-logo-img {
-            transform: scale(3.2) !important;
-          }
         }
 
         /* ===== Hamburger mode: <=1024px (tablets portrait, landscape phones, phones) ===== */
@@ -523,9 +515,6 @@ export default function Navbar() {
           .nav-mobile-btn {
             display: flex !important;
           }
-          .nav-logo-img {
-            transform: scale(2.8) !important;
-          }
         }
 
         /* ===== Phone landscape (wider but short) ===== */
@@ -533,18 +522,12 @@ export default function Navbar() {
           nav {
             padding: 10px 24px !important;
           }
-          .nav-logo-img {
-            transform: scale(2.4) !important;
-          }
         }
 
         /* ===== Phone portrait ===== */
         @media (max-width: 480px) {
           nav {
             padding: 12px 16px !important;
-          }
-          .nav-logo-img {
-            transform: scale(2.2) !important;
           }
           .nav-mobile-grid {
             grid-template-columns: 1fr !important;
@@ -555,9 +538,6 @@ export default function Navbar() {
         @media (max-width: 360px) {
           nav {
             padding: 10px 12px !important;
-          }
-          .nav-logo-img {
-            transform: scale(2.0) !important;
           }
         }
 

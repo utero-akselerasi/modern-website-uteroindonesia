@@ -12,7 +12,7 @@ export interface Client {
 export const clients: Client[] = [
   {
     "name": "1922",
-    "url": "https://1922.co.id",
+    "url": "https://www.instagram.com/kopi.1922",
     "logo": "/images/client/1922.png"
   },
   {
@@ -33,7 +33,7 @@ export const clients: Client[] = [
   },
   {
     "name": "Advos",
-    "url": "https://www.advosindonesia.com",
+    "url": "https://advitos.com",
     "logo": "/images/client/advos.png"
   },
   {
@@ -84,7 +84,7 @@ export const clients: Client[] = [
   },
   {
     "name": "Bestdough",
-    "url": "https://bestdougid.com",
+    "url": "https://bestdoughid.com",
     "logo": "/images/client/bestdough.png"
   },
   {
@@ -159,7 +159,7 @@ export const clients: Client[] = [
   },
   {
     "name": "Dailbana",
-    "url": "https://www.instagram.com/dailbana.id",
+    "url": "https://utero.id/project/dailbana/",
     "logo": "/images/client/dailbana.png",
     "scale": 1.5
   },
@@ -473,7 +473,7 @@ export const clients: Client[] = [
   },
   {
     "name": "Ollino Garden",
-    "url": "http://ollinogarden.com",
+    "url": "https://www.instagram.com/ollinohotel",
     "logo": "/images/client/ollino-garden.png"
   },
   {
