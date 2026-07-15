@@ -158,7 +158,7 @@ export const chatFlow: Record<string, ChatNode> = {
       { label: "WhatsApp", href: "https://wa.me/6281999900900?text=Halo%20Utero%2C%20aku%20mendapatkan%20informasi%20dari%20Websitenya%20%2Auteroindonesia.com%2A.%0AIngin%20bertanya%20nih%20%3F%20" },
       { label: "Email", href: "mailto:info@uteroindonesia.com" },
       { label: "Instagram", href: "https://instagram.com/uteromalang" },
-      { label: "YouTube", href: "https://youtube.com/@uteromalang" },
+      { label: "YouTube", href: "https://www.youtube.com/@uteroindonesia" },
       { label: "Kembali", nextNode: "start" },
     ],
   },
