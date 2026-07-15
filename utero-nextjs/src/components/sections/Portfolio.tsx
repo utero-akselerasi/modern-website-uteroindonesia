@@ -13,7 +13,7 @@ const categories = [
 ];
 
 const items = [
-  { title: "Cebro Agency", category: "Branding", desc: "Creative agency branding & identity system", url: "https://www.instagram.com/cebro_design_agency/", logo: "/images/portfolio/cebro-agency.webp" },
+  { title: "Cebro Agency", category: "Desain Grafis", url: "https://www.instagram.com/cebro_design_agency/", logo: "/images/portfolio/cebro-agency.webp" },
   { title: "Odigiro Consultant", category: "Branding", desc: "City branding & konsultan strategi merek", url: "https://odigiro.uteroindonesia.com/", logo: "/images/portfolio/odigiro-consultant.webp" },
   { title: "Festival Mbois", category: "Branding", desc: "Branding event tahunan Malang Creative Fusion", url: "https://festivalmbois.mcf.or.id", logo: "/images/portfolio/festival-mbois.webp" },
   { title: "Osi & Ji", category: "Branding", desc: "Maskot kota Malang — branding ikon daerah", url: "https://osidanji.malangkota.go.id/", logo: "/images/portfolio/osi-ji.webp" },
@@ -30,7 +30,7 @@ const items = [
   { title: "Smartsuco", category: "Digital", desc: "Smart space & solusi otomasi digital", url: "https://smartsuco.utero.id", logo: "/images/portfolio/smartsuco.webp" },
   { title: "Immerstal", category: "Digital", desc: "Immersive technology & interactive media", url: "https://immerstal.uteroindonesia.com", logo: "/images/portfolio/immerstal.webp" },
   { title: "Symadeco", category: "Digital", desc: "Sistem manajemen dekorasi berbasis web", url: "http://symadeco.com/", logo: "/images/portfolio/symadeco.webp" },
-  { title: "Inon  er", category: "Desain Grafis", desc: "Desain grafis & visual komunikasi", url: "http://inon.utero.id", logo: "/images/portfolio/inon-er.webp" },
+  { title: "Inon Designer", category: "Desain Grafis", desc: "Desain grafis & visual komunikasi", url: "http://inon.utero.id", logo: "/images/portfolio/inon-er.webp" },
   { title: "Kochiro Inexterior", category: "Desain Grafis", desc: "Desain interior & eksterior kreatif", url: "https://www.kochiro.com/", logo: "/images/portfolio/kochiro-inexterior.webp" },
 ];
 

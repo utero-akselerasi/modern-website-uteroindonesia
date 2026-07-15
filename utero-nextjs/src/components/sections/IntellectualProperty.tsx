@@ -8,7 +8,7 @@ const ipItems = [
   { name: "OSIKER", href: "http://osiker.com/", img: "/images/ip/osiker.webp", alt: "Platform Intellectual Property & lisensi kreatif" },
   { name: "Osiaeker", href: "http://osiaeker.uteroindonesia.com", img: "/images/ip/osiaeker.webp", alt: "Kanal konten kreatif dan entertainment" },
   { name: "Chang", href: "http://bit.ly/YTDADIKWAHYUCHANG", img: "/images/ip/chang.webp", alt: "Vlog dan konten kreatif Dadik Wahyu Chang" },
-  { name: "Mbois", href: "https://festivalmbois.id/", img: "/images/ip/mbois.webp", alt: "Festival Mbois — brand event Malang Creative Fusion" },
+  { name: "Mbois", href: "https://festivalmbois.mcf.or.id/", img: "/images/ip/mbois.webp", alt: "Festival Mbois — brand event Malang Creative Fusion" },
   { name: "Osi & Ji", href: "http://osidanji.com/", img: "/images/ip/osi-ji.webp", alt: "Maskot kota Malang — Osi & Ji" },
   { name: "Utero", href: "https://www.youtube.com/channel/UCkdJC5Tw0bk0xK9sUR80xnA", img: "/images/ip/utero.webp", alt: "Channel YouTube resmi Utero Indonesia" },
   { name: "Waraalvaro", href: "https://www.youtube.com/channel/UCfQ6A2Q5rZ09uWQDRD97G2g", img: "/images/ip/waraalvaro.webp", alt: "Kanal gaming dan entertainment anak" },
