@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { GoogleAnalytics } from "@next/third-parties/google";
+import FloatingWhatsApp from "@/components/layout/FloatingWhatsApp";
 import "./global.css";
 
 const inter = Inter({
@@ -117,6 +118,7 @@ export default function RootLayout({
           }}
         />
         {children}
+        <FloatingWhatsApp />
         <GoogleAnalytics gaId="G-7V5HTNW1TC" />
       </body>
     </html>

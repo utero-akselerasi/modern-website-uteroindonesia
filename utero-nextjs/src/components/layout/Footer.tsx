@@ -513,12 +513,12 @@ export default function Footer() {
           </ul>
         </div>
 
-        {/* Maps (di bawah Cabang & Kontak) */}
+        {/* Maps (full width, di bawah social icons) */}
         <div
           className="footer-maps-container"
           style={{
-            gridColumn: "4 / 6",
-            marginTop: "-100px",
+            gridColumn: "1 / 6",
+            marginTop: "32px",
             borderRadius: "8px",
             overflow: "hidden",
             border: "1px solid rgba(255, 255, 255, 0.2)",
