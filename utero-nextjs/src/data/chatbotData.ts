@@ -130,7 +130,7 @@ export const chatFlow: Record<string, ChatNode> = {
       "Pintu kami selalu terbuka untuk teman-teman yang ingin berdiskusi! ☕",
     ],
     options: [
-      { label: "Lihat di Google Maps", href: "https://maps.app.goo.gl/YVbR1xfxBiUVWCdM9" },
+      { label: "Lihat di Google Maps", href: "https://maps.app.goo.gl/fULACEbRbdB94ktV7" },
       { label: "Hubungi Kami", nextNode: "kontak" },
       { label: "Kembali", nextNode: "start" },
     ],
