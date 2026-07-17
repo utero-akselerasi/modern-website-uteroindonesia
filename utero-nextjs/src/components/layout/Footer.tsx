@@ -142,10 +142,10 @@ export default function Footer() {
             }}
           >
             <img
-              src="/images/uteroindonesia.webp"
+              src="/images/logo-utero-transparent.webp"
               alt="Utero Indonesia"
               style={{
-                height: "120px",
+                height: "80px",
                 width: "auto",
                 display: "block",
                 objectFit: "contain",

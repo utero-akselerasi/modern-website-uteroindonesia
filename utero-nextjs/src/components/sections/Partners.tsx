@@ -34,10 +34,10 @@ const partners = [
     skipFilter: true,
   },
   {
-    name: "Shopee",
-    href: "https://shopee.co.id/utero_product",
-    img: "/images/partner/shopee.webp",
-    alt: "Shopee — official store produk Utero Indonesia",
+    name: "Epochstream Shop",
+    href: "https://shop.epochstream.org/",
+    img: "/images/partner/epochstream-shop.webp",
+    alt: "Epochstream Shop — official store produk Epochstream",
     skipFilter: true,
   },
   {

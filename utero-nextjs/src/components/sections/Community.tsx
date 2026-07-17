@@ -16,7 +16,7 @@ const communities = [
   {
     name: "ICCN",
     fullName: "Indonesia Creative Cities Network",
-    href: "https://www.iccn.or.id/",
+    href: "https://iccn.or.id/",
     img: "/images/community/iccn.webp",
     alt: "Indonesia Creative Cities Network — jejaring kota kreatif Indonesia",
     desc: "Jejaring kota/kabupaten kreatif Indonesia yang berkomitmen memajukan kota kreatif melalui riset dan pengembangan ekonomi kreatif.",
