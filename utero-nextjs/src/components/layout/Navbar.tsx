@@ -6,24 +6,24 @@ import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 
 const navLinks = [
-  { href: "#hero", label: "Beranda" },
-  { href: "#know-us", label: "Lini Bisnis" },
-  { href: "#divisi", label: "Divisi" },
-  { href: "#cara-kerja", label: "Alur Kerja" },
-  { href: "#Partnership", label: "Partnership" },
-  { href: "/artikel", label: "Artikel" },
-  { href: "#kontak", label: "Kontak" },
+  { href: "/#hero", label: "Beranda" },
+  { href: "/#know-us", label: "Lini Bisnis" },
+  { href: "/#divisi", label: "Divisi" },
+  { href: "/#cara-kerja", label: "Alur Kerja" },
+  { href: "/#Partnership", label: "Partnership" },
+  { href: "/#artikel", label: "Artikel" },
+  { href: "/#kontak", label: "Kontak" },
 ];
 
 const menuCards = [
-  { icon: "home", label: "Beranda", href: "#hero", desc: "Halaman utama" },
-  { icon: "info", label: "Tentang", href: "#tentang", desc: "Cerita kami" },
-  { icon: "briefcase", label: "Lini Bisnis", href: "#know-us", desc: "Portofolio & klien" },
-  { icon: "layers", label: "Divisi", href: "#divisi", desc: "Unit usaha aktif" },
-  { icon: "zap", label: "Layanan", href: "#layanan", desc: "Solusi kreatif" },
-  { icon: "users", label: "Klien", href: "#klien", desc: "Mitra kami" },
-  { icon: "info", label: "Tentang", href: "#tentang", desc: "Cerita kami" },
-  { icon: "layers", label: "Artikel", href: "/artikel", desc: "Blog & berita" },
+  { icon: "home", label: "Beranda", href: "/#hero", desc: "Halaman utama" },
+  { icon: "info", label: "Tentang", href: "/#tentang", desc: "Cerita kami" },
+  { icon: "briefcase", label: "Lini Bisnis", href: "/#know-us", desc: "Portofolio & klien" },
+  { icon: "layers", label: "Divisi", href: "/#divisi", desc: "Unit usaha aktif" },
+  { icon: "zap", label: "Layanan", href: "/#layanan", desc: "Solusi kreatif" },
+  { icon: "users", label: "Klien", href: "/#klien", desc: "Mitra kami" },
+  { icon: "info", label: "Tentang", href: "/#tentang", desc: "Cerita kami" },
+  { icon: "layers", label: "Artikel", href: "/#artikel", desc: "Blog & berita" },
 ];
 
 function MenuIcon({ name, size = 24 }: { name: string; size?: number }) {
@@ -166,7 +166,7 @@ export default function Navbar() {
         }}
       >
         <Link
-          href="#"
+          href="/"
           style={{
             display: "flex",
             alignItems: "center",
@@ -216,7 +216,7 @@ export default function Navbar() {
           ))}
           <li>
             <Link
-              href="#kontak"
+              href="/#kontak"
               className="nav-cta-btn"
               style={{
                 background: "var(--red)",
@@ -326,7 +326,7 @@ export default function Navbar() {
               }}
             >
               <Link
-                href="#"
+                href="/"
                 style={{
                   display: "flex",
                   alignItems: "center",
@@ -457,8 +457,8 @@ export default function Navbar() {
 
               <div style={{ textAlign: "center", marginTop: "32px" }}>
                 <Link
-                  href="#kontak"
-                  onClick={closeMenu}
+                href="/#kontak"
+                onClick={closeMenu}
                   style={{
                     display: "inline-block",
                     background: "var(--red)",

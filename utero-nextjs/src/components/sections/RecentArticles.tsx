@@ -10,6 +10,7 @@ export default function RecentArticles() {
 
   return (
     <section
+      id="artikel"
       aria-labelledby="recent-articles-title"
       style={{ padding: "120px 64px", background: "var(--ash)" }}
       className="recent-articles-section"
