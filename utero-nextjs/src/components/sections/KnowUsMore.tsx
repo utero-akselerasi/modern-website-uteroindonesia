@@ -244,7 +244,7 @@ export default function KnowUsMore() {
               background: "var(--red)",
             }}
           />
-          Know Us More
+          intrapreneur
           <span
             style={{
               display: "block",
