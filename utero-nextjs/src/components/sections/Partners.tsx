@@ -21,7 +21,7 @@ const partners = [
   },
   {
     name: "Moselo",
-    href: "http://www.moselo.com/ruvodo",
+    href: "http://shop.epochstream.org/",
     img: "/images/partner/moselo.webp",
     alt: "Moselo — marketplace produk kreatif dan handmade",
     skipFilter: true,
@@ -42,7 +42,7 @@ const partners = [
   },
   {
     name: "Rumah Oxyz",
-    href: "https://www.instagram.com/rumah_oxyz/",
+    href: "https://shop.uteroindonesia.com",
     img: "/images/partner/oxyz.webp",
     alt: "Rumah Oxyz — makerspace dan coworking space kreatif",
     skipFilter: true,

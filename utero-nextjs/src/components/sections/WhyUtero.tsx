@@ -51,10 +51,10 @@ const icons: Record<string, React.ReactNode> = {
 };
 
 const whyItems = [
-  { icon: "lightning", title: "25+ Track Record", desc: "Sejak 1998 kami ada, belajar, dan terus berbenah. Ratusan brand sudah merasakan hasilnya." },
-  { icon: "house", title: "One-Stop Creative House", desc: "Branding, produksi, digital, musik, hingga AI — semua ada di bawah satu atap Utero Indonesia." },
-  { icon: "target", title: "Paham Pasar Lokal", desc: "Berbasis di Malang, kami mengerti dinamika pasar Jawa Timur dan Indonesia dengan sangat baik." },
-  { icon: "handshake", title: "Mitra, Bukan Vendor", desc: "Kami berjuang bersama klien, bukan sekadar mengerjakan pesanan. Keberhasilan brand Anda adalah reputasi kami." },
+  { icon: "lightning", title: "25+ Track Record", desc: "Lebih dari dua dekade kami dipercaya mendampingi perusahaan, institusi, dan komunitas dari berbagai sektor. Setiap kolaborasi menjadi pengalaman yang memperkaya cara kami berpikir dan bekerja. Pengalaman tersebut menjadi fondasi untuk terus menghadirkan kualitas terbaik di setiap proyek." },
+  { icon: "house", title: "One-Stop Creative House", desc: "Kami menghadirkan ekosistem layanan kreatif yang terintegrasi dalam satu rumah. Branding, desain, produksi, digital, musik, hingga solusi berbasis AI dapat dikelola oleh satu tim yang saling terhubung. Proses menjadi lebih efisien, komunikasi lebih sederhana, dan hasil lebih konsisten." },
+  { icon: "target", title: "Paham Pasar Lokal", desc: "Berakar di Malang, kami memahami karakter pasar Jawa Timur sekaligus dinamika bisnis di Indonesia. Pengalaman bersama pelaku usaha, komunitas, dan berbagai institusi membentuk perspektif yang dekat dengan kebutuhan pasar. Setiap strategi kami dirancang agar relevan, tepat sasaran, dan mampu memberikan nilai tambah." },
+  { icon: "handshake", title: "Mitra, Bukan Vendor", desc: "Hubungan kami dengan klien tidak berhenti saat proyek selesai. Kami terus mendampingi, mengevaluasi, dan mencari peluang baru untuk mendukung pertumbuhan bisnis Anda. Karena bagi kami, keberhasilan klien adalah ukuran keberhasilan Utero Indonesia." },
 ];
 
 export default function WhyUtero() {
@@ -78,6 +78,12 @@ export default function WhyUtero() {
           }}>
             Kami Bukan<br />Sekadar Vendor.
           </h2>
+          <p style={{
+            fontSize: "14px", lineHeight: 1.65, color: "rgba(255,255,255,0.65)",
+            marginTop: "20px", maxWidth: "400px",
+          }}>
+            Lebih dari sekadar penyedia jasa, kami adalah mitra kreatif yang tumbuh bersama klien. Kami memahami kebutuhan, merumuskan strategi, dan menghadirkan solusi yang relevan bagi bisnis Anda. Fokus kami adalah membangun kolaborasi jangka panjang yang memberikan dampak nyata.
+          </p>
         </div>
         <div role="list" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "40px" }}
           className="why-items">
