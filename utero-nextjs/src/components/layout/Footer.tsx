@@ -139,10 +139,11 @@ export default function Footer() {
               display: "flex",
               alignItems: "center",
               gap: "12px",
+              height: "80px",
             }}
           >
             <img
-              src="/images/logo-utero-transparent.webp"
+              src="/images/Utero_neonlogo-removebg-preview.webp"
               alt="Utero Indonesia"
               style={{
                 height: "80px",
@@ -150,6 +151,8 @@ export default function Footer() {
                 display: "block",
                 objectFit: "contain",
                 filter: "brightness(0) invert(1)",
+                transform: "scale(1.75)",
+                transformOrigin: "left center",
               }}
             />
           </div>
