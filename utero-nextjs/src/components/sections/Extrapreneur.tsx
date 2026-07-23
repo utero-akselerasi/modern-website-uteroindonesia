@@ -28,6 +28,7 @@ const extrapreneurItems = [
   { name: "Mrono", href: "https://www.instagram.com/brandingmobilmalang/", img: "/images/divisi/mrono.webp", alt: "Branding mobil dan sticker kendaraan custom", skipFilter: true },
   { name: "Ono", href: "https://www.instagram.com/onomakerspace/", img: "/images/divisi/onomakerspace.webp", alt: "Maker space dan workshop kreatif" },
   { name: "Tokoneonbox", href: "https://www.instagram.com/tokoneonbox/", img: "/images/divisi/tokoneonbox.webp", alt: "Toko neon box custom dan signage LED" },
+  { name: "Placers", href: "https://dev-placers.carubra.com/", img: "/images/divisi/placers.webp", alt: "Platform marketplace billboard advertising pertama di Indonesia" },
   { name: "Carubra", href: "https://carubra.com/", img: "/images/divisi/carubra-logo.webp", alt: "AI Agent branding consultant dan solusi kecerdasan bisnis via WhatsApp" },
 ];
 
