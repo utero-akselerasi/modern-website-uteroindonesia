@@ -30,6 +30,7 @@ const extrapreneurItems = [
   { name: "Tokoneonbox", href: "https://www.instagram.com/tokoneonbox/", img: "/images/divisi/tokoneonbox.webp", alt: "Toko neon box custom dan signage LED" },
   { name: "Placers", href: "https://dev-placers.carubra.com/", img: "/images/divisi/placers.webp", alt: "Platform marketplace billboard advertising pertama di Indonesia" },
   { name: "Carubra", href: "https://carubra.com/", img: "/images/divisi/carubra-logo.webp", alt: "AI Agent branding consultant dan solusi kecerdasan bisnis via WhatsApp" },
+  { name: "Aida", href: "https://dash-doa.carubra.com/", img: "/images/divisi/aida.webp", alt: "Unified Enterprise Dashboard — Suryo Agong", borderless: true, largeImage: true },
 ];
 
 const ITEM_COUNT = extrapreneurItems.length;
@@ -289,7 +290,7 @@ export default function Extrapreneur() {
                 textAlign: "center",
                 padding: "40px 24px 36px",
                 background: "var(--ash)",
-                border: "1px solid var(--border-color)",
+                border: item.borderless ? "none" : "1px solid var(--border-color)",
                 textDecoration: "none",
                 transition: "all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
                 cursor: "pointer",
@@ -298,13 +299,14 @@ export default function Extrapreneur() {
                 width: "260px",
                 flexShrink: 0,
                 borderRadius: "2px",
+                outline: "none",
               }}
               className="extrapreneur-ticker-item"
               data-skip-filter={item.skipFilter ? "true" : undefined}
               onMouseEnter={(e) => {
                 if (isDraggingRef.current) return;
                 e.currentTarget.style.background = "var(--red)";
-                e.currentTarget.style.borderColor = "var(--red)";
+                if (!item.borderless) e.currentTarget.style.borderColor = "var(--red)";
                 e.currentTarget.style.transform = "translateY(-6px)";
                 e.currentTarget.style.boxShadow = "0 12px 28px rgba(209, 31, 31, 0.2)";
                 const label = e.currentTarget.querySelector(".extrapreneur-ticker-label");
@@ -317,7 +319,7 @@ export default function Extrapreneur() {
               onMouseLeave={(e) => {
                 if (isDraggingRef.current) return;
                 e.currentTarget.style.background = "var(--ash)";
-                e.currentTarget.style.borderColor = "var(--border-color)";
+                if (!item.borderless) e.currentTarget.style.borderColor = "var(--border-color)";
                 e.currentTarget.style.transform = "translateY(0)";
                 e.currentTarget.style.boxShadow = "none";
                 const label = e.currentTarget.querySelector(".extrapreneur-ticker-label");
@@ -338,8 +340,8 @@ export default function Extrapreneur() {
               <span
                 className="extrapreneur-ticker-icon"
                 style={{
-                  width: "100px",
-                  height: "100px",
+                  width: item.largeImage ? "140px" : "100px",
+                  height: item.largeImage ? "140px" : "100px",
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
@@ -350,8 +352,8 @@ export default function Extrapreneur() {
                 <Image
                   src={item.img}
                   alt={item.alt}
-                  width={96}
-                  height={96}
+                  width={item.largeImage ? 136 : 96}
+                  height={item.largeImage ? 136 : 96}
                   draggable={false}
                   style={{
                     objectFit: "contain",
