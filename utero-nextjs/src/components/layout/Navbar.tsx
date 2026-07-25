@@ -174,12 +174,12 @@ export default function Navbar() {
           }}
         >
           <Image
-            src="/images/logo-utero-transparent.webp"
+            src="/images/utero-02.webp"
             alt="Utero Indonesia"
-            width={130}
-            height={52}
+            width={200}
+            height={80}
             className="nav-logo-img"
-            style={{ objectFit: "contain", height: "52px", width: "auto", transformOrigin: "left center" }}
+            style={{ objectFit: "contain", height: "80px", width: "auto", transformOrigin: "left center" }}
           />
         </Link>
 
@@ -335,11 +335,11 @@ export default function Navbar() {
                 onClick={closeMenu}
               >
                 <Image
-                  src="/images/logo-utero-transparent.webp"
+                  src="/images/utero-02.webp"
                   alt="Utero Indonesia"
-                  width={70}
-                  height={28}
-                  style={{ objectFit: "contain", height: "28px", width: "auto", transformOrigin: "left center" }}
+                  width={130}
+                  height={52}
+                  style={{ objectFit: "contain", height: "52px", width: "auto", transformOrigin: "left center" }}
                 />
               </Link>
               <button

@@ -118,7 +118,7 @@ export default function Footer() {
     <footer
       role="contentinfo"
       style={{
-        background: "var(--red)",
+        background: "var(--red2)",
         padding: "64px 64px 40px",
       }}
     >
@@ -139,20 +139,18 @@ export default function Footer() {
               display: "flex",
               alignItems: "center",
               gap: "12px",
-              height: "80px",
+              height: "90px",
             }}
           >
             <img
-              src="/images/Utero_neonlogo-removebg-preview.webp"
+              src="/images/utero-02.webp"
               alt="Utero Indonesia"
               style={{
-                height: "80px",
+                height: "90px",
                 width: "auto",
                 display: "block",
                 objectFit: "contain",
                 filter: "brightness(0) invert(1)",
-                transform: "scale(1.75)",
-                transformOrigin: "left center",
               }}
             />
           </div>
