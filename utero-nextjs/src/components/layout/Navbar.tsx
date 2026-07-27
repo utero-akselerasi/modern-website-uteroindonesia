@@ -20,9 +20,9 @@ const menuCards = [
   { icon: "info", label: "Tentang", href: "/#tentang", desc: "Cerita kami" },
   { icon: "briefcase", label: "Lini Bisnis", href: "/#know-us", desc: "Portofolio & klien" },
   { icon: "layers", label: "Divisi", href: "/#divisi", desc: "Unit usaha aktif" },
-  { icon: "zap", label: "Layanan", href: "/#layanan", desc: "Solusi kreatif" },
+  { icon: "zap", label: "Layanan", href: "/#cara-kerja", desc: "Alur kerja & proses" },
   { icon: "users", label: "Klien", href: "/#klien", desc: "Mitra kami" },
-  { icon: "info", label: "Tentang", href: "/#tentang", desc: "Cerita kami" },
+  { icon: "grid", label: "Portfolio", href: "/#download", desc: "Profil & portofolio" },
   { icon: "layers", label: "Artikel", href: "/#artikel", desc: "Blog & berita" },
 ];
 
@@ -74,6 +74,15 @@ function MenuIcon({ name, size = 24 }: { name: string; size?: number }) {
           <circle cx="9" cy="7" r="4" />
           <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
           <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+        </svg>
+      );
+    case "grid":
+      return (
+        <svg {...svgProps}>
+          <rect x="3" y="3" width="7" height="7" />
+          <rect x="14" y="3" width="7" height="7" />
+          <rect x="3" y="14" width="7" height="7" />
+          <rect x="14" y="14" width="7" height="7" />
         </svg>
       );
     case "info":
