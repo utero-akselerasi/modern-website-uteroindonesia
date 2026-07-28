@@ -180,6 +180,7 @@ export default function Navbar() {
             display: "flex",
             alignItems: "center",
             textDecoration: "none",
+            paddingLeft: "8px",
           }}
         >
           <Image
