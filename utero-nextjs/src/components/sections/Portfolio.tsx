@@ -9,6 +9,7 @@ const categories = [
   "Advertising",
   "Digital",
   "Signage",
+  "AI/Teknologi",
   "Desain Grafis",
 ];
 
@@ -27,11 +28,13 @@ const items = [
   { title: "Buzzerhood", category: "Digital", desc: "Influencer marketing & buzz digital", url: "https://buzzerhood.com/", logo: "/images/portfolio/buzzerhood.webp" },
   { title: "Socioboo", category: "Digital", desc: "Paid promote & social media campaign", url: "http://socioboo.uteroindonesia.com/", logo: "/images/portfolio/socioboo.webp" },
   { title: "Malang Virtual", category: "Digital", desc: "Virtual tour 360° & digital experience", url: "https://malangvirtual.uteroindonesia.com", logo: "/images/portfolio/malang-virtual.webp" },
-  { title: "Smartsuco", category: "Digital", desc: "Smart space & solusi otomasi digital", url: "https://smartsuco.utero.id", logo: "/images/portfolio/smartsuco.webp" },
+  { title: "Smartsuco", category: "AI/Teknologi", desc: "Smart space & solusi otomasi digital", url: "https://smartsuco.utero.id", logo: "/images/portfolio/smartsuco.webp" },
   { title: "Immerstal", category: "Digital", desc: "Immersive technology & interactive media", url: "https://immerstal.uteroindonesia.com", logo: "/images/portfolio/immerstal.webp" },
   { title: "Symadeco", category: "Digital", desc: "Sistem manajemen dekorasi berbasis web", url: "http://symadeco.com/", logo: "/images/portfolio/symadeco.webp" },
   { title: "Inon Designer", category: "Desain Grafis", desc: "Desain grafis & visual komunikasi", url: "http://inon.utero.id", logo: "/images/portfolio/inon-er.webp" },
   { title: "Kochiro Inexterior", category: "Desain Grafis", desc: "Desain interior & eksterior kreatif", url: "https://www.kochiro.com/", logo: "/images/portfolio/kochiro-inexterior.webp" },
+  { title: "Carubra", category: "AI/Teknologi", desc: "AI Agent berbasis WhatsApp untuk bisnis", url: "https://carubra.com", logo: "/images/portfolio/carubra.webp" },
+  { title: "AIDA", category: "AI/Teknologi", desc: "Platform monitoring & streaming billboard digital", url: "https://dash.theaida.id/", logo: "/images/portfolio/aida.webp", logoDark: true },
 ];
 
 export default function Portfolio() {
@@ -97,7 +100,7 @@ export default function Portfolio() {
               color: "#111",
             }}
           >
-            KAMI TAK BISA
+              KAMI TAK BISA
             <br />
             SENDIRI.
             <br />
@@ -212,9 +215,9 @@ export default function Portfolio() {
               }}
             >
               <div className="portfolio-item-inner" style={{ display: "flex", flexDirection: "row", alignItems: "center", gap: "24px", width: "100%" }}>
-                <div className="portfolio-logo" style={{ width: "120px", height: "120px", flexShrink: 0, display: "flex", alignItems: "center", justifyContent: "center" }}>
+                <div className={`portfolio-logo${item.logoDark ? " portfolio-logo-dark" : ""}`} style={{ width: "120px", height: "120px", flexShrink: 0, display: "flex", alignItems: "center", justifyContent: "center", ...(item.logoDark ? { padding: "12px", background: "#111", borderRadius: "12px" } : {}) }}>
                   {item.logo ? (
-                    <Image src={item.logo} alt={item.title} width={120} height={120} style={{ objectFit: "contain", width: "100%", height: "100%", filter: "brightness(1.3) drop-shadow(0 0 6px rgba(255,255,255,0.06))" }} loading="lazy" />
+                    <Image src={item.logo} alt={item.title} width={120} height={120} style={{ objectFit: "contain", width: "100%", height: "100%", filter: item.logoDark ? "drop-shadow(0 0 6px rgba(255,255,255,0.15))" : "brightness(1.3) drop-shadow(0 0 6px rgba(255,255,255,0.06))" }} loading="lazy" />
                   ) : (
                     <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.3)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2" /><circle cx="8.5" cy="8.5" r="1.5" /><polyline points="21 15 16 10 5 21" /></svg>
                   )}
@@ -300,6 +303,13 @@ export default function Portfolio() {
           .portfolio-item-inner .portfolio-logo img {
             width: 80px !important;
             height: 80px !important;
+          }
+          .portfolio-item-inner .portfolio-logo-dark {
+            padding: 6px !important;
+            border-radius: 8px !important;
+          }
+          .portfolio-item-inner .portfolio-logo-dark img {
+            border-radius: 4px !important;
           }
           .portfolio-item-title {
             font-size: 17px !important;
