@@ -82,7 +82,7 @@ export default function Workflow() {
       aria-labelledby="workflow-title"
       style={{
         background: "#fff",
-        padding: "120px 64px",
+        padding: "120px clamp(20px, 5vw, 64px)",
         position: "relative",
       }}
       className="workflow-section"
@@ -303,7 +303,8 @@ export default function Workflow() {
       <style jsx global>{`
         @media (max-width: 1024px) {
           .workflow-section {
-            padding: 80px 32px !important;
+            padding-top: 80px !important;
+            padding-bottom: 80px !important;
           }
           .workflow-header {
             grid-template-columns: 1fr !important;
@@ -352,7 +353,8 @@ export default function Workflow() {
         }
         @media (max-width: 640px) {
           .workflow-section {
-            padding: 64px 20px !important;
+            padding-top: 64px !important;
+            padding-bottom: 64px !important;
           }
           .workflow-steps-grid {
             gap: 32px !important;

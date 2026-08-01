@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { sendGAEvent } from "@next/third-parties/google";
 
 const footerLinks = {
@@ -119,7 +120,7 @@ export default function Footer() {
       role="contentinfo"
       style={{
         background: "var(--red2)",
-        padding: "64px 64px 40px",
+        padding: "64px 48px 40px",
       }}
     >
       <div
@@ -138,17 +139,20 @@ export default function Footer() {
               marginBottom: "16px",
               display: "flex",
               alignItems: "center",
-              gap: "12px",
-              height: "90px",
+              justifyContent: "flex-start",
+              height: "80px",
+              paddingLeft: 0,
+              marginLeft: "2px",
             }}
           >
-            <img
+            <Image
               src="/images/utero-02.webp"
               alt="Utero Indonesia"
+              width={200}
+              height={80}
               style={{
-                height: "90px",
+                height: "120px",
                 width: "auto",
-                display: "block",
                 objectFit: "contain",
                 filter: "brightness(0) invert(1)",
               }}
@@ -602,6 +606,11 @@ export default function Footer() {
       </div>
 
       <style jsx global>{`
+        @media (min-width: 1025px) and (max-width: 1280px) {
+          footer {
+            padding: 64px 32px 40px !important;
+          }
+        }
         @media (max-width: 1024px) {
           .footer-top {
             grid-template-columns: 1fr 1fr !important;
@@ -612,7 +621,7 @@ export default function Footer() {
             margin-top: 24px !important;
           }
           footer {
-            padding: 48px 32px 32px !important;
+            padding: 48px 24px 32px !important;
           }
         }
         @media (max-width: 480px) {
@@ -642,6 +651,11 @@ export default function Footer() {
           .footer-bottom {
             justify-content: center !important;
             text-align: center !important;
+          }
+        }
+        @media (max-width: 360px) {
+          footer {
+            padding: 40px 12px 24px !important;
           }
         }
       `}</style>

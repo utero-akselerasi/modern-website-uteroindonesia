@@ -8,12 +8,28 @@ export function generateStaticParams() {
   return articles.map((article) => ({ slug: article.slug }));
 }
 
-export function generateMetadata({ params }: { params: { slug: string } }) {
-  const article = getArticleBySlug(params.slug);
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const { slug } = await params;
+  const article = getArticleBySlug(slug);
   if (!article) return {};
   return {
     title: `${article.title} | Utero Indonesia`,
     description: article.excerpt,
+    openGraph: {
+      type: "article",
+      url: `https://uteroindonesia.com/artikel/${article.slug}`,
+      title: article.title,
+      description: article.excerpt,
+      siteName: "Utero Indonesia",
+      locale: "id_ID",
+    },
+    alternates: {
+      canonical: `https://uteroindonesia.com/artikel/${article.slug}`,
+    },
   };
 }
 
@@ -23,8 +39,13 @@ const categoryColors: Record<string, string> = {
   Portofolio: "#059669",
 };
 
-export default function ArtikelDetailPage({ params }: { params: { slug: string } }) {
-  const article = getArticleBySlug(params.slug);
+export default async function ArtikelDetailPage({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const { slug } = await params;
+  const article = getArticleBySlug(slug);
   if (!article) notFound();
 
   const catColor = categoryColors[article.category] || "#d11f1f";

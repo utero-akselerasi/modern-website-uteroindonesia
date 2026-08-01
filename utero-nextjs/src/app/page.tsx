@@ -1,8 +1,6 @@
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import Hero from "@/components/sections/Hero";
-
-import About from "@/components/sections/About";
 import KnowUsMore from "@/components/sections/KnowUsMore";
 import Divisions from "@/components/sections/Divisions";
 import Clients from "@/components/sections/Clients";
