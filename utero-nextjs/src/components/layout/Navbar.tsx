@@ -179,8 +179,8 @@ export default function Navbar() {
           style={{
             display: "flex",
             alignItems: "center",
+            height: "80px",
             textDecoration: "none",
-            paddingLeft: "8px",
           }}
         >
           <Image
@@ -189,7 +189,7 @@ export default function Navbar() {
             width={200}
             height={80}
             className="nav-logo-img"
-            style={{ objectFit: "contain", height: "80px", width: "auto", transformOrigin: "left center" }}
+            style={{ objectFit: "contain", height: "120px", width: "auto", transformOrigin: "left center" }}
           />
         </Link>
 
