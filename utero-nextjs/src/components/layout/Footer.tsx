@@ -142,7 +142,7 @@ export default function Footer() {
               justifyContent: "flex-start",
               height: "80px",
               paddingLeft: 0,
-              marginLeft: 0,
+              marginLeft: "2px",
             }}
           >
             <Image
