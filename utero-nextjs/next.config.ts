@@ -4,6 +4,16 @@ const nextConfig: NextConfig = {
   /* config options here */
   output: "export",
   
+  // Fix untuk static export di cPanel
+  basePath: "",
+  assetPrefix: "",
+  trailingSlash: true,
+  
+  // Disable image optimization untuk static export
+  images: {
+    unoptimized: true,
+  },
+  
   allowedDevOrigins: [
     "localhost",
     "localhost:3000",
