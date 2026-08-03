@@ -41,8 +41,8 @@ function getPlacement(angle: number): Placement {
   if (a > 25 && a <= 65) return "bottom-right";
   if (a > 65 && a <= 115) return "bottom";
   if (a > 115 && a <= 155) return "bottom-left";
-  if (a > 155 && a <= 260) return "left";    // left + top-left â†’ text on left (outside)
-  return "right"; // 260Â°â€“315Â° â€” top-right â†’ text on right (outside)
+  if (a > 155 && a <= 260) return "left";    // left + top-left  text on left (outside)
+  return "right"; // 260Â°â€“315Â° â€” top-right  text on right (outside)
 }
 
 function getLabelStyle(placement: Placement) {
@@ -183,10 +183,10 @@ export default function Hero() {
 
           <div style={{ display: "flex", gap: "16px", alignItems: "center", flexWrap: "wrap" }}>
             <Link to="#kontak" className="btn-solid-black">
-              Mulai Proyek Anda <span style={{ marginLeft: "8px" }}>â†’</span>
+              Mulai Proyek Anda <span style={{ marginLeft: "8px" }}></span>
             </Link>
             <Link to="#Partnership" className="btn-outline-white">
-              Lihat Portfolio <span style={{ marginLeft: "8px" }}>â†’</span>
+              Lihat Portfolio <span style={{ marginLeft: "8px" }}></span>
             </Link>
           </div>
         </motion.div>

@@ -296,7 +296,7 @@ export default function FloatingWhatsApp() {
 
   /* ═════════════════════ RENDER ═════════════════════════ */
   return (
-    <div className="fixed bottom-5 right-4 z-[90] flex flex-col items-end sm:bottom-6 sm:right-6">
+    <div style={{ position: "fixed", bottom: "20px", right: "16px", zIndex: 90, display: "flex", flexDirection: "column", alignItems: "flex-end" }}>
       {/* ═══ Chat Panel ══════════════════════════════════ */}
       <AnimatePresence>
         {isOpen && (
@@ -313,7 +313,7 @@ export default function FloatingWhatsApp() {
               borderRadius: "20px",
               marginBottom: "12px",
             }}
-            className="flex flex-col overflow-hidden"
+            
           >
             {/* ──────── Header ──────────────────────── */}
             <div
@@ -322,9 +322,9 @@ export default function FloatingWhatsApp() {
                 borderBottom: `1px solid ${t.headerBorder}`,
                 padding: "14px 16px",
               }}
-              className="flex items-center gap-3"
+              
             >
-              <div className="relative shrink-0">
+              <div >
                 <img
                   src={CHATBOT_AVATAR}
                   alt={CHATBOT_NAME}
@@ -359,7 +359,7 @@ export default function FloatingWhatsApp() {
                 </p>
               </div>
 
-              <div className="flex items-center gap-1">
+              <div >
                 {[
                   { icon: <IconReset />, onClick: handleReset, title: "Reset percakapan" },
                   { icon: mode === "light" ? <IconMoon /> : <IconSun />, onClick: toggleMode, title: mode === "light" ? "Mode gelap" : "Mode terang" },
@@ -581,7 +581,7 @@ export default function FloatingWhatsApp() {
       </AnimatePresence>
 
       {/* ═══ Trigger Area ════════════════════════════════ */}
-      <div className="flex items-end gap-2">
+      <div >
         {/* Tooltip speech bubble */}
         <AnimatePresence>
           {showTooltip && !isOpen && (
