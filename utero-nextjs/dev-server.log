@@ -1,0 +1,25 @@
+
+> utero-nextjs@0.1.0 dev
+> next dev
+
+▲ Next.js 16.2.9 (Turbopack)
+- Local:         http://localhost:3000
+- Network:       http://172.16.0.2:3000
+✓ Ready in 1748ms
+
+○ Compiling / ...
+ GET / 200 in 11.9s (next.js: 10.7s, application-code: 1182ms)
+✓ Compiled in 121ms
+ GET / 200 in 287ms (next.js: 170ms, application-code: 117ms)
+ GET / 200 in 619ms (next.js: 5ms, application-code: 614ms)
+✓ Compiled in 88ms
+ GET / 200 in 173ms (next.js: 105ms, application-code: 68ms)
+✓ Compiled in 91ms
+ GET / 200 in 181ms (next.js: 102ms, application-code: 79ms)
+✓ Compiled in 74ms
+ GET / 200 in 167ms (next.js: 99ms, application-code: 69ms)
+✓ Compiled in 80ms
+ GET / 200 in 158ms (next.js: 102ms, application-code: 56ms)
+✓ Compiled in 78ms
+ GET / 200 in 228ms (next.js: 158ms, application-code: 70ms)
+ GET / 200 in 1022ms (next.js: 7ms, application-code: 1015ms)
