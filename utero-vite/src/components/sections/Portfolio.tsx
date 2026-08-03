@@ -1,7 +1,5 @@
-﻿"use client";
+﻿import { useState } from "react";
 
-import { useState } from "react";
-import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 
 const categories = [
@@ -217,7 +215,7 @@ export default function Portfolio() {
               <div className="portfolio-item-inner" style={{ display: "flex", flexDirection: "row", alignItems: "center", gap: "24px", width: "100%" }}>
                 <div className={`portfolio-logo${item.logoDark ? " portfolio-logo-dark" : ""}`} style={{ width: "120px", height: "120px", flexShrink: 0, display: "flex", alignItems: "center", justifyContent: "center", ...(item.logoDark ? { padding: "12px", background: "#111", borderRadius: "12px" } : {}) }}>
                   {item.logo ? (
-                    <Image src={item.logo} alt={item.title} width={120} height={120} style={{ objectFit: "contain", width: "100%", height: "100%", filter: item.logoDark ? "drop-shadow(0 0 6px rgba(255,255,255,0.15))" : "brightness(1.3) drop-shadow(0 0 6px rgba(255,255,255,0.06))" }} loading="lazy" />
+                    <img src={item.logo} alt={item.title} style={{ objectFit: "contain", width: "100%", height: "100%", filter: item.logoDark ? "drop-shadow(0 0 6px rgba(255,255,255,0.15))" : "brightness(1.3) drop-shadow(0 0 6px rgba(255,255,255,0.06))" }} loading="lazy" />
                   ) : (
                     <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.3)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2" /><circle cx="8.5" cy="8.5" r="1.5" /><polyline points="21 15 16 10 5 21" /></svg>
                   )}
@@ -267,7 +265,7 @@ export default function Portfolio() {
         </AnimatePresence>
       </div>
 
-      <style jsx global>{`
+      <style>{`
         @media (max-width: 1024px) {
           .portfolio-grid {
             grid-template-columns: repeat(2, 1fr) !important;
@@ -323,3 +321,5 @@ export default function Portfolio() {
     </section>
   );
 }
+
+
