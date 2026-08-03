@@ -1,4 +1,4 @@
-import { Helmet } from 'react-helmet-async';
+﻿import { Helmet } from 'react-helmet-async';
 import { Link, useParams, Navigate } from 'react-router-dom';
 import { getArticleBySlug } from '../data/articles';
 
@@ -42,39 +42,47 @@ export default function ArtikelDetail() {
           className="artikel-detail"
         >
           <div style={{ marginBottom: '40px' }}>
-            <Link to="/artikel" className="artikel-back-link">
-              <svg
-                width="14"
-                height="14"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <path d="M19 12H5" />
-                <path d="M12 19l-7-7 7-7" />
-              </svg>
-              Semua Artikel
-            </Link>
-
-            <span
+            <div
               style={{
-                display: 'inline-block',
-                background: catColor,
-                color: '#fff',
-                fontSize: '11px',
-                fontWeight: 600,
-                letterSpacing: '0.06em',
-                textTransform: 'uppercase',
-                padding: '4px 10px',
-                borderRadius: '2px',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '12px',
                 marginBottom: '20px',
               }}
             >
-              {article.category}
-            </span>
+              <Link to="/artikel" className="artikel-back-link">
+                <svg
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <path d="M19 12H5" />
+                  <path d="M12 19l-7-7 7-7" />
+                </svg>
+                Semua Artikel
+              </Link>
+
+              <span
+                style={{
+                  display: 'inline-block',
+                  background: catColor,
+                  color: '#fff',
+                  fontSize: '11px',
+                  fontWeight: 600,
+                  letterSpacing: '0.06em',
+                  textTransform: 'uppercase',
+                  padding: '4px 10px',
+                  borderRadius: '2px',
+                }}
+              >
+                {article.category}
+              </span>
+            </div>
 
             <h1
               style={{
@@ -190,7 +198,7 @@ export default function ArtikelDetail() {
           font-weight: 600;
           color: var(--muted);
           text-decoration: none;
-          margin-bottom: 32px;
+          margin-bottom: 0;
           transition: color 0.2s;
         }
         .artikel-back-link:hover {

@@ -1,6 +1,8 @@
-import { useState, useEffect, useRef } from "react";
-import { Link } from "react-router-dom";
+﻿"use client";
 
+import { useState, useEffect, useRef } from "react";
+import Link from "next/link";
+import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 
 const navLinks = [
@@ -172,7 +174,8 @@ export default function Navbar() {
           transition: "padding 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
         }}
       >
-        <Link to="/"
+        <Link
+          href="/"
           style={{
             display: "flex",
             alignItems: "center",
@@ -180,7 +183,11 @@ export default function Navbar() {
             textDecoration: "none",
           }}
         >
-          <img src="/images/utero-02.webp" alt="Utero Indonesia"
+          <Image
+            src="/images/utero-02.webp"
+            alt="Utero Indonesia"
+            width={200}
+            height={80}
             className="nav-logo-img"
             style={{ objectFit: "contain", height: "120px", width: "auto", transformOrigin: "left center" }}
           />
@@ -197,7 +204,8 @@ export default function Navbar() {
         >
           {navLinks.map((link) => (
             <li key={link.href}>
-              <Link to={link.href}
+              <Link
+                href={link.href}
                 className="nav-desktop-link"
                 style={{
                   fontSize: "13px",
@@ -217,7 +225,8 @@ export default function Navbar() {
             </li>
           ))}
           <li>
-            <Link to="/#kontak"
+            <Link
+              href="/#kontak"
               className="nav-cta-btn"
               style={{
                 background: "var(--red)",
@@ -326,7 +335,8 @@ export default function Navbar() {
                 borderBottom: "1px solid var(--border-color)",
               }}
             >
-              <Link to="/"
+              <Link
+                href="/"
                 style={{
                   display: "flex",
                   alignItems: "center",
@@ -334,7 +344,11 @@ export default function Navbar() {
                 }}
                 onClick={closeMenu}
               >
-                <img src="/images/utero-02.webp" alt="Utero Indonesia"
+                <Image
+                  src="/images/utero-02.webp"
+                  alt="Utero Indonesia"
+                  width={130}
+                  height={52}
                   style={{ objectFit: "contain", height: "52px", width: "auto", transformOrigin: "left center" }}
                 />
               </Link>
@@ -399,7 +413,8 @@ export default function Navbar() {
               >
                 {menuCards.map((card, i) => (
                   <motion.div key={card.href} variants={cardVariants} initial="hidden" animate="visible" custom={i}>
-                    <Link to={card.href}
+                    <Link
+                      href={card.href}
                       onClick={closeMenu}
                       style={{
                         display: "flex",
@@ -451,7 +466,8 @@ export default function Navbar() {
               </div>
 
               <div style={{ textAlign: "center", marginTop: "32px" }}>
-                <Link to="/#kontak"
+                <Link
+                href="/#kontak"
                 onClick={closeMenu}
                   style={{
                     display: "inline-block",
@@ -476,7 +492,7 @@ export default function Navbar() {
         )}
       </AnimatePresence>
 
-      <style>{`
+      <style jsx global>{`
         /* ===== Desktop nav: 1024px+ ===== */
         /* Already visible by default */
 

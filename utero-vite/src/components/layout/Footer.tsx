@@ -1,6 +1,8 @@
+﻿"use client";
 
-import { Link } from "react-router-dom";
-import { sendGAEvent } from "@/compat/next";
+import Link from "next/link";
+import Image from "next/image";
+import { sendGAEvent } from "@next/third-parties/google";
 
 const footerLinks = {
   navigasi: [
@@ -143,7 +145,7 @@ export default function Footer() {
               marginLeft: "2px",
             }}
           >
-            <img 
+            <Image
               src="/images/utero-02.webp"
               alt="Utero Indonesia"
               width={200}
@@ -239,7 +241,7 @@ export default function Footer() {
             {footerLinks.navigasi.map((item) => (
               <li key={item.name}>
                 <Link
-                  to={item.href}
+                  href={item.href}
                   style={{
                     fontSize: "14px",
                     color: "rgba(255, 255, 255, 0.8)",
@@ -541,7 +543,7 @@ export default function Footer() {
               gap: "10px",
             }}
           >
-            <span style={{ fontSize: "16px" }}>Ã°Å¸â€œÂ</span>
+            <span style={{ fontSize: "16px" }}>ðŸ“</span>
             <span>Kantor Malang - Jl. Bantaran 1 No. 25, Lowokwaru</span>
           </div>
           <iframe
@@ -577,7 +579,7 @@ export default function Footer() {
             gap: "4px",
           }}
         >
-          <span>Copyright Ã‚Â© Since 1998. All rights reserved.</span>
+          <span>Copyright Â© Since 1998. All rights reserved.</span>
           <span style={{ fontSize: "12px", color: "rgba(255, 255, 255, 0.8)" }}>
             Created with passion and creativity by{" "}
             <a
@@ -603,7 +605,7 @@ export default function Footer() {
         </div>
       </div>
 
-      <style>{`
+      <style jsx global>{`
         @media (min-width: 1025px) and (max-width: 1280px) {
           footer {
             padding: 64px 32px 40px !important;
