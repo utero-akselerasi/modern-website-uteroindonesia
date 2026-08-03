@@ -63,6 +63,14 @@ export default async function ArtikelDetailPage({
           className="artikel-detail"
         >
           <div style={{ marginBottom: "40px" }}>
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: "12px",
+                marginBottom: "20px",
+              }}
+            >
             <Link href="/artikel" className="artikel-back-link">
               <svg
                 width="14"
@@ -91,11 +99,11 @@ export default async function ArtikelDetailPage({
                 textTransform: "uppercase",
                 padding: "4px 10px",
                 borderRadius: "2px",
-                marginBottom: "20px",
               }}
             >
               {article.category}
             </span>
+            </div>
 
             <h1
               style={{
@@ -212,7 +220,7 @@ export default async function ArtikelDetailPage({
           font-weight: 600;
           color: var(--muted);
           text-decoration: none;
-          margin-bottom: 32px;
+          margin-bottom: 0;
           transition: color 0.2s;
         }
         .artikel-back-link:hover {
