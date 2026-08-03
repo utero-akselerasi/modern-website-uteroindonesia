@@ -1,45 +1,42 @@
-﻿
-import { motion } from "framer-motion";
-import { sendGAEvent } from "@/compat/next";
-
+﻿import { motion } from "framer-motion";
 const divisions = [
   {
-    tag: "01 ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â Design",
+    tag: "01 -- Design",
     name: "Utero.id",
     desc: "Brand identity, konsultasi branding, desain grafis, dan strategi visual untuk bisnis yang ingin tampil berbeda.",
     services: ["Logo & GSM", "Brand Strategy", "Foto & Video", "Konsultan Branding"],
     href: "https://utero.id/",
   },
   {
-    tag: "02 ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â Advertising",
+    tag: "02 -- Advertising",
     name: "Utero Malang",
     desc: "Produksi reklame, printing digital indoor & outdoor, signage, neonbox, pylon, dan branding kendaraan.",
     services: ["Billboard", "Signage 3D", "Digital Print", "Vehicle Wrap"],
     href: "https://uteroindonesia.com/",
   },
   {
-    tag: "03 ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â Digital",
+    tag: "03 -- Digital",
     name: "Buzzerhood",
     desc: "Manajemen media sosial, konten digital, kampanye influencer, dan strategi pemasaran online yang terukur.",
     services: ["Social Media", "Content Creator", "Digital Campaign", "Influencer"],
     href: "https://buzzerhood.com/",
   },
   {
-    tag: "04 ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â Music",
+    tag: "04 -- Music",
     name: "Soundpub",
     desc: "Distribusi musik digital ke platform streaming global. Solusi untuk musisi independen dan label rekaman lokal.",
     services: ["Music Distribution", "Streaming Platforms", "Label Services", "Sync Licensing"],
     href: "https://soundpub.xyz/",
   },
   {
-    tag: "05 ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â Media",
+    tag: "05 -- Media",
     name: "Epochstream",
     desc: "Platform media digital dan konten kreatif yang mendokumentasikan ekosistem kreatif Indonesia.",
     services: ["Digital Media", "Content Platform", "Storytelling", "Brand Journalism"],
     href: "https://epochstream.org/",
   },
   {
-    tag: "06 ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â AI Tech",
+    tag: "06 -- AI Tech",
     name: "Carubra.com",
     desc: "Otomasi bisnis berbasis kecerdasan buatan. Solusi AI untuk efisiensi operasional dan pertumbuhan bisnis digital.",
     services: ["AI Automation", "Digital Product", "Tech Consulting", "Data Analytics"],
@@ -124,7 +121,7 @@ export default function Divisions() {
               marginBottom: "40px",
             }}
           >
-            Setiap divisi Utero Indonesia berdiri dengan keahlian yang spesifik ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â
+            Setiap divisi Utero Indonesia berdiri dengan keahlian yang spesifik --
             namun bekerja secara sinergis. Apapun kebutuhan brand Anda, ada satu
             rumah untuk menyelesaikannya.
           </p>
@@ -158,7 +155,7 @@ export default function Divisions() {
               e.currentTarget.style.borderColor = "rgba(255, 255, 255, 0.3)";
             }}
           >
-            Lihat Semua Unit ÃƒÂ¢Ã¢â‚¬Â Ã¢â‚¬â„¢
+            Lihat Semua Unit →
           </a>
         </div>
 
@@ -178,7 +175,6 @@ export default function Divisions() {
             href={div.href}
             target="_blank"
             rel="noopener noreferrer"
-            onClick={() => sendGAEvent({ event: "click_division", value: `redirect_to_${div.name.toLowerCase().replace(/\s+/g, "_")}` })}
             role="listitem"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}

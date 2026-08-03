@@ -1,48 +1,45 @@
-﻿
-import { motion } from "framer-motion";
-import { sendGAEvent } from "@/compat/next";
-
+﻿import { motion } from "framer-motion";
 const partners = [
   {
     name: "Pinterest",
     href: "https://id.pinterest.com/marketingutero/boards/",
     img: "/images/partner/pinterest.webp",
-    alt: "Pinterest ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â inspirasi desain dan kreativitas",
+    alt: "Pinterest -- inspirasi desain dan kreativitas",
     skipFilter: true,
   },
   {
     name: "Behance",
     href: "https://www.behance.net/UTEROINDONESIA",
     img: "/images/partner/behance.webp",
-    alt: "Behance ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â portofolio karya desain Utero Indonesia",
+    alt: "Behance -- portofolio karya desain Utero Indonesia",
     skipFilter: true,
   },
   {
     name: "Moselo",
     href: "http://shop.epochstream.org/",
     img: "/images/partner/moselo.webp",
-    alt: "Moselo ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â marketplace produk kreatif dan handmade",
+    alt: "Moselo -- marketplace produk kreatif dan handmade",
     skipFilter: true,
   },
   {
     name: "Tokopedia",
     href: "https://www.tokopedia.com/utero",
     img: "/images/partner/tokopedia.webp",
-    alt: "Tokopedia ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â official store Utero Indonesia",
+    alt: "Tokopedia -- official store Utero Indonesia",
     skipFilter: true,
   },
   {
     name: "Epochstream Shop",
     href: "https://shop.epochstream.org/",
     img: "/images/partner/epochstream-shop.webp",
-    alt: "Epochstream Shop ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â official store produk Epochstream",
+    alt: "Epochstream Shop -- official store produk Epochstream",
     skipFilter: true,
   },
   {
     name: "Rumah Oxyz",
     href: "https://shop.uteroindonesia.com",
     img: "/images/partner/oxyz.webp",
-    alt: "Rumah Oxyz ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â makerspace dan coworking space kreatif",
+    alt: "Rumah Oxyz -- makerspace dan coworking space kreatif",
     skipFilter: true,
   },
 ];
@@ -119,7 +116,7 @@ export default function Partners() {
             marginBottom: "40px",
             }}
           >
-            Terhubung dengan kami di berbagai platform ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â dari marketplace
+            Terhubung dengan kami di berbagai platform -- dari marketplace
             hingga portofolio kreatif.
           </p>
 
@@ -127,7 +124,6 @@ export default function Partners() {
             href="http://bit.ly/PartnershipUTEROIndonesia"
             target="_blank"
             rel="noopener noreferrer"
-            onClick={() => sendGAEvent({ event: "click_partnership", value: "redirect_to_daftar_partner" })}
             style={{
               display: "inline-flex",
               alignItems: "center",
@@ -151,11 +147,11 @@ export default function Partners() {
             e.currentTarget.style.color = "#fff";
           }}
           >
-            Daftar Partner ÃƒÂ¢Ã¢â‚¬Â Ã¢â‚¬â„¢
+            Daftar Partner →
           </a>
         </div>
 
-        {/* Right Column ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â Grid */}
+        {/* Right Column -- Grid */}
         <div
           style={{
             display: "grid",
@@ -170,7 +166,6 @@ export default function Partners() {
               href={partner.href}
               target="_blank"
               rel="noopener noreferrer"
-              onClick={() => sendGAEvent({ event: "click_partner", value: `redirect_to_${partner.name.toLowerCase().replace(/\s+/g, "_")}` })}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
@@ -224,11 +219,8 @@ export default function Partners() {
                 }}
                 aria-hidden="true"
               >
-                <img 
-                  src={partner.img}
+                <img src={partner.img}
                   alt={partner.alt}
-                  width={76}
-                  height={76}
                   style={{
                     objectFit: "contain",
                     transition: "filter 0.3s",

@@ -1,8 +1,5 @@
-
-import { useState, useRef, useEffect } from "react";
-import { sendGAEvent } from "@/compat/next";
+﻿import { useState, useRef, useEffect } from "react";
 import { motion } from "framer-motion";
-
 const cbpCities = [
   {
     name: "Malang",
@@ -191,12 +188,7 @@ export default function CBP() {
                 href={`https://wa.me/${city.phone}?text=${encodeURIComponent(city.waText)}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                onClick={() =>
-                  sendGAEvent({
-                    event: "click_cbp",
-                    value: `wa_${city.name.toLowerCase()}`,
-                  })
-                }
+                
                 style={{
                   flex: `0 0 ${cardWidth}px`,
                   background: "var(--white)",
@@ -247,11 +239,8 @@ export default function CBP() {
                   className="cbp-img-wrap"
                   aria-hidden="true"
                 >
-                  <img 
-                    src={city.img}
+                  <img src={city.img}
                     alt={city.alt}
-                    width={100}
-                    height={100}
                     style={{
                       objectFit: "cover",
                       width: "100%",
@@ -389,12 +378,7 @@ export default function CBP() {
           href="https://docs.google.com/forms/u/1/d/e/1FAIpQLSfFx9lZWabByBmtSDcQBjmc53jdeTzLDxB2moUpli7J3BBTWQ/viewform"
           target="_blank"
           rel="noopener noreferrer"
-          onClick={() =>
-            sendGAEvent({
-              event: "click_cbp_daftar",
-              value: "redirect_to_daftar_cbp",
-            })
-          }
+          
           style={{
             display: "inline-flex",
             alignItems: "center",
@@ -418,7 +402,7 @@ export default function CBP() {
             e.currentTarget.style.color = "#fff";
           }}
         >
-          Daftar CBP Ã¢â€ â€™
+          Daftar CBP →
         </a>
       </motion.div>
 

@@ -1,7 +1,4 @@
-﻿
-import { Link } from "react-router-dom";
-import { sendGAEvent } from "@/compat/next";
-
+﻿import { Link } from "react-router-dom";
 const footerLinks = {
   navigasi: [
     { name: "Home", href: "#hero" },
@@ -143,11 +140,8 @@ export default function Footer() {
               marginLeft: "2px",
             }}
           >
-            <img 
-              src="/images/utero-02.webp"
+            <img src="/images/utero-02.webp"
               alt="Utero Indonesia"
-              width={200}
-              height={80}
               style={{
                 height: "120px",
                 width: "auto",
@@ -238,8 +232,7 @@ export default function Footer() {
           >
             {footerLinks.navigasi.map((item) => (
               <li key={item.name}>
-                <Link
-                  to={item.href}
+                <a href={item.href}
                   style={{
                     fontSize: "14px",
                     color: "rgba(255, 255, 255, 0.8)",
@@ -255,7 +248,7 @@ export default function Footer() {
                   }
                 >
                   {item.name}
-                </Link>
+                </a>
               </li>
             ))}
           </ul>
@@ -306,14 +299,7 @@ export default function Footer() {
                   (e.currentTarget.style.color =
                     "rgba(255, 255, 255, 0.8)")
                   }
-                  onClick={() =>
-                    sendGAEvent({
-                      event: "click_footer_division",
-                      value: `redirect_to_${item.name
-                        .toLowerCase()
-                        .replace(/\s+/g, "_")}`,
-                    })
-                  }
+                  
                 >
                   {item.name}
                 </a>
@@ -541,7 +527,7 @@ export default function Footer() {
               gap: "10px",
             }}
           >
-            <span style={{ fontSize: "16px" }}>Ã°Å¸â€œÂ</span>
+            <span style={{ fontSize: "16px" }}>📍</span>
             <span>Kantor Malang - Jl. Bantaran 1 No. 25, Lowokwaru</span>
           </div>
           <iframe
@@ -577,7 +563,7 @@ export default function Footer() {
             gap: "4px",
           }}
         >
-          <span>Copyright Ã‚Â© Since 1998. All rights reserved.</span>
+          <span>Copyright © Since 1998. All rights reserved.</span>
           <span style={{ fontSize: "12px", color: "rgba(255, 255, 255, 0.8)" }}>
             Created with passion and creativity by{" "}
             <a

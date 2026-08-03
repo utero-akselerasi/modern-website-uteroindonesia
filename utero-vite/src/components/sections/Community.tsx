@@ -1,14 +1,11 @@
-﻿
-import { motion } from "framer-motion";
-import { sendGAEvent } from "@/compat/next";
-
+﻿import { motion } from "framer-motion";
 const communities = [
   {
     name: "MCF",
     fullName: "Malang Creative Fusion",
     href: "http://mcf.or.id/",
     img: "/images/community/mcf.webp",
-    alt: "Malang Creative Fusion ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â membangun budaya kreatif masyarakat Malang",
+    alt: "Malang Creative Fusion -- membangun budaya kreatif masyarakat Malang",
     desc: "Membangun budaya kreatif masyarakat, menciptakan jejaring kolaborasi, dan menjadi pusat informasi pengembangan industri kreatif Kota Malang.",
   },
   {
@@ -16,7 +13,7 @@ const communities = [
     fullName: "Indonesia Creative Cities Network",
     href: "https://iccn.or.id/",
     img: "/images/community/iccn.webp",
-    alt: "Indonesia Creative Cities Network ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â jejaring kota kreatif Indonesia",
+    alt: "Indonesia Creative Cities Network -- jejaring kota kreatif Indonesia",
     desc: "Jejaring kota/kabupaten kreatif Indonesia yang berkomitmen memajukan kota kreatif melalui riset dan pengembangan ekonomi kreatif.",
   },
   {
@@ -24,7 +21,7 @@ const communities = [
     fullName: "Asosiasi Advertising Malang",
     href: "https://asosiasiadvertisingmalang.wordpress.com/",
     img: "/images/community/aam.webp",
-    alt: "Asosiasi Advertising Malang ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â wadah pengusaha periklanan Malang Raya",
+    alt: "Asosiasi Advertising Malang -- wadah pengusaha periklanan Malang Raya",
     desc: "Wadah komunikasi dan kolaborasi pengusaha periklanan Malang Raya untuk meningkatkan daya saing dan pertumbuhan industri periklanan.",
   },
   {
@@ -32,7 +29,7 @@ const communities = [
     fullName: "Asosiasi Desainer Grafis Indonesia",
     href: "https://adgimalang.com/",
     img: "/images/community/adgi.webp",
-    alt: "ADGI Malang ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â asosiasi desainer grafis Indonesia chapter Malang",
+    alt: "ADGI Malang -- asosiasi desainer grafis Indonesia chapter Malang",
     desc: "Asosiasi yang mewadahi profesi desainer grafis Indonesia dan mendukung pengembangan ekonomi kreatif nasional.",
   },
 ];
@@ -109,12 +106,12 @@ export default function Community() {
               marginBottom: "40px",
             }}
           >
-            Utero Indonesia tumbuh bersama komunitas kreatif ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â dari asosiasi
+            Utero Indonesia tumbuh bersama komunitas kreatif -- dari asosiasi
             profesional hingga jejaring kota kreatif Indonesia.
           </p>
         </div>
 
-        {/* Right Column ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â 2x2 Grid */}
+        {/* Right Column -- 2x2 Grid */}
         <div
           style={{
             display: "grid",
@@ -129,7 +126,6 @@ export default function Community() {
               href={item.href}
               target="_blank"
               rel="noopener noreferrer"
-              onClick={() => sendGAEvent({ event: "click_community", value: `redirect_to_${item.name.toLowerCase().replace(/\s+/g, "_")}` })}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
@@ -172,11 +168,8 @@ export default function Community() {
                 }}
                 aria-hidden="true"
               >
-                <img 
-                  src={item.img}
+                <img src={item.img}
                   alt={item.alt}
-                  width={76}
-                  height={76}
                   style={{
                     objectFit: "contain",
                   }}

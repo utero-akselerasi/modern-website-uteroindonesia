@@ -1,15 +1,11 @@
-﻿
-import { motion } from "framer-motion";
+﻿import { motion } from "framer-motion";
 import { useMemo, useState } from "react";
-import { sendGAEvent } from "@/compat/next";
 
 const handleWhatsAppClick = () => {
-  sendGAEvent({ event: "generate_lead", value: "whatsapp_click" });
-};
+  };
 
 const handleEmailClick = (email: string) => {
-  sendGAEvent({ event: "email_click", value: email });
-};
+  };
 
 const emailOptions = [
   { key: "marketing", email: "marketingutero@gmail.com", label: "Koorporate" },
@@ -19,7 +15,7 @@ const emailOptions = [
 
 const contacts = [
   {
-    icon: "Ã°Å¸â€™Â¬",
+    icon: "💬",
     label: "WhatsApp",
     value: "Pilih nomor WhatsApp",
     href: "#",
@@ -28,7 +24,7 @@ const contacts = [
     type: "wa_dropdown",
   },
   {
-    icon: "Ã°Å¸Â¤â€“",
+    icon: "🤖",
     label: "AI Agent",
     value: "Carubra Agent AI",
     href: "#",
@@ -37,7 +33,7 @@ const contacts = [
     type: "ai_dropdown",
   },
   {
-    icon: "Ã¢Å“â€°Ã¯Â¸Â",
+    icon: "✉️",
     label: "Email",
     value: "Pilih alamat email",
     href: "#",
@@ -45,7 +41,7 @@ const contacts = [
     onClick: undefined,
   },
   {
-    icon: "Ã°Å¸â€œÂ",
+    icon: "📍",
     label: "Kantor Malang",
     value: "Rumah Merah Oxyz, Jln. Bantaran 1, No. 25, Kota Malang",
     href: "https://maps.google.com",
@@ -123,7 +119,7 @@ export default function Contact() {
           Siap Bicara<br />Tentang <span style={{ color: "var(--red)" }}>Brand Anda?</span>
         </h2>
         <p style={{ fontSize: "16px", lineHeight: 1.7, color: "rgba(17,17,17,0.6)" }}>
-          Konsultasi pertama gratis. Tidak perlu brief yang sempurna Ã¢â‚¬â€ cukup ceritakan bisnis Anda dan kami akan bantu menemukan arah yang tepat.
+          Konsultasi pertama gratis. Tidak perlu brief yang sempurna -- cukup ceritakan bisnis Anda dan kami akan bantu menemukan arah yang tepat.
         </p>
       </motion.div>
       <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
@@ -196,7 +192,7 @@ export default function Contact() {
                     >
                       <span>{c.label}</span>
                       <span style={{ color: "var(--red)", fontSize: 12, fontWeight: 800 }}>
-                        {isEmailOpen ? "Ã¢â€“Â²" : "Ã¢â€“Â¼"}
+                        {isEmailOpen ? "▲" : "▼"}
                       </span>
                     </div>
                     <div style={{ fontSize: "16px", fontWeight: 600, color: "#111" }}>{c.value}</div>
@@ -317,7 +313,7 @@ export default function Contact() {
                     >
                       <span>{c.label}</span>
                       <span style={{ color: "var(--red)", fontSize: 12, fontWeight: 800 }}>
-                        {isWaOpen ? "Ã¢â€“Â²" : "Ã¢â€“Â¼"}
+                        {isWaOpen ? "▲" : "▼"}
                       </span>
                     </div>
                     <div style={{ fontSize: "16px", fontWeight: 600, color: "#111" }}>{c.value}</div>
@@ -440,7 +436,7 @@ export default function Contact() {
                     >
                       <span>{c.label}</span>
                       <span style={{ color: "var(--red)", fontSize: 12, fontWeight: 800 }}>
-                        {isAiOpen ? "Ã¢â€“Â²" : "Ã¢â€“Â¼"}
+                        {isAiOpen ? "▲" : "▼"}
                       </span>
                     </div>
                     <div style={{ fontSize: "16px", fontWeight: 600, color: "#111" }}>{c.value}</div>
@@ -467,9 +463,7 @@ export default function Contact() {
                         target="_blank"
                         rel="noopener noreferrer"
                         aria-label={`Buka ${opt.label}`}
-                        onClick={() =>
-                          sendGAEvent({ event: "click_ai_agent", value: opt.key })
-                        }
+                        
                         style={{
                           textDecoration: "none",
                           color: "#111",

@@ -1,14 +1,11 @@
-﻿
-import { motion } from "framer-motion";
-import { sendGAEvent } from "@/compat/next";
-
+﻿import { motion } from "framer-motion";
 const downloadItems = [
   {
     label: "Profile Founder",
-    desc: "CV Dadik Wahyu Chang ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â Founder Utero Indonesia",
+    desc: "CV Dadik Wahyu Chang -- Founder Utero Indonesia",
     href: "https://uteroindonesia.com/files/CV%20DADIK%20WAHYU%202022_compressed.pdf",
     img: "/images/download/dadik.webp",
-    alt: "Download CV Dadik Wahyu Chang ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â Founder Utero Indonesia",
+    alt: "Download CV Dadik Wahyu Chang -- Founder Utero Indonesia",
   },
   {
     label: "Profile Utero Indonesia",
@@ -183,14 +180,7 @@ export default function Download() {
                   ? "noopener noreferrer"
                   : undefined
               }
-              onClick={() =>
-                sendGAEvent({
-                  event: "click_download",
-                  value: `download_${item.label
-                    .toLowerCase()
-                    .replace(/\s+/g, "_")}`,
-                })
-              }
+              
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
@@ -222,11 +212,8 @@ export default function Download() {
                 }}
                 aria-hidden="true"
               >
-                <img 
-                  src={item.img}
+                <img src={item.img}
                   alt={item.alt}
-                  width={72}
-                  height={72}
                   style={{
                     objectFit: "cover",
                     borderRadius: "12px",
@@ -272,7 +259,7 @@ export default function Download() {
                   marginTop: "auto",
                 }}
               >
-                Unduh ÃƒÂ¢Ã¢â‚¬Â Ã¢â‚¬â„¢
+                Unduh →
               </span>
             </motion.a>
           ))}
