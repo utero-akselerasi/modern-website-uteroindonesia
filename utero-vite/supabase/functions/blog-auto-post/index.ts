@@ -6,6 +6,7 @@ import { decode } from "https://deno.land/std@0.168.0/encoding/base64.ts";
  * Blog Auto-Post Edge Function
  * 
  * Endpoint untuk auto-posting artikel blog ke uteroindonesia.com
+ * Schema: utero-artikel
  * 
  * Features:
  * - API key authentication
@@ -218,7 +219,9 @@ serve(async (req) => {
     }
 
     // Use service role to bypass RLS for insert
-    const supabase = createClient(supabaseUrl, supabaseServiceKey);
+    const supabase = createClient(supabaseUrl, supabaseServiceKey, {
+      db: { schema: 'utero-artikel' }
+    });
 
     // ========================================================================
     // 6. GENERATE SLUG
@@ -291,7 +294,7 @@ serve(async (req) => {
     // ========================================================================
     // 8. INSERT BLOG POST
     // ========================================================================
-    console.log('Inserting blog post to database...');
+    console.log('Inserting blog post to database (schema: utero-artikel)...');
 
     const { data: post, error: insertError } = await supabase
       .from('blog_posts')
@@ -334,7 +337,7 @@ serve(async (req) => {
     // ========================================================================
     // 9. SUCCESS RESPONSE
     // ========================================================================
-    console.log(`Blog post created successfully: ${post.id}`);
+    console.log(`Blog post created successfully: ${post.id} (schema: utero-artikel)`);
 
     return new Response(
       JSON.stringify({
@@ -344,6 +347,7 @@ serve(async (req) => {
           slug: post.slug,
           cover_url: coverUrl,
           url: `/blog/${post.slug}`,
+          schema: 'utero-artikel'
         },
       }),
       { 
