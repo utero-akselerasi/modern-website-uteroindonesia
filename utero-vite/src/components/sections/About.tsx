@@ -20,7 +20,7 @@ const aboutCards = [
     icon: "map-pin",
   },
   {
-    num: "âˆž",
+    num: "",
     suffix: "",
     label: "Komitmen pada klien, tanpa kompromi",
     icon: "infinity",
@@ -144,7 +144,7 @@ export default function About() {
             maxWidth: "520px",
           }}
         >
-          Sejak 1998, Utero Indonesia berdiri sebagai ekosistem kreatif â€” bukan
+          Sejak 1998, Utero Indonesia berdiri sebagai ekosistem kreatif  bukan
           hanya satu agensi, tapi sebuah keluarga besar divisi yang saling
           menopang. Dari desain logo hingga distribusi musik, dari signage fisik
           hingga otomasi AI.{" "}

@@ -6,8 +6,8 @@ const ipItems = [
   { name: "OSIKER", href: "http://osiker.com/", img: "/images/ip/osiker.webp", alt: "Platform Intellectual Property & lisensi kreatif" },
   { name: "Osiaeker", href: "http://osiaeker.uteroindonesia.com", img: "/images/ip/osiaeker.webp", alt: "Kanal konten kreatif dan entertainment" },
   { name: "Chang", href: "http://bit.ly/YTDADIKWAHYUCHANG", img: "/images/ip/chang.webp", alt: "Vlog dan konten kreatif Dadik Wahyu Chang" },
-  { name: "Mbois", href: "https://festivalmbois.mcf.or.id/", img: "/images/ip/mbois.webp", alt: "Festival Mbois â€” brand event Malang Creative Fusion" },
-  { name: "Osi & Ji", href: "http://osidanji.com/", img: "/images/ip/osi-ji.webp", alt: "Maskot kota Malang â€” Osi & Ji" },
+  { name: "Mbois", href: "https://festivalmbois.mcf.or.id/", img: "/images/ip/mbois.webp", alt: "Festival Mbois  brand event Malang Creative Fusion" },
+  { name: "Osi & Ji", href: "http://osidanji.com/", img: "/images/ip/osi-ji.webp", alt: "Maskot kota Malang  Osi & Ji" },
   { name: "Utero", href: "https://www.youtube.com/channel/UCkdJC5Tw0bk0xK9sUR80xnA", img: "/images/ip/utero.webp", alt: "Channel YouTube resmi Utero Indonesia" },
   { name: "Waraalvaro", href: "https://www.youtube.com/channel/UCfQ6A2Q5rZ09uWQDRD97G2g", img: "/images/ip/waraalvaro.webp", alt: "Kanal gaming dan entertainment anak" },
   { name: "Waravalerie", href: "https://www.youtube.com/channel/UCZh3QudxIClo8VHYEPPvS6w", img: "/images/ip/waravalerie.webp", alt: "Kanal beauty dan kreativitas anak" },
@@ -219,7 +219,7 @@ export default function IntellectualProperty() {
             margin: "20px auto 0",
           }}
         >
-          Dari konten digital hingga brand fashion â€” setiap Intellectual Property adalah bukti bahwa
+          Dari konten digital hingga brand fashion  setiap Intellectual Property adalah bukti bahwa
           kreativitas tidak pernah berhenti melahirkan sesuatu yang baru.
         </p>
       </motion.div>
