@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { motion, AnimatePresence } from "framer-motion";
 import { sendGAEvent } from "@next/third-parties/google";
@@ -608,7 +608,7 @@ export default function FloatingWhatsApp() {
                 }}
               >
                 <p style={{ fontSize: 13, fontWeight: 600, color: t.tooltipTitle, margin: 0 }}>
-                  Hello..👋
+                  Hello.. 👋
                 </p>
                 <p style={{ fontSize: 11, color: t.tooltipText, margin: "2px 0 0", lineHeight: 1.4 }}>
                   Butuh bantuan untuk membangun brand Anda?
@@ -631,7 +631,7 @@ export default function FloatingWhatsApp() {
           )}
         </AnimatePresence>
 
-        {/* Main floating button — photo avatar */}
+        {/* Main floating button -- photo avatar */}
         <motion.button
           onClick={handleToggle}
           initial={{ opacity: 0, scale: 0 }}

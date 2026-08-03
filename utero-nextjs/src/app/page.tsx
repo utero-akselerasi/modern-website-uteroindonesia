@@ -1,4 +1,4 @@
-import Navbar from "@/components/layout/Navbar";
+﻿import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import Hero from "@/components/sections/Hero";
 import KnowUsMore from "@/components/sections/KnowUsMore";
@@ -42,7 +42,7 @@ export default function Home() {
 
       {/* Hidden SEO content for indexing */}
       <div className="sr-only" aria-hidden="true">
-        <h2>Creative Agency Malang — Utero Indonesia</h2>
+        <h2>Creative Agency Malang -- Utero Indonesia</h2>
         <p>
           Utero Indonesia adalah creative agency dan brand consultant terbaik di
           Malang, Jawa Timur. Berpengalaman lebih dari 25 tahun sejak 1998 dalam

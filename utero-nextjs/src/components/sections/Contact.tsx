@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { motion } from "framer-motion";
 import { sendGAEvent } from "@next/third-parties/google";
@@ -124,7 +124,7 @@ export default function Contact() {
           Siap Bicara<br />Tentang <span style={{ color: "var(--red)" }}>Brand Anda?</span>
         </h2>
         <p style={{ fontSize: "16px", lineHeight: 1.7, color: "rgba(17,17,17,0.6)" }}>
-          Konsultasi pertama gratis. Tidak perlu brief yang sempurna — cukup ceritakan bisnis Anda dan kami akan bantu menemukan arah yang tepat.
+          Konsultasi pertama gratis. Tidak perlu brief yang sempurna -- cukup ceritakan bisnis Anda dan kami akan bantu menemukan arah yang tepat.
         </p>
       </motion.div>
       <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>

@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import Image from "next/image";
 import { motion } from "framer-motion";
@@ -6,7 +6,7 @@ import { useRef, useEffect } from "react";
 
 const extrapreneurItems = [
   { name: "RUVODO WebApps", href: "http://ruvodo.com/", img: "/images/divisi/o-web.webp", alt: "Layanan pembuatan website dan aplikasi web" },
-  { name: "Dadik Chang", href: "https://dadikwahyuchang.id/", img: "/images/divisi/o-dad.webp", alt: "Personal brand Dadik Wahyu Chang — founder Utero Indonesia" },
+  { name: "Dadik Chang", href: "https://dadikwahyuchang.id/", img: "/images/divisi/o-dad.webp", alt: "Personal brand Dadik Wahyu Chang -- founder Utero Indonesia" },
   { name: "Dinar Weddover", href: "http://www.dinarweddover.com", img: "/images/divisi/o-makeup.webp", alt: "Wedding organizer dan makeup artist profesional" },
   { name: "Epochstream", href: "http://epochstream.com", img: "/images/divisi/epoch-stream.webp", alt: "Platform media digital dan konten kreatif" },
   { name: "Soundpub", href: "https://soundpub.xyz/", img: "/images/divisi/soundpub.webp", alt: "Distribusi musik digital dan label services" },
@@ -30,7 +30,7 @@ const extrapreneurItems = [
   { name: "Tokoneonbox", href: "https://www.instagram.com/tokoneonbox/", img: "/images/divisi/tokoneonbox.webp", alt: "Toko neon box custom dan signage LED" },
   { name: "Placers", href: "https://dev-placers.carubra.com/", img: "/images/divisi/placers.webp", alt: "Platform marketplace billboard advertising pertama di Indonesia" },
   { name: "Carubra", href: "https://carubra.com/", img: "/images/divisi/carubra-logo.webp", alt: "AI Agent branding consultant dan solusi kecerdasan bisnis via WhatsApp" },
-  { name: "Aida", href: "https://dash-doa.carubra.com/", img: "/images/divisi/aida.webp", alt: "Unified Enterprise Dashboard — Suryo Agong", borderless: true, largeImage: true },
+  { name: "Aida", href: "https://dash-doa.carubra.com/", img: "/images/divisi/aida.webp", alt: "Unified Enterprise Dashboard -- Suryo Agong", borderless: true, largeImage: true },
 ];
 
 const ITEM_COUNT = extrapreneurItems.length;

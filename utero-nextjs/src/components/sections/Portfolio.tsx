@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useState } from "react";
 import Image from "next/image";
@@ -16,7 +16,7 @@ const items = [
   { title: "Cebro Agency", category: "Desain Grafis", url: "https://www.instagram.com/cebro_design_agency/", logo: "/images/portfolio/cebro-agency.webp" },
   { title: "Odigiro Consultant", category: "Branding", desc: "City branding & konsultan strategi merek", url: "https://odigiro.uteroindonesia.com/", logo: "/images/portfolio/odigiro-consultant.webp" },
   { title: "Festival Mbois", category: "Branding", desc: "Branding event tahunan Malang Creative Fusion", url: "https://festivalmbois.mcf.or.id", logo: "/images/portfolio/festival-mbois.webp" },
-  { title: "Osi & Ji", category: "Branding", desc: "Maskot kota Malang — branding ikon daerah", url: "https://osidanji.malangkota.go.id/", logo: "/images/portfolio/osi-ji.webp" },
+  { title: "Osi & Ji", category: "Branding", desc: "Maskot kota Malang -- branding ikon daerah", url: "https://osidanji.malangkota.go.id/", logo: "/images/portfolio/osi-ji.webp" },
   { title: "Osiker", category: "Branding", desc: "Platform intellectual property & lisensi kreatif", url: "http://osiker.com/", logo: "/images/portfolio/osiker.webp" },
   { title: "Sawoto Reklame", category: "Advertising", desc: "Reklame, billboard, & media luar ruang", url: "https://www.instagram.com/sawoto.reklame/", logo: "/images/portfolio/sawoto-reklame.webp" },
   { title: "Mrono Branding Mobil", category: "Advertising", desc: "Branding kendaraan & mobil dinas", url: "https://www.instagram.com/brandingmobilmalang/", logo: "/images/portfolio/mrono-branding.webp" },

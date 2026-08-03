@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import FloatingWhatsApp from "@/components/layout/FloatingWhatsApp";
@@ -12,7 +12,8 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Utero Indonesia — Brand Consultant & Creative Agency Malang sejak 1998",
+  metadataBase: new URL("https://uteroindonesia.com"),
+  title: "Utero Indonesia -- Brand Consultant & Creative Agency Malang sejak 1998",
   description:
     "Utero Indonesia adalah brand consultant & creative agency di Malang dengan pengalaman 25+ tahun. Layanan: branding, desain, advertising, signage, digital, teknologi.",
   keywords: [

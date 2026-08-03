@@ -1,0 +1,144 @@
+﻿┌─────────────────────────────────────────────────────────────────────────────┐
+│                                                                             │
+│                    🚀 UTERO NEXT.JS - QUICK REFERENCE                      │
+│                         cPanel Deployment Guide                             │
+│                                                                             │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ 📋 DEPLOYMENT IN 3 COMMANDS                                                │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+  Windows:
+  ┌───────────────────────────────────────────────────────────────────────────┐
+  │ 1. .\deploy.bat                      # Build & create zip                │
+  │ 2. Upload utero-nextjs-deploy.zip    # To cPanel File Manager            │
+  │ 3. Setup Node.js App in cPanel       # See DEPLOYMENT-SUMMARY.md         │
+  └───────────────────────────────────────────────────────────────────────────┘
+
+  Linux/Mac:
+  ┌───────────────────────────────────────────────────────────────────────────┐
+  │ 1. chmod +x deploy.sh && ./deploy.sh # Build & create zip                │
+  │ 2. Upload utero-nextjs-deploy.zip    # To cPanel File Manager            │
+  │ 3. Setup Node.js App in cPanel       # See DEPLOYMENT-SUMMARY.md         │
+  └───────────────────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ 🧪 TEST LOCAL FIRST (Recommended)                                          │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+  ┌───────────────────────────────────────────────────────────────────────────┐
+  │ pnpm build                           # Build project                      │
+  │ node server.js                       # Test custom server                 │
+  │ # Open: http://localhost:3000                                             │
+  └───────────────────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ ⚙️  CPANEL NODE.JS APP SETTINGS                                            │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+  Application root:        /home/username/utero-nextjs
+  Application URL:         uteroindonesia.com
+  Application startup:     server.js
+  Node.js version:         20.x (or 18.x minimum)
+  Application mode:        Production
+
+  Environment Variables:
+  ├─ NODE_ENV:             production
+  ├─ PORT:                 3000
+  └─ HOSTNAME:             0.0.0.0
+
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ 📦 INSTALL DEPENDENCIES IN CPANEL                                          │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+  ┌───────────────────────────────────────────────────────────────────────────┐
+  │ # Copy command from cPanel Node.js App interface:                        │
+  │ source /home/username/nodevenv/utero-nextjs/20/bin/activate              │
+  │ cd /home/username/utero-nextjs                                            │
+  │ npm install --production                                                  │
+  └───────────────────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ 🔄 UPDATE WORKFLOW (After First Deploy)                                    │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+  ┌───────────────────────────────────────────────────────────────────────────┐
+  │ 1. pnpm build                        # Build changes locally              │
+  │ 2. Upload only .next/ folder         # Via FTP to server                 │
+  │ 3. touch tmp/restart.txt             # Restart app (in cPanel terminal)  │
+  └───────────────────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ 📖 DOCUMENTATION FILES                                                      │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+  START-HERE.md            ⭐ Begin here (overview & quick tips)
+  DEPLOYMENT-SUMMARY.md    📊 Visual complete guide with all commands
+  DEPLOYMENT.md            📝 Detailed step-by-step instructions
+  CHECKLIST.md             ✅ Quick deployment checklist
+  README-DEPLOYMENT.md     📘 Feature overview & intro
+
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ ⚠️  COMMON ISSUES                                                          │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+  Problem: App won't start
+  → Check Node.js version (18+ required)
+  → Verify server.js exists in root
+  → Check logs: cPanel → Node.js App → Open logs
+
+  Problem: 404 on all pages
+  → Ensure .next/ folder uploaded completely
+  → Check Application URL matches domain
+
+  Problem: Images not loading
+  → Verify public/ folder uploaded
+  → Check file permissions: chmod -R 755
+
+  Problem: Port already in use
+  → Let cPanel auto-assign port (it's normal)
+  → Don't hardcode port in server.js
+
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ 🎯 FILES TO UPLOAD TO CPANEL                                               │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+  ✅ .next/                (Build output - REQUIRED)
+  ✅ public/               (Static assets - images, etc)
+  ✅ src/                  (Source code)
+  ✅ server.js             (Custom server - REQUIRED)
+  ✅ package.json          (Dependencies list)
+  ✅ pnpm-lock.yaml        (Lock file)
+  ✅ next.config.ts        (Next.js config)
+  ✅ tsconfig.json         (TypeScript config)
+  ❌ node_modules/         (DON'T upload - install on server)
+  ❌ .git/                 (Not needed)
+
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ ✨ FEATURES INCLUDED                                                        │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+  ✅ Full Next.js SSR & ISR support
+  ✅ Image optimization (via Sharp)
+  ✅ Dynamic routes (/artikel/[slug])
+  ✅ Google Analytics integration
+  ✅ Framer Motion animations
+  ✅ SEO metadata complete
+  ✅ Mobile responsive design
+  ✅ Production optimized
+
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ 📞 NEED HELP?                                                              │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+  1. Check logs: cPanel → Node.js App → Open logs
+  2. Read DEPLOYMENT-SUMMARY.md (most complete)
+  3. Test locally first: node server.js
+  4. Contact hosting support for Node.js setup
+
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ Project: PT. Utero Kreatif Indonesia                                        │
+│ Created: 2026-08-01                                                         │
+│ Ready to deploy! 🚀                                                         │
+└─────────────────────────────────────────────────────────────────────────────┘

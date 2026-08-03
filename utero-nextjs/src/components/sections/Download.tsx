@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import Image from "next/image";
 import { motion } from "framer-motion";
@@ -7,10 +7,10 @@ import { sendGAEvent } from "@next/third-parties/google";
 const downloadItems = [
   {
     label: "Profile Founder",
-    desc: "CV Dadik Wahyu Chang — Founder Utero Indonesia",
+    desc: "CV Dadik Wahyu Chang -- Founder Utero Indonesia",
     href: "https://uteroindonesia.com/files/CV%20DADIK%20WAHYU%202022_compressed.pdf",
     img: "/images/download/dadik.webp",
-    alt: "Download CV Dadik Wahyu Chang — Founder Utero Indonesia",
+    alt: "Download CV Dadik Wahyu Chang -- Founder Utero Indonesia",
   },
   {
     label: "Profile Utero Indonesia",

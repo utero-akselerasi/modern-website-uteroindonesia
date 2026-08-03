@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import Link from "next/link";
 import { motion } from "framer-motion";
@@ -31,7 +31,7 @@ const divisions: Division[] = [
   { title: "TEKNOLOGI", subtitle: "& SISTEM", angle: 193, icon: Cpu },
 ];
 
-const ICON_RADIUS = 44; // % from center — sits on the outer dashed ring
+const ICON_RADIUS = 44; // % from center -- sits on the outer dashed ring
 
 /* ---------- Helpers ---------- */
 
@@ -44,7 +44,7 @@ function getPlacement(angle: number): Placement {
   if (a > 65 && a <= 115) return "bottom";
   if (a > 115 && a <= 155) return "bottom-left";
   if (a > 155 && a <= 260) return "left";    // left + top-left → text on left (outside)
-  return "right"; // 260°–315° — top-right → text on right (outside)
+  return "right"; // 260°–315° -- top-right → text on right (outside)
 }
 
 function getLabelStyle(placement: Placement) {
@@ -180,7 +180,7 @@ export default function Hero() {
             }}
           >
             Kami membantu brand tumbuh dengan strategi yang tajam, desain yang kuat,
-            dan eksekusi yang nyata — dari konsep untuk kesuksesan.
+            dan eksekusi yang nyata -- dari konsep untuk kesuksesan.
           </p>
 
           <div style={{ display: "flex", gap: "16px", alignItems: "center", flexWrap: "wrap" }}>
@@ -193,7 +193,7 @@ export default function Hero() {
           </div>
         </motion.div>
 
-        {/* ─── RIGHT COLUMN — ORBIT DIAGRAM ─── */}
+        {/* ─── RIGHT COLUMN -- ORBIT DIAGRAM ─── */}
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -247,7 +247,7 @@ export default function Hero() {
               }}
             />
 
-            {/* Connector lines + dots — dari badge ke middle ring */}
+            {/* Connector lines + dots -- dari badge ke middle ring */}
             <svg
               style={{
                 position: "absolute",
@@ -356,7 +356,7 @@ export default function Hero() {
                     zIndex: 10,
                   }}
                 >
-                  {/* Badge — used as positioning anchor for the label */}
+                  {/* Badge -- used as positioning anchor for the label */}
                   <div
                     className="orbit-node-badge"
                   >
@@ -397,7 +397,7 @@ export default function Hero() {
           </div>
         </motion.div>
 
-        {/* Watermark "UTERO" — setengah terpotong di tepi kanan */}
+        {/* Watermark "UTERO" -- setengah terpotong di tepi kanan */}
         <span
           className="hero-watermark"
           style={{
@@ -770,12 +770,12 @@ export default function Hero() {
           box-shadow: 0 6px 20px rgba(255, 255, 255, 0.2);
         }
 
-        /* Orbit node group — wrapper for badge + label */
+        /* Orbit node group -- wrapper for badge + label */
         .orbit-node-group {
           transition: all 0.3s var(--ease);
         }
 
-        /* Badge (white circle) — also serves as positioning anchor */
+        /* Badge (white circle) -- also serves as positioning anchor */
         .orbit-node-badge {
           position: relative;
           width: clamp(38px, 4.8vw, 48px);

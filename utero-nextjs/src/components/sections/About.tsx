@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { motion } from "framer-motion";
 
@@ -146,7 +146,7 @@ export default function About() {
             maxWidth: "520px",
           }}
         >
-          Sejak 1998, Utero Indonesia berdiri sebagai ekosistem kreatif — bukan
+          Sejak 1998, Utero Indonesia berdiri sebagai ekosistem kreatif -- bukan
           hanya satu agensi, tapi sebuah keluarga besar divisi yang saling
           menopang. Dari desain logo hingga distribusi musik, dari signage fisik
           hingga otomasi AI.{" "}

@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import Image from "next/image";
 import { motion } from "framer-motion";
@@ -9,42 +9,42 @@ const partners = [
     name: "Pinterest",
     href: "https://id.pinterest.com/marketingutero/boards/",
     img: "/images/partner/pinterest.webp",
-    alt: "Pinterest — inspirasi desain dan kreativitas",
+    alt: "Pinterest -- inspirasi desain dan kreativitas",
     skipFilter: true,
   },
   {
     name: "Behance",
     href: "https://www.behance.net/UTEROINDONESIA",
     img: "/images/partner/behance.webp",
-    alt: "Behance — portofolio karya desain Utero Indonesia",
+    alt: "Behance -- portofolio karya desain Utero Indonesia",
     skipFilter: true,
   },
   {
     name: "Moselo",
     href: "http://shop.epochstream.org/",
     img: "/images/partner/moselo.webp",
-    alt: "Moselo — marketplace produk kreatif dan handmade",
+    alt: "Moselo -- marketplace produk kreatif dan handmade",
     skipFilter: true,
   },
   {
     name: "Tokopedia",
     href: "https://www.tokopedia.com/utero",
     img: "/images/partner/tokopedia.webp",
-    alt: "Tokopedia — official store Utero Indonesia",
+    alt: "Tokopedia -- official store Utero Indonesia",
     skipFilter: true,
   },
   {
     name: "Epochstream Shop",
     href: "https://shop.epochstream.org/",
     img: "/images/partner/epochstream-shop.webp",
-    alt: "Epochstream Shop — official store produk Epochstream",
+    alt: "Epochstream Shop -- official store produk Epochstream",
     skipFilter: true,
   },
   {
     name: "Rumah Oxyz",
     href: "https://shop.uteroindonesia.com",
     img: "/images/partner/oxyz.webp",
-    alt: "Rumah Oxyz — makerspace dan coworking space kreatif",
+    alt: "Rumah Oxyz -- makerspace dan coworking space kreatif",
     skipFilter: true,
   },
 ];
@@ -121,7 +121,7 @@ export default function Partners() {
             marginBottom: "40px",
             }}
           >
-            Terhubung dengan kami di berbagai platform — dari marketplace
+            Terhubung dengan kami di berbagai platform -- dari marketplace
             hingga portofolio kreatif.
           </p>
 
@@ -157,7 +157,7 @@ export default function Partners() {
           </a>
         </div>
 
-        {/* Right Column — Grid */}
+        {/* Right Column -- Grid */}
         <div
           style={{
             display: "grid",
