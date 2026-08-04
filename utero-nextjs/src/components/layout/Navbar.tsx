@@ -17,7 +17,7 @@ const navLinks = [
 
 const menuCards = [
   { icon: "home", label: "Beranda", href: "/#hero", desc: "Halaman utama" },
-  { icon: "info", label: "Tentang", href: "/#tentang", desc: "Cerita kami" },
+  { icon: "info", label: "Tentang", href: "/#know-us", desc: "Cerita kami" },
   { icon: "briefcase", label: "Lini Bisnis", href: "/#know-us", desc: "Portofolio & klien" },
   { icon: "layers", label: "Divisi", href: "/#divisi", desc: "Unit usaha aktif" },
   { icon: "zap", label: "Layanan", href: "/#cara-kerja", desc: "Alur kerja & proses" },
@@ -103,6 +103,7 @@ export default function Navbar() {
   const [isMobileOpen, setIsMobileOpen] = useState(false);
   const hamburgerRef = useRef<HTMLButtonElement>(null);
   const closeBtnRef = useRef<HTMLButtonElement>(null);
+  const pendingHash = useRef<string | null>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -138,9 +139,28 @@ export default function Navbar() {
     }
   }, [isMobileOpen]);
 
+  useEffect(() => {
+    if (isMobileOpen || !pendingHash.current) return;
+    const id = pendingHash.current;
+    pendingHash.current = null;
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+        history.replaceState(null, "", `#${id}`);
+      });
+    });
+  }, [isMobileOpen]);
+
   const closeMenu = () => {
     setIsMobileOpen(false);
     requestAnimationFrame(() => hamburgerRef.current?.focus());
+  };
+
+  const handleNavClick = (href: string) => {
+    if (href.startsWith("/#")) {
+      pendingHash.current = href.slice(2);
+    }
+    closeMenu();
   };
 
   const cardVariants = {
@@ -415,7 +435,10 @@ export default function Navbar() {
                   <motion.div key={card.href} variants={cardVariants} initial="hidden" animate="visible" custom={i}>
                     <Link
                       href={card.href}
-                      onClick={closeMenu}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        handleNavClick(card.href);
+                      }}
                       style={{
                         display: "flex",
                         flexDirection: "column",
@@ -468,7 +491,10 @@ export default function Navbar() {
               <div style={{ textAlign: "center", marginTop: "32px" }}>
                 <Link
                 href="/#kontak"
-                onClick={closeMenu}
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleNavClick("/#kontak");
+                }}
                   style={{
                     display: "inline-block",
                     background: "var(--red)",
@@ -493,6 +519,11 @@ export default function Navbar() {
       </AnimatePresence>
 
       <style jsx global>{`
+        /* ===== Offset anchor scroll agar tidak ketutup navbar fixed ===== */
+        section[id] {
+          scroll-margin-top: 96px;
+        }
+
         /* ===== Desktop nav: 1024px+ ===== */
         /* Already visible by default */
 
