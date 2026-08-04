@@ -50,6 +50,16 @@ WHERE name = 'blog-covers';
 -- allowed_mime_types: {image/png, image/jpeg, image/jpg, image/webp}
 
 -- ============================================================================
+-- DROP EXISTING POLICIES (if any)
+-- ============================================================================
+
+DROP POLICY IF EXISTS "Public Access to Blog Covers" ON storage.objects;
+DROP POLICY IF EXISTS "Service Role Upload to Blog Covers" ON storage.objects;
+DROP POLICY IF EXISTS "Service Role Update Blog Covers" ON storage.objects;
+DROP POLICY IF EXISTS "Service Role Delete Blog Covers" ON storage.objects;
+DROP POLICY IF EXISTS "Authenticated Users Can Upload Blog Covers" ON storage.objects;
+
+-- ============================================================================
 -- STORAGE POLICIES SETUP
 -- ============================================================================
 
@@ -57,7 +67,7 @@ WHERE name = 'blog-covers';
 -- 1. PUBLIC READ POLICY - Anyone can view/download images
 -- ============================================================================
 
-CREATE POLICY IF NOT EXISTS "Public Access to Blog Covers"
+CREATE POLICY "Public Access to Blog Covers"
 ON storage.objects
 FOR SELECT
 TO public
@@ -70,7 +80,7 @@ COMMENT ON POLICY "Public Access to Blog Covers" ON storage.objects IS
 -- 2. SERVICE ROLE INSERT POLICY - Edge Function can upload
 -- ============================================================================
 
-CREATE POLICY IF NOT EXISTS "Service Role Upload to Blog Covers"
+CREATE POLICY "Service Role Upload to Blog Covers"
 ON storage.objects
 FOR INSERT
 TO service_role
@@ -83,7 +93,7 @@ COMMENT ON POLICY "Service Role Upload to Blog Covers" ON storage.objects IS
 -- 3. SERVICE ROLE UPDATE POLICY - Edge Function can update/replace
 -- ============================================================================
 
-CREATE POLICY IF NOT EXISTS "Service Role Update Blog Covers"
+CREATE POLICY "Service Role Update Blog Covers"
 ON storage.objects
 FOR UPDATE
 TO service_role
@@ -97,7 +107,7 @@ COMMENT ON POLICY "Service Role Update Blog Covers" ON storage.objects IS
 -- 4. SERVICE ROLE DELETE POLICY - Service can delete (optional)
 -- ============================================================================
 
-CREATE POLICY IF NOT EXISTS "Service Role Delete Blog Covers"
+CREATE POLICY "Service Role Delete Blog Covers"
 ON storage.objects
 FOR DELETE
 TO service_role
@@ -112,7 +122,7 @@ COMMENT ON POLICY "Service Role Delete Blog Covers" ON storage.objects IS
 
 -- Uncomment jika ingin allow authenticated users upload via dashboard
 /*
-CREATE POLICY IF NOT EXISTS "Authenticated Users Can Upload Blog Covers"
+CREATE POLICY "Authenticated Users Can Upload Blog Covers"
 ON storage.objects
 FOR INSERT
 TO authenticated
@@ -275,23 +285,15 @@ Error: "File type not allowed"
 Solution:
 - Check bucket allowed_mime_types
 - Update via Dashboard to include: image/png, image/jpeg, image/jpg, image/webp
+
+ISSUE 6: Policy already exists
+-------------------------------
+Error: "policy already exists"
+Solution:
+- SQL sudah include DROP POLICY di awal
+- Jika masih error, drop manual: DROP POLICY "policy_name" ON storage.objects;
+- Lalu run CREATE POLICY lagi
 */
-
--- ============================================================================
--- CLEANUP / ROLLBACK
--- ============================================================================
-
--- Uncomment to remove policies (WARNING: will break storage access)
-/*
-DROP POLICY IF EXISTS "Public Access to Blog Covers" ON storage.objects;
-DROP POLICY IF EXISTS "Service Role Upload to Blog Covers" ON storage.objects;
-DROP POLICY IF EXISTS "Service Role Update Blog Covers" ON storage.objects;
-DROP POLICY IF EXISTS "Service Role Delete Blog Covers" ON storage.objects;
--- DROP POLICY IF EXISTS "Authenticated Users Can Upload Blog Covers" ON storage.objects;
-*/
-
--- Note: Bucket deletion must be done via Dashboard
--- Storage → blog-covers → Settings → Delete bucket
 
 -- ============================================================================
 -- STORAGE PATH STRUCTURE
@@ -374,21 +376,16 @@ DO $$ BEGIN
     RAISE NOTICE 'Storage Policies Setup Completed!';
     RAISE NOTICE '============================================';
     RAISE NOTICE '';
+    RAISE NOTICE 'Policies Created:';
+    RAISE NOTICE '1. Public Access to Blog Covers (SELECT)';
+    RAISE NOTICE '2. Service Role Upload to Blog Covers (INSERT)';
+    RAISE NOTICE '3. Service Role Update Blog Covers (UPDATE)';
+    RAISE NOTICE '4. Service Role Delete Blog Covers (DELETE)';
+    RAISE NOTICE '';
     RAISE NOTICE 'Next Steps:';
-    RAISE NOTICE '1. Create bucket "blog-covers" via Dashboard';
-    RAISE NOTICE '   - Navigate: Storage → Buckets → New bucket';
-    RAISE NOTICE '   - Set public: YES';
-    RAISE NOTICE '   - Set size limit: 5 MB';
-    RAISE NOTICE '   - Allowed types: image/png, image/jpeg, image/jpg, image/webp';
-    RAISE NOTICE '';
-    RAISE NOTICE '2. Verify policies created:';
-    RAISE NOTICE '   - Public Read Access';
-    RAISE NOTICE '   - Service Role Upload';
-    RAISE NOTICE '   - Service Role Update';
-    RAISE NOTICE '   - Service Role Delete';
-    RAISE NOTICE '';
-    RAISE NOTICE '3. Test upload via Edge Function';
-    RAISE NOTICE '4. Verify public URL accessible';
+    RAISE NOTICE '1. Verify bucket "blog-covers" exists and is public';
+    RAISE NOTICE '2. Test upload via Dashboard or API';
+    RAISE NOTICE '3. Verify public URL accessible';
     RAISE NOTICE '';
     RAISE NOTICE 'Bucket URL format:';
     RAISE NOTICE 'https://supabase.carubra.com/storage/v1/object/public/blog-covers/{filename}';
