@@ -493,10 +493,12 @@ export default function Hero() {
 
         {/* Stats Cards */}
         <div
+          id="tentang"
           className="hero-stats-container"
           style={{
             position: "relative",
             zIndex: 10,
+            scrollMarginTop: 96,
             padding: "0 clamp(16px, 2vw, 32px) clamp(32px, 4vh, 48px)",
           }}
         >
