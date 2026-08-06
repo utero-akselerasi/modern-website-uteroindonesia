@@ -175,7 +175,7 @@ export default function Download() {
           }}
           className="download-grid"
         >
-          {downloadItems.map((item, i) => (
+          {downloadItems.filter((item) => item.href).map((item, i) => (
             <motion.a
               key={item.label}
               href={item.href}
