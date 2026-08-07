@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 
 const navLinks = [
@@ -11,13 +12,13 @@ const navLinks = [
   { href: "/#divisi", label: "Divisi" },
   { href: "/#cara-kerja", label: "Alur Kerja" },
   { href: "/#Partnership", label: "Partnership" },
-  { href: "/#artikel", label: "Artikel" },
+  { href: "/artikel", label: "Artikel" },
   { href: "/#kontak", label: "Kontak" },
 ];
 
 const menuCards = [
   { icon: "home", label: "Beranda", href: "/#hero", desc: "Halaman utama" },
-  { icon: "info", label: "Tentang", href: "/#know-us", desc: "Cerita kami" },
+  { icon: "info", label: "Tentang", href: "/#tentang", desc: "Cerita kami" },
   { icon: "briefcase", label: "Lini Bisnis", href: "/#know-us", desc: "Portofolio & klien" },
   { icon: "layers", label: "Divisi", href: "/#divisi", desc: "Unit usaha aktif" },
   { icon: "zap", label: "Layanan", href: "/#cara-kerja", desc: "Alur kerja & proses" },
@@ -104,6 +105,7 @@ export default function Navbar() {
   const hamburgerRef = useRef<HTMLButtonElement>(null);
   const closeBtnRef = useRef<HTMLButtonElement>(null);
   const pendingHash = useRef<string | null>(null);
+  const pathname = usePathname();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -123,6 +125,11 @@ export default function Navbar() {
       document.body.style.overflow = "";
     };
   }, [isMobileOpen]);
+
+  const closeMenu = () => {
+    setIsMobileOpen(false);
+    requestAnimationFrame(() => hamburgerRef.current?.focus());
+  };
 
   useEffect(() => {
     if (!isMobileOpen) return;
@@ -150,11 +157,6 @@ export default function Navbar() {
       });
     });
   }, [isMobileOpen]);
-
-  const closeMenu = () => {
-    setIsMobileOpen(false);
-    requestAnimationFrame(() => hamburgerRef.current?.focus());
-  };
 
   const handleNavClick = (href: string) => {
     if (href.startsWith("/#")) {
@@ -432,10 +434,11 @@ export default function Navbar() {
                 className="nav-mobile-grid"
               >
                 {menuCards.map((card, i) => (
-                  <motion.div key={card.href} variants={cardVariants} initial="hidden" animate="visible" custom={i}>
+                  <motion.div key={card.label} variants={cardVariants} initial="hidden" animate="visible" custom={i}>
                     <Link
                       href={card.href}
                       onClick={(e) => {
+                        if (pathname !== "/" || !card.href.startsWith("/#")) return;
                         e.preventDefault();
                         handleNavClick(card.href);
                       }}
@@ -492,6 +495,7 @@ export default function Navbar() {
                 <Link
                 href="/#kontak"
                 onClick={(e) => {
+                  if (pathname !== "/") return;
                   e.preventDefault();
                   handleNavClick("/#kontak");
                 }}
