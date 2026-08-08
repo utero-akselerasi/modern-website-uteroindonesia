@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 
 const navLinks = [
@@ -11,7 +12,7 @@ const navLinks = [
   { href: "/#divisi", label: "Divisi" },
   { href: "/#cara-kerja", label: "Alur Kerja" },
   { href: "/#Partnership", label: "Partnership" },
-  { href: "/#artikel", label: "Artikel" },
+  { href: "/artikel", label: "Artikel" },
   { href: "/#kontak", label: "Kontak" },
 ];
 
@@ -103,6 +104,8 @@ export default function Navbar() {
   const [isMobileOpen, setIsMobileOpen] = useState(false);
   const hamburgerRef = useRef<HTMLButtonElement>(null);
   const closeBtnRef = useRef<HTMLButtonElement>(null);
+  const pendingHash = useRef<string | null>(null);
+  const pathname = usePathname();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -123,6 +126,11 @@ export default function Navbar() {
     };
   }, [isMobileOpen]);
 
+  const closeMenu = () => {
+    setIsMobileOpen(false);
+    requestAnimationFrame(() => hamburgerRef.current?.focus());
+  };
+
   useEffect(() => {
     if (!isMobileOpen) return;
     const handleKey = (e: KeyboardEvent) => {
@@ -138,9 +146,23 @@ export default function Navbar() {
     }
   }, [isMobileOpen]);
 
-  const closeMenu = () => {
-    setIsMobileOpen(false);
-    requestAnimationFrame(() => hamburgerRef.current?.focus());
+  useEffect(() => {
+    if (isMobileOpen || !pendingHash.current) return;
+    const id = pendingHash.current;
+    pendingHash.current = null;
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+        history.replaceState(null, "", `#${id}`);
+      });
+    });
+  }, [isMobileOpen]);
+
+  const handleNavClick = (href: string) => {
+    if (href.startsWith("/#")) {
+      pendingHash.current = href.slice(2);
+    }
+    closeMenu();
   };
 
   const cardVariants = {
@@ -412,10 +434,14 @@ export default function Navbar() {
                 className="nav-mobile-grid"
               >
                 {menuCards.map((card, i) => (
-                  <motion.div key={card.href} variants={cardVariants} initial="hidden" animate="visible" custom={i}>
+                  <motion.div key={card.label} variants={cardVariants} initial="hidden" animate="visible" custom={i}>
                     <Link
                       href={card.href}
-                      onClick={closeMenu}
+                      onClick={(e) => {
+                        if (pathname !== "/" || !card.href.startsWith("/#")) return;
+                        e.preventDefault();
+                        handleNavClick(card.href);
+                      }}
                       style={{
                         display: "flex",
                         flexDirection: "column",
@@ -468,7 +494,11 @@ export default function Navbar() {
               <div style={{ textAlign: "center", marginTop: "32px" }}>
                 <Link
                 href="/#kontak"
-                onClick={closeMenu}
+                onClick={(e) => {
+                  if (pathname !== "/") return;
+                  e.preventDefault();
+                  handleNavClick("/#kontak");
+                }}
                   style={{
                     display: "inline-block",
                     background: "var(--red)",
@@ -493,6 +523,11 @@ export default function Navbar() {
       </AnimatePresence>
 
       <style jsx global>{`
+        /* ===== Offset anchor scroll agar tidak ketutup navbar fixed ===== */
+        section[id] {
+          scroll-margin-top: 96px;
+        }
+
         /* ===== Desktop nav: 1024px+ ===== */
         /* Already visible by default */
 

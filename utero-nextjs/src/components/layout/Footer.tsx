@@ -2,17 +2,18 @@
 
 import Link from "next/link";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 import { sendGAEvent } from "@next/third-parties/google";
 
 const footerLinks = {
   navigasi: [
-    { name: "Home", href: "#hero" },
-    { name: "Tentang", href: "#tentang" },
-    { name: "Lini Bisnis", href: "#know-us" },
-    { name: "Divisi", href: "#divisi" },
-    { name: "Alur Kerja", href: "#cara-kerja" },
-    { name: "Partnership", href: "#Partnership" },
-    { name: "Kontak", href: "#kontak" },
+    { name: "Home", href: "/#hero" },
+    { name: "Tentang", href: "/#tentang" },
+    { name: "Lini Bisnis", href: "/#know-us" },
+    { name: "Divisi", href: "/#divisi" },
+    { name: "Alur Kerja", href: "/#cara-kerja" },
+    { name: "Partnership", href: "/#Partnership" },
+    { name: "Kontak", href: "/#kontak" },
   ],
   liniBisnis: [
     { name: "Utero.id", href: "https://utero.id/" },
@@ -115,6 +116,16 @@ const socialLinks = [
 ];
 
 export default function Footer() {
+  const pathname = usePathname();
+
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    if (pathname !== "/" || !href.startsWith("/#")) return;
+    e.preventDefault();
+    const id = href.slice(2);
+    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+    history.replaceState(null, "", `#${id}`);
+  };
+
   return (
     <footer
       role="contentinfo"
@@ -242,6 +253,11 @@ export default function Footer() {
               <li key={item.name}>
                 <Link
                   href={item.href}
+                  onClick={
+                    item.name === "Tentang"
+                      ? (e) => handleNavClick(e, item.href)
+                      : undefined
+                  }
                   style={{
                     fontSize: "14px",
                     color: "rgba(255, 255, 255, 0.8)",
