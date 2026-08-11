@@ -1,5 +1,5 @@
 import { readdirSync, writeFileSync } from "fs";
-import { basename, join } from "path";
+import { basename } from "path";
 
 const srcDir = "public/images/client";
 const outFile = "src/data/clients.ts";
