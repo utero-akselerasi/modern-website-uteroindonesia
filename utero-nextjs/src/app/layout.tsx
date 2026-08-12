@@ -80,7 +80,7 @@ export default function RootLayout({
                 "PT Utero Kreatif Indonesia",
               ],
               url: "https://uteroindonesia.com",
-              logo: "https://uteroindonesia.com/logo.png",
+              logo: "https://uteroindonesia.com/images/utero-02.webp",
               description:
                 "Brand consultant & creative agency di Malang dengan pengalaman 25+ tahun. Layanan branding, desain, advertising, signage, dan teknologi digital.",
               foundingDate: "1998",
