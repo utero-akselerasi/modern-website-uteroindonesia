@@ -8,6 +8,19 @@ export const metadata = {
   title: "Artikel | Utero Indonesia — Creative Agency & Brand Consultant Malang",
   description:
     "Baca artikel terbaru seputar branding, desain, digital marketing, dan tips kreatif dari PT. Utero Kreatif Indonesia.",
+  openGraph: {
+    type: "website",
+    url: "https://uteroindonesia.com/artikel",
+    title: "Artikel | Utero Indonesia — Creative Agency & Brand Consultant Malang",
+    description:
+      "Baca artikel terbaru seputar branding, desain, digital marketing, dan tips kreatif dari PT. Utero Kreatif Indonesia.",
+    images: ["/images/utero-02.webp"],
+    siteName: "Utero Indonesia",
+    locale: "id_ID",
+  },
+  alternates: {
+    canonical: "https://uteroindonesia.com/artikel",
+  },
 };
 
 export default function ArtikelPage() {

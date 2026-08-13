@@ -24,6 +24,7 @@ export async function generateMetadata({
       url: `https://uteroindonesia.com/artikel/${article.slug}`,
       title: article.title,
       description: article.excerpt,
+      images: [article.image ?? "/images/utero-02.webp"],
       siteName: "Utero Indonesia",
       locale: "id_ID",
     },
