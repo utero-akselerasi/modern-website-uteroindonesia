@@ -1,10 +1,11 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import ArticleCard from "@/components/sections/ArticleCard";
 import { articles } from "@/data/articles";
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "Artikel | Utero Indonesia — Creative Agency & Brand Consultant Malang",
   description:
     "Baca artikel terbaru seputar branding, desain, digital marketing, dan tips kreatif dari PT. Utero Kreatif Indonesia.",
