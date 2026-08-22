@@ -51,3 +51,9 @@ export function getArticleBySlug(slug: string): Article | undefined {
 export function getRecentArticles(count: number = 3): Article[] {
   return articles.slice(0, count);
 }
+
+export const categoryColors: Record<string, string> = {
+  Profil: "#d11f1f",
+  Layanan: "#2563eb",
+  Portofolio: "#059669",
+};
