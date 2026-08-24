@@ -2,7 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
-import { articles, getArticleBySlug } from "@/data/articles";
+import { articles, categoryColors, getArticleBySlug } from "@/data/articles";
 
 export function generateStaticParams() {
   return articles.map((article) => ({ slug: article.slug }));
@@ -33,12 +33,6 @@ export async function generateMetadata({
     },
   };
 }
-
-const categoryColors: Record<string, string> = {
-  Profil: "#d11f1f",
-  Layanan: "#2563eb",
-  Portofolio: "#059669",
-};
 
 export default async function ArtikelDetailPage({
   params,
