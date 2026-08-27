@@ -6,6 +6,8 @@ import { clients } from "@/data/clients";
 
 const ITEM_COUNT = clients.length;
 
+const BASE_VELOCITY = -100;
+
 export default function Clients() {
   const trackRef = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -18,8 +20,6 @@ export default function Clients() {
   const dragStartTranslateRef = useRef(0);
   const oneSetWidthRef = useRef(0);
    const wasDraggedRef = useRef(false);
-
-  const BASE_VELOCITY = -100;
 
   const measureOneSetWidth = () => {
     if (!trackRef.current) return;
