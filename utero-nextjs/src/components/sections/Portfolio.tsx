@@ -40,9 +40,7 @@ const items = [
 export default function Portfolio() {
   const [active, setActive] = useState("Branding");
 
-  const filtered = active === "Semua"
-    ? items
-    : items.filter((item) => item.category === active);
+  const filtered = items.filter((item) => item.category === active);
 
   return (
     <section
