@@ -2,13 +2,15 @@
 // Each node represents one "state" in the conversation.
 // `options` can either link to another node (`nextNode`) or open an external URL (`href`).
 
+import { EMAIL, WHATSAPP, mailtoLink } from "@/data/contact";
+
 export interface ChatOption {
   label: string;
   nextNode?: string;
   href?: string;
 }
 
-export interface ChatNode {
+interface ChatNode {
   botMessages: string[];
   options: ChatOption[];
 }
@@ -54,7 +56,7 @@ export const chatFlow: Record<string, ChatNode> = {
       "Konsultasi pertama GRATIS! Mau jadwalkan sesi?",
     ],
     options: [
-      { label: "Jadwalkan Konsultasi", href: "https://wa.me/6281999900900?text=Halo%20Utero%2C%20saya%20ingin%20menjadwalkan%20sesi%20Diskusi%20Strategis." },
+      { label: "Jadwalkan Konsultasi", href: `https://wa.me/${WHATSAPP.allInformation}?text=Halo%20Utero%2C%20saya%20ingin%20menjadwalkan%20sesi%20Diskusi%20Strategis.` },
       { label: "Layanan lainnya", nextNode: "layanan" },
       { label: "Kembali", nextNode: "start" },
     ],
@@ -65,7 +67,7 @@ export const chatFlow: Record<string, ChatNode> = {
       "Membangun bahasa visual yang khas dan mengkomunikasikan nilai inti brand Anda secara instan — mulai dari logo, brand guidelines, hingga seluruh aset visual.",
     ],
     options: [
-      { label: "Konsultasi Sekarang", href: "https://wa.me/6281999900900?text=Halo%20Utero%2C%20saya%20ingin%20konsultasi%20soal%20Identitas%20Visual." },
+      { label: "Konsultasi Sekarang", href: `https://wa.me/${WHATSAPP.allInformation}?text=Halo%20Utero%2C%20saya%20ingin%20konsultasi%20soal%20Identitas%20Visual.` },
       { label: "Layanan lainnya", nextNode: "layanan" },
       { label: "Kembali", nextNode: "start" },
     ],
@@ -76,7 +78,7 @@ export const chatFlow: Record<string, ChatNode> = {
       "Melindungi aset kekayaan intelektual Anda untuk menjamin keamanan bisnis jangka panjang. Kami memastikan brand Anda bukan hanya kuat secara visual tapi juga aman secara legal.",
     ],
     options: [
-      { label: "Konsultasi Sekarang", href: "https://wa.me/6281999900900?text=Halo%20Utero%2C%20saya%20ingin%20konsultasi%20Hukum%20%26%20HAKI." },
+      { label: "Konsultasi Sekarang", href: `https://wa.me/${WHATSAPP.allInformation}?text=Halo%20Utero%2C%20saya%20ingin%20konsultasi%20Hukum%20%26%20HAKI.` },
       { label: "Layanan lainnya", nextNode: "layanan" },
       { label: "Kembali", nextNode: "start" },
     ],
@@ -87,7 +89,7 @@ export const chatFlow: Record<string, ChatNode> = {
       "Melatih tim Anda untuk mewujudkan brand dan mengeksekusi visi secara efektif. Program yang dirancang sesuai kebutuhan perusahaan Anda.",
     ],
     options: [
-      { label: "Konsultasi Sekarang", href: "https://wa.me/6281999900900?text=Halo%20Utero%2C%20saya%20ingin%20tahu%20tentang%20Workshop%20Brand." },
+      { label: "Konsultasi Sekarang", href: `https://wa.me/${WHATSAPP.allInformation}?text=Halo%20Utero%2C%20saya%20ingin%20tahu%20tentang%20Workshop%20Brand.` },
       { label: "Layanan lainnya", nextNode: "layanan" },
       { label: "Kembali", nextNode: "start" },
     ],
@@ -144,7 +146,7 @@ export const chatFlow: Record<string, ChatNode> = {
       "Untuk konsultasi di luar jam kerja, silakan hubungi kami via WhatsApp dan kami akan membalas secepat mungkin.",
     ],
     options: [
-      { label: "Hubungi via WhatsApp", href: "https://wa.me/6281999900900?text=Halo%20Utero%2C%20saya%20ingin%20menjadwalkan%20konsultasi." },
+      { label: "Hubungi via WhatsApp", href: `https://wa.me/${WHATSAPP.allInformation}?text=Halo%20Utero%2C%20saya%20ingin%20menjadwalkan%20konsultasi.` },
       { label: "Kembali", nextNode: "start" },
     ],
   },
@@ -155,8 +157,8 @@ export const chatFlow: Record<string, ChatNode> = {
       "📞 Silakan pilih cara menghubungi kami yang paling nyaman untuk Anda:",
     ],
     options: [
-      { label: "WhatsApp", href: "https://wa.me/6281999900900?text=Halo%20Utero%2C%20aku%20mendapatkan%20informasi%20dari%20Websitenya%20%2Auteroindonesia.com%2A.%0AIngin%20bertanya%20nih%20%3F%20" },
-      { label: "Email", href: "mailto:info@uteroindonesia.com" },
+      { label: "WhatsApp", href: `https://wa.me/${WHATSAPP.allInformation}?text=Halo%20Utero%2C%20aku%20mendapatkan%20informasi%20dari%20Websitenya%20%2Auteroindonesia.com%2A.%0AIngin%20bertanya%20nih%20%3F%20` },
+      { label: "Email", href: mailtoLink(EMAIL.info) },
       { label: "Instagram", href: "https://instagram.com/uteromalang" },
       { label: "YouTube", href: "https://www.youtube.com/@uteroindonesia" },
       { label: "Kembali", nextNode: "start" },
