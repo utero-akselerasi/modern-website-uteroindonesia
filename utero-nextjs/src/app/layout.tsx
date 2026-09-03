@@ -30,7 +30,7 @@ export const metadata: Metadata = {
     title: "Utero Indonesia | Creative Branding & Event Specialist",
     description:
       "Tingkatkan nilai brand bisnis Anda bersama para ahli kreatif di Utero Indonesia.",
-    images: ["/images/og-main.jpg"],
+    images: ["/images/utero-02.webp"],
     siteName: "Utero Indonesia",
     locale: "id_ID",
   },
@@ -39,7 +39,7 @@ export const metadata: Metadata = {
     title: "Utero Indonesia | Creative Branding & Event Specialist",
     description:
       "Solusi satu pintu pengembangan brand bisnis Anda bersama Utero Indonesia.",
-    images: ["/images/og-main.jpg"],
+    images: ["/images/utero-02.webp"],
   },
   alternates: {
     canonical: "https://uteroindonesia.com",
@@ -80,7 +80,7 @@ export default function RootLayout({
                 "PT Utero Kreatif Indonesia",
               ],
               url: "https://uteroindonesia.com",
-              logo: "https://uteroindonesia.com/logo.png",
+              logo: "https://uteroindonesia.com/images/utero-02.webp",
               description:
                 "Brand consultant & creative agency di Malang dengan pengalaman 25+ tahun. Layanan branding, desain, advertising, signage, dan teknologi digital.",
               foundingDate: "1998",

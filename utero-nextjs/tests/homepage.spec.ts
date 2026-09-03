@@ -3,15 +3,6 @@ import { test, expect } from '@playwright/test';
 test.describe('Utero Indonesia Homepage — Smoke Tests', () => {
 
   /* ────────────────────────────────────────────
-   * Helper: navigate to section via URL hash
-   * ──────────────────────────────────────────── */
-  async function gotoHash(page: any, hash: string) {
-    await page.goto(hash, { waitUntil: 'networkidle', timeout: 30000 });
-    // Tunggu Next.js hydration + framer-motion animations
-    await page.waitForTimeout(5000);
-  }
-
-  /* ────────────────────────────────────────────
    * 1. Halaman Utama
    * ──────────────────────────────────────────── */
   test('Memastikan halaman utama bisa dibuka dan title benar', async ({ page }) => {

@@ -55,39 +55,11 @@ const downloadItems = [
     alt: "Download company profile Utero Legal",
   },
   {
-    label: "Profile Utero Academy",
-    desc: "Company profile divisi academy Utero",
-    href: "",
-    img: "/images/download/utero-academy.svg",
-    alt: "Download company profile Utero Academy",
-  },
-  {
-    label: "Profile Carubra",
-    desc: "Company profile Carubra",
-    href: "",
-    img: "/images/download/carubra.svg",
-    alt: "Download company profile Carubra",
-  },
-  {
-    label: "Profile Buzzerhood",
-    desc: "Company profile Buzzerhood",
-    href: "",
-    img: "/images/download/buzzerhood.svg",
-    alt: "Download company profile Buzzerhood",
-  },
-  {
     label: "Profile Soundpub",
     desc: "Company profile Soundpub",
     href: "/images/download/compro Soundpub_Music_Ecosystem.pdf",
     img: "/images/download/soundpub.svg",
     alt: "Download company profile Soundpub",
-  },
-  {
-    label: "Profile Smartsuco",
-    desc: "Company profile Smartsuco",
-    href: "",
-    img: "/images/download/smartsuco.svg",
-    alt: "Download company profile Smartsuco",
   },
 ];
 
@@ -175,7 +147,7 @@ export default function Download() {
           }}
           className="download-grid"
         >
-          {downloadItems.map((item, i) => (
+           {downloadItems.filter((item) => item.href).map((item, i) => (
             <motion.a
               key={item.label}
               href={item.href}

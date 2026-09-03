@@ -2,17 +2,19 @@
 
 import Link from "next/link";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 import { sendGAEvent } from "@next/third-parties/google";
+import { EMAIL, WHATSAPP, mailtoLink, waLink } from "@/data/contact";
 
 const footerLinks = {
   navigasi: [
-    { name: "Home", href: "#hero" },
-    { name: "Tentang", href: "#tentang" },
-    { name: "Lini Bisnis", href: "#know-us" },
-    { name: "Divisi", href: "#divisi" },
-    { name: "Alur Kerja", href: "#cara-kerja" },
-    { name: "Partnership", href: "#Partnership" },
-    { name: "Kontak", href: "#kontak" },
+    { name: "Home", href: "/#hero" },
+    { name: "Tentang", href: "/#tentang" },
+    { name: "Lini Bisnis", href: "/#know-us" },
+    { name: "Divisi", href: "/#divisi" },
+    { name: "Alur Kerja", href: "/#cara-kerja" },
+    { name: "Partnership", href: "/#Partnership" },
+    { name: "Kontak", href: "/#kontak" },
   ],
   liniBisnis: [
     { name: "Utero.id", href: "https://utero.id/" },
@@ -23,6 +25,13 @@ const footerLinks = {
     { name: "Epochstream Media", href: "https://epochstream.org/" },
   ],
 };
+
+const youtubeIcon = (
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58 2.78 2.78 0 0 0 1.94 2C5.12 20 12 20 12 20s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z" />
+    <polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" />
+  </svg>
+);
 
 const socialLinks = [
   {
@@ -77,22 +86,12 @@ const socialLinks = [
   {
     label: "YouTube Utero Indonesia",
     href: "https://www.youtube.com/@uteroindonesia",
-    icon: (
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58 2.78 2.78 0 0 0 1.94 2C5.12 20 12 20 12 20s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z" />
-        <polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" />
-      </svg>
-    ),
+    icon: youtubeIcon,
   },
   {
     label: "YouTube Waravalerie",
     href: "https://www.youtube.com/channel/UC--Vge6YlX1y65HqjqYP8uQ",
-    icon: (
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58 2.78 2.78 0 0 0 1.94 2C5.12 20 12 20 12 20s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z" />
-        <polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" />
-      </svg>
-    ),
+    icon: youtubeIcon,
   },
   {
     label: "Behance Utero Indonesia",
@@ -115,6 +114,16 @@ const socialLinks = [
 ];
 
 export default function Footer() {
+  const pathname = usePathname();
+
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    if (pathname !== "/" || !href.startsWith("/#")) return;
+    e.preventDefault();
+    const id = href.slice(2);
+    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+    history.replaceState(null, "", `#${id}`);
+  };
+
   return (
     <footer
       role="contentinfo"
@@ -242,6 +251,11 @@ export default function Footer() {
               <li key={item.name}>
                 <Link
                   href={item.href}
+                  onClick={
+                    item.name === "Tentang"
+                      ? (e) => handleNavClick(e, item.href)
+                      : undefined
+                  }
                   style={{
                     fontSize: "14px",
                     color: "rgba(255, 255, 255, 0.8)",
@@ -402,7 +416,7 @@ export default function Footer() {
           >
             <li>
               <a
-                href="https://wa.me/6281999900900"
+                href={waLink(WHATSAPP.allInformation)}
                 target="_blank"
                 rel="noopener noreferrer"
                 style={{
@@ -422,7 +436,7 @@ export default function Footer() {
             </li>
             <li>
               <a
-                href="https://wa.me/6289621439416"
+                href={waLink(WHATSAPP.csJasa)}
                 target="_blank"
                 rel="noopener noreferrer"
                 style={{
@@ -442,7 +456,7 @@ export default function Footer() {
             </li>
             <li>
               <a
-                href="https://wa.me/62817388616"
+                href={waLink(WHATSAPP.csProduk)}
                 target="_blank"
                 rel="noopener noreferrer"
                 style={{
@@ -462,7 +476,7 @@ export default function Footer() {
             </li>
             <li style={{ marginTop: "6px" }}>
               <a
-                href="mailto:marketingutero@gmail.com"
+                href={mailtoLink(EMAIL.marketing)}
                 style={{
                   fontSize: "14px",
                   color: "rgba(255, 255, 255, 0.8)",
@@ -477,7 +491,7 @@ export default function Footer() {
             </li>
             <li>
               <a
-                href="mailto:uterobranding@gmail.com"
+                href={mailtoLink(EMAIL.branding)}
                 style={{
                   fontSize: "14px",
                   color: "rgba(255, 255, 255, 0.8)",
@@ -492,7 +506,7 @@ export default function Footer() {
             </li>
             <li>
               <a
-                href="mailto:info@uteroindonesia.com"
+                href={mailtoLink(EMAIL.info)}
                 style={{
                   fontSize: "14px",
                   color: "rgba(255, 255, 255, 0.8)",

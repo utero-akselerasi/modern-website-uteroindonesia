@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { sendGAEvent } from "@next/third-parties/google";
 import { useMemo, useState } from "react";
+import { EMAIL, WHATSAPP, waLink } from "@/data/contact";
 
 const handleWhatsAppClick = () => {
   sendGAEvent({ event: "generate_lead", value: "whatsapp_click" });
@@ -13,9 +14,9 @@ const handleEmailClick = (email: string) => {
 };
 
 const emailOptions = [
-  { key: "marketing", email: "marketingutero@gmail.com", label: "Koorporate" },
-  { key: "branding", email: "uterobranding@gmail.com", label: "Konsultasi" },
-  { key: "info", email: "info@uteroindonesia.com", label: "Khusus" },
+  { key: "marketing", email: EMAIL.marketing, label: "Koorporate" },
+  { key: "branding", email: EMAIL.branding, label: "Konsultasi" },
+  { key: "info", email: EMAIL.info, label: "Khusus" },
 ];
 
 const contacts = [
@@ -25,7 +26,6 @@ const contacts = [
     value: "Pilih nomor WhatsApp",
     href: "#",
     ariaLabel: "Pilih nomor WhatsApp",
-    onClick: undefined,
     type: "wa_dropdown",
   },
   {
@@ -34,7 +34,6 @@ const contacts = [
     value: "Carubra Agent AI",
     href: "#",
     ariaLabel: "Pilih AI Agent Carubra",
-    onClick: undefined,
     type: "ai_dropdown",
   },
   {
@@ -43,7 +42,6 @@ const contacts = [
     value: "Pilih alamat email",
     href: "#",
     ariaLabel: "Hubungi via Email",
-    onClick: undefined,
   },
   {
     icon: "📍",
@@ -72,25 +70,25 @@ export default function Contact() {
         key: "tari",
         phone: "+62 896-2143-9416",
         label: "CS Jasa",
-        href: "https://wa.me/6289621439416",
+        href: waLink(WHATSAPP.csJasa),
       },
       {
         key: "siti",
         phone: "+62 817-388-616",
         label: "CS Produk",
-        href: "https://wa.me/62817388616",
+        href: waLink(WHATSAPP.csProduk),
       },
       {
         key: "alvi",
         phone: "+62 895-1789-8767",
         label: "Public Relation",
-        href: "https://wa.me/6289517898767",
+        href: waLink(WHATSAPP.publicRelation),
       },
       {
         key: "utama",
         phone: "+62 819-9990-0900",
         label: "All Information",
-        href: "https://wa.me/6281999900900",
+        href: waLink(WHATSAPP.allInformation),
       },
     ];
   }, []);
@@ -505,7 +503,6 @@ export default function Contact() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label={c.ariaLabel}
-              onClick={c.onClick}
               initial={{ opacity: 0, x: 20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}

@@ -35,7 +35,7 @@ const ICON_RADIUS = 44; // % from center — sits on the outer dashed ring
 
 /* ---------- Helpers ---------- */
 
-type Placement = "right" | "left" | "bottom" | "bottom-right" | "bottom-left" | "top";
+type Placement = "right" | "left" | "bottom" | "bottom-right" | "bottom-left";
 
 function getPlacement(angle: number): Placement {
   const a = ((angle % 360) + 360) % 360;
@@ -88,15 +88,6 @@ function getLabelStyle(placement: Placement) {
         top: "calc(100% + var(--label-gap-y, 10px))",
         transform: "none",
         textAlign: "right" as const,
-      };
-    case "top":
-      return {
-        left: "50%",
-        right: "auto" as const,
-        top: "auto" as const,
-        bottom: "calc(100% + var(--label-gap-top, 8px))",
-        transform: "translateX(-50%)",
-        textAlign: "center" as const,
       };
   }
 }
@@ -493,10 +484,12 @@ export default function Hero() {
 
         {/* Stats Cards */}
         <div
+          id="tentang"
           className="hero-stats-container"
           style={{
             position: "relative",
             zIndex: 10,
+            scrollMarginTop: 96,
             padding: "0 clamp(16px, 2vw, 32px) clamp(32px, 4vh, 48px)",
           }}
         >

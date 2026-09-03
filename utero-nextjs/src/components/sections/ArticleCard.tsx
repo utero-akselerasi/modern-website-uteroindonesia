@@ -2,13 +2,7 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import type { Article } from "@/data/articles";
-
-const categoryColors: Record<string, string> = {
-  Profil: "#d11f1f",
-  Layanan: "#2563eb",
-  Portofolio: "#059669",
-};
+import { categoryColors, type Article } from "@/data/articles";
 
 export default function ArticleCard({
   article,

@@ -2,7 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
-import { articles, getArticleBySlug } from "@/data/articles";
+import { articles, categoryColors, getArticleBySlug } from "@/data/articles";
 
 export function generateStaticParams() {
   return articles.map((article) => ({ slug: article.slug }));
@@ -24,6 +24,7 @@ export async function generateMetadata({
       url: `https://uteroindonesia.com/artikel/${article.slug}`,
       title: article.title,
       description: article.excerpt,
+      images: [article.image ?? "/images/utero-02.webp"],
       siteName: "Utero Indonesia",
       locale: "id_ID",
     },
@@ -32,12 +33,6 @@ export async function generateMetadata({
     },
   };
 }
-
-const categoryColors: Record<string, string> = {
-  Profil: "#d11f1f",
-  Layanan: "#2563eb",
-  Portofolio: "#059669",
-};
 
 export default async function ArtikelDetailPage({
   params,
@@ -63,6 +58,14 @@ export default async function ArtikelDetailPage({
           className="artikel-detail"
         >
           <div style={{ marginBottom: "40px" }}>
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: "12px",
+                marginBottom: "20px",
+              }}
+            >
             <Link href="/artikel" className="artikel-back-link">
               <svg
                 width="14"
@@ -91,11 +94,11 @@ export default async function ArtikelDetailPage({
                 textTransform: "uppercase",
                 padding: "4px 10px",
                 borderRadius: "2px",
-                marginBottom: "20px",
               }}
             >
               {article.category}
             </span>
+            </div>
 
             <h1
               style={{
@@ -212,7 +215,7 @@ export default async function ArtikelDetailPage({
           font-weight: 600;
           color: var(--muted);
           text-decoration: none;
-          margin-bottom: 32px;
+          margin-bottom: 0;
           transition: color 0.2s;
         }
         .artikel-back-link:hover {

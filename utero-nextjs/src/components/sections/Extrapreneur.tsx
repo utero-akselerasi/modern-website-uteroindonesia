@@ -45,9 +45,6 @@ export default function Extrapreneur() {
   const isDraggingRef = useRef(false);
   const dragStartXRef = useRef(0);
   const dragStartTranslateRef = useRef(0);
-  const lastMoveXRef = useRef(0);
-  const lastMoveTimeRef = useRef(0);
-  const velocityRef = useRef(0);
   const oneSetWidthRef = useRef(0);
   const wasDraggedRef = useRef(false);
 
@@ -115,13 +112,6 @@ export default function Extrapreneur() {
       if (trackRef.current) {
         trackRef.current.style.transform = `translate3d(${newTranslate}px, 0, 0)`;
       }
-      const now = performance.now();
-      const dt = now - lastMoveTimeRef.current;
-      if (dt > 0) {
-        velocityRef.current = (e.clientX - lastMoveXRef.current) / dt;
-      }
-      lastMoveXRef.current = e.clientX;
-      lastMoveTimeRef.current = now;
     };
 
     const handlePointerUp = (e: PointerEvent) => {
@@ -158,9 +148,6 @@ export default function Extrapreneur() {
     pausedRef.current = true;
     dragStartXRef.current = e.clientX;
     dragStartTranslateRef.current = translateXRef.current;
-    lastMoveXRef.current = e.clientX;
-    lastMoveTimeRef.current = performance.now();
-    velocityRef.current = 0;
     containerRef.current?.setAttribute('data-dragging', '');
   };
 
