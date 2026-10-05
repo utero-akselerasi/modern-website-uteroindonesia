@@ -9,7 +9,7 @@ import { decode } from "https://deno.land/std@0.168.0/encoding/base64.ts";
  * Schema: utero-artikel
  * 
  * Features:
- * - API key authentication
+ * - x-api-key authentication
  * - Auto-generate slug dari title
  * - Upload cover image ke Supabase Storage
  * - Insert artikel ke database dengan RLS bypass
@@ -166,12 +166,12 @@ serve(async (req) => {
       );
     }
 
-    // Excerpt length validation
-    if (excerpt && excerpt.length > 1000) {
+    // Content length validation
+    if (content.length > 100000) {
       return new Response(
         JSON.stringify({ 
           success: false, 
-          error: 'Excerpt too long (maximum 1000 characters)' 
+          error: 'Content too long (maximum 100,000 characters)' 
         }),
         { 
           status: 400, 
@@ -180,32 +180,14 @@ serve(async (req) => {
       );
     }
 
-    // Image size validation (5MB limit)
-    if (image_base64) {
-      const sizeInBytes = (image_base64.length * 3) / 4;
-      const maxSize = 5 * 1024 * 1024; // 5MB
-      if (sizeInBytes > maxSize) {
-        return new Response(
-          JSON.stringify({ 
-            success: false, 
-            error: 'Image too large (maximum 5MB)' 
-          }),
-          { 
-            status: 400, 
-            headers: { ...corsHeaders, 'Content-Type': 'application/json' } 
-          }
-        );
-      }
-    }
-
     // ========================================================================
     // 5. INITIALIZE SUPABASE CLIENT
     // ========================================================================
-    const supabaseUrl = Deno.env.get('SUPABASE_URL');
-    const supabaseServiceKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY');
+    const supabaseUrl = Deno.env.get('SUPABASE_URL') ?? '';
+    const supabaseServiceKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY') ?? '';
 
     if (!supabaseUrl || !supabaseServiceKey) {
-      console.error('Supabase credentials not configured');
+      console.error('Missing Supabase environment variables');
       return new Response(
         JSON.stringify({ 
           success: false, 
@@ -218,7 +200,6 @@ serve(async (req) => {
       );
     }
 
-    // Use service role to bypass RLS for insert
     const supabase = createClient(supabaseUrl, supabaseServiceKey, {
       db: { schema: 'utero-artikel' }
     });
@@ -226,10 +207,13 @@ serve(async (req) => {
     // ========================================================================
     // 6. GENERATE SLUG
     // ========================================================================
-    const finalSlug = slug || title
+    const finalSlug = slug?.trim() || title
       .toLowerCase()
-      .replace(/[^a-z0-9\s-]/g, '') // Remove special characters
-      .replace(/\s+/g, '-')          // Replace spaces with dash
+      .normalize('NFD')              // Normalize Unicode
+      .replace(/[\u0300-\u036f]/g, '') // Remove diacritics
+      .trim()
+      .replace(/[^a-z0-9\s-]/g, '')  // Keep only alphanumeric, space, dash
+      .replace(/\s+/g, '-')          // Replace spaces with dashes
       .replace(/-+/g, '-')           // Replace multiple dashes with single
       .replace(/^-+|-+$/g, '')       // Remove leading/trailing dashes
       .substring(0, 100);            // Limit to 100 characters
@@ -268,12 +252,11 @@ serve(async (req) => {
           .from('blog-covers')
           .upload(filePath, imageBytes, {
             contentType: image_mime_type,
-            upsert: true, // Overwrite if exists
+            upsert: true,
           });
 
         if (uploadError) {
           console.error('Image upload error:', uploadError);
-          // Continue without image rather than failing entire request
           console.warn('Proceeding without cover image');
         } else {
           // Get public URL
@@ -286,7 +269,6 @@ serve(async (req) => {
         }
       } catch (error) {
         console.error('Image processing error:', error);
-        // Continue without image
         console.warn('Proceeding without cover image due to error');
       }
     }

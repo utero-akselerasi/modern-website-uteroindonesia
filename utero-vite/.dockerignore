@@ -1,0 +1,10 @@
+.git
+.codegraph
+.env
+.env.*
+!.env.example
+node_modules
+dist
+*.log
+artikel-api-config.php
+docker-compose.override.yml

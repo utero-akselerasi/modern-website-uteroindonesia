@@ -1,10 +1,33 @@
-import { Link } from "react-router-dom";
+﻿import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { getRecentArticles } from "@/data/articles";
+import { useEffect, useState } from "react";
+import { fetchRecentArticles, type Article } from "@/lib/articleService";
 import ArticleCard from "./ArticleCard";
 
 export default function RecentArticles() {
-  const recentArticles = getRecentArticles(3);
+  const [articles, setArticles] = useState<Article[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    async function loadArticles() {
+      try {
+        setLoading(true);
+        const data = await fetchRecentArticles(3);
+        setArticles(data);
+      } catch (error) {
+        console.error('Failed to load recent articles:', error);
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    loadArticles();
+  }, []);
+
+  // Don't render section if no articles
+  if (!loading && articles.length === 0) {
+    return null;
+  }
 
   return (
     <section
@@ -102,18 +125,32 @@ export default function RecentArticles() {
         </motion.div>
       </div>
 
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(3, 1fr)",
-          gap: "32px",
-        }}
-        className="recent-articles-grid"
-      >
-        {recentArticles.map((article, i) => (
-          <ArticleCard key={article.slug} article={article} index={i} />
-        ))}
-      </div>
+      {loading ? (
+        <div
+          style={{
+            textAlign: "center",
+            padding: "80px 20px",
+            color: "var(--muted)",
+          }}
+        >
+          <div style={{ fontSize: "14px", fontWeight: 600 }}>
+            Memuat artikel...
+          </div>
+        </div>
+      ) : (
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(3, 1fr)",
+            gap: "32px",
+          }}
+          className="recent-articles-grid"
+        >
+          {articles.map((article, i) => (
+            <ArticleCard key={article.id} article={article} index={i} />
+          ))}
+        </div>
+      )}
 
       <style>{`
         @media (max-width: 1024px) {

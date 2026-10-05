@@ -1,0 +1,45 @@
+services:
+  uteroindonesia-web:
+    container_name: uteroindonesia-web
+    build:
+      context: .
+      target: web
+      args:
+        VITE_SUPABASE_URL: ${VITE_SUPABASE_URL:?VITE_SUPABASE_URL wajib diisi di file .env}
+        VITE_SUPABASE_ANON_KEY: ${VITE_SUPABASE_ANON_KEY:?VITE_SUPABASE_ANON_KEY wajib diisi di file .env}
+    restart: unless-stopped
+    depends_on:
+      uteroindonesia-php:
+        condition: service_healthy
+    ports:
+      - "8081:80"
+    networks:
+      - uteroindonesia-network
+      - utero-id-network
+      - carubra-network
+
+  uteroindonesia-php:
+    container_name: uteroindonesia-php
+    build:
+      context: .
+      target: php
+    restart: unless-stopped
+    environment:
+      ARTIKEL_API_URL: ${ARTIKEL_API_URL:-https://cms.carubra.com/api/v1}
+      ARTIKEL_API_KEY: ${ARTIKEL_API_KEY:?ARTIKEL_API_KEY wajib diisi di file .env}
+      ARTIKEL_API_CATEGORIES: ${ARTIKEL_API_CATEGORIES:-profil,layanan,portofolio,kesehatan,tips,artikel,teknologi}
+    networks:
+      - uteroindonesia-network
+      - utero-id-network
+      - carubra-network
+
+networks:
+  uteroindonesia-network:
+    external: true
+    name: uteroindonesia-network
+  utero-id-network:
+    external: true
+    name: utero-id-network
+  carubra-network:
+    external: true
+    name: carubra-network

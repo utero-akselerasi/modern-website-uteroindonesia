@@ -97,7 +97,7 @@ runtime         0.90 KB → 0.51 KB gzipped
 
 ### Analytics & Tracking
 - [x] Google Analytics (GA4)
-- [x] GA ID: G-7V5HTNW1TC
+- [x] GA ID: G-687LY633N8
 - [x] Pageview tracking
 - [x] Event tracking ready
 

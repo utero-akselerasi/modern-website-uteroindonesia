@@ -25,10 +25,6 @@ export default function Home() {
           name="description"
           content="Utero Indonesia adalah brand consultant & creative agency di Malang dengan pengalaman 25+ tahun. Layanan: branding, desain, advertising, signage, digital, teknologi."
         />
-        <meta
-          name="keywords"
-          content="brand consultant malang, creative agency malang, desain logo malang, advertising malang, signage malang, branding UMKM, utero indonesia"
-        />
         
         {/* Open Graph */}
         <meta property="og:type" content="website" />
@@ -38,7 +34,7 @@ export default function Home() {
           property="og:description"
           content="Tingkatkan nilai brand bisnis Anda bersama para ahli kreatif di Utero Indonesia."
         />
-        <meta property="og:image" content="https://uteroindonesia.com/images/og-main.jpg" />
+        <meta property="og:image" content="https://uteroindonesia.com/images/logo-utero-transparent.webp" />
         <meta property="og:site_name" content="Utero Indonesia" />
         <meta property="og:locale" content="id_ID" />
         
@@ -49,7 +45,7 @@ export default function Home() {
           name="twitter:description"
           content="Solusi satu pintu pengembangan brand bisnis Anda bersama Utero Indonesia."
         />
-        <meta name="twitter:image" content="https://uteroindonesia.com/images/og-main.jpg" />
+        <meta name="twitter:image" content="https://uteroindonesia.com/images/logo-utero-transparent.webp" />
         
         {/* Canonical */}
         <link rel="canonical" href="https://uteroindonesia.com" />
@@ -65,7 +61,7 @@ export default function Home() {
               "PT Utero Kreatif Indonesia",
             ],
             url: "https://uteroindonesia.com",
-            logo: "https://uteroindonesia.com/logo.png",
+            logo: "https://uteroindonesia.com/images/logo-utero-transparent.webp",
             description:
               "Brand consultant & creative agency di Malang dengan pengalaman 25+ tahun. Layanan branding, desain, advertising, signage, dan teknologi digital.",
             foundingDate: "1998",

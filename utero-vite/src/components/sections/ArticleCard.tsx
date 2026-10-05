@@ -57,17 +57,31 @@ export default function ArticleCard({
             position: "relative",
           }}
         >
-          <span
-            style={{
-              fontSize: "48px",
-              fontWeight: 800,
-              color: `${catColor}18`,
-              letterSpacing: "-0.04em",
-              userSelect: "none",
-            }}
-          >
-            {article.category.charAt(0)}
-          </span>
+          {article.image ? (
+            <img
+              src={article.image}
+              alt={article.title}
+              loading="lazy"
+              style={{
+                width: "100%",
+                height: "100%",
+                objectFit: "cover",
+                display: "block",
+              }}
+            />
+          ) : (
+            <span
+              style={{
+                fontSize: "48px",
+                fontWeight: 800,
+                color: `${catColor}18`,
+                letterSpacing: "-0.04em",
+                userSelect: "none",
+              }}
+            >
+              {article.category.charAt(0)}
+            </span>
+          )}
           <span
             style={{
               position: "absolute",

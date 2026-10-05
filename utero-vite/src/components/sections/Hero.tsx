@@ -1,4 +1,4 @@
-﻿import { Link } from "react-router-dom";
+﻿import { Link, useNavigate, useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
 import {
   CalendarDays,
@@ -9,6 +9,15 @@ import {
   Megaphone,
   Cpu,
 } from "lucide-react";
+
+const handleSmoothScroll = (e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
+  e.preventDefault();
+  const element = document.getElementById(targetId);
+  if (element) {
+    element.scrollIntoView({ behavior: "smooth", block: "start" });
+    window.history.pushState(null, "", `/#${targetId}`);
+  }
+};
 
 /* ---------- Division data (evenly spaced, 360/7 = 51.43Â° apart) ---------- */
 
@@ -102,6 +111,25 @@ function getLabelStyle(placement: Placement) {
 /* ---------- Component ---------- */
 
 export default function Hero() {
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const handleSmoothScroll = (e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
+    e.preventDefault();
+    
+    // Jika sudah di home page, langsung scroll
+    if (location.pathname === "/") {
+      const element = document.getElementById(targetId);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth", block: "start" });
+        window.history.pushState(null, "", `/#${targetId}`);
+      }
+    } else {
+      // Jika di halaman lain, navigate ke home dulu dengan hash
+      navigate(`/#${targetId}`);
+    }
+  };
+
   return (
     <header
       id="hero"
@@ -183,10 +211,10 @@ export default function Hero() {
           </p>
 
           <div style={{ display: "flex", gap: "16px", alignItems: "center", flexWrap: "wrap" }}>
-            <Link to="#kontak" className="btn-solid-black">
+            <Link to="/#kontak" className="btn-solid-black" onClick={(e) => handleSmoothScroll(e, "kontak")}>
               Mulai Proyek Anda <span style={{ marginLeft: "8px" }}></span>
             </Link>
-            <Link to="#Partnership" className="btn-outline-white">
+            <Link to="/#Partnership" className="btn-outline-white" onClick={(e) => handleSmoothScroll(e, "Partnership")}>
               Lihat Portfolio <span style={{ marginLeft: "8px" }}></span>
             </Link>
           </div>
@@ -980,3 +1008,9 @@ export default function Hero() {
     </header>
   );
 }
+
+
+
+
+
+

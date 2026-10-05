@@ -1,5 +1,5 @@
-﻿import { useState, useEffect, useRef } from "react";
-import { Link } from "react-router-dom";
+import { useState, useEffect, useRef } from "react";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -9,7 +9,7 @@ const navLinks = [
   { href: "/#divisi", label: "Divisi" },
   { href: "/#cara-kerja", label: "Alur Kerja" },
   { href: "/#Partnership", label: "Partnership" },
-  { href: "/#artikel", label: "Artikel" },
+  { href: "/artikel", label: "Artikel" },
   { href: "/#kontak", label: "Kontak" },
 ];
 
@@ -21,7 +21,7 @@ const menuCards = [
   { icon: "zap", label: "Layanan", href: "/#cara-kerja", desc: "Alur kerja & proses" },
   { icon: "users", label: "Klien", href: "/#klien", desc: "Mitra kami" },
   { icon: "grid", label: "Portfolio", href: "/#download", desc: "Profil & portofolio" },
-  { icon: "layers", label: "Artikel", href: "/#artikel", desc: "Blog & berita" },
+  { icon: "layers", label: "Artikel", href: "/artikel", desc: "Blog & berita" },
 ];
 
 function MenuIcon({ name, size = 24 }: { name: string; size?: number }) {
@@ -98,9 +98,24 @@ function MenuIcon({ name, size = 24 }: { name: string; size?: number }) {
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
   const [isMobileOpen, setIsMobileOpen] = useState(false);
   const hamburgerRef = useRef<HTMLButtonElement>(null);
   const closeBtnRef = useRef<HTMLButtonElement>(null);
+
+  useEffect(() => {
+    // Handle scroll ke section setelah navigate dari halaman lain
+    if (location.pathname === "/" && location.hash) {
+      setTimeout(() => {
+        const targetId = location.hash.substring(1);
+        const targetElement = document.getElementById(targetId);
+        if (targetElement) {
+          targetElement.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      }, 100);
+    }
+  }, [location]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -141,160 +156,179 @@ export default function Navbar() {
     requestAnimationFrame(() => hamburgerRef.current?.focus());
   };
 
-  const cardVariants = {
-    hidden: { opacity: 0, y: 16 },
-    visible: (i: number) => ({
-      opacity: 1,
-      y: 0,
-      transition: { delay: 0.04 * i, duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] as const },
-    }),
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    if (href.startsWith("/#")) {
+      e.preventDefault();
+      const targetId = href.substring(2);
+      
+      // Jika sudah di home page, langsung scroll
+      if (location.pathname === "/") {
+        const targetElement = document.getElementById(targetId);
+        if (targetElement) {
+          targetElement.scrollIntoView({ behavior: "smooth", block: "start" });
+          window.history.pushState(null, "", href);
+        }
+      } else {
+        // Jika di halaman lain, navigate ke home dulu dengan hash
+        navigate(href);
+      }
+    }
+    // Untuk link non-hash (seperti /artikel), biarkan react-router handle
   };
 
   return (
     <>
       <nav
-        role="navigation"
-        aria-label="Menu utama"
         style={{
           position: "fixed",
           top: 0,
           left: 0,
           right: 0,
-          zIndex: 100,
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
-          padding: isScrolled ? "12px 48px" : "18px 48px",
-          background: isScrolled ? "var(--nav-bg-scrolled)" : "var(--nav-bg)",
+          zIndex: 1000,
+          background: isScrolled
+            ? "rgba(255, 255, 255, 0.97)"
+            : "rgba(255, 255, 255, 0.92)",
+          borderBottom: isScrolled
+            ? "1px solid rgba(0,0,0,0.08)"
+            : "1px solid rgba(0,0,0,0.04)",
           backdropFilter: "blur(12px)",
           WebkitBackdropFilter: "blur(12px)",
-          borderBottom: "1px solid var(--border-color)",
-          transition: "padding 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
+          transition:
+            "background 0.3s cubic-bezier(0.4,0,0.2,1), border 0.3s cubic-bezier(0.4,0,0.2,1)",
         }}
+        aria-label="Main navigation"
       >
-        <Link to="/"
+        <div
           style={{
+            maxWidth: "1440px",
+            margin: "0 auto",
+            padding: "0 64px",
+            height: "88px",
             display: "flex",
             alignItems: "center",
-            height: "80px",
-            textDecoration: "none",
+            justifyContent: "space-between",
           }}
+          className="nav-container"
         >
-          <img src="/images/utero-02.webp" alt="Utero Indonesia"
-            className="nav-logo-img"
-            style={{ objectFit: "contain", height: "120px", width: "auto", transformOrigin: "left center" }}
-          />
-        </Link>
-
-        <ul
-          style={{
-            display: "flex",
-            gap: "clamp(16px, 2.5vw, 36px)",
-            listStyle: "none",
-            alignItems: "center",
-          }}
-          className="nav-desktop"
-        >
-          {navLinks.map((link) => (
-            <li key={link.href}>
-              <Link to={link.href}
-                className="nav-desktop-link"
-                style={{
-                  fontSize: "13px",
-                  fontWeight: 500,
-                  letterSpacing: "0.08em",
-                  textTransform: "uppercase",
-                  color: "#000000",
-                  textDecoration: "none",
-                  transition: "color 0.2s",
-                  whiteSpace: "nowrap",
-                }}
-                onMouseEnter={(e) => (e.currentTarget.style.color = "var(--red)")}
-                onMouseLeave={(e) => (e.currentTarget.style.color = "#000000")}
-              >
-                {link.label}
-              </Link>
-            </li>
-          ))}
-          <li>
-            <Link to="/#kontak"
-              className="nav-cta-btn"
+          <Link
+            to="/"
+            style={{ display: "flex", alignItems: "center", textDecoration: "none" }}
+            aria-label="Utero Indonesia Home"
+          >
+            <img
+              className="nav-brand-logo"
+              src="/images/utero-02.webp"
+              alt="Utero Indonesia"
               style={{
-                background: "var(--red)",
-                color: "#fff",
-                padding: "9px 22px",
-                borderRadius: "2px",
-                fontWeight: 600,
-                fontSize: "13px",
-                letterSpacing: "0.08em",
-                textTransform: "uppercase",
-                textDecoration: "none",
-                transition: "background 0.2s",
-                whiteSpace: "nowrap",
+                height: "72px",
+                width: "auto",
+                transition: "opacity 0.2s",
               }}
-              onMouseEnter={(e) => (e.currentTarget.style.background = "var(--red2)")}
-              onMouseLeave={(e) => (e.currentTarget.style.background = "var(--red)")}
-            >
-              Konsultasi Gratis
-            </Link>
-          </li>
-        </ul>
+              onMouseOver={(e) => (e.currentTarget.style.opacity = "0.8")}
+              onMouseOut={(e) => (e.currentTarget.style.opacity = "1")}
+            />
+          </Link>
 
-        <button
-          ref={hamburgerRef}
-          className="nav-mobile-btn"
-          onClick={() => setIsMobileOpen(true)}
-          aria-label="Buka menu"
-          style={{
-            display: "none",
-            background: "none",
-            border: "none",
-            cursor: "pointer",
-            padding: "8px",
-            borderRadius: "4px",
-            flexDirection: "column",
-            gap: "5px",
-            transition: "background 0.2s",
-          }}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.background = "var(--ash)";
-            const bars = e.currentTarget.querySelectorAll("span");
-            bars.forEach((bar) => (bar.style.background = "var(--red)"));
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.background = "none";
-            const bars = e.currentTarget.querySelectorAll("span");
-            bars.forEach((bar) => (bar.style.background = "var(--ink)"));
-          }}
-        >
-          <span
+          <ul
             style={{
-              display: "block",
-              width: "24px",
-              height: "2px",
-              background: "var(--ink)",
-              transition: "all 0.2s",
+              display: "flex",
+              gap: "32px",
+              listStyle: "none",
+              margin: 0,
+              padding: 0,
+              alignItems: "center",
             }}
-          />
-          <span
+            className="nav-desktop"
+          >
+            {navLinks.map((link) => (
+              <li key={link.href}>
+                <Link
+                  to={link.href}
+                  onClick={(e) => handleNavClick(e, link.href)}
+                  style={{
+                    fontSize: "14px",
+                    fontWeight: 600,
+                    color: "var(--ink)",
+                    textDecoration: "none",
+                    letterSpacing: "0.02em",
+                    transition: "color 0.2s",
+                    position: "relative",
+                    display: "inline-block",
+                  }}
+                  className="nav-desktop-link"
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.color = "var(--red)";
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.color = "var(--ink)";
+                  }}
+                >
+                  {link.label}
+                </Link>
+              </li>
+            ))}
+            <li>
+              <a
+                href="https://wa.me/6281216650111?text=Halo%20Utero%2C%20saya%20ingin%20konsultasi"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  display: "inline-block",
+                  padding: "10px 24px",
+                  background: "var(--red)",
+                  color: "#fff",
+                  fontSize: "13px",
+                  fontWeight: 700,
+                  letterSpacing: "0.04em",
+                  textTransform: "uppercase",
+                  textDecoration: "none",
+                  borderRadius: "2px",
+                  transition: "all 0.2s",
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.background = "var(--red2)";
+                  e.currentTarget.style.transform = "translateY(-1px)";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.background = "var(--red)";
+                  e.currentTarget.style.transform = "translateY(0)";
+                }}
+              >
+                Konsultasi Gratis
+              </a>
+            </li>
+          </ul>
+
+          <button
+            ref={hamburgerRef}
+            onClick={() => setIsMobileOpen(true)}
             style={{
-              display: "block",
-              width: "24px",
-              height: "2px",
-              background: "var(--ink)",
-              transition: "all 0.2s",
+              display: "none",
+              background: "none",
+              border: "none",
+              cursor: "pointer",
+              padding: "8px",
             }}
-          />
-          <span
-            style={{
-              display: "block",
-              width: "24px",
-              height: "2px",
-              background: "var(--ink)",
-              transition: "all 0.2s",
-            }}
-          />
-        </button>
+            className="nav-hamburger"
+            aria-label="Open menu"
+            aria-expanded={isMobileOpen}
+          >
+            <svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="var(--ink)"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <line x1="3" y1="6" x2="21" y2="6" />
+              <line x1="3" y1="12" x2="21" y2="12" />
+              <line x1="3" y1="18" x2="21" y2="18" />
+            </svg>
+          </button>
+        </div>
       </nav>
 
       <AnimatePresence>
@@ -303,250 +337,234 @@ export default function Navbar() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.25, ease: "easeInOut" }}
+            transition={{ duration: 0.2 }}
             style={{
               position: "fixed",
               inset: 0,
-              width: "100vw",
-              height: "100dvh",
-              background: "var(--ash)",
-              zIndex: 999,
-              display: "flex",
-              flexDirection: "column",
-              overflow: "hidden",
+              zIndex: 2000,
+              background: "rgba(0,0,0,0.4)",
+              backdropFilter: "blur(4px)",
             }}
-          >
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "space-between",
-                alignItems: "center",
-                padding: "24px 28px",
-                flexShrink: 0,
-                borderBottom: "1px solid var(--border-color)",
-              }}
-            >
-              <Link to="/"
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  textDecoration: "none",
-                }}
-                onClick={closeMenu}
-              >
-                <img src="/images/utero-02.webp" alt="Utero Indonesia"
-                  style={{ objectFit: "contain", height: "52px", width: "auto", transformOrigin: "left center" }}
-                />
-              </Link>
-              <button
-                ref={closeBtnRef}
-                onClick={closeMenu}
-                aria-label="Tutup menu"
-                style={{
-                  background: "none",
-                  border: "none",
-                  cursor: "pointer",
-                  color: "var(--ink)",
-                  padding: "8px",
-                  borderRadius: "4px",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  transition: "background 0.2s, color 0.2s",
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.background = "var(--ash)";
-                  e.currentTarget.style.color = "var(--red)";
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.background = "none";
-                  e.currentTarget.style.color = "var(--ink)";
-                }}
-              >
-                <svg
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <line x1="18" y1="6" x2="6" y2="18" />
-                  <line x1="6" y1="6" x2="18" y2="18" />
-                </svg>
-              </button>
-            </div>
+            onClick={closeMenu}
+            aria-hidden="true"
+          />
+        )}
+      </AnimatePresence>
 
-            <div
-              style={{
-                flex: 1,
-                overflowY: "auto",
-                padding: "28px 28px 40px",
-                WebkitOverflowScrolling: "touch",
-              }}
-            >
+      <AnimatePresence>
+        {isMobileOpen && (
+          <motion.div
+            initial={{ x: "100%" }}
+            animate={{ x: 0 }}
+            exit={{ x: "100%" }}
+            transition={{ type: "spring", damping: 30, stiffness: 300 }}
+            style={{
+              position: "fixed",
+              top: 0,
+              right: 0,
+              bottom: 0,
+              width: "min(400px, 85vw)",
+              background: "#fff",
+              zIndex: 2001,
+              overflowY: "auto",
+              boxShadow: "-4px 0 24px rgba(0,0,0,0.12)",
+            }}
+            role="dialog"
+            aria-modal="true"
+            aria-label="Mobile menu"
+          >
+            <div style={{ padding: "32px 24px" }}>
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                  marginBottom: "32px",
+                }}
+              >
+                <img
+                  className="nav-brand-logo"
+              src="/images/utero-02.webp"
+                  alt="Utero Indonesia"
+                  style={{ height: "56px", width: "auto" }}
+                />
+                <button
+                  ref={closeBtnRef}
+                  onClick={closeMenu}
+                  style={{
+                    background: "none",
+                    border: "none",
+                    cursor: "pointer",
+                    padding: "8px",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                  }}
+                  aria-label="Close menu"
+                >
+                  <svg
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="var(--ink)"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <line x1="18" y1="6" x2="6" y2="18" />
+                    <line x1="6" y1="6" x2="18" y2="18" />
+                  </svg>
+                </button>
+              </div>
+
               <div
                 style={{
                   display: "grid",
-                  gridTemplateColumns: "repeat(2, 1fr)",
                   gap: "12px",
-                  maxWidth: "500px",
-                  margin: "0 auto",
+                  marginBottom: "24px",
                 }}
-                className="nav-mobile-grid"
               >
-                {menuCards.map((card, i) => (
-                  <motion.div key={card.href} variants={cardVariants} initial="hidden" animate="visible" custom={i}>
-                    <Link to={card.href}
-                      onClick={closeMenu}
+                {menuCards.map((card) => (
+                  <Link
+                    key={card.href}
+                    to={card.href}
+                    onClick={(e) => {
+                      handleNavClick(e, card.href);
+                      closeMenu();
+                    }}
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "16px",
+                      padding: "16px",
+                      background: "var(--ash)",
+                      borderRadius: "4px",
+                      textDecoration: "none",
+                      transition: "all 0.2s",
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.background = "var(--red)";
+                      const icon = e.currentTarget.querySelector("svg");
+                      const text = e.currentTarget.querySelectorAll("div");
+                      if (icon) (icon as SVGElement).style.stroke = "#fff";
+                      text.forEach((t) => ((t as HTMLElement).style.color = "#fff"));
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.background = "var(--ash)";
+                      const icon = e.currentTarget.querySelector("svg");
+                      const text = e.currentTarget.querySelectorAll("div");
+                      if (icon) (icon as SVGElement).style.stroke = "var(--red)";
+                      text.forEach((t, idx) => {
+                        (t as HTMLElement).style.color =
+                          idx === 0 ? "var(--ink)" : "var(--muted)";
+                      });
+                    }}
+                  >
+                    <div
                       style={{
+                        flexShrink: 0,
                         display: "flex",
-                        flexDirection: "column",
-                        gap: "12px",
-                        padding: "24px 20px",
-                        background: "#ffffff",
-                        border: "1px solid var(--border-color)",
-                        borderRadius: "4px",
-                        textDecoration: "none",
-                        color: "var(--ink)",
-                        height: "100%",
-                        transition: "background 0.2s, border-color 0.2s",
-                      }}
-                      onMouseEnter={(e) => {
-                        e.currentTarget.style.background = "var(--red)";
-                        e.currentTarget.style.borderColor = "var(--red)";
-                        e.currentTarget.style.color = "#fff";
-                        const icon = e.currentTarget.querySelector("span");
-                        if (icon) (icon as HTMLSpanElement).style.color = "#fff";
-                      }}
-                      onMouseLeave={(e) => {
-                        e.currentTarget.style.background = "var(--ash)";
-                        e.currentTarget.style.borderColor = "var(--border-color)";
-                        e.currentTarget.style.color = "var(--ink)";
-                        const icon = e.currentTarget.querySelector("span");
-                        if (icon) (icon as HTMLSpanElement).style.color = "var(--red)";
+                        alignItems: "center",
+                        justifyContent: "center",
                       }}
                     >
-                      <span
+                      <MenuIcon name={card.icon} size={20} />
+                    </div>
+                    <div style={{ flex: 1 }}>
+                      <div
                         style={{
-                          color: "var(--red)",
-                          width: "32px",
-                          height: "32px",
-                          display: "flex",
-                          alignItems: "center",
-                          justifyContent: "center",
+                          fontSize: "14px",
+                          fontWeight: 600,
+                          color: "var(--ink)",
+                          marginBottom: "2px",
+                          transition: "color 0.2s",
                         }}
                       >
-                        <MenuIcon name={card.icon} size={24} />
-                      </span>
-                      <div>
-                        <div style={{ fontSize: "14px", fontWeight: 600, letterSpacing: "0.04em", marginBottom: "4px" }}>{card.label}</div>
-                        <div style={{ fontSize: "12px", color: "var(--muted)", lineHeight: 1.4 }}>{card.desc}</div>
+                        {card.label}
                       </div>
-                    </Link>
-                  </motion.div>
+                      <div
+                        style={{
+                          fontSize: "12px",
+                          color: "var(--muted)",
+                          transition: "color 0.2s",
+                        }}
+                      >
+                        {card.desc}
+                      </div>
+                    </div>
+                  </Link>
                 ))}
               </div>
 
-              <div style={{ textAlign: "center", marginTop: "32px" }}>
-                <Link to="/#kontak"
-                onClick={closeMenu}
-                  style={{
-                    display: "inline-block",
-                    background: "var(--red)",
-                    color: "#fff",
-                    padding: "14px 48px",
-                    fontWeight: 600,
-                    fontSize: "14px",
-                    letterSpacing: "0.06em",
-                    textTransform: "uppercase",
-                    textDecoration: "none",
-                    transition: "background 0.2s",
-                  }}
-                  onMouseEnter={(e) => (e.currentTarget.style.background = "var(--red2)")}
-                  onMouseLeave={(e) => (e.currentTarget.style.background = "var(--red)")}
-                >
-                  Konsultasi Gratis
-                </Link>
-              </div>
+              <a
+                href="https://wa.me/6281216650111?text=Halo%20Utero%2C%20saya%20ingin%20konsultasi"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  display: "block",
+                  width: "100%",
+                  padding: "16px",
+                  background: "var(--red)",
+                  color: "#fff",
+                  fontSize: "14px",
+                  fontWeight: 700,
+                  letterSpacing: "0.04em",
+                  textTransform: "uppercase",
+                  textDecoration: "none",
+                  textAlign: "center",
+                  borderRadius: "4px",
+                  transition: "background 0.2s",
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.background = "var(--red2)";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.background = "var(--red)";
+                }}
+              >
+                Konsultasi Gratis
+              </a>
             </div>
           </motion.div>
         )}
       </AnimatePresence>
 
       <style>{`
-        /* ===== Desktop nav: 1024px+ ===== */
-        /* Already visible by default */
-
-        /* ===== Compact desktop nav: 1024-1280px (landscape tablets, small laptops) ===== */
-        @media (min-width: 1025px) and (max-width: 1280px) {
-          nav {
-            padding: 12px 32px !important;
+        @media (max-width: 1024px) {
+          .nav-container {
+            padding: 0 32px !important;
           }
           .nav-desktop {
-            gap: 16px !important;
-          }
-          .nav-desktop-link {
-            font-size: 11px !important;
-            letter-spacing: 0.05em !important;
-          }
-          .nav-cta-btn {
-            font-size: 11px !important;
-            padding: 8px 16px !important;
+            gap: 24px !important;
           }
         }
-
-        /* ===== Hamburger mode: <=1024px (tablets portrait, landscape phones, phones) ===== */
-        @media (max-width: 1024px) {
-          nav {
-            padding: 14px 24px !important;
-          }
+        @media (max-width: 900px) {
           .nav-desktop {
             display: none !important;
           }
-          .nav-mobile-btn {
-            display: flex !important;
+          .nav-hamburger {
+            display: block !important;
           }
         }
-
-        /* ===== Phone landscape (wider but short) ===== */
-        @media (max-width: 900px) and (orientation: landscape) {
-          nav {
-            padding: 10px 24px !important;
+        @media (max-width: 640px) {
+          .nav-container {
+            padding: 0 20px !important;
+            height: 72px !important;
           }
         }
-
-        /* ===== Phone portrait ===== */
-        @media (max-width: 480px) {
-          nav {
-            padding: 12px 16px !important;
-          }
-          .nav-mobile-grid {
-            grid-template-columns: 1fr !important;
-          }
-        }
-
-        /* ===== Very small phones ===== */
-        @media (max-width: 360px) {
-          nav {
-            padding: 10px 12px !important;
-          }
-        }
-
-        /* ===== Mobile menu landscape adjustments ===== */
-        @media (max-height: 500px) and (orientation: landscape) {
-          .nav-mobile-grid {
-            grid-template-columns: repeat(3, 1fr) !important;
-            gap: 8px !important;
-          }
-          .nav-mobile-grid a {
-            padding: 16px 12px !important;
-          }
+        .sr-only {
+          position: absolute;
+          width: 1px;
+          height: 1px;
+          padding: 0;
+          margin: -1px;
+          overflow: hidden;
+          clip: rect(0, 0, 0, 0);
+          white-space: nowrap;
+          border-width: 0;
         }
       `}</style>
     </>
   );
 }
-

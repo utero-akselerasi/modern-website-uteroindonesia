@@ -1,6 +1,7 @@
 import { Link as RouterLink } from 'react-router-dom';
 import type { LinkProps } from 'react-router-dom';
 import type { ReactNode } from 'react';
+import ReactGA from 'react-ga4';
 
 // Next.js Link wrapper
 interface NextLinkProps extends Omit<LinkProps, 'to'> {
@@ -39,6 +40,9 @@ export function NextImage({
 export { NextImage as Image };
 
 // Google Analytics stub
-export function sendGAEvent(_params: Record<string, any>) {
-  // console.log('GA Event:', params);
+export function sendGAEvent(params: Record<string, any>) {
+  const { event, ...eventParams } = params;
+  if (typeof event === 'string') {
+    ReactGA.event(event, eventParams);
+  }
 }

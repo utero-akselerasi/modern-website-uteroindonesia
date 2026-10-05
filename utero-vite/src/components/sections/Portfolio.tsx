@@ -1,4 +1,4 @@
-﻿import { useState } from "react";
+import { useState } from "react";
 
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -9,6 +9,7 @@ const categories = [
   "Signage",
   "AI/Teknologi",
   "Desain Grafis",
+  "Lainnya",
 ];
 
 const items = [
@@ -33,6 +34,8 @@ const items = [
   { title: "Kochiro Inexterior", category: "Desain Grafis", desc: "Desain interior & eksterior kreatif", url: "https://www.kochiro.com/", logo: "/images/portfolio/kochiro-inexterior.webp" },
   { title: "Carubra", category: "AI/Teknologi", desc: "AI Agent berbasis WhatsApp untuk bisnis", url: "https://carubra.com", logo: "/images/portfolio/carubra.webp" },
   { title: "AIDA", category: "AI/Teknologi", desc: "Platform monitoring & streaming billboard digital", url: "https://dash.theaida.id/", logo: "/images/portfolio/aida.webp", logoDark: true },
+  { title: "Sehatta", category: "Lainnya", desc: "Platform kesehatan dan layanan digital", url: "https://sehatta.carubra.com", logo: "/images/lain/logo-sehatta-02.webp" },
+  { title: "Warjo Santoso", category: "Lainnya", desc: "Website profil dan informasi Warjo Santoso", url: "https://warjosantoso.carubra.com", logo: "/images/lain/logo-warjo.webp" },
 ];
 
 export default function Portfolio() {

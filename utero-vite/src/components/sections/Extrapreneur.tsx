@@ -28,7 +28,8 @@ const extrapreneurItems = [
   { name: "Tokoneonbox", href: "https://www.instagram.com/tokoneonbox/", img: "/images/divisi/tokoneonbox.webp", alt: "Toko neon box custom dan signage LED" },
   { name: "Placers", href: "https://dev-placers.carubra.com/", img: "/images/divisi/placers.webp", alt: "Platform marketplace billboard advertising pertama di Indonesia" },
   { name: "Carubra", href: "https://carubra.com/", img: "/images/divisi/carubra-logo.webp", alt: "AI Agent branding consultant dan solusi kecerdasan bisnis via WhatsApp" },
-  { name: "Aida", href: "https://dash-doa.carubra.com/", img: "/images/divisi/aida.webp", alt: "Unified Enterprise Dashboard  Suryo Agong", borderless: true, largeImage: true },
+  { name: "Aida", href: "https://dash.theaida.id/", img: "/images/portfolio/aida.webp", alt: "Unified Enterprise Dashboard  Suryo Agong", borderless: true, largeImage: true },
+  { name: "Suryo Agong", href: "https://dash-doa.carubra.com/", img: "/images/divisi/suryo-agong.webp", alt: "Unified Enterprise Dashboard  Suryo Agong", borderless: true, largeImage: true },
 ];
 
 const ITEM_COUNT = extrapreneurItems.length;

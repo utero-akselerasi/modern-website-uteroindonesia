@@ -142,7 +142,7 @@ Di `main.tsx`:
 import ReactGA from 'react-ga4';
 
 // Initialize Google Analytics
-ReactGA.initialize('G-7V5HTNW1TC');
+ReactGA.initialize('G-687LY633N8');
 
 function App() {
   useEffect(() => {
@@ -162,7 +162,7 @@ function App() {
 ✅ Google Analytics aktif  
 ✅ Pageview tracking otomatis  
 ✅ User behavior analytics tersedia  
-✅ GA ID: G-7V5HTNW1TC
+✅ GA ID: G-687LY633N8
 
 ---
 
@@ -223,7 +223,7 @@ Total: 648 KB (146 KB gzipped)
 #### Analytics
 - [x] Google Analytics initialized
 - [x] Pageview tracking
-- [x] GA ID configured (G-7V5HTNW1TC)
+- [x] GA ID configured (G-687LY633N8)
 
 #### Images
 - [x] All images use regular `<img>` tag

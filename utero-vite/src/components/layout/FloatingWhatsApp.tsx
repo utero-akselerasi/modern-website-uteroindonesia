@@ -27,7 +27,7 @@ const theme = {
     headerBorder: "#f0f0f0",
     headerName: "#1a1a1a",
     headerSub: "#999999",
-    controlIcon: "#aaaaaa",
+    controlIcon: "#666666",
     controlHoverIcon: "#d11f1f",
     controlHoverBg: "rgba(209,31,31,0.06)",
     bodyBg: "#fafafa",
@@ -55,7 +55,7 @@ const theme = {
     headerBorder: "#333333",
     headerName: "#f0f0f0",
     headerSub: "#888888",
-    controlIcon: "#777777",
+    controlIcon: "#999999",
     controlHoverIcon: "#ff6b6b",
     controlHoverBg: "rgba(255,107,107,0.1)",
     bodyBg: "#1a1a1a",
@@ -180,22 +180,22 @@ function getOptionIcon(label: string) {
    SVG Icons (inline for zero deps)
    ═══════════════════════════════════════════════════════════ */
 const IconReset = () => (
-  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
     <path d="M1 4v6h6" /><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10" />
   </svg>
 );
 const IconSun = () => (
-  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
     <circle cx="12" cy="12" r="5" /><line x1="12" y1="1" x2="12" y2="3" /><line x1="12" y1="21" x2="12" y2="23" /><line x1="4.22" y1="4.22" x2="5.64" y2="5.64" /><line x1="18.36" y1="18.36" x2="19.78" y2="19.78" /><line x1="1" y1="12" x2="3" y2="12" /><line x1="21" y1="12" x2="23" y2="12" /><line x1="4.22" y1="19.78" x2="5.64" y2="18.36" /><line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
   </svg>
 );
 const IconMoon = () => (
-  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
     <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
   </svg>
 );
 const IconClose = () => (
-  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+  <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
     <line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" />
   </svg>
 );
@@ -214,7 +214,12 @@ export default function FloatingWhatsApp() {
   const [currentOptions, setCurrentOptions] = useState<ChatOption[]>([]);
   const [isTyping, setIsTyping] = useState(false);
   const [showTooltip, setShowTooltip] = useState(false);
-  const [mode, setMode] = useState<ThemeMode>("light");
+  const [mode, setMode] = useState<ThemeMode>(() => {
+    const saved = localStorage.getItem("chatbot-theme");
+    return (saved === "dark" || saved === "light") ? saved : "light";
+  });
+  const [hasInteracted, setHasInteracted] = useState(false);
+  const typingTimersRef = useRef<number[]>([]);
 
   const chatBodyRef = useRef<HTMLDivElement>(null);
   const hasInitRef = useRef(false);
@@ -230,13 +235,23 @@ export default function FloatingWhatsApp() {
 
   /* ── Scroll to bottom ──────────────────────────────── */
   useEffect(() => {
-    if (chatBodyRef.current) {
-      chatBodyRef.current.scrollTop = chatBodyRef.current.scrollHeight;
+    if (!chatBodyRef.current) return;
+    
+    // Cek apakah user sedang scroll manual (tidak di bottom)
+    const container = chatBodyRef.current;
+    const isNearBottom = container.scrollHeight - container.scrollTop - container.clientHeight < 50;
+    
+    // Hanya auto-scroll jika user di posisi bottom
+    if (isNearBottom) {
+      container.scrollTop = container.scrollHeight;
     }
   }, [messages, isTyping, currentOptions]);
 
   /* ── Push bot messages with typing delay ───────────── */
   const pushBotMessages = useCallback((nodeId: string) => {
+    // Cancel semua typing timer yang sedang berjalan
+    typingTimersRef.current.forEach(timer => clearTimeout(timer));
+    typingTimersRef.current = [];
     const node = chatFlow[nodeId];
     if (!node) return;
     setIsTyping(true);
@@ -246,7 +261,7 @@ export default function FloatingWhatsApp() {
     let delay = 0;
     botTexts.forEach((text, idx) => {
       delay += Math.min(500 + text.length * 6, 1200);
-      setTimeout(() => {
+      const timer = setTimeout(() => {
         setMessages((prev) => [...prev, { id: nextId(), sender: "bot", text }]);
         if (idx === botTexts.length - 1) {
           setTimeout(() => {
@@ -255,6 +270,7 @@ export default function FloatingWhatsApp() {
           }, 300);
         }
       }, delay);
+      typingTimersRef.current.push(timer);
     });
   }, []);
 
@@ -269,9 +285,13 @@ export default function FloatingWhatsApp() {
   const handleToggle = () => {
     setIsOpen((prev) => !prev);
     setShowTooltip(false);
+    setHasInteracted(true);
     };
 
   const handleReset = () => {
+    // Cancel semua typing timers
+    typingTimersRef.current.forEach(timer => clearTimeout(timer));
+    typingTimersRef.current = [];
     msgIdCounter = 0;
     setMessages([]);
     setCurrentOptions([]);
@@ -284,7 +304,13 @@ export default function FloatingWhatsApp() {
 
   const handleOptionClick = (opt: ChatOption) => {
     if (opt.href) {
-      window.open(opt.href, "_blank", "noopener,noreferrer");
+      // Tambahkan feedback visual
+      setMessages((prev) => [...prev, { id: nextId(), sender: "user", text: opt.label }]);
+      
+      // Buka link setelah delay kecil untuk user feedback
+      setTimeout(() => {
+        window.open(opt.href, "_blank", "noopener,noreferrer");
+      }, 300);
       return;
     }
     if (!opt.nextNode) return;
@@ -292,11 +318,17 @@ export default function FloatingWhatsApp() {
     setTimeout(() => pushBotMessages(opt.nextNode!), 400);
   };
 
-  const toggleMode = () => setMode((m) => (m === "light" ? "dark" : "light"));
+  const toggleMode = () => {
+    setMode((m) => {
+      const newMode = m === "light" ? "dark" : "light";
+      localStorage.setItem("chatbot-theme", newMode);
+      return newMode;
+    });
+  };
 
   /* ═════════════════════ RENDER ═════════════════════════ */
   return (
-    <div style={{ position: "fixed", bottom: "20px", right: "16px", zIndex: 90, display: "flex", flexDirection: "column", alignItems: "flex-end" }}>
+    <div style={{ position: "fixed", bottom: "24px", right: "24px", zIndex: 90, display: "flex", flexDirection: "column", alignItems: "flex-end" }}>
       {/* ═══ Chat Panel ══════════════════════════════════ */}
       <AnimatePresence>
         {isOpen && (
@@ -306,12 +338,15 @@ export default function FloatingWhatsApp() {
             exit={{ opacity: 0, scale: 0.85, y: 30 }}
             transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
             style={{
-              width: "min(380px, calc(100vw - 32px))",
-              maxHeight: "min(540px, calc(100vh - 140px))",
+              display: "flex",
+              flexDirection: "column",
+              width: "min(360px, calc(100vw - 32px))",
+              maxHeight: "min(500px, calc(100vh - 160px))",
               background: t.panelBg,
               boxShadow: t.shadow,
               borderRadius: "20px",
               marginBottom: "12px",
+              overflow: "hidden",
             }}
             
           >
@@ -320,7 +355,7 @@ export default function FloatingWhatsApp() {
               style={{
                 background: t.headerBg,
                 borderBottom: `1px solid ${t.headerBorder}`,
-                padding: "14px 16px",
+                padding: "12px 14px",
               }}
               
             >
@@ -329,11 +364,11 @@ export default function FloatingWhatsApp() {
                   src={CHATBOT_AVATAR}
                   alt={CHATBOT_NAME}
                   style={{
-                    width: 42,
-                    height: 42,
+                    width: 36,
+                    height: 36,
                     borderRadius: "50%",
                     objectFit: "cover",
-                    border: "2.5px solid #d11f1f",
+                    border: "2px solid #d11f1f",
                   }}
                 />
                 <span
@@ -341,8 +376,8 @@ export default function FloatingWhatsApp() {
                     position: "absolute",
                     bottom: 0,
                     right: 0,
-                    width: 11,
-                    height: 11,
+                    width: 9,
+                    height: 9,
                     background: "#22c55e",
                     borderRadius: "50%",
                     border: `2px solid ${t.headerBg}`,
@@ -351,15 +386,15 @@ export default function FloatingWhatsApp() {
               </div>
 
               <div style={{ flex: 1, minWidth: 0 }}>
-                <p style={{ fontWeight: 700, fontSize: 14, color: t.headerName, lineHeight: 1.3, margin: 0 }}>
+                <p style={{ fontWeight: 700, fontSize: 13, color: t.headerName, lineHeight: 1.3, margin: 0 }}>
                   {CHATBOT_NAME}
                 </p>
-                <p style={{ fontSize: 11, color: t.headerSub, margin: 0, lineHeight: 1.3 }}>
+                <p style={{ fontSize: 10, color: t.headerSub, margin: 0, lineHeight: 1.3 }}>
                   {CHATBOT_SUBTITLE}
                 </p>
               </div>
 
-              <div >
+              <div style={{ display: "flex", alignItems: "center", gap: "4px" }}>
                 {[
                   { icon: <IconReset />, onClick: handleReset, title: "Reset percakapan" },
                   { icon: mode === "light" ? <IconMoon /> : <IconSun />, onClick: toggleMode, title: mode === "light" ? "Mode gelap" : "Mode terang" },
@@ -371,11 +406,11 @@ export default function FloatingWhatsApp() {
                     title={btn.title}
                     aria-label={btn.title}
                     style={{
-                      width: 32,
-                      height: 32,
+                      width: 28,
+                      height: 28,
                       borderRadius: "50%",
                       border: "none",
-                      background: "transparent",
+                      background: "rgba(0,0,0,0.04)",
                       color: t.controlIcon,
                       display: "flex",
                       alignItems: "center",
@@ -389,7 +424,7 @@ export default function FloatingWhatsApp() {
                     }}
                     onMouseLeave={(e) => {
                       e.currentTarget.style.color = t.controlIcon;
-                      e.currentTarget.style.background = "transparent";
+                      e.currentTarget.style.background = "rgba(0,0,0,0.04)";
                     }}
                   >
                     {btn.icon}
@@ -401,10 +436,11 @@ export default function FloatingWhatsApp() {
             {/* ──────── Chat Body ──────────────────── */}
             <div
               ref={chatBodyRef}
+              className={`chat-body-scroll ${mode === "dark" ? "dark-mode" : ""}`}
               style={{
                 flex: 1,
                 overflowY: "auto",
-                padding: "16px",
+                padding: "14px",
                 background: t.bodyBg,
                 scrollBehavior: "smooth",
                 scrollbarWidth: "thin",
@@ -430,8 +466,8 @@ export default function FloatingWhatsApp() {
                           src={CHATBOT_AVATAR}
                           alt=""
                           style={{
-                            width: 28,
-                            height: 28,
+                            width: 26,
+                            height: 26,
                             borderRadius: "50%",
                             objectFit: "cover",
                             border: "1.5px solid #d11f1f",
@@ -445,8 +481,8 @@ export default function FloatingWhatsApp() {
                         transition={{ duration: 0.25 }}
                         style={{
                           maxWidth: "78%",
-                          padding: "10px 14px",
-                          fontSize: 13,
+                          padding: "8px 12px",
+                          fontSize: 12,
                           lineHeight: 1.6,
                           whiteSpace: "pre-line",
                           borderRadius: isUser
@@ -473,11 +509,11 @@ export default function FloatingWhatsApp() {
                       src={CHATBOT_AVATAR}
                       alt=""
                       style={{
-                        width: 28,
-                        height: 28,
-                        borderRadius: "50%",
-                        objectFit: "cover",
-                        border: "1.5px solid #d11f1f",
+                        width: 26,
+                            height: 26,
+                            borderRadius: "50%",
+                            objectFit: "cover",
+                            border: "1.5px solid #d11f1f",
                         flexShrink: 0,
                       }}
                     />
@@ -525,7 +561,7 @@ export default function FloatingWhatsApp() {
                   style={{
                     background: t.footerBg,
                     borderTop: `1px solid ${t.footerBorder}`,
-                    padding: "12px 16px 14px",
+                    padding: "12px 16px",
                   }}
                 >
                   <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
@@ -533,6 +569,13 @@ export default function FloatingWhatsApp() {
                       <button
                         key={idx}
                         onClick={() => handleOptionClick(opt)}
+                        onKeyDown={(e) => {
+                          if (e.key === "Enter" || e.key === " ") {
+                            e.preventDefault();
+                            handleOptionClick(opt);
+                          }
+                        }}
+                        tabIndex={0}
                         style={{
                           padding: "7px 16px",
                           fontSize: 12,
@@ -596,8 +639,8 @@ export default function FloatingWhatsApp() {
                 style={{
                   background: t.tooltipBg,
                   borderRadius: 14,
-                  padding: "10px 16px",
-                  maxWidth: 210,
+                  padding: "8px 12px",
+                  maxWidth: 180,
                   boxShadow: "0 4px 24px rgba(0,0,0,0.12)",
                 }}
               >
@@ -634,8 +677,8 @@ export default function FloatingWhatsApp() {
           whileHover={{ scale: 1.07 }}
           whileTap={{ scale: 0.93 }}
           style={{
-            width: 90,
-            height: 90,
+            width: 72,
+            height: 72,
             borderRadius: "50%",
             border: "none",
             padding: 0,
@@ -706,6 +749,49 @@ export default function FloatingWhatsApp() {
       <style>{`
         @keyframes chatbot-bounce {
           0%, 60%, 100% { transform: translateY(0); }
+        
+        /* Focus visible untuk accessibility */
+        button:focus-visible {
+          outline: 2px solid #d11f1f;
+          outline-offset: 2px;
+        }
+        
+        /* Custom scrollbar styling */
+        .chat-body-scroll::-webkit-scrollbar {
+          width: 6px;
+        }
+        
+        .chat-body-scroll::-webkit-scrollbar-track {
+          background: transparent;
+        }
+        
+        .chat-body-scroll::-webkit-scrollbar-thumb {
+          background: rgba(0, 0, 0, 0.15);
+          border-radius: 3px;
+        }
+        
+        .chat-body-scroll::-webkit-scrollbar-thumb:hover {
+          background: rgba(0, 0, 0, 0.25);
+        }
+        
+        /* Dark mode scrollbar */
+        .chat-body-scroll.dark-mode::-webkit-scrollbar-thumb {
+          background: rgba(255, 255, 255, 0.2);
+        }
+        
+        .chat-body-scroll.dark-mode::-webkit-scrollbar-thumb:hover {
+          background: rgba(255, 255, 255, 0.3);
+        }
+          30% { transform: translateY(-5px); }
+        }
+        
+        @media (max-width: 768px) {
+          /* Smaller widget on mobile */
+        }
+        
+        @media (max-width: 480px) {
+          /* Even smaller on small phones */
+        }
           30% { transform: translateY(-5px); }
         }
       `}</style>

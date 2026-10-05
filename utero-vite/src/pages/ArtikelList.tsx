@@ -1,9 +1,32 @@
 ﻿import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 import ArticleCard from '../components/sections/ArticleCard';
-import { articles } from '../data/articles';
+import { fetchArticles, type Article } from '../lib/articleService';
 
 export default function ArtikelList() {
+  const [articles, setArticles] = useState<Article[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    async function loadArticles() {
+      try {
+        setLoading(true);
+        setError(null);
+        const data = await fetchArticles();
+        setArticles(data);
+      } catch (err) {
+        console.error('Failed to load articles:', err);
+        setError('Gagal memuat artikel. Silakan coba lagi nanti.');
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    loadArticles();
+  }, []);
+
   return (
     <>
       <Helmet>
@@ -81,18 +104,78 @@ export default function ArtikelList() {
             </p>
           </div>
 
-          <div
-            style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(3, 1fr)',
-              gap: '32px',
-            }}
-            className="artikel-grid"
-          >
-            {articles.map((article, i) => (
-              <ArticleCard key={article.slug} article={article} index={i} />
-            ))}
-          </div>
+          {loading && (
+            <div
+              style={{
+                textAlign: 'center',
+                padding: '80px 20px',
+                color: 'var(--muted)',
+              }}
+            >
+              <div
+                style={{
+                  fontSize: '14px',
+                  fontWeight: 600,
+                  letterSpacing: '0.05em',
+                }}
+              >
+                Memuat artikel...
+              </div>
+            </div>
+          )}
+
+          {error && (
+            <div
+              style={{
+                textAlign: 'center',
+                padding: '80px 20px',
+                color: 'var(--red)',
+              }}
+            >
+              <div
+                style={{
+                  fontSize: '14px',
+                  fontWeight: 600,
+                }}
+              >
+                {error}
+              </div>
+            </div>
+          )}
+
+          {!loading && !error && articles.length === 0 && (
+            <div
+              style={{
+                textAlign: 'center',
+                padding: '80px 20px',
+                color: 'var(--muted)',
+              }}
+            >
+              <div
+                style={{
+                  fontSize: '14px',
+                  fontWeight: 600,
+                }}
+              >
+                Belum ada artikel tersedia.
+              </div>
+            </div>
+          )}
+
+          {!loading && !error && articles.length > 0 && (
+            <div
+              style={{
+                display: 'grid',
+                gridTemplateColumns: 'repeat(3, 1fr)',
+                gap: '32px',
+              }}
+              className="artikel-grid"
+            >
+              {articles.map((article, i) => (
+                <ArticleCard key={article.id} article={article} index={i} />
+              ))}
+            </div>
+          )}
 
           <div style={{ marginTop: '64px', textAlign: 'center' }}>
             <Link to="/" className="artikel-back-link">

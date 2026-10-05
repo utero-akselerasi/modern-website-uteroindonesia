@@ -159,3 +159,16 @@ body {
     background-position: center center !important;
   }
 }
+
+/* ===== DESKTOP NAV ALIGNMENT ===== */
+@media (min-width: 1025px) {
+  .nav-container {
+    max-width: none !important;
+    padding-left: 48px !important;
+    padding-right: 48px !important;
+  }
+
+  .nav-brand-logo {
+    height: 96px !important;
+  }
+}

@@ -26,7 +26,7 @@ const contacts = [
   {
     icon: "🤖",
     label: "AI Agent",
-    value: "Carubra Agent AI",
+    value: "DWC AI Agent",
     href: "#",
     ariaLabel: "Pilih AI Agent Carubra",
     onClick: undefined,
@@ -92,14 +92,14 @@ export default function Contact() {
 
   const aiDropdownItems = useMemo(() => {
     return [
-      {
-        key: "sales",
-        label: "Sales & Service",
-        href: "https://elynk.xyz/sales",
-      },
+      // {
+      //   key: "sales",
+      //   label: "Sales & Service",
+      //   href: "https://elynk.xyz/sales",
+      // },
       {
         key: "branding",
-        label: "Brand Consultant",
+        label: "AI Brand Konsultan",
         href: "https://elynk.xyz/branding",
       },
     ];

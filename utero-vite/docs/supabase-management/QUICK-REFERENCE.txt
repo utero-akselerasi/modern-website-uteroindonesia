@@ -1,0 +1,231 @@
+﻿╔════════════════════════════════════════════════════════════════════════════╗
+║                                                                            ║
+║              🚀 SELF-HOSTED SUPABASE - QUICK REFERENCE CARD 🚀            ║
+║                                                                            ║
+║                    Utero Indonesia - Production Deployment                ║
+║                                                                            ║
+╚════════════════════════════════════════════════════════════════════════════╝
+
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ 📋 SERVER INFORMATION                                                     ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+
+  Server Host:       supabase-server
+  SSH User:          maskhar
+  SSH Command:       ssh maskhar@supabase-server
+  
+  Instance URL:      https://supabase.carubra.com
+  Version:           1.26.05
+  
+  Base Path:         ~/docker/supabase/supabase-1.26.05/docker
+  Functions Path:    volumes/functions/
+  Database Path:     volumes/db/
+  Storage Path:      volumes/storage/
+
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ ⚡ QUICK COMMANDS (Local Machine)                                        ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+
+  Setup Environment:
+    cp .env.example .env
+    nano .env
+
+  Deploy Function:
+    .\deploy-function.ps1
+
+  Test API:
+    .\test-api-key.ps1
+
+  Build Production:
+    npm run build
+
+  Start Dev Server:
+    npm run dev
+
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ 🐳 DOCKER COMMANDS (On Server)                                           ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+
+  Navigate to Docker:
+    cd ~/docker/supabase/supabase-1.26.05/docker
+
+  Check Status:
+    docker-compose ps
+
+  View Logs:
+    docker-compose logs -f edge-functions
+    docker-compose logs -f db
+
+  Restart Services:
+    docker-compose restart edge-functions
+    docker-compose restart db
+    docker-compose restart
+
+  Start/Stop All:
+    docker-compose up -d
+    docker-compose down
+
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ 🗄️  DATABASE COMMANDS                                                    ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+
+  Connect to Database:
+    docker-compose exec db psql -U postgres -d postgres
+
+  View Blog Posts:
+    docker-compose exec db psql -U postgres -d postgres -c \
+    "SELECT id, title, slug, published FROM blog_posts LIMIT 5;"
+
+  Count Posts:
+    docker-compose exec db psql -U postgres -d postgres -c \
+    "SELECT COUNT(*) FROM blog_posts WHERE published = true;"
+
+  Backup Database:
+    docker-compose exec db pg_dump -U postgres -d postgres > backup.sql
+
+  Restore Database:
+    cat backup.sql | docker-compose exec -T db psql -U postgres -d postgres
+
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ 🔧 EDGE FUNCTIONS MANAGEMENT                                             ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+
+  Navigate to Functions:
+    cd ~/docker/supabase/supabase-1.26.05/docker/volumes/functions
+
+  List Functions:
+    ls -la
+
+  Edit Function .env:
+    nano .env
+
+  View Function Code:
+    cat blog-auto-post/index.ts
+
+  Check Function Logs:
+    cd ~/docker/supabase/supabase-1.26.05/docker
+    docker-compose logs --tail=100 edge-functions
+
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ 🔑 ENVIRONMENT VARIABLES                                                  ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+
+  Local (.env):
+    VITE_SUPABASE_URL=https://supabase.carubra.com
+    VITE_SUPABASE_ANON_KEY=your-anon-key
+    VITE_BLOG_API_KEY=your-secure-key
+
+  Server (volumes/functions/.env):
+    BLOG_API_KEY=same-as-VITE_BLOG_API_KEY
+
+  Get Keys from Server:
+    ssh maskhar@supabase-server
+    cd ~/docker/supabase/supabase-1.26.05/docker
+    grep "ANON_KEY" .env
+
+  Generate Secure Key:
+    openssl rand -base64 32
+
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ 🧪 TESTING & DEBUGGING                                                   ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+
+  Test API (Script):
+    .\test-api-key.ps1
+
+  Test API (curl):
+    curl -X POST https://supabase.carubra.com/functions/v1/blog-auto-post \
+      -H "x-api-key: YOUR_KEY" \
+      -H "Content-Type: application/json" \
+      -d '{"title":"Test","content":"<p>Test</p>"}'
+
+  Check Function Endpoint:
+    curl -v https://supabase.carubra.com/functions/v1/blog-auto-post
+
+  Test Local Build:
+    npm run preview
+
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ 🚨 TROUBLESHOOTING                                                        ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+
+  401 Unauthorized:
+    • Check API keys match (local .env vs server volumes/functions/.env)
+    • Verify x-api-key header is sent
+    • Check function .env file exists
+
+  500 Server Error:
+    • Check edge-functions logs: docker-compose logs edge-functions
+    • Verify BLOG_API_KEY is set on server
+    • Check function code for errors
+
+  404 Not Found:
+    • Verify function deployed: ls volumes/functions/blog-auto-post/
+    • Re-deploy: .\deploy-function.ps1
+    • Check service is running: docker-compose ps
+
+  Function Not Loading:
+    • Restart service: docker-compose restart edge-functions
+    • Check logs for startup errors
+    • Verify file permissions
+
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ 📚 DOCUMENTATION FILES                                                    ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+
+  Quick Start:           docs/SELFHOSTED-QUICKSTART.md
+  Full Deployment:       docs/DEPLOYMENT-SELFHOSTED.md
+  Database Schema:       docs/DATABASE-SCHEMA.md
+  Command Cheat Sheet:   docs/COMMAND-CHEATSHEET.md
+  Deployment Checklist:  DEPLOYMENT-CHECKLIST.md
+  Setup Complete:        SETUP-COMPLETE.md
+  Documentation Index:   docs/README.md
+
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ 🔗 USEFUL URLS                                                            ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+
+  Supabase Instance:     https://supabase.carubra.com
+  Blog API Endpoint:     https://supabase.carubra.com/functions/v1/blog-auto-post
+  Website:               https://uteroindonesia.com
+
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ 📞 EMERGENCY CONTACTS                                                     ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+
+  PT. Utero Kreatif Indonesia
+  Website:  https://uteroindonesia.com
+  Email:    info@uterogroup.com
+  Phone:    +62 812-1665-0111
+
+  Emergency Restart:
+    ssh maskhar@supabase-server
+    cd ~/docker/supabase/supabase-1.26.05/docker
+    docker-compose restart
+
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ ⏱️  QUICK DEPLOYMENT (10 MINUTES)                                        ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+
+  1. Setup .env (2 min)
+     cp .env.example .env && nano .env
+
+  2. Deploy function (1 min)
+     .\deploy-function.ps1
+
+  3. Test API (1 min)
+     .\test-api-key.ps1
+
+  4. Build frontend (2 min)
+     npm run build
+
+  5. Upload to server (4 min)
+     rsync -avz dist/ user@server:/var/www/html/
+
+╔════════════════════════════════════════════════════════════════════════════╗
+║                                                                            ║
+║  📌 BOOKMARK THIS FILE FOR QUICK REFERENCE                                ║
+║                                                                            ║
+║  Version: 1.0.0  |  Last Updated: August 5, 2026                          ║
+║                                                                            ║
+╚════════════════════════════════════════════════════════════════════════════╝

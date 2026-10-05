@@ -1,4 +1,4 @@
-# Logs
+﻿# Logs
 logs
 *.log
 npm-debug.log*
@@ -11,6 +11,18 @@ node_modules
 dist
 dist-ssr
 *.local
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+artikel-api-config.php
+.codegraph/
+
+# Local work files
+*.backup
+*.bak
+temp_docs.html
 
 # Editor directories and files
 .vscode/*

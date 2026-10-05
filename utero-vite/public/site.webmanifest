@@ -1,0 +1,17 @@
+{
+  "name": "Utero Indonesia",
+  "short_name": "Utero",
+  "description": "Brand consultant dan creative agency di Malang.",
+  "lang": "id-ID",
+  "start_url": "/",
+  "display": "standalone",
+  "theme_color": "#d11f1f",
+  "background_color": "#ffffff",
+  "icons": [
+    {
+      "src": "/images/apple-touch-icon.webp",
+      "sizes": "180x180",
+      "type": "image/webp"
+    }
+  ]
+}
