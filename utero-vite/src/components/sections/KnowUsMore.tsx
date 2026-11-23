@@ -18,7 +18,7 @@ const knowUsItems = [
   },
   {
     label: "Design",
-    href: "https://design.uteroindonesia.com/",
+    href: "https://utero.id/",
     target: "_blank",
     icon: "design",
     alt: "Jasa desain logo, kemasan, grafis, dan branding",
@@ -26,7 +26,7 @@ const knowUsItems = [
   },
   {
     label: "Advertising",
-    href: "https://www.instagram.com/uteromalang",
+    href: "https://advertising.uteroindonesia.com/",
     target: "_blank",
     icon: "reklame",
     alt: "Jasa reklame, neonbox, signage, dan advertising",
@@ -64,7 +64,7 @@ const knowUsItems = [
   },
   {
     label: "Media",
-    href: "http://media.uteroindonesia.com/",
+    href: "https://epochstream.org/",
     target: "_blank",
     icon: "technology",
     alt: "Media dan teknologi kreatif digital",
@@ -376,6 +376,8 @@ export default function KnowUsMore() {
                 <img 
                   src={`/images/icon/${item.icon}.webp`}
                   alt={item.alt}
+                  loading="lazy"
+                  decoding="async"
                   width={76}
                   height={76}
                   draggable={false}

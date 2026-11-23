@@ -13,7 +13,7 @@ export interface ChatNode {
   options: ChatOption[];
 }
 
-export const CHATBOT_AVATAR = "/images/photos/3-pak-dadik.webp";
+export const CHATBOT_AVATAR = "/images/photos/chatbot-avatar-180.webp";
 export const CHATBOT_NAME = "Utero Indonesia";
 export const CHATBOT_SUBTITLE = "Brand Consultant & Creative Agency";
 

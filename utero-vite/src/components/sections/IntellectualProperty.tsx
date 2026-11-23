@@ -3,19 +3,19 @@ import { motion } from "framer-motion";
 import { useRef, useEffect } from "react";
 
 const ipItems = [
-  { name: "OSIKER", href: "http://osiker.com/", img: "/images/ip/osiker.webp", alt: "Platform Intellectual Property & lisensi kreatif" },
-  { name: "Osiaeker", href: "http://osiaeker.uteroindonesia.com", img: "/images/ip/osiaeker.webp", alt: "Kanal konten kreatif dan entertainment" },
-  { name: "Chang", href: "http://bit.ly/YTDADIKWAHYUCHANG", img: "/images/ip/chang.webp", alt: "Vlog dan konten kreatif Dadik Wahyu Chang" },
-  { name: "Mbois", href: "https://festivalmbois.mcf.or.id/", img: "/images/ip/mbois.webp", alt: "Festival Mbois  brand event Malang Creative Fusion" },
-  { name: "Osi & Ji", href: "http://osidanji.com/", img: "/images/ip/osi-ji.webp", alt: "Maskot kota Malang  Osi & Ji" },
-  { name: "Utero", href: "https://www.youtube.com/channel/UCkdJC5Tw0bk0xK9sUR80xnA", img: "/images/ip/utero.webp", alt: "Channel YouTube resmi Utero Indonesia" },
-  { name: "Waraalvaro", href: "https://www.youtube.com/channel/UCfQ6A2Q5rZ09uWQDRD97G2g", img: "/images/ip/waraalvaro.webp", alt: "Kanal gaming dan entertainment anak" },
-  { name: "Waravalerie", href: "https://www.youtube.com/channel/UCZh3QudxIClo8VHYEPPvS6w", img: "/images/ip/waravalerie.webp", alt: "Kanal beauty dan kreativitas anak" },
-  { name: "Socioboo", href: "https://www.youtube.com/channel/UCCHRTqXGcNJnKuI42cE5d7A", img: "/images/ip/socioboo.webp", alt: "Platform paid promote dan influencer marketing" },
-  { name: "Dinar Weddover", href: "https://www.youtube.com/channel/UCBylfhhGHOLKQ52vTLxT0xg", img: "/images/ip/dinar-weddover.webp", alt: "Wedding organizer dan makeup artist" },
-  { name: "Multiverse", href: "https://www.instagram.com/multiverse.co.id/", img: "/images/ip/multiverse.webp", alt: "Komunitas gaming dan esport" },
-  { name: "Grotesk", href: "https://grotesk.uteroindonesia.com", img: "/images/ip/grotesk.webp", alt: "Brand cycling dan apparel kreatif" },
-  { name: "Red Valley", href: "https://www.youtube.com/@RedValley_band/videos", img: "/images/ip/red-valley.webp", alt: "Band metal/rock asal Malang" },
+  { name: "OSIKER", href: "http://osiker.com/", img: "/images/ip-small/osiker.webp", alt: "Platform Intellectual Property & lisensi kreatif" },
+  { name: "Osiaeker", href: "https://osiaeker.utero.id/", img: "/images/ip-small/osiaeker.webp", alt: "Kanal konten kreatif dan entertainment" },
+  { name: "Chang", href: "https://www.youtube.com/@DadikwahyuChang", img: "/images/ip-small/chang.webp", alt: "Vlog dan konten kreatif Dadik Wahyu Chang" },
+  { name: "Mbois", href: "https://www.youtube.com/@festivalmbois10", img: "/images/ip-small/mbois.webp", alt: "Festival Mbois  brand event Malang Creative Fusion" },
+  { name: "Osi & Ji", href: "http://osidanji.com/", img: "/images/ip-small/osi-ji.webp", alt: "Maskot kota Malang  Osi & Ji" },
+  { name: "Utero", href: "https://www.youtube.com/channel/UCkdJC5Tw0bk0xK9sUR80xnA", img: "/images/ip-small/utero.webp", alt: "Channel YouTube resmi Utero Indonesia" },
+  { name: "Waraalvaro", href: "https://www.youtube.com/channel/UCfQ6A2Q5rZ09uWQDRD97G2g", img: "/images/ip-small/waraalvaro.webp", alt: "Kanal gaming dan entertainment anak" },
+  { name: "Waravalerie", href: "https://www.youtube.com/channel/UCZh3QudxIClo8VHYEPPvS6w", img: "/images/ip-small/waravalerie.webp", alt: "Kanal beauty dan kreativitas anak" },
+  { name: "Socioboo", href: "https://www.youtube.com/channel/UCCHRTqXGcNJnKuI42cE5d7A", img: "/images/ip-small/socioboo.webp", alt: "Platform paid promote dan influencer marketing" },
+  { name: "Dinar Weddover", href: "https://www.youtube.com/channel/UCBylfhhGHOLKQ52vTLxT0xg", img: "/images/ip-small/dinar-weddover.webp", alt: "Wedding organizer dan makeup artist" },
+  { name: "Multiverse", href: "https://www.instagram.com/multiverse.co.id/", img: "/images/ip-small/multiverse.webp", alt: "Komunitas gaming dan esport" },
+  { name: "Grotesk", href: "https://grotesk.uteroindonesia.com", img: "/images/ip-small/grotesk.webp", alt: "Brand cycling dan apparel kreatif" },
+  { name: "Red Valley", href: "https://www.youtube.com/@RedValley_band/videos", img: "/images/ip-small/red-valley.webp", alt: "Band metal/rock asal Malang" },
 ];
 
 const ITEM_COUNT = ipItems.length;
@@ -317,6 +317,8 @@ export default function IntellectualProperty() {
                 <img src={item.img}
                   alt={item.alt}
                   draggable={false}
+                  loading="lazy"
+                  decoding="async"
                   style={{
                     objectFit: "contain",
                     transition: "filter 0.3s",

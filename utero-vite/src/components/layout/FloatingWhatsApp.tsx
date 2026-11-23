@@ -208,8 +208,8 @@ const IconCloseL = () => (
 /* ═══════════════════════════════════════════════════════════
    Component
    ═══════════════════════════════════════════════════════════ */
-export default function FloatingWhatsApp() {
-  const [isOpen, setIsOpen] = useState(false);
+export default function FloatingWhatsApp({ initiallyOpen = false }: { initiallyOpen?: boolean }) {
+  const [isOpen, setIsOpen] = useState(initiallyOpen);
   const [messages, setMessages] = useState<Message[]>([]);
   const [currentOptions, setCurrentOptions] = useState<ChatOption[]>([]);
   const [isTyping, setIsTyping] = useState(false);
@@ -687,7 +687,7 @@ export default function FloatingWhatsApp() {
             boxShadow: "0 6px 28px rgba(209,31,31,0.4), 0 2px 10px rgba(0,0,0,0.15)",
             position: "relative",
           }}
-          aria-label={isOpen ? "Tutup chat" : "Buka chat"}
+          aria-label={isOpen ? "Tutup chat" : "Chat Me"}
         >
           <AnimatePresence mode="wait" initial={false}>
             {isOpen ? (
@@ -721,6 +721,7 @@ export default function FloatingWhatsApp() {
                 <img
                   src={CHATBOT_AVATAR}
                   alt="Chat Kami"
+                  decoding="async"
                   style={{ width: "100%", height: "100%", objectFit: "cover" }}
                 />
                 {/* "Chat Me" bar */}

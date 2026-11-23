@@ -27,7 +27,7 @@ const communities = [
   {
     name: "ADGI",
     fullName: "Asosiasi Desainer Grafis Indonesia",
-    href: "https://adgimalang.com/",
+    href: "https://www.adgi.or.id/",
     img: "/images/community/adgi.webp",
     alt: "ADGI Malang -- asosiasi desainer grafis Indonesia chapter Malang",
     desc: "Asosiasi yang mewadahi profesi desainer grafis Indonesia dan mendukung pengembangan ekonomi kreatif nasional.",
@@ -170,6 +170,8 @@ export default function Community() {
               >
                 <img src={item.img}
                   alt={item.alt}
+                  loading="lazy"
+                  decoding="async"
                   style={{
                     objectFit: "contain",
                   }}

@@ -214,6 +214,8 @@ export default function Download() {
               >
                 <img src={item.img}
                   alt={item.alt}
+                  loading="lazy"
+                  decoding="async"
                   style={{
                     objectFit: "cover",
                     borderRadius: "12px",

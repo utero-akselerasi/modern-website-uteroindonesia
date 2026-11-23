@@ -1,9 +1,7 @@
+import { createElement, lazy } from 'react';
 import { createBrowserRouter } from 'react-router-dom';
 import Layout from './components/layout/Layout';
 import Home from './pages/Home';
-import ArtikelList from './pages/ArtikelList';
-import ArtikelDetail from './pages/ArtikelDetail';
-import NotFound from './pages/NotFound';
 
 export const router = createBrowserRouter([
   {
@@ -16,15 +14,19 @@ export const router = createBrowserRouter([
       },
       {
         path: 'artikel',
-        element: <ArtikelList />,
+        element: createElement(lazy(() => import('./pages/ArtikelList'))),
       },
       {
         path: 'artikel/:slug',
-        element: <ArtikelDetail />,
+        element: createElement(lazy(() => import('./pages/ArtikelDetail'))),
+      },
+      {
+        path: 'kampanye/dari-ide-jadi-dampak',
+        element: createElement(lazy(() => import('./pages/campaigns/DariIdeJadiDampak'))),
       },
       {
         path: '*',
-        element: <NotFound />,
+        element: createElement(lazy(() => import('./pages/NotFound'))),
       },
     ],
   },

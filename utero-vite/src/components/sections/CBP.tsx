@@ -5,35 +5,35 @@ const cbpCities = [
     name: "Malang",
     phone: "6281999900900",
     waText: "*SELAMAT DATANG DI LINKSTORE KREATIF UNTUK INDONESIA*\n\nHALO UTERO MALANG\n\nMau apa saja? KITA BISA\nKreatif model apa saja? KITA BERUPAYA\n\nkarena kami perusahaan idea & concept penuh cerita\n\n*UTERO INDONESIA*\nidea & concept factory\nwww.uteroindonesia.com",
-    img: "/images/cbp/cbp-malang.webp",
+    img: "/images/cbp-small/cbp-malang.webp",
     alt: "Utero Indonesia cabang Malang",
   },
   {
     name: "Surabaya",
     phone: "6281231157678",
     waText: "*SELAMAT DATANG DI LINKSTORE KREATIF UNTUK INDONESIA*\n\nHALO UTERO SURABAYA\n\nMau apa saja? KITA BISA\nKreatif model apa saja? KITA BERUPAYA\n\nkarena kami perusahaan idea & concept penuh cerita\n\n*UTERO INDONESIA*\nidea & concept factory\nwww.uteroindonesia.com",
-    img: "/images/cbp/cbp-surabaya.webp",
+    img: "/images/cbp-small/cbp-surabaya.webp",
     alt: "Utero Indonesia cabang Surabaya",
   },
   {
     name: "Madiun",
     phone: "6281217199005",
     waText: "*SELAMAT DATANG DI LINKSTORE KREATIF UNTUK INDONESIA*\n\nHALO UTERO MADIUN\n\nMau apa saja? KITA BISA\nKreatif model apa saja? KITA BERUPAYA\n\nkarena kami perusahaan idea & concept penuh cerita\n\n*UTERO INDONESIA*\nidea & concept factory\nwww.uteroindonesia.com",
-    img: "/images/cbp/cbp-madiun.webp",
+    img: "/images/cbp-small/cbp-madiun.webp",
     alt: "Utero Indonesia cabang Madiun",
   },
   {
     name: "Mojokerto",
     phone: "628155221124",
     waText: "*SELAMAT DATANG DI LINKSTORE KREATIF UNTUK INDONESIA*\n\nHALO UTERO MOJOKERTO\n\nMau apa saja? KITA BISA\nKreatif model apa saja? KITA BERUPAYA\n\nkarena kami perusahaan idea & concept penuh cerita\n\n*UTERO INDONESIA*\nidea & concept factory\nwww.uteroindonesia.com",
-    img: "/images/cbp/cbp-mojokerto.webp",
+    img: "/images/cbp-small/cbp-mojokerto.webp",
     alt: "Utero Indonesia cabang Mojokerto",
   },
   {
     name: "Jakarta",
     phone: "6281400741813",
     waText: "*SELAMAT DATANG DI LINKSTORE KREATIF UNTUK INDONESIA*\n\nHALO UTERO JAKARTA\n\nMau apa saja? KITA BISA\nKreatif model apa saja? KITA BERUPAYA\n\nkarena kami perusahaan idea & concept penuh cerita\n\n*UTERO INDONESIA*\nidea & concept factory\nwww.uteroindonesia.com",
-    img: "/images/cbp/cbp-jaktim.webp",
+    img: "/images/cbp-small/cbp-jaktim.webp",
     alt: "Utero Indonesia cabang Jakarta",
   },
 ];
@@ -241,6 +241,8 @@ export default function CBP() {
                 >
                   <img src={city.img}
                     alt={city.alt}
+                    loading="lazy"
+                    decoding="async"
                     style={{
                       objectFit: "cover",
                       width: "100%",

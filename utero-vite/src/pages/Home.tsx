@@ -25,6 +25,7 @@ export default function Home() {
           name="description"
           content="Utero Indonesia adalah brand consultant & creative agency di Malang dengan pengalaman 25+ tahun. Layanan: branding, desain, advertising, signage, digital, teknologi."
         />
+        <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
         
         {/* Open Graph */}
         <meta property="og:type" content="website" />
@@ -48,7 +49,7 @@ export default function Home() {
         <meta name="twitter:image" content="https://uteroindonesia.com/images/logo-utero-transparent.webp" />
         
         {/* Canonical */}
-        <link rel="canonical" href="https://uteroindonesia.com" />
+        <link rel="canonical" href="https://uteroindonesia.com/" />
         
         {/* JSON-LD Schema */}
         <script type="application/ld+json">
@@ -99,34 +100,25 @@ export default function Home() {
         </script>
       </Helmet>
 
-      <Hero />
-      <KnowUsMore />
-      <Divisions />
-      <Workflow />
-      <Clients />
-      <Portfolio />
-      <IntellectualProperty />
-      <Community />
-      <CBP />
-      <Extrapreneur />
-      <Partners />
-      <Download />
-      <WhyUtero />
-      <RecentArticles />
-      <Contact />
-      <Virtual />
+      <main id="home-main">
+        <Hero />
+        <KnowUsMore />
+        <Divisions />
+        <Workflow />
+        <Clients />
+        <Portfolio />
+        <IntellectualProperty />
+        <Community />
+        <CBP />
+        <Extrapreneur />
+        <Partners />
+        <Download />
+        <WhyUtero />
+        <RecentArticles />
+        <Contact />
+        <Virtual />
+      </main>
 
-      {/* Hidden SEO content for indexing */}
-      <div className="sr-only" aria-hidden="true">
-        <h2>Creative Agency Malang - Utero Indonesia</h2>
-        <p>
-          Utero Indonesia adalah creative agency dan brand consultant terbaik di
-          Malang, Jawa Timur. Berpengalaman lebih dari 25 tahun sejak 1998 dalam
-          bidang branding, desain grafis, advertising, signage, digital marketing,
-          dan teknologi. Melayani klien dari UMKM hingga perusahaan nasional.
-          Kantor tersedia di Malang, Mojokerto, dan Madiun.
-        </p>
-      </div>
     </>
   );
 }

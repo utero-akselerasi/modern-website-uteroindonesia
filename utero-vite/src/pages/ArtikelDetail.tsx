@@ -162,6 +162,9 @@ export default function ArtikelDetail() {
   const beforeContentAddons = sortedAddons.filter((addon) => addon.placement === 'before_content');
   const afterContentAddons = sortedAddons.filter((addon) => addon.placement !== 'before_content');
   const articleContent = article.content.replace(/<p>\s*\[Add-on:[^\]]+\]\s*<\/p>/gi, '');
+  const canonicalUrl = article.canonical_url || `https://uteroindonesia.com/artikel/${article.slug}`;
+  const description = article.excerpt || `Baca ${article.title} dari Utero Indonesia.`;
+  const socialImage = article.og_image_path || article.cover_url || 'https://uteroindonesia.com/images/logo-utero-transparent.webp';
   let headingIndex = 0;
   const articleContentWithHeadingIds = articleContent.replace(/<(h[1-3])([^>]*)>/gi, (_match, tag, attrs) => {
     const id = `heading-${headingIndex}`;
@@ -173,28 +176,31 @@ export default function ArtikelDetail() {
     <>
       <Helmet>
         <title>{article.title} | Utero Indonesia</title>
-        <meta name="description" content={article.excerpt} />
+        <meta name="description" content={description} />
         {article.robots && <meta name="robots" content={article.robots} />}
         <meta property="og:type" content="article" />
-        <meta property="og:url" content={article.canonical_url || `https://uteroindonesia.com/artikel/${article.slug}`} />
+        <meta property="og:url" content={canonicalUrl} />
         <meta property="og:title" content={article.title} />
-        <meta property="og:description" content={article.excerpt} />
-        {(article.og_image_path || article.cover_url) && <meta property="og:image" content={article.og_image_path || article.cover_url || undefined} />}
+        <meta property="og:description" content={description} />
+        <meta property="og:image" content={socialImage} />
+        <meta property="og:image:alt" content={article.title} />
         <meta property="og:site_name" content="Utero Indonesia" />
         <meta property="og:locale" content="id_ID" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={article.title} />
-        <meta name="twitter:description" content={article.excerpt} />
-        {(article.og_image_path || article.cover_url) && <meta name="twitter:image" content={article.og_image_path || article.cover_url || undefined} />}
-        <link rel="canonical" href={article.canonical_url || `https://uteroindonesia.com/artikel/${article.slug}`} />
+        <meta name="twitter:description" content={description} />
+        <meta name="twitter:image" content={socialImage} />
+        <meta name="twitter:image:alt" content={article.title} />
+        <link rel="canonical" href={canonicalUrl} />
         <script type="application/ld+json">
           {JSON.stringify({
             '@context': 'https://schema.org',
-            '@type': 'Article',
+            '@type': 'BlogPosting',
             headline: article.title,
-            description: article.excerpt,
-            url: article.canonical_url || `https://uteroindonesia.com/artikel/${article.slug}`,
-            ...(article.cover_url ? { image: article.cover_url } : {}),
+            description,
+            url: canonicalUrl,
+            mainEntityOfPage: { '@type': 'WebPage', '@id': canonicalUrl },
+            image: socialImage,
             author: { '@type': 'Person', name: article.author || 'Utero Indonesia' },
             publisher: {
               '@type': 'Organization',

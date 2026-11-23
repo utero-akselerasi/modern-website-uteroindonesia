@@ -1,0 +1,17 @@
+*** Begin Patch
+*** Update File: src/pages/campaigns/DariIdeJadiDampak.tsx
+@@
+         <div className="impact-hero-visual" aria-hidden="true">
+           <div className="impact-orbit impact-orbit-one" /><div className="impact-orbit impact-orbit-two" />
+           <div className="impact-core"><span>IDE</span><strong>→</strong><span>DAMPAK</span></div>
+           {capabilities.map((item, index) => <span className={`impact-satellite impact-satellite-${index + 1}`} key={item}>{item}</span>)}
++          <div className="impact-mobile-capabilities">
++            <span>IDE</span>
++            <strong>Strategi</strong>
++            <strong>Desain</strong>
++            <strong>Aktivasi</strong>
++            <strong>Teknologi</strong>
++            <span>DAMPAK</span>
++          </div>
+         </div>
+*** End Patch

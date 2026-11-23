@@ -111,7 +111,7 @@ export default function Partners() {
             style={{
               fontSize: "16px",
               lineHeight: 1.7,
-            color: "rgba(255,255,255,0.7)",
+            color: "#fff",
             marginTop: "24px",
             marginBottom: "40px",
             }}
@@ -221,6 +221,8 @@ export default function Partners() {
               >
                 <img src={partner.img}
                   alt={partner.alt}
+                  loading="lazy"
+                  decoding="async"
                   style={{
                     objectFit: "contain",
                     transition: "filter 0.3s",

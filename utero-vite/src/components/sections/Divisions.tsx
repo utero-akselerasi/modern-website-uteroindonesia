@@ -4,14 +4,33 @@ const divisions = [
     tag: "01 -- Design",
     name: "Utero.id",
     desc: "Brand identity, konsultasi branding, desain grafis, dan strategi visual untuk bisnis yang ingin tampil berbeda.",
-    services: ["Logo & GSM", "Brand Strategy", "Foto & Video", "Konsultan Branding"],
+    services: [
+      "Logo & GSM",
+      "Brand Strategy",
+      "Foto & Video",
+      "Konsultan Branding",
+      "Audio Visual",
+      "Interior dan Eksterior Design",
+      "Technology Design",
+    ],
     href: "https://utero.id/",
   },
   {
     tag: "02 -- Advertising",
     name: "Utero Malang",
-    desc: "Produksi reklame, printing digital indoor & outdoor, signage, neonbox, pylon, dan branding kendaraan.",
-    services: ["Billboard", "Signage 3D", "Digital Print", "Vehicle Wrap"],
+    desc: "Produksi reklame, printing digital indoor & outdoor, signage, neonbox, pylon, branding kendaraan, serta pengurusan pajak dan perizinan reklame.",
+    services: [
+      "Billboard",
+      "Signage 3D",
+      "Digital Print",
+      "Vehicle Wrap",
+      "Sablon",
+      "Spanduk",
+      "Banner",
+      "Umbul-umbul",
+      "Pajak Reklame",
+      "Perizinan",
+    ],
     href: "https://uteroindonesia.com/",
   },
   {
@@ -116,7 +135,7 @@ export default function Divisions() {
             style={{
               fontSize: "16px",
               lineHeight: 1.7,
-              color: "rgba(255, 255, 255, 0.75)",
+              color: "#fff",
               marginTop: "24px",
               marginBottom: "40px",
             }}
@@ -161,7 +180,6 @@ export default function Divisions() {
 
         {/* 3-col x 2-row Grid */}
         <div
-          role="list"
           style={{
             display: "grid",
             gridTemplateColumns: "repeat(3, 1fr)",
@@ -175,7 +193,6 @@ export default function Divisions() {
             href={div.href}
             target="_blank"
             rel="noopener noreferrer"
-            role="listitem"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-50px" }}

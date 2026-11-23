@@ -1,12 +1,13 @@
 ﻿import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { fetchRecentArticles, type Article } from "@/lib/articleService";
 import ArticleCard from "./ArticleCard";
 
 export default function RecentArticles() {
   const [articles, setArticles] = useState<Article[]>([]);
   const [loading, setLoading] = useState(true);
+  const sectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
     async function loadArticles() {
@@ -21,7 +22,16 @@ export default function RecentArticles() {
       }
     }
 
-    loadArticles();
+    const section = sectionRef.current;
+    if (!section) return;
+
+    const observer = new IntersectionObserver(([entry]) => {
+      if (!entry.isIntersecting) return;
+      observer.disconnect();
+      loadArticles();
+    }, { rootMargin: "600px" });
+    observer.observe(section);
+    return () => observer.disconnect();
   }, []);
 
   // Don't render section if no articles
@@ -31,6 +41,7 @@ export default function RecentArticles() {
 
   return (
     <section
+      ref={sectionRef}
       id="artikel"
       aria-labelledby="recent-articles-title"
       style={{ padding: "120px 64px", background: "var(--ash)" }}

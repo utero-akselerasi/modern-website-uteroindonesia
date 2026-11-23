@@ -1,0 +1,23 @@
+*** Begin Patch
+*** Update File: src/lib/analytics.ts
+@@
+ export function trackPageView(path: string, title: string) {
+@@
+   ReactGA.send({ hitType: 'pageview', page: path, title });
+ }
++
++export function trackEvent(name: string, params: Record<string, string | number | boolean> = {}) {
++  if (!analyticsEnabled || !ReactGA.isInitialized) return;
++  ReactGA.event(name, params);
++}
+*** Update File: src/router.tsx
+@@
+       {
+         path: 'artikel/:slug',
+         element: createElement(lazy(() => import('./pages/ArtikelDetail'))),
+       },
++      {
++        path: 'kampanye/dari-ide-jadi-dampak',
++        element: createElement(lazy(() => import('./pages/campaigns/DariIdeJadiDampak'))),
++      },
+*** End Patch

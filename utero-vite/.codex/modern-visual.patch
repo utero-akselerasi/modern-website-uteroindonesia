@@ -1,0 +1,54 @@
+*** Begin Patch
+*** Update File: src/pages/campaigns/DariIdeJadiDampak.tsx
+@@
+         </div>
+         <div className="impact-hero-visual" aria-hidden="true">
+-          <div className="impact-orbit impact-orbit-one" /><div className="impact-orbit impact-orbit-two" />
+-          <div className="impact-core"><span>IDE</span><strong>→</strong><span>DAMPAK</span></div>
+-          {capabilities.map((item, index) => <span className={`impact-satellite impact-satellite-${index + 1}`} key={item}>{item}</span>)}
+-          <div className="impact-mobile-capabilities">
+-            <span>IDE</span>
+-            <strong>Strategi</strong>
+-            <strong>Desain</strong>
+-            <strong>Aktivasi</strong>
+-            <strong>Teknologi</strong>
+-            <span>DAMPAK</span>
++          <div className="impact-system-card">
++            <div className="impact-system-topbar">
++              <div className="impact-system-brand">
++                <span className="impact-system-dots"><i /><i /><i /></span>
++                Creative Operating System
++              </div>
++              <span className="impact-system-status"><i /> Live</span>
++            </div>
++
++            <div className="impact-system-flow">
++              <div className="impact-flow-node">
++                <span>Input</span>
++                <strong>IDE</strong>
++              </div>
++              <div className="impact-flow-track"><i /></div>
++              <div className="impact-flow-node impact-flow-node-output">
++                <span>Output</span>
++                <strong>DAMPAK</strong>
++              </div>
++            </div>
++
++            <div className="impact-system-grid">
++              {capabilities.map((item, index) => (
++                <div className="impact-system-service" key={item}>
++                  <span>{String(index + 1).padStart(2, '0')}</span>
++                  <strong>{item}</strong>
++                  <i />
++                </div>
++              ))}
++            </div>
++
++            <div className="impact-system-metrics">
++              <div><strong>7</strong><span>Divisi</span></div>
++              <div><strong>1</strong><span>Arah</span></div>
++              <div><strong>∞</strong><span>Kemungkinan</span></div>
++            </div>
+           </div>
+         </div>
+*** End Patch

@@ -69,7 +69,7 @@ export const clients: Client[] = [
   },
   {
     "name": "Bank Sidoarjo",
-    "url": "https://bprdeltaartha.utero.id",
+    "url": "https://bprdeltaartha.com/",
     "logo": "/images/client/bank-sidoarjo.png"
   },
   {

@@ -1,12 +1,18 @@
+name: website-uteroindonesia-com
 services:
   uteroindonesia-web:
     container_name: uteroindonesia-web
     build:
       context: .
       target: web
-      args:
+      args: &vite_build_args
         VITE_SUPABASE_URL: ${VITE_SUPABASE_URL:?VITE_SUPABASE_URL wajib diisi di file .env}
         VITE_SUPABASE_ANON_KEY: ${VITE_SUPABASE_ANON_KEY:?VITE_SUPABASE_ANON_KEY wajib diisi di file .env}
+        VITE_ENABLE_ANALYTICS: ${VITE_ENABLE_ANALYTICS:-true}
+        VITE_GA_MEASUREMENT_ID: ${VITE_GA_MEASUREMENT_ID:-}
+        VITE_MICROSOFT_CLARITY_ID: ${VITE_MICROSOFT_CLARITY_ID:-}
+        VITE_BING_UET_TAG_ID: ${VITE_BING_UET_TAG_ID:-}
+        VITE_BING_SITE_VERIFICATION: ${VITE_BING_SITE_VERIFICATION:-}
     restart: unless-stopped
     depends_on:
       uteroindonesia-php:
@@ -23,6 +29,7 @@ services:
     build:
       context: .
       target: php
+      args: *vite_build_args
     restart: unless-stopped
     environment:
       ARTIKEL_API_URL: ${ARTIKEL_API_URL:-https://cms.carubra.com/api/v1}

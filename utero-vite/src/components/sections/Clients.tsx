@@ -3,6 +3,8 @@ import { useRef, useEffect } from "react";
 import { clients } from "@/data/clients";
 
 const ITEM_COUNT = clients.length;
+const BASE_VELOCITY = -100;
+const optimizedLogo = (logo: string) => logo.replace(/\/images\/client\/(.+)\.(?:png|webp)$/, "/images/client-small/$1.webp");
 
 export default function Clients() {
   const trackRef = useRef<HTMLDivElement>(null);
@@ -20,7 +22,6 @@ export default function Clients() {
   const oneSetWidthRef = useRef(0);
    const wasDraggedRef = useRef(false);
 
-  const BASE_VELOCITY = -100;
 
   const measureOneSetWidth = () => {
     if (!trackRef.current) return;
@@ -33,11 +34,11 @@ export default function Clients() {
 
   useEffect(() => {
     const track = trackRef.current;
-    if (!track) return;
+    const container = containerRef.current;
+    if (!track || !container) return;
 
-    measureOneSetWidth();
-    lastTimeRef.current = performance.now();
-
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    pausedRef.current = true;
     const animate = (currentTime: number) => {
       const delta = Math.min(currentTime - lastTimeRef.current, 100);
       lastTimeRef.current = currentTime;
@@ -57,7 +58,19 @@ export default function Clients() {
       animationRef.current = requestAnimationFrame(animate);
     };
 
-    animationRef.current = requestAnimationFrame(animate);
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting && !reducedMotion) {
+        pausedRef.current = false;
+        measureOneSetWidth();
+        lastTimeRef.current = performance.now();
+        if (!animationRef.current) animationRef.current = requestAnimationFrame(animate);
+      } else {
+        pausedRef.current = true;
+        cancelAnimationFrame(animationRef.current);
+        animationRef.current = 0;
+      }
+    }, { rootMargin: "200px" });
+    observer.observe(container);
 
     const ro = new ResizeObserver(() => {
       measureOneSetWidth();
@@ -70,6 +83,7 @@ export default function Clients() {
 
     return () => {
       cancelAnimationFrame(animationRef.current);
+      observer.disconnect();
       ro.disconnect();
     };
   }, []);
@@ -140,10 +154,14 @@ export default function Clients() {
   const renderItem = (c: (typeof clients)[0], index: number) => {
     const content = (
       <img
-        src={c.logo}
+        src={optimizedLogo(c.logo)}
         alt={c.name}
         className="client-scroll-logo"
         draggable={false}
+        loading="lazy"
+        decoding="async"
+        width={120}
+        height={72}
         style={c.scale ? { transform: `scale(${c.scale})` } : undefined}
       />
     );
@@ -152,7 +170,7 @@ export default function Clients() {
       alignItems: "center" as const,
       justifyContent: "center" as const,
       width: "120px",
-      height: "64px",
+      height: "72px",
       flexShrink: 0,
     };
     return c.url ? (
@@ -162,12 +180,13 @@ export default function Clients() {
         target="_blank"
         rel="noopener noreferrer"
         draggable={false}
+        className="client-scroll-card"
         style={{ ...itemStyle, textDecoration: "none" }}
       >
         {content}
       </a>
     ) : (
-      <div key={`${c.name}-${index}`} style={{ ...itemStyle, cursor: "default" }}>
+      <div key={`${c.name}-${index}`} className="client-scroll-card" style={{ ...itemStyle, cursor: "default" }}>
         {content}
       </div>
     );
@@ -187,7 +206,7 @@ export default function Clients() {
           fontWeight: 600,
           letterSpacing: "0.18em",
           textTransform: "uppercase",
-          color: "rgba(255, 255, 255, 0.85)",
+          color: "#fff",
           marginBottom: "48px",
         }}
       >
@@ -240,24 +259,28 @@ export default function Clients() {
         </div>
       </motion.div>
       <style>{`
+        .client-scroll-card {
+          background: rgba(255, 255, 255, 0.95);
+          border-radius: 8px;
+          overflow: hidden;
+          transition: background 0.3s ease;
+        }
+        .client-scroll-card:hover {
+          background: #fff;
+        }
         .client-scroll-logo {
-          max-width: 100%;
-          max-height: 100%;
-          width: auto;
-          height: auto;
+          width: 100%;
+          height: 100%;
           object-fit: contain;
-          transition: all 0.3s ease;
+          box-sizing: border-box;
+          transition: filter 0.3s ease, opacity 0.3s ease;
           filter: grayscale(100%);
           opacity: 0.7;
-          background: rgba(255, 255, 255, 0.95);
           padding: 8px;
-          border-radius: 8px;
         }
-        .client-scroll-logo:hover {
+        .client-scroll-card:hover .client-scroll-logo {
           filter: grayscale(0%);
           opacity: 1;
-          transform: scale(1.05);
-          background: rgba(255, 255, 255, 1);
         }
         .clients-ticker-track {
           will-change: transform;
@@ -265,10 +288,9 @@ export default function Clients() {
         .clients-ticker-container[data-dragging] .client-scroll-logo {
           pointer-events: none;
         }
-        .clients-ticker-container[data-dragging] .client-scroll-logo:hover {
+        .clients-ticker-container[data-dragging] .client-scroll-card:hover .client-scroll-logo {
           filter: grayscale(100%) !important;
           opacity: 0.7 !important;
-          transform: none !important;
         }
         @media (max-width: 900px) {
           .clients-section {

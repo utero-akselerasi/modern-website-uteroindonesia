@@ -141,6 +141,8 @@ export default function Footer() {
             }}
           >
             <img src="/images/utero-02.webp"
+              loading="lazy"
+              decoding="async"
               alt="Utero Indonesia"
               style={{
                 height: "120px",
@@ -531,6 +533,7 @@ export default function Footer() {
             <span>Kantor Malang - Jl. Bantaran 1 No. 25, Lowokwaru</span>
           </div>
           <iframe
+            title="Lokasi kantor Utero Indonesia Malang"
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3957.7!2d112.6344653!3d-7.950188!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd629c5e8a2021:0x3ff201ddaa440c96!2sPT+UTERO+KREATIF+INDONESIA!5e0!3m2!1sid!2sid!4v1717670400000"
             width="100%"
             height="230"
@@ -570,7 +573,7 @@ export default function Footer() {
               href="https://uterogroup.com/"
               target="_blank"
               rel="noopener noreferrer"
-              style={{ color: "rgba(255,255,255,0.9)", textDecoration: "none", whiteSpace: "nowrap" }}
+              style={{ color: "#fff", textDecoration: "underline", textUnderlineOffset: "3px", whiteSpace: "nowrap" }}
               onMouseEnter={(e) => (e.currentTarget.style.color = "#fff")}
               onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(255,255,255,0.9)")}
             >

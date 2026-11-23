@@ -120,7 +120,7 @@ export default function RootLayout({
         />
         {children}
         <FloatingWhatsApp />
-        <GoogleAnalytics gaId="G-7V5HTNW1TC" />
+        <GoogleAnalytics gaId="G-687LY633N8" />
       </body>
     </html>
   );

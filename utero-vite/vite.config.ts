@@ -51,7 +51,16 @@ export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), '');
 
   return {
-  plugins: [react(), tailwindcss(), articleApiDevProxy(env)],
+  plugins: [react(), tailwindcss(), articleApiDevProxy(env), {
+    name: 'bing-verification',
+    transformIndexHtml(html) {
+      const code = env.VITE_BING_SITE_VERIFICATION?.trim();
+      return code ? {
+        html,
+        tags: [{ tag: 'meta', attrs: { name: 'msvalidate.01', content: code }, injectTo: 'head' }],
+      } : html;
+    },
+  }],
   css: {
     transformer: 'postcss',
   },

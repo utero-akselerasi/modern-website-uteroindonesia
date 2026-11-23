@@ -350,6 +350,8 @@ export default function Extrapreneur() {
               >
                 <img src={item.img}
                   alt={item.alt}
+                  loading="lazy"
+                  decoding="async"
                   draggable={false}
                   style={{
                     objectFit: "contain",

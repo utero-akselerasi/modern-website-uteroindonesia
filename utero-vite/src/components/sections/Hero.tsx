@@ -131,9 +131,9 @@ export default function Hero() {
   };
 
   return (
-    <header
+    <section
       id="hero"
-      role="banner"
+      aria-label="Pengenalan Utero Indonesia"
       style={{
         minHeight: "100vh",
         paddingTop: "100px",
@@ -170,7 +170,7 @@ export default function Hero() {
               fontWeight: 700,
               letterSpacing: "0.15em",
               textTransform: "uppercase",
-              color: "rgba(255, 255, 255, 0.8)",
+              color: "#fff",
               marginBottom: "24px",
             }}
           >
@@ -201,7 +201,7 @@ export default function Hero() {
             style={{
               fontSize: "clamp(0.95rem, 1.3vw, 1.1rem)",
               lineHeight: 1.7,
-              color: "rgba(255, 255, 255, 0.85)",
+              color: "#fff",
               maxWidth: "520px",
               marginBottom: "clamp(36px, 4.5vw, 48px)",
             }}
@@ -480,39 +480,39 @@ export default function Hero() {
                 <span style={{ fontSize: "13px", fontWeight: 700, letterSpacing: "0.12em", color: "#fff", textTransform: "uppercase" }}>
                   BRAND GOALS 
                 </span>
-                <span style={{ color: "rgba(255,255,255,0.5)", fontSize: "10px" }}>â--</span>
+                <span style={{ color: "#fff", fontSize: "10px" }}>â--</span>
                 <span style={{ fontSize: "13px", fontWeight: 700, letterSpacing: "0.12em", color: "#fff", textTransform: "uppercase" }}>
                   EVENT & AKTIVASI
                 </span>
-                <span style={{ color: "rgba(255,255,255,0.5)", fontSize: "10px" }}>â--</span>
+                <span style={{ color: "#fff", fontSize: "10px" }}>â--</span>
                 <span style={{ fontSize: "13px", fontWeight: 700, letterSpacing: "0.12em", color: "#fff", textTransform: "uppercase" }}>
                   ADVERTISING & SIGNAGE
                 </span>
-                <span style={{ color: "rgba(255,255,255,0.5)", fontSize: "10px" }}>â--</span>
+                <span style={{ color: "#fff", fontSize: "10px" }}>â--</span>
                 <span style={{ fontSize: "13px", fontWeight: 700, letterSpacing: "0.12em", color: "#fff", textTransform: "uppercase" }}>
                   DIGITAL MARKETING
                 </span>
-                <span style={{ color: "rgba(255,255,255,0.5)", fontSize: "10px" }}>â--</span>
+                <span style={{ color: "#fff", fontSize: "10px" }}>â--</span>
                 <span style={{ fontSize: "13px", fontWeight: 700, letterSpacing: "0.12em", color: "#fff", textTransform: "uppercase" }}>
                   STRATEGI & KONSULTASI
                 </span>
-                <span style={{ color: "rgba(255,255,255,0.5)", fontSize: "10px" }}>â--</span>
+                <span style={{ color: "#fff", fontSize: "10px" }}>â--</span>
                 <span style={{ fontSize: "13px", fontWeight: 700, letterSpacing: "0.12em", color: "#fff", textTransform: "uppercase" }}>
                   MEDIA DISTRIBUTION
                 </span>
-                <span style={{ color: "rgba(255,255,255,0.5)", fontSize: "10px" }}>â--</span>
+                <span style={{ color: "#fff", fontSize: "10px" }}>â--</span>
                 <span style={{ fontSize: "13px", fontWeight: 700, letterSpacing: "0.12em", color: "#fff", textTransform: "uppercase" }}>
                   AI AUTOMATION
                 </span>
-                <span style={{ color: "rgba(255,255,255,0.5)", fontSize: "10px" }}>â--</span>
+                <span style={{ color: "#fff", fontSize: "10px" }}>â--</span>
                 <span style={{ fontSize: "13px", fontWeight: 700, letterSpacing: "0.12em", color: "#fff", textTransform: "uppercase" }}>
                   DESAIN & KREATIF
                 </span>
-                <span style={{ color: "rgba(255,255,255,0.5)", fontSize: "10px" }}>â--</span>
+                <span style={{ color: "#fff", fontSize: "10px" }}>â--</span>
                 <span style={{ fontSize: "13px", fontWeight: 700, letterSpacing: "0.12em", color: "#fff", textTransform: "uppercase" }}>
                   TEKNOLOGI & SISTEM
                 </span>
-                <span style={{ color: "rgba(255,255,255,0.5)", fontSize: "10px" }}>â--</span>
+                <span style={{ color: "#fff", fontSize: "10px" }}>â--</span>
               </div>
             ))}
           </div>
@@ -1005,7 +1005,7 @@ export default function Hero() {
           }
         }
       `}</style>
-    </header>
+    </section>
   );
 }
 

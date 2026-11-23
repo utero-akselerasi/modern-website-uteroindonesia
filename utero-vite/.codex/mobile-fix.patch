@@ -1,0 +1,9 @@
+*** Begin Patch
+*** Update File: src/pages/campaigns/DariIdeJadiDampak.css
+@@
+-.impact-hero-copy{position:relative;z-index:2}.impact-kicker,.impact-section-label{display:block;font-size:11px;font-weight:800;letter-spacing:.18em;text-transform:uppercase}.impact-kicker{margin-bottom:28px;color:rgba(255,255,255,.72)}
++.impact-hero-copy{position:relative;z-index:2;min-width:0;max-width:100%}.impact-kicker,.impact-section-label{display:block;font-size:11px;font-weight:800;letter-spacing:.18em;text-transform:uppercase}.impact-kicker{max-width:100%;margin-bottom:28px;color:rgba(255,255,255,.72);line-height:1.5;overflow-wrap:anywhere}
+@@
+-.impact-hero h1{max-width:780px;font-size:clamp(4rem,8.4vw,8.7rem);line-height:.82;letter-spacing:-.075em;text-transform:uppercase}.impact-hero h1 em{color:var(--impact-dark);font-style:normal}.impact-hero-copy>p{max-width:650px;margin-top:34px;font-size:clamp(1rem,1.4vw,1.22rem);line-height:1.65;color:rgba(255,255,255,.9)}
++.impact-hero h1{max-width:780px;font-size:clamp(4rem,8.4vw,8.7rem);line-height:.82;letter-spacing:-.075em;text-transform:uppercase}.impact-hero h1 em{color:var(--impact-dark);font-style:normal}.impact-hero-copy>p{width:100%;max-width:650px;margin-top:34px;font-size:clamp(1rem,1.4vw,1.22rem);line-height:1.65;color:rgba(255,255,255,.9);overflow-wrap:anywhere}
+*** End Patch

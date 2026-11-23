@@ -22,7 +22,7 @@ const items = [
   { title: "Mrono Branding Mobil", category: "Advertising", desc: "Branding kendaraan & mobil dinas", url: "https://www.instagram.com/brandingmobilmalang/", logo: "/images/portfolio/mrono-branding.webp" },
   { title: "Tokoneonbox", category: "Signage", desc: "Neon box custom & signage berkualitas", url: "https://www.instagram.com/tokoneonbox/", logo: "/images/portfolio/tokoneonbox.webp" },
   { title: "Ruvodo WebApps", category: "Digital", desc: "Pengembangan website & aplikasi modern", url: "http://ruvodo.com/", logo: "/images/portfolio/ruvodo-webapps.webp" },
-  { title: "Epochstream", category: "Digital", desc: "Platform live streaming & konten digital", url: "http://epochstream.com", logo: "/images/portfolio/epochstream.webp" },
+  { title: "Epochstream", category: "Digital", desc: "Platform live streaming & konten digital", url: "https://epochstream.org/", logo: "/images/portfolio/epochstream.webp" },
   { title: "Soundpub", category: "Digital", desc: "Audio branding & publikasi suara", url: "https://soundpub.xyz/", logo: "/images/portfolio/soundpub.webp" },
   { title: "Buzzerhood", category: "Digital", desc: "Influencer marketing & buzz digital", url: "https://buzzerhood.com/", logo: "/images/portfolio/buzzerhood.webp" },
   { title: "Socioboo", category: "Digital", desc: "Paid promote & social media campaign", url: "http://socioboo.uteroindonesia.com/", logo: "/images/portfolio/socioboo.webp" },
@@ -144,7 +144,7 @@ export default function Portfolio() {
             onClick={() => setActive(cat)}
             style={{
               background: active === cat ? "var(--red)" : "transparent",
-              color: active === cat ? "#fff" : "#999",
+              color: active === cat ? "#fff" : "#595959",
               border: active === cat ? "1px solid var(--red)" : "1px solid #444",
               padding: "10px 22px",
               fontSize: "13px",
@@ -174,7 +174,6 @@ export default function Portfolio() {
 
       {/* Bento Grid */}
       <div
-        role="list"
         style={{
           display: "grid",
           gridTemplateColumns: "repeat(3, 1fr)",
@@ -218,7 +217,7 @@ export default function Portfolio() {
               <div className="portfolio-item-inner" style={{ display: "flex", flexDirection: "row", alignItems: "center", gap: "24px", width: "100%" }}>
                 <div className={`portfolio-logo${item.logoDark ? " portfolio-logo-dark" : ""}`} style={{ width: "120px", height: "120px", flexShrink: 0, display: "flex", alignItems: "center", justifyContent: "center", ...(item.logoDark ? { padding: "12px", background: "#111", borderRadius: "12px" } : {}) }}>
                   {item.logo ? (
-                    <img src={item.logo} alt={item.title} style={{ objectFit: "contain", width: "100%", height: "100%", filter: item.logoDark ? "drop-shadow(0 0 6px rgba(255,255,255,0.15))" : "brightness(1.3) drop-shadow(0 0 6px rgba(255,255,255,0.06))" }} loading="lazy" />
+                    <img src={item.logo} alt={item.title} style={{ objectFit: "contain", width: "100%", height: "100%", filter: item.logoDark ? "drop-shadow(0 0 6px rgba(255,255,255,0.15))" : "brightness(1.3) drop-shadow(0 0 6px rgba(255,255,255,0.06))" }} loading="lazy" decoding="async" />
                   ) : (
                     <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.3)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2" /><circle cx="8.5" cy="8.5" r="1.5" /><polyline points="21 15 16 10 5 21" /></svg>
                   )}
@@ -254,8 +253,8 @@ export default function Portfolio() {
                     style={{
                       fontSize: "14px",
                       lineHeight: 1.6,
-                      color: "var(--ink)",
-                      opacity: 0.72,
+                      color: "#444",
+                      opacity: 1,
                       marginTop: "auto",
                     }}
                   >

@@ -216,10 +216,12 @@ Content-Type: application/json
 
 ## SEO
 - Meta tags via React Helmet Async
-- Sitemap.xml untuk search engines
+- Dynamic sitemap dari artikel yang dipublikasikan
 - Robots.txt configuration
 - Canonical URLs
 - Open Graph tags
+- Server-rendered metadata untuk halaman artikel
+- GA4, Microsoft Clarity, Bing UET, dan Bing Webmaster verification via `.env`
 
 ## Performance Improvements vs Next.js
 - ✅ 35% smaller bundle size

@@ -35,6 +35,7 @@ export default function ArtikelList() {
           name="description"
           content="Baca artikel terbaru seputar branding, desain, digital marketing, dan tips kreatif dari PT. Utero Kreatif Indonesia."
         />
+        <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://uteroindonesia.com/artikel" />
         <meta property="og:title" content="Artikel | Utero Indonesia" />
@@ -42,6 +43,13 @@ export default function ArtikelList() {
           property="og:description"
           content="Baca artikel terbaru seputar branding, desain, digital marketing, dan tips kreatif dari PT. Utero Kreatif Indonesia."
         />
+        <meta property="og:image" content="https://uteroindonesia.com/images/logo-utero-transparent.webp" />
+        <meta property="og:site_name" content="Utero Indonesia" />
+        <meta property="og:locale" content="id_ID" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Artikel | Utero Indonesia" />
+        <meta name="twitter:description" content="Insight branding, desain, digital marketing, dan kreativitas dari Utero Indonesia." />
+        <meta name="twitter:image" content="https://uteroindonesia.com/images/logo-utero-transparent.webp" />
         <link rel="canonical" href="https://uteroindonesia.com/artikel" />
       </Helmet>
 

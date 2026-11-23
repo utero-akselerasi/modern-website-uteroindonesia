@@ -1,5 +1,13 @@
 @import "tailwindcss";
 
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 300 900;
+  font-display: swap;
+  src: url("/fonts/inter-latin.woff2") format("woff2");
+}
+
 /* ===== DESIGN TOKENS ===== */
 :root {
   --red: #d11f1f;
@@ -10,7 +18,7 @@
   --ash: #f2f2f2;
   --white: #ffffff;
   --gold: #c9a84c;
-  --muted: #888888;
+  --muted: #595959;
   --muted-light: #aaaaaa;
   --border-color: rgba(0, 0, 0, 0.08);
   --border-light: rgba(0, 0, 0, 0.04);
@@ -34,6 +42,11 @@
   --color-muted: var(--muted);
   --font-sans: var(--font-body);
   --font-display: var(--font-display);
+}
+
+#home-main > section:not(#hero) {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 900px;
 }
 
 /* ===== GLOBAL RESET ===== */

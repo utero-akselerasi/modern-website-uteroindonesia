@@ -1,0 +1,134 @@
+*** Begin Patch
+*** Update File: src/pages/campaigns/DariIdeJadiDampak.css
+@@
+-  .impact-hero-visual {
+-    min-height: 540px;
+-  }
+-
+-  .impact-satellite {
+-    max-width: 132px;
+-    padding: 9px 11px;
+-    font-size: 0.55rem;
++  .impact-system-card {
++    padding: 15px;
+   }
+@@
+   .impact-hero-visual {
+-    width: min(100%, 580px);
+-    min-height: 520px;
++    width: min(100%, 680px);
+     margin-top: 10px;
+     justify-self: center;
+   }
+@@
+   .impact-hero-visual {
+-    min-height: 0;
+-    margin: 18px 0 0;
++    margin: 24px 0 0;
+   }
+ 
+-  .impact-orbit,
+-  .impact-core,
+-  .impact-satellite {
+-    display: none;
++  .impact-system-card {
++    padding: 12px;
++    border-radius: 20px;
+   }
+ 
+-  .impact-mobile-capabilities {
+-    padding: 18px;
+-    display: grid;
+-    grid-template-columns: repeat(2, minmax(0, 1fr));
+-    gap: 10px;
+-    border: 1px solid rgba(255, 255, 255, 0.35);
+-    background: rgba(16, 16, 16, 0.12);
+-    backdrop-filter: blur(8px);
++  .impact-system-topbar {
++    padding: 2px 2px 12px;
++    font-size: 0.58rem;
+   }
+ 
+-  .impact-mobile-capabilities strong,
+-  .impact-mobile-capabilities span {
+-    min-height: 58px;
+-    padding: 12px;
+-    display: flex;
+-    align-items: center;
+-    border: 1px solid rgba(255, 255, 255, 0.24);
+-    color: #fff;
+-    font-size: 0.72rem;
+-    font-weight: 850;
+-    letter-spacing: 0.06em;
+-    line-height: 1.3;
+-    text-transform: uppercase;
++  .impact-system-flow {
++    min-height: 130px;
++    padding: 16px 2px;
++    grid-template-columns: minmax(0, 1fr) 42px minmax(0, 1.12fr);
++    gap: 8px;
+   }
+ 
+-  .impact-mobile-capabilities span {
+-    background: var(--impact-dark);
+-    color: var(--impact-red);
++  .impact-flow-node {
++    min-height: 84px;
++    padding: 12px;
++    border-radius: 14px;
++  }
++
++  .impact-flow-node strong {
++    font-size: clamp(1.05rem, 5vw, 1.35rem);
++  }
++
++  .impact-system-service {
++    min-height: 68px;
++    padding: 12px;
++    gap: 9px;
++  }
++
++  .impact-system-metrics div {
++    min-height: 60px;
++    flex-direction: column;
++    gap: 2px;
++  }
++
++  .impact-system-metrics strong {
++    font-size: 1.05rem;
+   }
+@@
+-  .impact-mobile-capabilities {
+-    padding: 12px;
++  .impact-system-brand {
++    gap: 7px;
+   }
+ 
+-  .impact-mobile-capabilities strong,
+-  .impact-mobile-capabilities span {
+-    min-height: 54px;
+-    padding: 10px;
+-    font-size: 0.65rem;
++  .impact-system-dots {
++    display: none;
++  }
++
++  .impact-system-status {
++    font-size: 0;
++  }
++
++  .impact-system-grid {
++    grid-template-columns: 1fr;
++  }
++
++  .impact-system-service:last-child {
++    grid-column: auto;
+   }
+ }
+ 
+ @media (prefers-reduced-motion: reduce) {
+-  .impact-orbit-one {
++  .impact-flow-track i {
+     animation: none;
+   }
+*** End Patch

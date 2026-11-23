@@ -77,7 +77,7 @@ export default function WhyUtero() {
             Kami Bukan<br />Sekadar Vendor.
           </h2>
           <p style={{
-            fontSize: "14px", lineHeight: 1.65, color: "rgba(255,255,255,0.65)",
+            fontSize: "14px", lineHeight: 1.65, color: "#fff",
             marginTop: "20px", maxWidth: "400px",
           }}>
             Lebih dari sekadar penyedia jasa, kami adalah mitra kreatif yang tumbuh bersama klien. Kami memahami kebutuhan, merumuskan strategi, dan menghadirkan solusi yang relevan bagi bisnis Anda. Fokus kami adalah membangun kolaborasi jangka panjang yang memberikan dampak nyata.
@@ -94,7 +94,7 @@ export default function WhyUtero() {
               <div style={{ fontFamily: "var(--font-display)", fontSize: "20px", fontWeight: 800, color: "#fff", marginBottom: "10px" }}>
                 {item.title}
               </div>
-              <div style={{ fontSize: "14px", lineHeight: 1.65, color: "rgba(255,255,255,0.65)" }}>
+              <div style={{ fontSize: "14px", lineHeight: 1.65, color: "#fff" }}>
                 {item.desc}
               </div>
             </motion.div>

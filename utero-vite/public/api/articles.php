@@ -124,6 +124,11 @@ function loadConfig(): array
         }
     }
 
+    $environmentKey = getenv('ARTIKEL_API_KEY');
+    if ($environmentKey !== false && $environmentKey !== '') {
+        $config['api_key'] = $environmentKey;
+    }
+
     return $config;
 }
 
